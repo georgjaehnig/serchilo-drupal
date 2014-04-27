@@ -26,6 +26,8 @@ function serchilo_node_update($node) {
         ))
       ->condition('id', $node->field_command_id[LANGUAGE_NONE][0]['value'] )
       ->execute();
+      // TODO
+      // raise error when $num_updated != 1
     }
   }
 }
