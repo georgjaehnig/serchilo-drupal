@@ -13,22 +13,30 @@ function serchilo_node_update($node) {
     $not_to_be_moderated = empty($node->revision_moderation);
     if (($not_to_be_moderated) || ($published)) {
       // update table
+      $fields = serchilo_shortcut_to_db_fields($node);
       $num_updated = db_update('serchilo_shortcut') 
-        ->fields(array(
-          'title' => $node->title,
-          'keyword' => $node->field_keyword[LANGUAGE_NONE][0]['value'],
-          'argument_names' => $node->field_argument_names[LANGUAGE_NONE][0]['value'],
-          'argument_count' => $node->field_argument_count[LANGUAGE_NONE][0]['value'],
-          'url' => $node->field_url[LANGUAGE_NONE][0]['value'],
-          'weight' => $node->field_weight[LANGUAGE_NONE][0]['value'],
-          'invisible' => $node->field_invisible[LANGUAGE_NONE][0]['value'],
-          'set_referrer' => $node->field_set_referrer[LANGUAGE_NONE][0]['value'],
-        ))
-      ->condition('id', $node->field_command_id[LANGUAGE_NONE][0]['value'] )
-      ->execute();
+        ->fields($fields)
+        ->condition('id', $node->field_command_id[LANGUAGE_NONE][0]['value'] )
+        ->execute();
       // TODO
       // raise error when $num_updated != 1
     }
   }
+}
+
+function serchilo_shortcut_to_db_fields($node) {
+
+  $fields = array(
+    'title' => $node->title,
+    'keyword' => $node->field_keyword[LANGUAGE_NONE][0]['value'],
+    'argument_names' => $node->field_argument_names[LANGUAGE_NONE][0]['value'],
+    'argument_count' => $node->field_argument_count[LANGUAGE_NONE][0]['value'],
+    'url' => $node->field_url[LANGUAGE_NONE][0]['value'],
+    'weight' => $node->field_weight[LANGUAGE_NONE][0]['value'],
+    'invisible' => $node->field_invisible[LANGUAGE_NONE][0]['value'],
+    'set_referrer' => $node->field_set_referrer[LANGUAGE_NONE][0]['value'],
+  );
+
+  return $fields;
 }
 
