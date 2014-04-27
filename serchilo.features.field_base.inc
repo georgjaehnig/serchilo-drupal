@@ -1,0 +1,492 @@
+<?php
+/**
+ * @file
+ * serchilo.features.field_base.inc
+ */
+
+/**
+ * Implements hook_field_default_field_bases().
+ */
+function serchilo_field_default_field_bases() {
+  $field_bases = array();
+
+  // Exported field_base: 'field_argument_count'
+  $field_bases['field_argument_count'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_argument_count',
+    'field_permissions' => array(
+      'type' => 2,
+    ),
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_argument_names'
+  $field_bases['field_argument_names'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_argument_names',
+    'field_permissions' => array(
+      'type' => 2,
+    ),
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_command_id'
+  $field_bases['field_command_id'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_command_id',
+    'field_permissions' => array(
+      'type' => 2,
+    ),
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_example'
+  $field_bases['field_example'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_example',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(),
+    'indexes' => array(
+      'revision_id' => array(
+        0 => 'revision_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'field_collection',
+    'settings' => array(
+      'hide_blank_items' => 1,
+      'path' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'field_collection',
+  );
+
+  // Exported field_base: 'field_example_arguments'
+  $field_bases['field_example_arguments'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_example_arguments',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_example_description'
+  $field_bases['field_example_description'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_example_description',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_input_encoding'
+  $field_bases['field_input_encoding'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_input_encoding',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'UTF-8' => 'UTF-8',
+        'ISO-8859-1' => 'ISO-8859-1',
+        'none' => 'none',
+        '7bit' => '7bit',
+        '8bit' => '8bit',
+        'ASCII' => 'ASCII',
+        'ArmSCII-8' => 'ArmSCII-8',
+        'BASE64' => 'BASE64',
+        'BIG-5' => 'BIG-5',
+        'CP50220' => 'CP50220',
+        'CP50220raw' => 'CP50220raw',
+        'CP50221' => 'CP50221',
+        'CP50222' => 'CP50222',
+        'CP51932' => 'CP51932',
+        'CP850' => 'CP850',
+        'CP866' => 'CP866',
+        'CP932' => 'CP932',
+        'CP936' => 'CP936',
+        'EUC-CN' => 'EUC-CN',
+        'EUC-JP' => 'EUC-JP',
+        'EUC-KR' => 'EUC-KR',
+        'EUC-TW' => 'EUC-TW',
+        'HTML-ENTITIES' => 'HTML-ENTITIES',
+        'HZ' => 'HZ',
+        'ISO-2022-JP' => 'ISO-2022-JP',
+        'ISO-2022-JP-MS' => 'ISO-2022-JP-MS',
+        'ISO-2022-KR' => 'ISO-2022-KR',
+        'ISO-8859-10' => 'ISO-8859-10',
+        'ISO-8859-13' => 'ISO-8859-13',
+        'ISO-8859-14' => 'ISO-8859-14',
+        'ISO-8859-15' => 'ISO-8859-15',
+        'ISO-8859-16' => 'ISO-8859-16',
+        'ISO-8859-2' => 'ISO-8859-2',
+        'ISO-8859-3' => 'ISO-8859-3',
+        'ISO-8859-4' => 'ISO-8859-4',
+        'ISO-8859-5' => 'ISO-8859-5',
+        'ISO-8859-6' => 'ISO-8859-6',
+        'ISO-8859-7' => 'ISO-8859-7',
+        'ISO-8859-8' => 'ISO-8859-8',
+        'ISO-8859-9' => 'ISO-8859-9',
+        'JIS' => 'JIS',
+        'JIS-ms' => 'JIS-ms',
+        'KOI8-R' => 'KOI8-R',
+        'KOI8-U' => 'KOI8-U',
+        'Quoted-Printable' => 'Quoted-Printable',
+        'SJIS' => 'SJIS',
+        'SJIS-win' => 'SJIS-win',
+        'UCS-2' => 'UCS-2',
+        'UCS-2BE' => 'UCS-2BE',
+        'UCS-2LE' => 'UCS-2LE',
+        'UCS-4' => 'UCS-4',
+        'UCS-4BE' => 'UCS-4BE',
+        'UCS-4LE' => 'UCS-4LE',
+        'UHC' => 'UHC',
+        'UTF-16' => 'UTF-16',
+        'UTF-16BE' => 'UTF-16BE',
+        'UTF-16LE' => 'UTF-16LE',
+        'UTF-32' => 'UTF-32',
+        'UTF-32BE' => 'UTF-32BE',
+        'UTF-32LE' => 'UTF-32LE',
+        'UTF-7' => 'UTF-7',
+        'UTF7-IMAP' => 'UTF7-IMAP',
+        'UUENCODE' => 'UUENCODE',
+        'Windows-1251' => 'Windows-1251',
+        'Windows-1252' => 'Windows-1252',
+        'Windows-1254' => 'Windows-1254',
+        'auto' => 'auto',
+        'byte2be' => 'byte2be',
+        'byte2le' => 'byte2le',
+        'byte4be' => 'byte4be',
+        'byte4le' => 'byte4le',
+        'eucJP-win' => 'eucJP-win',
+        'pass' => 'pass',
+        'wchar' => 'wchar',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_invisible'
+  $field_bases['field_invisible'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_invisible',
+    'field_permissions' => array(
+      'type' => 2,
+    ),
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => '',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
+  // Exported field_base: 'field_keyword'
+  $field_bases['field_keyword'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_keyword',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_namespace'
+  $field_bases['field_namespace'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_namespace',
+    'field_permissions' => array(
+      'type' => 2,
+    ),
+    'foreign keys' => array(
+      'tid' => array(
+        'columns' => array(
+          'tid' => 'tid',
+        ),
+        'table' => 'taxonomy_term_data',
+      ),
+    ),
+    'indexes' => array(
+      'tid' => array(
+        0 => 'tid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'taxonomy',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => array(
+          'vocabulary' => 'namespaces',
+          'parent' => 0,
+        ),
+      ),
+    ),
+    'translatable' => 0,
+    'type' => 'taxonomy_term_reference',
+  );
+
+  // Exported field_base: 'field_set_referrer'
+  $field_bases['field_set_referrer'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_set_referrer',
+    'field_permissions' => array(
+      'type' => 2,
+    ),
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => '',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
+  // Exported field_base: 'field_tags'
+  $field_bases['field_tags'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_tags',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(
+      'tid' => array(
+        'columns' => array(
+          'tid' => 'tid',
+        ),
+        'table' => 'taxonomy_term_data',
+      ),
+    ),
+    'indexes' => array(
+      'tid' => array(
+        0 => 'tid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'taxonomy',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => array(
+          'vocabulary' => 'tags',
+          'parent' => 0,
+        ),
+      ),
+    ),
+    'translatable' => 0,
+    'type' => 'taxonomy_term_reference',
+  );
+
+  // Exported field_base: 'field_url'
+  $field_bases['field_url'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_url',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 10000,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_weight'
+  $field_bases['field_weight'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_weight',
+    'field_permissions' => array(
+      'type' => 2,
+    ),
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(
+      'decimal_separator' => '.',
+    ),
+    'translatable' => 0,
+    'type' => 'number_float',
+  );
+
+  return $field_bases;
+}

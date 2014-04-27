@@ -1,0 +1,607 @@
+<?php
+/**
+ * @file
+ * serchilo.features.field_instance.inc
+ */
+
+/**
+ * Implements hook_field_default_field_instances().
+ */
+function serchilo_field_default_field_instances() {
+  $field_instances = array();
+
+  // Exported field_instance: 'field_collection_item-field_example-field_example_arguments'
+  $field_instances['field_collection_item-field_example-field_example_arguments'] = array(
+    'bundle' => 'field_example',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_example_arguments',
+    'label' => 'Arguments',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'field_collection_item-field_example-field_example_description'
+  $field_instances['field_collection_item-field_example-field_example_description'] = array(
+    'bundle' => 'field_example',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_example_description',
+    'label' => 'Description',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'node-shortcut-field_argument_count'
+  $field_instances['node-shortcut-field_argument_count'] = array(
+    'bundle' => 'shortcut',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 2,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_argument_count',
+    'label' => 'argument_count',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'node-shortcut-field_argument_names'
+  $field_instances['node-shortcut-field_argument_names'] = array(
+    'bundle' => 'shortcut',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_argument_names',
+    'label' => 'argument_names',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'node-shortcut-field_command_id'
+  $field_instances['node-shortcut-field_command_id'] = array(
+    'bundle' => 'shortcut',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 10,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_command_id',
+    'label' => 'command_id',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 12,
+    ),
+  );
+
+  // Exported field_instance: 'node-shortcut-field_example'
+  $field_instances['node-shortcut-field_example'] = array(
+    'bundle' => 'shortcut',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'field_collection',
+        'settings' => array(
+          'add' => 'Add',
+          'delete' => 'Delete',
+          'description' => TRUE,
+          'edit' => 'Edit',
+          'view_mode' => 'full',
+        ),
+        'type' => 'field_collection_view',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_example',
+    'label' => 'Examples',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'field_collection',
+      'settings' => array(),
+      'type' => 'field_collection_embed',
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'node-shortcut-field_input_encoding'
+  $field_instances['node-shortcut-field_input_encoding'] = array(
+    'bundle' => 'shortcut',
+    'default_value' => array(
+      0 => array(
+        'value' => 'UTF-8',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 4,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_input_encoding',
+    'label' => 'Input Encoding',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'node-shortcut-field_invisible'
+  $field_instances['node-shortcut-field_invisible'] = array(
+    'bundle' => 'shortcut',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 9,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_invisible',
+    'label' => 'invisible',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 10,
+    ),
+  );
+
+  // Exported field_instance: 'node-shortcut-field_keyword'
+  $field_instances['node-shortcut-field_keyword'] = array(
+    'bundle' => 'shortcut',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_keyword',
+    'label' => 'Keyword',
+    'required' => 1,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'node-shortcut-field_namespace'
+  $field_instances['node-shortcut-field_namespace'] = array(
+    'bundle' => 'shortcut',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 5,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_namespace',
+    'label' => 'namespace',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-shortcut-field_set_referrer'
+  $field_instances['node-shortcut-field_set_referrer'] = array(
+    'bundle' => 'shortcut',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 8,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_set_referrer',
+    'label' => 'set_referrer',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 9,
+    ),
+  );
+
+  // Exported field_instance: 'node-shortcut-field_tags'
+  $field_instances['node-shortcut-field_tags'] = array(
+    'bundle' => 'shortcut',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 7,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_tags',
+    'label' => 'Tags',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance: 'node-shortcut-field_url'
+  $field_instances['node-shortcut-field_url'] = array(
+    'bundle' => 'shortcut',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 3,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_url',
+    'label' => 'URL',
+    'required' => 1,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance: 'node-shortcut-field_weight'
+  $field_instances['node-shortcut-field_weight'] = array(
+    'bundle' => 'shortcut',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 2,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_decimal',
+        'weight' => 11,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_weight',
+    'label' => 'weight',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 11,
+    ),
+  );
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Arguments');
+  t('Description');
+  t('Examples');
+  t('Input Encoding');
+  t('Keyword');
+  t('Tags');
+  t('URL');
+  t('argument_count');
+  t('argument_names');
+  t('command_id');
+  t('invisible');
+  t('namespace');
+  t('set_referrer');
+  t('weight');
+
+  return $field_instances;
+}
