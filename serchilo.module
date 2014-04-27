@@ -27,6 +27,14 @@ function serchilo_node_update($node) {
   }
 }
 
+/**
+ * Retrieve database fields from shortcut node.
+ *
+ * @param $node
+ *   Node of type shortcut
+ * @return
+ *   array to pass to fields()
+ */
 function serchilo_shortcut_to_db_fields($node) {
 
   $fields = array(
