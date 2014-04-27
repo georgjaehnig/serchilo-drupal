@@ -6,6 +6,9 @@
 
 include_once 'serchilo.features.inc';
 
+/**
+ * Implements hook_node_update().
+ */
 function serchilo_node_update($node) {
 
   if ($node->type == 'shortcut') {
