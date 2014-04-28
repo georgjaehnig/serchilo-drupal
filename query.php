@@ -1,5 +1,7 @@
 <?PHP
 
+define('NAMESPACE_VOCABULARY_ID', 1);
+
 require_once('../../../default/settings.php');
 
 $db = $databases['default']['default'];
@@ -12,9 +14,10 @@ $mysqli = new mysqli(
 );
 
   $query = $_GET['query'];
-  list($keyword, $arguments) = _serchilo_extract_keyword_and_arguments($query);
 
-  $namespace_ids = array(1,2);
+  list($keyword, $arguments, $extra_namespace_id) = _serchilo_parse_query($query);
+
+  $namespace_ids = array(1,2, $extra_namespace_id);
 
 $command = _serchilo_find_command($keyword, count($arguments), $namespace_ids, $mysqli);
 echo '<pre>';
@@ -49,11 +52,33 @@ function _serchilo_find_command($keyword, $argument_count, $namespace_ids, $mysq
   #exit();
 
   $result = $mysqli->query($sql);
+  if (!$result) {
+    return; 
+  }
   $row = $result->fetch_assoc();
 
   return $row;
 }
 
+function _serchilo_parse_query($query) {
+  list($keyword, $arguments) = _serchilo_extract_keyword_and_arguments($query);
+  list($keyword, $extra_namespace_id) = _serchilo_get_extra_namespace_from_keyword($keyword);
+  return array($keyword, $arguments, $extra_namespace_id);
+}
+
+function _serchilo_get_extra_namespace_from_keyword($keyword) {
+  # try to extract extra namespace from query
+  # e.g.: de.w berlin
+  $extra_namespace_id = 0;
+  if (strpos($keyword,'.') !== false) {
+    list($namespace_name, $keyword) = explode('.', $keyword, 2);
+    // TODO:
+    // sql call to taxonomy_term_data
+    // with check vid=1
+    $extra_namespace_id = 0;
+  }
+  return array($keyword, $extra_namespace_id);
+}
 
 function _serchilo_extract_keyword_and_arguments($query, $max_arguments = -1) {
 
