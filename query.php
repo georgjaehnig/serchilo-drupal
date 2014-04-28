@@ -2,8 +2,6 @@
 
 require_once('../../../default/settings.php');
 
-print_r($databases);
-
 $db = $databases['default']['default'];
 
 $mysqli = new mysqli(
@@ -13,12 +11,14 @@ $mysqli = new mysqli(
   $db['database']
 );
 
+  $query = $_GET['query'];
+  list($keyword, $arguments) = _serchilo_extract_keyword_and_arguments($query);
 
-  $keyword = 'foobar';
-  $argument_count = 1;
   $namespace_ids = array(1,2);
 
-_serchilo_find_command('foobar', 1, $namespace_ids, $mysqli);
+$command = _serchilo_find_command($keyword, count($arguments), $namespace_ids, $mysqli);
+echo '<pre>';
+print_r($command);
 
 function _serchilo_find_command($keyword, $argument_count, $namespace_ids, $mysqli) {
 
@@ -49,13 +49,26 @@ function _serchilo_find_command($keyword, $argument_count, $namespace_ids, $mysq
   #exit();
 
   $result = $mysqli->query($sql);
-
-
   $row = $result->fetch_assoc();
 
-  print_r($row);
   return $row;
-
 }
 
 
+function _serchilo_extract_keyword_and_arguments($query, $max_arguments = -1) {
+
+  # extract keyword and arguments
+  $keyword_arguments = preg_split('/\s+/', $query, 2);
+  $keyword = trim($keyword_arguments[0]);
+
+  # if we have arguments
+  if (count($keyword_arguments) > 1) {
+    $arguments_str = $keyword_arguments[1];
+    $arguments = preg_split('/\s*,\s*/', $arguments_str, $max_arguments);
+    $arguments = array_map('trim', $arguments);
+  }
+  else {
+    $arguments = array();
+  }
+  return array($keyword, $arguments);
+}
