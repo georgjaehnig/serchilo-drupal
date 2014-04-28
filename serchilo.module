@@ -75,13 +75,16 @@ function serchilo_shortcut_to_db_fields($node) {
   drupal_array_set_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value'), '');
   $fields = array(
     'title' => $node->title,
-    'keyword' => $node->field_keyword[LANGUAGE_NONE][0]['value'],
-    'argument_names' => $node->field_argument_names[LANGUAGE_NONE][0]['value'],
-    'argument_count' => $node->field_argument_count[LANGUAGE_NONE][0]['value'],
-    'url' => $node->field_url[LANGUAGE_NONE][0]['value'],
-    'weight' => $node->field_weight[LANGUAGE_NONE][0]['value'],
-    'invisible' => $node->field_invisible[LANGUAGE_NONE][0]['value'],
-    'set_referrer' => $node->field_set_referrer[LANGUAGE_NONE][0]['value'],
+    'keyword' =>        drupal_array_get_nested_value($node->field_keyword,        array(LANGUAGE_NONE, 0, 'value')),
+    'argument_names' => drupal_array_get_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value')),
+    'argument_count' => drupal_array_get_nested_value($node->field_argument_count, array(LANGUAGE_NONE, 0, 'value')),
+    'url' =>            drupal_array_get_nested_value($node->field_url,            array(LANGUAGE_NONE, 0, 'value')),
+    'input_encoding' => drupal_array_get_nested_value($node->field_input_encoding, array(LANGUAGE_NONE, 0, 'value')),
+    'weight' =>         drupal_array_get_nested_value($node->field_weight,         array(LANGUAGE_NONE, 0, 'value')),
+    'invisible' =>      drupal_array_get_nested_value($node->field_invisible,      array(LANGUAGE_NONE, 0, 'value')),
+    'set_referrer' =>   drupal_array_get_nested_value($node->field_set_referrer,   array(LANGUAGE_NONE, 0, 'value')),
+    'namespace_id' =>   drupal_array_get_nested_value($node->field_namespace,      array(LANGUAGE_NONE, 0, 'tid'  )),
+    'namespace_name' => drupal_array_get_nested_value($node->field_namespace,      array(LANGUAGE_NONE, 0, 'name' )),
   );
 
   return $fields;
