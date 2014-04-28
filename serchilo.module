@@ -6,43 +6,56 @@
 
 include_once 'serchilo.features.inc';
 
+function serchilo_revisionapi($op, $node) {
+
+  if ($op == 'post publish') {
+    if ($node->type == 'shortcut') {
+      $command_id = drupal_array_get_nested_value($node->field_command_id, array(LANGUAGE_NONE, 0, 'value'));
+      if (empty($command_id)) {
+        $command_id = serchilo_insert_shortcut_row($node);
+        drupal_array_set_nested_value($node->field_command_id, array(LANGUAGE_NONE, 0, 'value'), $command_id);
+        node_save($node);
+      }
+      else {
+        serchilo_update_shortcut_row($node);
+      }
+    }
+  }
+}
+
 /**
  * Implements hook_node_presave().
  */
 function serchilo_node_presave($node) {
 
   if ($node->type == 'shortcut') {
-    if ($node->is_new) {
-      $not_to_be_moderated = empty($node->revision_moderation);
-      if ($not_to_be_moderated)  {
-        drupal_array_set_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value'), '');
+    $no_moderation = (
+      (property_exists($node, 'revision_operation')) && 
+      ($node->revision_operation == REVISIONING_NEW_REVISION_NO_MODERATION)
+    );
+    if ($no_moderation) {
+      $command_id = drupal_array_get_nested_value($node->field_command_id, array(LANGUAGE_NONE, 0, 'value'));
+      if (empty($command_id)) {
         $command_id = serchilo_insert_shortcut_row($node);
         drupal_array_set_nested_value($node->field_command_id, array(LANGUAGE_NONE, 0, 'value'), $command_id);
+        dpm('inserted');
+      }
+      else {
+        serchilo_update_shortcut_row($node);
+        dpm('updated');
       }
     }
   }
 }
-/**
- * Implements hook_node_update().
- */
-function serchilo_node_update($node) {
 
+/**
+ * Implements hook_node_delete().
+ */
+function serchilo_node_delete($node) {
   if ($node->type == 'shortcut') {
-    $published = ($node->original->status == 0 && $node->status == 1);
-    $not_to_be_moderated = empty($node->revision_moderation);
-    if (($not_to_be_moderated) || ($published)) {
-      drupal_array_set_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value'), '');
-      // if command_id already set
-      if (drupal_array_get_nested_value($node->field_command_id, array(LANGUAGE_NONE, 0, 'value'))) {
-        // assume that row exists
-        // so update it
-        serchilo_update_shortcut_row($node);
-      }
-      else {
-        // assume that row does not exist
-        // so insert it
-        serchilo_insert_shortcut_row($node);
-      }
+    $command_id = drupal_array_get_nested_value($node->field_command_id, array(LANGUAGE_NONE, 0, 'value'));
+    if (!empty($command_id)) {
+      serchilo_delete_shortcut_row($node);
     }
   }
 }
@@ -57,6 +70,7 @@ function serchilo_node_update($node) {
  */
 function serchilo_shortcut_to_db_fields($node) {
 
+  drupal_array_set_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value'), '');
   $fields = array(
     'title' => $node->title,
     'keyword' => $node->field_keyword[LANGUAGE_NONE][0]['value'],
@@ -78,8 +92,10 @@ function serchilo_insert_shortcut_row($node) {
     ->execute();
   // TODO
   // raise error when $command_id < 1
+  dpm($command_id);
   return $command_id;
 }
+
 function serchilo_update_shortcut_row($node) {
   $fields = serchilo_shortcut_to_db_fields($node);
   $num_updated = db_update('serchilo_shortcut') 
@@ -88,4 +104,14 @@ function serchilo_update_shortcut_row($node) {
     ->execute();
   // TODO
   // raise error when $num_updated != 1
+  dpm($num_updated);
+}
+
+function serchilo_delete_shortcut_row($node) {
+  $num_deleted = db_delete('serchilo_shortcut') 
+    ->condition('id', $node->field_command_id[LANGUAGE_NONE][0]['value'] )
+    ->execute();
+  // TODO
+  // raise error when $num_deleted != 1
+  dpm($num_deleted);
 }
