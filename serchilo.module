@@ -7,6 +7,22 @@
 include_once 'serchilo.features.inc';
 
 /**
+ * Implements hook_node_presave().
+ */
+function serchilo_node_presave($node) {
+
+  if ($node->type == 'shortcut') {
+    if ($node->is_new) {
+      $not_to_be_moderated = empty($node->revision_moderation);
+      if ($not_to_be_moderated)  {
+        drupal_array_set_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value'), '');
+        $command_id = serchilo_insert_shortcut_row($node);
+        drupal_array_set_nested_value($node->field_command_id, array(LANGUAGE_NONE, 0, 'value'), $command_id);
+      }
+    }
+  }
+}
+/**
  * Implements hook_node_update().
  */
 function serchilo_node_update($node) {
@@ -15,14 +31,18 @@ function serchilo_node_update($node) {
     $published = ($node->original->status == 0 && $node->status == 1);
     $not_to_be_moderated = empty($node->revision_moderation);
     if (($not_to_be_moderated) || ($published)) {
-      // update table
-      $fields = serchilo_shortcut_to_db_fields($node);
-      $num_updated = db_update('serchilo_shortcut') 
-        ->fields($fields)
-        ->condition('id', $node->field_command_id[LANGUAGE_NONE][0]['value'] )
-        ->execute();
-      // TODO
-      // raise error when $num_updated != 1
+      drupal_array_set_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value'), '');
+      // if command_id already set
+      if (drupal_array_get_nested_value($node->field_command_id, array(LANGUAGE_NONE, 0, 'value'))) {
+        // assume that row exists
+        // so update it
+        serchilo_update_shortcut_row($node);
+      }
+      else {
+        // assume that row does not exist
+        // so insert it
+        serchilo_insert_shortcut_row($node);
+      }
     }
   }
 }
@@ -51,3 +71,21 @@ function serchilo_shortcut_to_db_fields($node) {
   return $fields;
 }
 
+function serchilo_insert_shortcut_row($node) {
+  $fields = serchilo_shortcut_to_db_fields($node);
+  $command_id = db_insert('serchilo_shortcut') 
+    ->fields($fields)
+    ->execute();
+  // TODO
+  // raise error when $command_id < 1
+  return $command_id;
+}
+function serchilo_update_shortcut_row($node) {
+  $fields = serchilo_shortcut_to_db_fields($node);
+  $num_updated = db_update('serchilo_shortcut') 
+    ->fields($fields)
+    ->condition('id', $node->field_command_id[LANGUAGE_NONE][0]['value'] )
+    ->execute();
+  // TODO
+  // raise error when $num_updated != 1
+}
