@@ -81,7 +81,11 @@ function serchilo_field_default_field_instances() {
   // Exported field_instance: 'node-shortcut-field_argument_count'
   $field_instances['node-shortcut-field_argument_count'] = array(
     'bundle' => 'shortcut',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -228,7 +232,7 @@ function serchilo_field_default_field_instances() {
           'view_mode' => 'full',
         ),
         'type' => 'field_collection_view',
-        'weight' => 6,
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -249,7 +253,7 @@ function serchilo_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => 6,
+      'weight' => 8,
     ),
   );
 
@@ -380,7 +384,18 @@ function serchilo_field_default_field_instances() {
   // Exported field_instance: 'node-shortcut-field_namespace'
   $field_instances['node-shortcut-field_namespace'] = array(
     'bundle' => 'shortcut',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'tid' => 1,
+        'vid' => 1,
+        'name' => 'o',
+        'description' => '',
+        'format' => 'plain_text',
+        'weight' => 0,
+        'vocabulary_machine_name' => 'namespaces',
+        'metatags' => array(),
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -400,8 +415,8 @@ function serchilo_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_namespace',
-    'label' => 'namespace',
-    'required' => 0,
+    'label' => 'Namespace',
+    'required' => 1,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
@@ -413,7 +428,7 @@ function serchilo_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 8,
+      'weight' => 6,
     ),
   );
 
@@ -472,7 +487,7 @@ function serchilo_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 7,
+        'weight' => 6,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -543,7 +558,11 @@ function serchilo_field_default_field_instances() {
   // Exported field_instance: 'node-shortcut-field_weight'
   $field_instances['node-shortcut-field_weight'] = array(
     'bundle' => 'shortcut',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -593,13 +612,13 @@ function serchilo_field_default_field_instances() {
   t('Examples');
   t('Input Encoding');
   t('Keyword');
+  t('Namespace');
   t('Tags');
   t('URL');
   t('argument_count');
   t('argument_names');
   t('command_id');
   t('invisible');
-  t('namespace');
   t('set_referrer');
   t('weight');
 

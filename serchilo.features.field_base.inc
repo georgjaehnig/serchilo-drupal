@@ -88,7 +88,7 @@ function serchilo_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_example',
     'field_permissions' => array(
-      'type' => 0,
+      'type' => 2,
     ),
     'foreign keys' => array(),
     'indexes' => array(
@@ -114,7 +114,7 @@ function serchilo_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_example_arguments',
     'field_permissions' => array(
-      'type' => 0,
+      'type' => 2,
     ),
     'foreign keys' => array(
       'format' => array(
@@ -146,7 +146,7 @@ function serchilo_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_example_description',
     'field_permissions' => array(
-      'type' => 0,
+      'type' => 2,
     ),
     'foreign keys' => array(
       'format' => array(
@@ -178,7 +178,7 @@ function serchilo_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_input_encoding',
     'field_permissions' => array(
-      'type' => 0,
+      'type' => 2,
     ),
     'foreign keys' => array(),
     'indexes' => array(
@@ -308,7 +308,7 @@ function serchilo_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_keyword',
     'field_permissions' => array(
-      'type' => 0,
+      'type' => 2,
     ),
     'foreign keys' => array(
       'format' => array(
@@ -406,7 +406,7 @@ function serchilo_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_tags',
     'field_permissions' => array(
-      'type' => 0,
+      'type' => 2,
     ),
     'foreign keys' => array(
       'tid' => array(
@@ -443,7 +443,7 @@ function serchilo_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_url',
     'field_permissions' => array(
-      'type' => 0,
+      'type' => 2,
     ),
     'foreign keys' => array(
       'format' => array(

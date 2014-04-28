@@ -37,7 +37,9 @@ function serchilo_user_default_permissions() {
   // Exported permission: 'access devel information'.
   $permissions['access devel information'] = array(
     'name' => 'access devel information',
-    'roles' => array(),
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+    ),
     'module' => 'devel',
   );
 
@@ -261,7 +263,10 @@ function serchilo_user_default_permissions() {
   // Exported permission: 'create field_namespace'.
   $permissions['create field_namespace'] = array(
     'name' => 'create field_namespace',
-    'roles' => array(),
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'field_permissions',
   );
 
@@ -283,6 +288,7 @@ function serchilo_user_default_permissions() {
   $permissions['create shortcut content'] = array(
     'name' => 'create shortcut content',
     'roles' => array(
+      'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'node',
@@ -373,7 +379,10 @@ function serchilo_user_default_permissions() {
   // Exported permission: 'edit field_namespace'.
   $permissions['edit field_namespace'] = array(
     'name' => 'edit field_namespace',
-    'roles' => array(),
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'field_permissions',
   );
 
@@ -422,7 +431,10 @@ function serchilo_user_default_permissions() {
   // Exported permission: 'edit own field_namespace'.
   $permissions['edit own field_namespace'] = array(
     'name' => 'edit own field_namespace',
-    'roles' => array(),
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'field_permissions',
   );
 
@@ -672,10 +684,7 @@ function serchilo_user_default_permissions() {
   // Exported permission: 'view revision status messages'.
   $permissions['view revision status messages'] = array(
     'name' => 'view revision status messages',
-    'roles' => array(
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
-    ),
+    'roles' => array(),
     'module' => 'revisioning',
   );
 
