@@ -17,9 +17,9 @@ $mysqli = new mysqli(
 
 $query = $_GET['query'];
 
-$namespace_ids = _serchilo_get_namespace_ids();
-list($keyword, $arguments, $extra_namespace_id) = _serchilo_parse_query($query);
-$namespace_ids[] = $extra_namespace_id;
+$namespace_names = _serchilo_get_namespace_names();
+list($keyword, $arguments, $extra_namespace_name) = _serchilo_parse_query($query);
+$namespace_ids = array_map('_serchilo_get_namespace_id', array_merge($namespace_names, array($extra_namespace_name)));
 
 echo '<pre>';
 print_r($namespace_ids);

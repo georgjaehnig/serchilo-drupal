@@ -41,19 +41,18 @@ function _serchilo_find_command($keyword, $argument_count, $namespace_ids) {
 
 function _serchilo_parse_query($query) {
   list($keyword, $arguments) = _serchilo_extract_keyword_and_arguments($query);
-  list($keyword, $extra_namespace_id) = _serchilo_get_extra_namespace_from_keyword($keyword);
-  return array($keyword, $arguments, $extra_namespace_id);
+  list($keyword, $extra_namespace_name) = _serchilo_get_extra_namespace_from_keyword($keyword);
+  return array($keyword, $arguments, $extra_namespace_name);
 }
 
 function _serchilo_get_extra_namespace_from_keyword($keyword) {
   # try to extract extra namespace from query
   # e.g.: de.w berlin
-  $extra_namespace_id = 0;
+  $extra_namespace_name = '';
   if (strpos($keyword,'.') !== false) {
-    list($namespace_name, $keyword) = explode('.', $keyword, 2);
-    $extra_namespace_id = _serchilo_get_namespace_id($namespace_name);
+    list($extra_namespace_name, $keyword) = explode('.', $keyword, 2);
   }
-  return array($keyword, $extra_namespace_id);
+  return array($keyword, $extra_namespace_name);
 }
 
 function _serchilo_extract_keyword_and_arguments($query, $max_arguments = -1) {
@@ -94,15 +93,14 @@ function _serchilo_get_namespace_id($namespace_name) {
   return $row['tid'];
 }
 
-function _serchilo_get_namespace_ids() {
+function _serchilo_get_namespace_names() {
   $path = $_SERVER['REDIRECT_URL'];
   // example: '/n/en.usa'
   $path_elements = explode('/', $path);
   switch ($path_elements[1]) {
     case 'n':
       $namespace_names = explode('.', $path_elements[2]);
-      $namespace_ids = array_map('_serchilo_get_namespace_id', $namespace_names);
-      return $namespace_ids;
+      return $namespace_names;
       break;
     case 'u':
       // evtl user namespaces zwischenspeichern in
