@@ -86,7 +86,7 @@ function _serchilo_get_namespace_id($namespace_name) {
     name = '" . $mysqli->real_escape_string($namespace_name) . "' 
   ";
   $result = $mysqli->query($sql);
-  if (!$result) {
+  if ($result->num_rows == 0) {
     return 0; 
   }
   $row = $result->fetch_assoc();
