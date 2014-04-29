@@ -92,5 +92,17 @@ function _serchilo_get_namespace_id($namespace_name) {
   }
   $row = $result->fetch_assoc();
   return $row['tid'];
-  
+}
+
+function _serchilo_get_namespace_ids() {
+  $path = $_SERVER['REDIRECT_URL'];
+  // example: '/n/en.usa'
+  $path_elements = explode('/', $path);
+  switch ($path_elements[1]) {
+    case 'n':
+      $namespace_names = explode('.', $path_elements[2]);
+      $namespace_ids = array_map('_serchilo_get_namespace_id', $namespace_names);
+      return $namespace_ids;
+      break;
+  }
 }

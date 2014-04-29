@@ -7,7 +7,6 @@ require_once('serchilo.query.inc');
 
 $db = $databases['default']['default'];
 
-
 $mysqli = new mysqli(
   $db['host'],
   $db['username'],
@@ -15,15 +14,16 @@ $mysqli = new mysqli(
   $db['database']
 );
 
-  $query = $_GET['query'];
 
-  list($keyword, $arguments, $extra_namespace_id) = _serchilo_parse_query($query);
+$query = $_GET['query'];
 
-  $namespace_ids = array(1,2, $extra_namespace_id);
-  print_r($namespace_ids);
+list($keyword, $arguments, $extra_namespace_id) = _serchilo_parse_query($query);
+$namespace_ids = _serchilo_get_namespace_ids();
+
+echo '<pre>';
+print_r($namespace_ids);
 
 $command = _serchilo_find_command($keyword, count($arguments), $namespace_ids);
-echo '<pre>';
 print_r($command);
 
 
