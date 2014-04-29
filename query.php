@@ -17,15 +17,23 @@ $mysqli = new mysqli(
 
 $query = $_GET['query'];
 
-list($keyword, $arguments, $extra_namespace_id) = _serchilo_parse_query($query);
 $namespace_ids = _serchilo_get_namespace_ids();
+list($keyword, $arguments, $extra_namespace_id) = _serchilo_parse_query($query);
+$namespace_ids[] = $extra_namespace_id;
 
 echo '<pre>';
 print_r($namespace_ids);
 
 $command = _serchilo_find_command($keyword, count($arguments), $namespace_ids);
 print_r($command);
+if ($command) {
+  echo _serchilo_call_command($command, $arguments, FALSE);
+}
+else {
+  // redirect to serchilo website
+}
 
 
 // TODO:
 // default_keyword
+
