@@ -1,5 +1,8 @@
 <?PHP
 
+// TODO:
+// better read out taxonomy_vocabulary (tiny table)
+// by the machine name "namespace"
 define('NAMESPACE_VOCABULARY_ID', 1);
 
 require_once('../../../default/settings.php');
