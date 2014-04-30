@@ -33,6 +33,28 @@ function serchilo_revisionapi($op, $node) {
 function serchilo_node_presave($node) {
 
   if ($node->type == 'shortcut') {
+    $no_sensible_edit = (
+      (
+        // no change in keyword
+        drupal_array_get_nested_value($node->original->field_keyword, array(LANGUAGE_NONE, 0, 'value')) 
+        == drupal_array_get_nested_value($node->field_keyword, array(LANGUAGE_NONE, 0, 'value'))
+      ) 
+      &&
+      (
+        // no change in url
+        drupal_array_get_nested_value($node->original->field_url, array(LANGUAGE_NONE, 0, 'value')) 
+        == drupal_array_get_nested_value($node->field_url, array(LANGUAGE_NONE, 0, 'value'))
+      ) 
+      &&
+      (
+        // no change in namespace
+        drupal_array_get_nested_value($node->original->field_namespace, array(LANGUAGE_NONE, 0, 'tid')) 
+        == drupal_array_get_nested_value($node->field_namespace, array(LANGUAGE_NONE, 0, 'tid'))
+      ) 
+    );
+    if ($no_sensible_edit) {
+      $node->revision_operation = REVISIONING_NEW_REVISION_NO_MODERATION;
+    }
     $no_moderation = (
       (property_exists($node, 'revision_operation')) && 
       ($node->revision_operation == REVISIONING_NEW_REVISION_NO_MODERATION)
