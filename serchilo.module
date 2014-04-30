@@ -94,6 +94,8 @@ function serchilo_node_delete($node) {
  */
 function serchilo_shortcut_to_db_fields($node) {
 
+  // TODO:
+  // remove when implemented calculation
   drupal_array_set_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value'), '');
   $fields = array(
     'title' => $node->title,
