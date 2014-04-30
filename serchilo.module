@@ -33,6 +33,13 @@ function serchilo_revisionapi($op, $node) {
 function serchilo_node_presave($node) {
 
   if ($node->type == 'shortcut') {
+
+    // derive and set url metadata
+    $url = drupal_array_get_nested_value($node->field_url, array(LANGUAGE_NONE, 0, 'value'));
+    $argument_names = _serchilo_get_argument_names($url);
+    drupal_array_set_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value'), join(', ', $argument_names));
+    drupal_array_set_nested_value($node->field_argument_count, array(LANGUAGE_NONE, 0, 'value'), count($argument_names));
+
     $no_sensible_edit = (
       (
         // no change in keyword
@@ -84,6 +91,17 @@ function serchilo_node_delete($node) {
   }
 }
 
+
+function serchilo_node_validate($node, $form, &$form_state) {
+  if ($node->type == 'shortcut') {
+    // dpm($argument_names);
+    // dpm($node);
+    // TODO:
+    // check for collisions
+    // form_set_error('field_keyword', 'bad keyword');
+  }
+}
+
 /**
  * Retrieve database fields from shortcut node.
  *
@@ -94,9 +112,6 @@ function serchilo_node_delete($node) {
  */
 function _serchilo_shortcut_to_db_fields($node) {
 
-  // TODO:
-  // remove when implemented calculation
-  drupal_array_set_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value'), '');
   $fields = array(
     'title' => $node->title,
     'keyword' =>        drupal_array_get_nested_value($node->field_keyword,        array(LANGUAGE_NONE, 0, 'value')),
@@ -143,4 +158,25 @@ function _serchilo_delete_shortcut_row($node) {
   // TODO
   // raise error when $num_deleted != 1
   dpm($num_deleted);
+}
+
+function _serchilo_get_argument_names($url) {
+
+  // parse url for arguments
+  preg_match_all(
+    // ? makes ungreedy
+    '/\{s:(.+?)\}/',
+    $url,
+    $matches,
+    PREG_PATTERN_ORDER
+  );
+  $argument_names = $matches[1];
+
+  // treat arguments with same name as only one argument
+  $argument_names = array_unique($argument_names);
+
+  // make sure indexes have no gaps
+  $argument_names = array_values($argument_names);
+
+  return $argument_names;
 }
