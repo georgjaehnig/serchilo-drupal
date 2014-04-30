@@ -109,7 +109,7 @@ function _serchilo_get_namespace_names() {
   }
 }
 
-function _serchilo_call_command($command, $arguments, $redirect = TRUE) {
+function _serchilo_call_command($command, $arguments, $variables, $redirect = TRUE) {
   
 /*
   $language_namespace = drupal_static('language_namespace');
@@ -139,7 +139,6 @@ function _serchilo_call_command($command, $arguments, $redirect = TRUE) {
     $variables['country:alpha2'] = serchilo_country_alpha3_to_alpha2($country_namespace->name);
   }
  */
-  $variables = array();
 
   $input_encoding = $command['input_encoding'];
 
@@ -208,4 +207,24 @@ function _serchilo_replace_arguments($url, $arguments, $variables, $input_encodi
     );
   }
   return $url;
+}
+
+function _serchilo_get_url_variables($namespace_names, $extra_namespace_name) {
+  $variables = array();
+  $variables['language'] = $namespace_names[0];
+  $variables['country:alpha3'] = $namespace_names[1];
+  switch (strlen($extra_namespace_name)) {
+    case 2:
+      $variables['language'] = $extra_namespace_name;
+      break;
+    case 3:
+      $variables['country:alpha3'] = $extra_namespace_name;
+      break;
+  }
+  // TODO:
+  // country:alpha2
+  //    check ob benutzt
+  // user:name
+  // user:id
+  return $variables;
 }

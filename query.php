@@ -23,11 +23,12 @@ $namespace_ids = array_map('_serchilo_get_namespace_id', array_merge($namespace_
 
 echo '<pre>';
 print_r($namespace_ids);
-
 $command = _serchilo_find_command($keyword, count($arguments), $namespace_ids);
+$variables = _serchilo_get_url_variables($namespace_names, $extra_namespace_name);
+print_r($variables);
 print_r($command);
 if ($command) {
-  echo _serchilo_call_command($command, $arguments, FALSE);
+  echo _serchilo_call_command($command, $arguments, $variables, FALSE);
 }
 else {
   // redirect to serchilo website
@@ -36,4 +37,5 @@ else {
 
 // TODO:
 // default_keyword
+
 
