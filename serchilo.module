@@ -74,7 +74,10 @@ function serchilo_revision_publish($node) {
  */
 function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) {
   $form['title'               ]['#element_validate']                            = array('serchilo_form_validate_no_tags');
-  $form['field_keyword'       ][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_no_tags');
+  $form['field_keyword'       ][LANGUAGE_NONE][0]['value']['#element_validate'] = array(
+    'serchilo_form_validate_no_tags',
+    'serchilo_form_validate_no_dots',
+  );
   $form['field_argument_names'][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_no_tags');
   $form['field_url'           ][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_no_tags');
   foreach (element_children($form['field_example'][LANGUAGE_NONE]) as $index) {
@@ -91,6 +94,26 @@ function serchilo_form_validate_no_tags($element, &$form_state) {
     form_set_error(join('][', $element['#parents']), t('No HTML tags are allowed.'));
   }
 }
+
+
+function serchilo_form_validate_no_dots($element, &$form_state) {
+  $value = drupal_array_get_nested_value( $form_state['values'], $element['#parents']);
+  if (strpos($value, '.') !== FALSE) {
+    form_set_error(
+      join(
+        '][',
+        $element['#parents']
+      ),
+      t(
+        'No dots are allowed in the keyword, since !dots_are used_for_forcing_a_namespace.',
+        array(
+          '!dots_are used_for_forcing_a_namespace' => l(t('dots are used for forcing a namespace'), 'help/namespaces', array('fragment'=>'force')) 
+        )
+      )
+    );
+  }
+}
+
 
 /**
  * Implements hook_node_validate().
