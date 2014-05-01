@@ -20,7 +20,6 @@ dependencies[] = node
 dependencies[] = number
 dependencies[] = options
 dependencies[] = revisioning
-dependencies[] = revisioning_scheduler
 dependencies[] = revisioning_ux
 dependencies[] = shortcut
 dependencies[] = system
