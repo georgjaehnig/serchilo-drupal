@@ -187,6 +187,8 @@ function _serchilo_get_argument_names($url) {
 function _serchilo_is_sensible_edit($node)
 {
   $is_sensible_edit = NULL;
+  // TODO:
+  // better use node_type_get_type() ?
   if ($node->type == 'shortcut') {
     if (empty($node->is_new)) {
       $is_sensible_edit = (
