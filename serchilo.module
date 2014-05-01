@@ -68,6 +68,9 @@ function serchilo_revision_publish($node) {
   }
 }
 
+/**
+ * Implements hook_node_validate().
+ */
 function serchilo_node_validate($node, $form, &$form_state) {
   if ($node->type == 'shortcut') {
     // dpm($argument_names);
