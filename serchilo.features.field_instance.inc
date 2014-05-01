@@ -10,6 +10,39 @@
 function serchilo_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'comment-comment_node_shortcut-comment_body'
+  $field_instances['comment-comment_node_shortcut-comment_body'] = array(
+    'bundle' => 'comment_node_shortcut',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'comment',
+    'field_name' => 'comment_body',
+    'label' => 'Comment',
+    'required' => TRUE,
+    'settings' => array(
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 0,
+    ),
+  );
+
   // Exported field_instance: 'field_collection_item-field_example-field_example_arguments'
   $field_instances['field_collection_item-field_example-field_example_arguments'] = array(
     'bundle' => 'field_example',
@@ -292,7 +325,9 @@ function serchilo_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'content_taxonomy_opt_groups' => FALSE,
+      ),
       'type' => 'options_select',
       'weight' => 5,
     ),
@@ -425,6 +460,7 @@ function serchilo_field_default_field_instances() {
       'module' => 'taxonomy',
       'settings' => array(
         'autocomplete_path' => 'taxonomy/autocomplete',
+        'content_taxonomy_autocomplete_new_terms' => 'deny',
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
@@ -508,6 +544,7 @@ function serchilo_field_default_field_instances() {
       'module' => 'taxonomy',
       'settings' => array(
         'autocomplete_path' => 'taxonomy/autocomplete',
+        'content_taxonomy_autocomplete_new_terms' => 'allow',
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
@@ -609,6 +646,7 @@ function serchilo_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('A change will result in saving only a draft, needed to be moderated by an editor.');
   t('Arguments');
+  t('Comment');
   t('Description');
   t('Examples');
   t('Input Encoding');
