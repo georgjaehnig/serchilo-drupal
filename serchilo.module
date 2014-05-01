@@ -87,7 +87,9 @@ function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) 
     }
   }
 }
-
+/**
+ * Validate a form element that should contain no HTML tags.
+ */
 function serchilo_form_validate_no_tags($element, &$form_state) {
   $value = drupal_array_get_nested_value($form_state['values'], $element['#parents']);
   if ($value != preg_replace('/<.*>/', '', $value)) {
@@ -95,6 +97,9 @@ function serchilo_form_validate_no_tags($element, &$form_state) {
   }
 }
 
+/**
+ * Validate a form element that should contain no dots.
+ */
 function serchilo_form_validate_no_dots($element, &$form_state) {
   $value = drupal_array_get_nested_value( $form_state['values'], $element['#parents']);
   if (strpos($value, '.') !== FALSE) {
@@ -107,6 +112,17 @@ function serchilo_form_validate_no_dots($element, &$form_state) {
         )
       )
     );
+  }
+}
+
+/**
+ * Validate a form element that should contain no whitespace.
+ */
+function serchilo_form_validate_no_whitespace($element, &$form_state) {
+
+  $value = drupal_array_get_nested_value($form_state['values'], $element['#parents']);
+  if ($value != preg_replace('/\s*/', '', $value)) {
+    form_set_error( join( '][', $element['#parents']), t('Spaces are not allowed.'));
   }
 }
 
