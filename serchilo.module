@@ -73,8 +73,8 @@ function serchilo_revision_publish($node) {
  * Implements hook_form_alter().
  */
 function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) {
-  $form['title'               ]['#element_validate']                            = array('serchilo_form_validate_no_tags');
-  $form['field_keyword'       ][LANGUAGE_NONE][0]['value']['#element_validate'] = array(
+  $form['title']['#element_validate'] = array('serchilo_form_validate_no_tags');
+  $form['field_keyword'][LANGUAGE_NONE][0]['value']['#element_validate'] = array(
     'serchilo_form_validate_no_tags',
     'serchilo_form_validate_no_dots',
     'serchilo_form_validate_no_whitespace',
@@ -83,7 +83,7 @@ function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) 
   $form['field_url'           ][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_no_tags');
   foreach (element_children($form['field_example'][LANGUAGE_NONE]) as $index) {
     if (is_int($index)) {
-      $form['field_example'][LANGUAGE_NONE][$index]['field_example_arguments'][LANGUAGE_NONE][0]['value']['#element_validate']   = array('serchilo_form_validate_no_tags');
+      $form['field_example'][LANGUAGE_NONE][$index]['field_example_arguments  '][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_no_tags');
       $form['field_example'][LANGUAGE_NONE][$index]['field_example_description'][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_no_tags');
     }
   }
