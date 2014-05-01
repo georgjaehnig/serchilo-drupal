@@ -77,6 +77,7 @@ function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) 
   $form['field_keyword'       ][LANGUAGE_NONE][0]['value']['#element_validate'] = array(
     'serchilo_form_validate_no_tags',
     'serchilo_form_validate_no_dots',
+    'serchilo_form_validate_no_whitespace',
   );
   $form['field_argument_names'][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_no_tags');
   $form['field_url'           ][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_no_tags');
