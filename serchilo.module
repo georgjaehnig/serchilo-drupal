@@ -33,11 +33,7 @@ function serchilo_node_presave($node) {
  */
 function serchilo_node_insert($node) {
   if ($node->type == 'shortcut') {
-    $no_moderation = (
-      (property_exists($node, 'revision_operation')) && 
-      ($node->revision_operation == REVISIONING_NEW_REVISION_NO_MODERATION)
-    );
-    if ($no_moderation) {
+    if (!$node->revision_moderation) {
       _serchilo_insert_shortcut_row($node);
     }
   }
@@ -48,11 +44,7 @@ function serchilo_node_insert($node) {
  */
 function serchilo_node_update($node) {
   if ($node->type == 'shortcut') {
-    $no_moderation = (
-      (property_exists($node, 'revision_operation')) && 
-      ($node->revision_operation == REVISIONING_NEW_REVISION_NO_MODERATION)
-    );
-    if ($no_moderation) {
+    if (!$node->revision_moderation) {
       $num_updated = _serchilo_update_shortcut_row($node);
       // if row does not exists yet
       // insert new one
@@ -69,6 +61,20 @@ function serchilo_node_update($node) {
 function serchilo_node_delete($node) {
   if ($node->type == 'shortcut') {
     _serchilo_delete_shortcut_row($node);
+  }
+}
+
+/**
+ * Implements hook_revision_publish().
+ */
+function serchilo_revision_publish($node) {
+  if ($node->type == 'shortcut') {
+    $num_updated = _serchilo_update_shortcut_row($node);
+    // if row does not exists yet
+    // insert new one
+    if (!$num_updated) {
+      _serchilo_insert_shortcut_row($node);
+    }
   }
 }
 
