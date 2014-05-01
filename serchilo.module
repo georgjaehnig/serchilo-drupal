@@ -45,12 +45,7 @@ function serchilo_node_insert($node) {
 function serchilo_node_update($node) {
   if ($node->type == 'shortcut') {
     if (!$node->revision_moderation) {
-      $num_updated = _serchilo_update_shortcut_row($node);
-      // if row does not exists yet
-      // insert new one
-      if (!$num_updated) {
-        _serchilo_insert_shortcut_row($node);
-      }
+      _serchilo_insert_or_update_shortcut_row($node);
     }
   }
 }
@@ -69,15 +64,9 @@ function serchilo_node_delete($node) {
  */
 function serchilo_revision_publish($node) {
   if ($node->type == 'shortcut') {
-    $num_updated = _serchilo_update_shortcut_row($node);
-    // if row does not exists yet
-    // insert new one
-    if (!$num_updated) {
-      _serchilo_insert_shortcut_row($node);
-    }
+    _serchilo_insert_or_update_shortcut_row($node);
   }
 }
-
 
 function serchilo_node_validate($node, $form, &$form_state) {
   if ($node->type == 'shortcut') {
@@ -115,6 +104,22 @@ function _serchilo_shortcut_to_db_fields($node) {
   );
 
   return $fields;
+}
+
+
+function _serchilo_insert_or_update_shortcut_row($node) {
+  $row_count = db_select('serchilo_shortcut') 
+    ->fields('serchilo_shortcut')
+    ->condition('nid', $node->nid )
+    ->execute()
+    ->rowCount() 
+    ;
+  if ($row_count == 0) {
+    _serchilo_insert_shortcut_row($node); 
+  }
+  else {
+    _serchilo_update_shortcut_row($node); 
+  }
 }
 
 function _serchilo_insert_shortcut_row($node) {
