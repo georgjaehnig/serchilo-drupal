@@ -346,7 +346,7 @@ function serchilo_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'A change will result in saving only a draft, needed to be moderated by an editor.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -397,7 +397,7 @@ function serchilo_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => '',
+    'description' => 'A change will result in saving only a draft, needed to be moderated by an editor.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -520,7 +520,7 @@ function serchilo_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'A change will result in saving only a draft, needed to be moderated by an editor.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -607,6 +607,7 @@ function serchilo_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('A change will result in saving only a draft, needed to be moderated by an editor.');
   t('Arguments');
   t('Description');
   t('Examples');
