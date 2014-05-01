@@ -68,16 +68,35 @@ function serchilo_revision_publish($node) {
   }
 }
 
+function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) {
+  $form['field_keyword'][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_no_tags');
+}
+
+
+function serchilo_form_validate_no_tags($element, &$form_state) {
+
+  $value = drupal_array_get_nested_value($form_state['values'], $element['#parents']);
+  if ($value != preg_replace('/<.*>/', '', $value)) {
+    form_set_error(
+      join(
+        '][',
+        $element['#parents']
+      ),
+      t('No HTML tags are allowed.')
+    );
+  }
+}
+
 /**
  * Implements hook_node_validate().
  */
 function serchilo_node_validate($node, $form, &$form_state) {
+return;
   if ($node->type == 'shortcut') {
     // dpm($argument_names);
     // dpm($node);
     // TODO:
     // check for collisions
-    // form_set_error('field_keyword', 'bad keyword');
   }
 }
 
