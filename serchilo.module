@@ -77,13 +77,7 @@ function serchilo_form_validate_no_tags($element, &$form_state) {
 
   $value = drupal_array_get_nested_value($form_state['values'], $element['#parents']);
   if ($value != preg_replace('/<.*>/', '', $value)) {
-    form_set_error(
-      join(
-        '][',
-        $element['#parents']
-      ),
-      t('No HTML tags are allowed.')
-    );
+    form_set_error(join('][', $element['#parents']), t('No HTML tags are allowed.'));
   }
 }
 
