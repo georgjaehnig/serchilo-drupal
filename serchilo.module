@@ -7,6 +7,8 @@
 include_once 'serchilo.features.inc';
 
 
+// HOOKS 
+
 /**
  * Implements hook_node_presave().
  */
@@ -68,6 +70,8 @@ function serchilo_revision_publish($node) {
   }
 }
 
+
+// FORM HOOKS
 
 /**
  * Implements hook_form_alter().
@@ -142,6 +146,9 @@ return;
   }
 }
 
+
+// DB HELPER FUNCTIONS
+
 /**
  * Retrieve database fields from shortcut node.
  *
@@ -169,7 +176,6 @@ function _serchilo_shortcut_to_db_fields($node) {
 
   return $fields;
 }
-
 
 function _serchilo_insert_or_update_shortcut_row($node) {
   $row_count = db_select('serchilo_shortcut') 
@@ -215,6 +221,9 @@ function _serchilo_delete_shortcut_row($node) {
   // raise error when $num_deleted != 1
   dpm($num_deleted);
 }
+
+
+// SHORTCUT HELPERS
 
 function _serchilo_get_argument_names($url) {
 
