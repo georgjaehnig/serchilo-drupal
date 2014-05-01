@@ -51,6 +51,13 @@ function serchilo_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'access devel information'.
+  $permissions['access devel information'] = array(
+    'name' => 'access devel information',
+    'roles' => array(),
+    'module' => 'devel',
+  );
+
   // Exported permission: 'access private fields'.
   $permissions['access private fields'] = array(
     'name' => 'access private fields',
@@ -140,13 +147,6 @@ function serchilo_user_default_permissions() {
     'name' => 'administer filters',
     'roles' => array(),
     'module' => 'filter',
-  );
-
-  // Exported permission: 'administer js'.
-  $permissions['administer js'] = array(
-    'name' => 'administer js',
-    'roles' => array(),
-    'module' => 'js',
   );
 
   // Exported permission: 'administer menu'.
