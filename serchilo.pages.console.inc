@@ -52,10 +52,10 @@ function serchilo_page_dispatch_namespaces($page_type, $namespace_path_original)
     );
   }
   switch ($page_type) {
-    case CONSOLE: 
-        $output = metatag_metatags_view(METATAG_INSTANCE_CONSOLE_NAMESPACES);
-        metatag_page_set_metatags(METATAG_INSTANCE_CONSOLE_NAMESPACES, $output);
-      break;
+  case CONSOLE: 
+    $output = metatag_metatags_view(METATAG_INSTANCE_CONSOLE_NAMESPACES);
+    metatag_page_set_metatags(METATAG_INSTANCE_CONSOLE_NAMESPACES, $output);
+    break;
   }
 
   # allow setting of default keyword
@@ -90,41 +90,41 @@ function serchilo_page_dispatch_user($page_type, $path_affix) {
   _serchilo_set_user_namespaces($account);
 
   switch ($page_type) {
-    case CONSOLE: 
-        $output = metatag_metatags_view(METATAG_INSTANCE_CONSOLE_USER);
-        metatag_page_set_metatags(METATAG_INSTANCE_CONSOLE_USER, $output);
-      break;
+  case CONSOLE: 
+    $output = metatag_metatags_view(METATAG_INSTANCE_CONSOLE_USER);
+    metatag_page_set_metatags(METATAG_INSTANCE_CONSOLE_USER, $output);
+    break;
   }
   return serchilo_page_dispatch($page_type);
 }
 
 function serchilo_page_dispatch($page_type) {
   switch ($page_type) {
-    case CONSOLE:
-      $default_keyword_get =& drupal_static('default_keyword_get' );
-      drupal_add_html_head_link(array(
-        'rel' => 'search',
-        'type' => 'application/opensearchdescription+xml',
-        'href' => url( 
-          OPENSEARCH_DEFINITION_PATH_AFFIX .  '/' .  arg(0) .  '/' .  arg(1),
-          array(
-            'absolute' => TRUE,
-            'query' => drupal_get_query_parameters(),
-          )
-        ),
-        'title' => _serchilo_opensearch_title(arg(1), $default_keyword_get)
-      ));
-      return _serchilo_page_console();
-    case AUTOCOMPLETE_PATH_AFFIX:
-      return _serchilo_autocomplete();
-    case OPENSEARCH_DEFINITION_PATH_AFFIX:
-      return _serchilo_opensearch_definition(arg(1), arg(2));
-    case OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
-      return _serchilo_opensearch_suggestions();
-    case URL_PATH_AFFIX:
-      return _serchilo_url();
-    case API_PATH_AFFIX:
-      return _serchilo_api();
+  case CONSOLE:
+    $default_keyword_get =& drupal_static('default_keyword_get' );
+    drupal_add_html_head_link(array(
+      'rel' => 'search',
+      'type' => 'application/opensearchdescription+xml',
+      'href' => url( 
+        OPENSEARCH_DEFINITION_PATH_AFFIX .  '/' .  arg(0) .  '/' .  arg(1),
+        array(
+          'absolute' => TRUE,
+          'query' => drupal_get_query_parameters(),
+        )
+      ),
+      'title' => _serchilo_opensearch_title(arg(1), $default_keyword_get)
+    ));
+    return _serchilo_page_console();
+  case AUTOCOMPLETE_PATH_AFFIX:
+    return _serchilo_autocomplete();
+  case OPENSEARCH_DEFINITION_PATH_AFFIX:
+    return _serchilo_opensearch_definition(arg(1), arg(2));
+  case OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
+    return _serchilo_opensearch_suggestions();
+  case URL_PATH_AFFIX:
+    return _serchilo_url();
+  case API_PATH_AFFIX:
+    return _serchilo_api();
   }
 }
 
@@ -167,7 +167,7 @@ function _serchilo_page_console() {
   $module_path = drupal_get_path('module', 'serchilo');
   drupal_add_js($module_path . '/js/console.js');
   drupal_add_library('system', 'ui.autocomplete');
-  
+
   $default_keyword = drupal_static('default_keyword' );
   $namespace_names = drupal_static('namespace_names');
 
@@ -329,7 +329,7 @@ function _serchilo_get_default_country_namespace() {
     }
     watchdog('serchilo', 'Retrieved coutry by IP via smart_ip: ' . $default_country_namespace_name);
   }
-*/
+   */
   $default_country_namespace = current(taxonomy_get_term_by_name($default_country_namespace_name, 'namespaces')); 
 
   return $default_country_namespace;
@@ -426,13 +426,13 @@ function _serchilo_set_user_namespaces($account = null) {
 function _serchilo_field_get_items_taxonomy_term_load_multiple($entity_type, $entity, $field_name, $langcode = NULL) {
   if ( $items = field_get_items($entity_type, $entity, $field_name, $langcode = NULL) ) {
     return taxonomy_term_load_multiple( 
-       array_map(
+      array_map(
         function ($term) {
           return $term['tid']; 
         },
-        $items
-      )
-    );
+          $items
+        )
+      );
   } else {
     return array(); 
   }
