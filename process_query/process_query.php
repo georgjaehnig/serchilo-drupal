@@ -5,7 +5,7 @@
 // by the machine name "namespace"
 define('NAMESPACE_VOCABULARY_ID', 1);
 
-require_once('../../../default/settings.php');
+require_once('../../../../default/settings.php');
 require_once('serchilo.query.inc');
 
 $db = $databases['default']['default'];
