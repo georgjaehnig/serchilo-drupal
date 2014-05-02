@@ -1,5 +1,15 @@
 <?PHP
 
+/**
+ * Page callback for homepage.
+ * Redirect to correct console page:
+ *   when logged in:
+ *     to /u/[username]
+ *   when not logged in:
+ *     to /n/[language namespace].[country namespace]
+ *
+ * @return void
+ */
 function serchilo_page_home() {
 
   if (user_is_logged_in()) {
@@ -115,6 +125,10 @@ function serchilo_page_dispatch($page_type) {
       'title' => _serchilo_opensearch_title(arg(1), $default_keyword_get)
     ));
     return _serchilo_page_console();
+  // TODO:
+  // remove this as namespace validation (and redirection)
+  // shall only happen at console requests. 
+  // Other requests shall be solely handled by PHP standalone processor.
   case AUTOCOMPLETE_PATH_AFFIX:
     return _serchilo_autocomplete();
   case OPENSEARCH_DEFINITION_PATH_AFFIX:
@@ -128,6 +142,12 @@ function serchilo_page_dispatch($page_type) {
   }
 }
 
+/**
+ * Creates the console page, according to settings found via drupal_static().
+ *
+ * @return $content
+ *   A Drupal render array.
+ */
 function _serchilo_page_console() {
 
   $autocomplete = true; 
@@ -200,7 +220,17 @@ function _serchilo_page_console() {
   return $content;
 }
 
-
+/**
+ * Validates if given strings are namespaces
+ * and if necessary sets additional namespaces 
+ * for language and country.
+ * Saves them with drupal_static().
+ *
+ * @param path_elements
+ *   Array of strings to validate as namespace names.
+ * @return namespaces
+ *   Array of Taxonomy term objects.
+ */
 function _serchilo_validate_and_set_namespaces($path_elements = array()) {
 
   # get language and country namespace types
@@ -269,6 +299,14 @@ function _serchilo_validate_and_set_namespaces($path_elements = array()) {
 
 }
 
+/**
+ * Loads namespaces.
+ *
+ * @param $namespace_names
+ *   Array of strings.
+ * @return $namespaces
+ *   Array of namespace objects.
+ */
 function _serchilo_namespace_names_to_namespaces($namespace_names) {
   $namespaces = array();
   foreach ($namespace_names as $namespace_name) {
@@ -281,6 +319,12 @@ function _serchilo_namespace_names_to_namespaces($namespace_names) {
   return $namespaces; 
 }
 
+/**
+ * Loads default language namespace.
+ *
+ * @return $language_namespace 
+ *   A Taxonomy term object.
+ */
 function _serchilo_get_default_language_namespace() {
   global $language;
 
@@ -290,10 +334,15 @@ function _serchilo_get_default_language_namespace() {
   return $language_namespace;
 }
 
+/**
+ * Loads default country namespace.
+ *
+ * @return $language_namespace 
+ *   A Taxonomy term object.
+ */
 function _serchilo_get_default_country_namespace() {
 
   $ip_address = ip_address();
-
 
   # set debug IP
   if ('127.0.0.1' == $ip_address) {
@@ -335,6 +384,14 @@ function _serchilo_get_default_country_namespace() {
   return $default_country_namespace;
 }
 
+/**
+ * Validates a given namespace path.
+ *
+ * @param $namespace_path_original
+ *    String with namespaces seperated by NAMESPACE_PATH_SEPARATOR.
+ * @return $namespace_path_validated
+ *    String with validated namespaces seperated by NAMESPACE_PATH_SEPARATOR.
+ */
 function _serchilo_validate_namespace_path($namespace_path_original) {
 
   $namespace_names = explode(
@@ -355,6 +412,16 @@ function _serchilo_validate_namespace_path($namespace_path_original) {
   return $namespace_path_validated;
 }
 
+/**
+ * Return the title for the Opensearch head link.
+ *
+ * @param $namespaces_path
+ *    String of namespaces seperated by NAMESPACE_PATH_SEPARATOR.
+ * @param $default_keyword
+ *    (optional) String of the default keyword.
+ * @return $title
+ *    String of the Opensearch head link.
+ */
 function _serchilo_opensearch_title($namespaces_path, $default_keyword = NULL) {
   if( $default_keyword ) {
     $title =  'Serchilo: ' . $namespaces_path . ' | ' . $default_keyword;
@@ -366,6 +433,14 @@ function _serchilo_opensearch_title($namespaces_path, $default_keyword = NULL) {
 }
 
 
+/**
+ * Set the default keyword of a user via drupal_static().
+ *
+ * @param $account
+ *    A user object.
+ * @return void
+ *    String of the Opensearch head link.
+ */
 function _serchilo_set_default_keyword($account) {
 
   $default_keyword =& drupal_static('default_keyword');
@@ -406,23 +481,30 @@ function _serchilo_set_user_namespaces($account) {
   );
 
   $namespace_names = array_map(function ($namespace) { return $namespace->name; }, $namespaces );
-  $namespace_ids = array_map(function ($namespace) { return $namespace->tid; }, $namespaces );
+  $namespace_ids   = array_map(function ($namespace) { return $namespace->tid; }, $namespaces );
 
-  drupal_static('namespaces', $namespaces );
-  drupal_static('namespace_names', $namespace_names );
-  drupal_static('namespace_ids', $namespace_ids );
+  drupal_static('namespaces',         $namespaces         );
+  drupal_static('namespace_names',    $namespace_names    );
+  drupal_static('namespace_ids',      $namespace_ids      );
 
   drupal_static('language_namespace', $language_namespace );
-  drupal_static('country_namespace', $country_namespace );
-  drupal_static('user_namespace', $user_namespace );
+  drupal_static('country_namespace',  $country_namespace  );
+  drupal_static('user_namespace',     $user_namespace     );
 
-  drupal_static('user_id', $account->uid );
+  drupal_static('user_id',            $account->uid       );
 
   drupal_static('namespaces_validated', TRUE );
 
   return $namespaces;
 }
 
+/**
+ * Wrapper for field_get_items().
+ * Loads the full Taxonomy terms stored in a Entity Field.
+ *
+ * @return
+ *   Array of Taxonomy terms.
+ */
 function _serchilo_field_get_items_taxonomy_term_load_multiple($entity_type, $entity, $field_name, $langcode = NULL) {
   if ( $items = field_get_items($entity_type, $entity, $field_name, $langcode = NULL) ) {
     return taxonomy_term_load_multiple( 
