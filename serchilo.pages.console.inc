@@ -377,15 +377,15 @@ function _serchilo_set_default_keyword($account) {
     : NULL; 
 }
 
-function _serchilo_set_user_namespaces($account = null) {
-
-  if (!$account) {
-    $uid = $GLOBALS['user']->uid;
-    if (!$uid) {
-      throw new Exception('No uid in global $user variable'); 
-    }
-    $account = user_load($uid);
-  }
+/**
+ * Return and set the namespaces of a user via drupal_static().
+ *
+ * @param $account
+ *    A user object.
+ * @return $namespaces
+ *   Array of Taxonomy term objects.
+ */
+function _serchilo_set_user_namespaces($account) {
 
   $star_namespace     = array_shift(taxonomy_get_term_by_name(STAR_NAMESPACE, 'namespaces') ?: array());
   $language_namespace = array_shift(_serchilo_field_get_items_taxonomy_term_load_multiple('user', $account, 'field_language_namespace') ?: array());
