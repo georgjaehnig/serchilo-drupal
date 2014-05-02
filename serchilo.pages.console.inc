@@ -128,7 +128,7 @@ function serchilo_page_dispatch($page_type) {
   // TODO:
   // remove this as namespace validation (and redirection)
   // shall only happen at console requests. 
-  // Other requests shall be solely handled by PHP standalone processor.
+  // Other requests shall be solely handled by the PHP standalone processor.
   case AUTOCOMPLETE_PATH_AFFIX:
     return _serchilo_autocomplete();
   case OPENSEARCH_DEFINITION_PATH_AFFIX:
