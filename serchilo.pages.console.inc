@@ -4,14 +4,12 @@ function serchilo_page_home() {
 
   if (user_is_logged_in()) {
     # goto u/[username]
-    if (!function_exists('drush_main')) {
-      drupal_goto(
-        USER_PATH_AFFIX . '/' . $GLOBALS['user']->name,
-        array(
-          'query' => drupal_get_query_parameters() 
-        )
-      ); 
-    }
+    drupal_goto(
+      USER_PATH_AFFIX . '/' . $GLOBALS['user']->name,
+      array(
+        'query' => drupal_get_query_parameters() 
+      )
+    ); 
   } 
   else {
     _serchilo_validate_and_set_namespaces();
@@ -22,14 +20,12 @@ function serchilo_page_home() {
       $namespace_names[0] == STAR_NAMESPACE ? array_slice($namespace_names, 1) : $namespace_names
     );
     # goto n/[namespace_names]
-    if (!function_exists('drush_main')) {
-      drupal_goto( 
-        NAMESPACES_PATH_AFFIX . '/' . $namespace_path,
-        array(
-          'query' => drupal_get_query_parameters() 
-        )
-      ); 
-    }
+    drupal_goto( 
+      NAMESPACES_PATH_AFFIX . '/' . $namespace_path,
+      array(
+        'query' => drupal_get_query_parameters() 
+      )
+    ); 
   }
 }
 
