@@ -1,4 +1,25 @@
 <?php
+
+define('DEFAULT_COUNTRY', 'deu');
+#define('DEFAULT_COUNTRY', 'usa');
+define('DEFAULT_LIMIT', 8);
+define('NAMESPACE_PATH_SEPARATOR', '.');
+define('STAR_NAMESPACE', 'o');
+
+define('NAMESPACES_PATH_AFFIX', 'n');
+define('USER_PATH_AFFIX', 'u');
+
+define('CONSOLE', 'console');
+define('AUTOCOMPLETE_PATH_AFFIX', 'ajax');
+define('OPENSEARCH_DEFINITION_PATH_AFFIX', 'opensearch');
+define('OPENSEARCH_SUGGESTIONS_PATH_AFFIX', 'opensearch-suggestions');
+define('URL_PATH_AFFIX', 'url');
+define('API_PATH_AFFIX', 'api');
+
+define('METATAG_INSTANCE_CONSOLE', 'serchilo_console');
+define('METATAG_INSTANCE_CONSOLE_NAMESPACES', 'serchilo_console:namespaces');
+define('METATAG_INSTANCE_CONSOLE_USER', 'serchilo_console:user');
+
 /**
  * @file
  * Code for the Serchilo feature.
@@ -8,6 +29,43 @@ include_once 'serchilo.features.inc';
 
 
 // HOOKS 
+
+/**
+ * Implements hook_menu().
+ */
+function serchilo_menu() {
+
+  $items = array(
+
+    'node' => array(
+      'page callback' => 'serchilo_page_home',
+      'access callback' => true,
+      'type' => MENU_CALLBACK,
+      'file' => 'serchilo.pages.console.inc',
+    ),
+
+    NAMESPACES_PATH_AFFIX => array(
+      'page callback' => 'serchilo_page_dispatch_namespaces',
+      'page arguments' => array(CONSOLE, 1),
+      #'page callback' => 'serchilo_page_console_namespace',
+      'access callback' => true,
+      'type' => MENU_CALLBACK,
+      'file' => 'serchilo.pages.console.inc',
+    ),
+    USER_PATH_AFFIX . '/%' => array(
+      'page callback' => 'serchilo_page_dispatch_user',
+      'page arguments' => array(CONSOLE, 1),
+      #'page callback' => 'serchilo_page_console_user',
+      #'page arguments' => array(1),
+      'access callback' => true,
+      'type' => MENU_CALLBACK,
+      'file' => 'serchilo.pages.console.inc',
+    ),
+
+  );
+
+  return $items;
+}
 
 /**
  * Implements hook_node_presave().
@@ -289,3 +347,11 @@ function _serchilo_is_sensible_edit($node)
   return $is_sensible_edit;
 }
 
+
+
+function _serchilo_array_value($array, $key, $default_value = null) {
+  if (isset($array[$key])) {
+    return $array[$key];
+  }
+  return $default_value;
+}
