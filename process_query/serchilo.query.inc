@@ -93,13 +93,13 @@ function _serchilo_get_namespace_id($namespace_name) {
   return $row['tid'];
 }
 
-function _serchilo_get_namespace_names() {
+function _serchilo_get_namespace_names($path_elements_offset = 0) {
   $path = $_SERVER['REDIRECT_URL'];
   // example: '/n/en.usa'
   $path_elements = explode('/', $path);
-  switch ($path_elements[1]) {
+  switch ($path_elements[$path_elements_offset + 1]) {
     case 'n':
-      $namespace_names = explode('.', $path_elements[2]);
+      $namespace_names = explode('.', $path_elements[$path_elements_offset + 2]);
       array_unshift($namespace_names, STAR_NAMESPACE);
       return $namespace_names;
       break;
