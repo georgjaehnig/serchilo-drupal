@@ -187,6 +187,7 @@ function _serchilo_page_console() {
   $module_path = drupal_get_path('module', 'serchilo');
   drupal_add_js($module_path . '/js/console.js');
   drupal_add_library('system', 'ui.autocomplete');
+  
 
   $default_keyword = drupal_static('default_keyword' );
   $namespace_names = drupal_static('namespace_names');
