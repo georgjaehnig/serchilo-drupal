@@ -18,24 +18,36 @@ $mysqli = new mysqli(
   $db['database']
 );
 
+$page_type = $_GET['page_type'];
 
-$query = $_GET['query'];
-
-$namespace_names = _serchilo_get_namespace_names();
-list($keyword, $arguments, $extra_namespace_name) = _serchilo_parse_query($query);
-$namespace_ids = array_map('_serchilo_get_namespace_id', array_merge($namespace_names, array($extra_namespace_name)));
-
-echo '<pre>';
-print_r($namespace_ids);
-$command = _serchilo_find_command($keyword, count($arguments), $namespace_ids);
-$variables = _serchilo_get_url_variables($namespace_names, $extra_namespace_name);
-print_r($variables);
-print_r($command);
-if ($command) {
-  echo _serchilo_call_command($command, $arguments, $variables, FALSE);
+switch ($page_type) {
+case 'console':
+  _serchilo_process_query_console();
+  break;
+case 'ajax':
+  _serchilo_process_query_ajax();
+  break;
 }
-else {
-  // redirect to serchilo website
+
+function _serchilo_process_query_console() {
+  $query = $_GET['query'];
+
+  $namespace_names = _serchilo_get_namespace_names();
+  list($keyword, $arguments, $extra_namespace_name) = _serchilo_parse_query($query);
+  $namespace_ids = array_map('_serchilo_get_namespace_id', array_merge($namespace_names, array($extra_namespace_name)));
+
+  echo '<pre>';
+  print_r($namespace_ids);
+  $command = _serchilo_find_command($keyword, count($arguments), $namespace_ids);
+  $variables = _serchilo_get_url_variables($namespace_names, $extra_namespace_name);
+  print_r($variables);
+  print_r($command);
+  if ($command) {
+    echo _serchilo_call_command($command, $arguments, $variables, FALSE);
+  }
+  else {
+    // redirect to serchilo website
+  }
 }
 
 
