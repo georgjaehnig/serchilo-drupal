@@ -100,6 +100,7 @@ function _serchilo_get_namespace_names() {
   switch ($path_elements[1]) {
     case 'n':
       $namespace_names = explode('.', $path_elements[2]);
+      array_unshift($namespace_names, STAR_NAMESPACE);
       return $namespace_names;
       break;
     case 'u':
