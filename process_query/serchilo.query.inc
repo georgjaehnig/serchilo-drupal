@@ -39,6 +39,124 @@ function _serchilo_find_command($keyword, $argument_count, $namespace_ids) {
   return $row;
 }
 
+function _serchilo_search_commands( $keyword, $arguments, $query, $namespace_ids, $limit = 20 ) {
+
+  global $mysqli;
+
+  if ($keyword == '') {
+    return array(); 
+  }
+
+  # use only extra_namespace when searching
+
+  $order_namespace_ids = array_map(
+    function ($namespace_id) {
+      return 'namespace_id = ' . (int) $namespace_id . ' DESC';
+    },
+    array_reverse( $namespace_ids )
+  );
+
+  $sql ="
+    
+SELECT
+  *,
+  nid,
+  nid=(
+    SELECT 
+      nid  
+    FROM 
+      serchilo_shortcut AS csub
+    WHERE 
+      csub.nid = c.nid
+      AND
+      argument_count = c.argument_count
+      AND
+      keyword = c.keyword
+      AND
+      namespace_id IN (" . join(',', $namespace_ids) .  ")
+    ORDER BY
+      " . join(",", $order_namespace_ids ). "
+      LIMIT 1
+  ) AS reachable
+FROM 
+  serchilo_shortcut AS c
+
+WHERE 
+
+  invisible = 0
+
+  AND
+  argument_count >= :argument_count
+  AND (
+    keyword LIKE :keyword_like_both OR 
+    title LIKE :keyword_like_both 
+    #OR
+    # match command_tags
+    #ttd.name LIKE :keyword_like_both 
+  )
+
+  # if extra_namespace_id set:
+  # command MUST be in extra_namespace 
+  AND IF (
+    :extra_namespace_id, 
+    namespace_id = :extra_namespace_id, 
+    TRUE
+  )
+  GROUP BY nid
+
+ORDER BY
+  reachable DESC,
+
+  keyword = :keyword DESC,
+  keyword LIKE :keyword_like_right DESC,
+
+  argument_count, 
+
+  # keyword-keyword matches
+  keyword LIKE :keyword_like_both DESC,
+
+  title = :keyword DESC,
+  title LIKE :keyword_like_right DESC,
+  title LIKE :keyword_like_both DESC,
+
+  title = :query DESC,
+  title LIKE :query_like_right DESC,
+  title LIKE :query_like_both DESC,
+
+  keyword,
+  title
+
+LIMIT " . (int) $limit . ";
+
+  ";
+
+  $sql = _serchilo_replace_sql_arguments(
+    $mysqli, 
+    $sql,
+    array(
+      # note: when prefix is the same
+      # put short placeholder below
+      'argument_count' => count($arguments), 
+      'extra_namespace_id' => ($extra_namespace ? $extra_namespace->tid : null),
+      'keyword_like_right' => $keyword . '%',
+      'keyword_like_both' => '%' . $keyword . '%',
+      'keyword' => $keyword,
+      'query_like_right' => $query . '%',
+      'query_like_both' => '%' . $query . '%',
+      'query' => $query,
+      'limit' => (int) $limit,
+    )
+  );
+
+  $result = $mysqli->query($sql);
+  if (!$result) {
+    return; 
+  }
+  $commands = $result->fetch_all(MYSQLI_ASSOC);
+
+  return $commands;
+}
+
 function _serchilo_parse_query($query) {
   list($keyword, $arguments) = _serchilo_extract_keyword_and_arguments($query);
   list($keyword, $extra_namespace_name) = _serchilo_get_extra_namespace_from_keyword($keyword);
@@ -164,6 +282,7 @@ function _serchilo_call_command($command, $arguments, $variables, $redirect = TR
   #return '.';
 }
 
+// TODO: rename to _serchilo_replace_url_arguments
 function _serchilo_replace_arguments($url, $arguments, $variables, $input_encoding = 'utf-8')
 {
   foreach ($variables as $key=>$value) {
@@ -229,3 +348,13 @@ function _serchilo_get_url_variables($namespace_names, $extra_namespace_name) {
   // user:id
   return $variables;
 }
+
+function _serchilo_replace_sql_arguments($mysqli, $sql_template, $arguments, $left_delimiter = ':', $right_delimiter = '') {
+  $sql_replaced = $sql_template;
+  foreach ($arguments as $key=>$value) {
+    $value_escaped = $mysqli->real_escape_string($value);
+    $sql_replaced = str_replace($left_delimiter . $key . $right_delimiter, "'" . $value_escaped . "'", $sql_replaced);
+  }
+  return $sql_replaced;
+}
+
