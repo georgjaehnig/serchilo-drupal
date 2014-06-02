@@ -261,7 +261,7 @@ function _serchilo_call_command($command, $arguments, $variables, $redirect = TR
 
   $input_encoding = $command['input_encoding'];
 
-  $url = _serchilo_replace_arguments($command['url'], $arguments, $variables, $input_encoding);
+  $url = _serchilo_replace_url_arguments($command['url'], $arguments, $variables, $input_encoding);
 
   //_serchilo_log_call($command, $arguments);
   
@@ -282,8 +282,7 @@ function _serchilo_call_command($command, $arguments, $variables, $redirect = TR
   #return '.';
 }
 
-// TODO: rename to _serchilo_replace_url_arguments
-function _serchilo_replace_arguments($url, $arguments, $variables, $input_encoding = 'utf-8')
+function _serchilo_replace_url_arguments($url, $arguments, $variables, $input_encoding = 'utf-8')
 {
   foreach ($variables as $key=>$value) {
     $url = str_replace(
