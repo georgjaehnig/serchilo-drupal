@@ -36,16 +36,16 @@ function _serchilo_process_query_console() {
   list($keyword, $arguments, $extra_namespace_name) = _serchilo_parse_query($query);
   $namespace_ids = array_map('_serchilo_get_namespace_id', array_merge($namespace_names, array($extra_namespace_name)));
 
-  echo '<pre>';
-  print_r($namespace_ids);
+  #echo '<pre>';
+  #print_r($namespace_ids);
   // TODO:
   // default_keyword
   $command = _serchilo_find_command($keyword, count($arguments), $namespace_ids);
   $variables = _serchilo_get_url_variables($namespace_names, $extra_namespace_name);
-  print_r($variables);
-  print_r($command);
+  #print_r($variables);
+  #print_r($command);
   if ($command) {
-    echo _serchilo_call_command($command, $arguments, $variables, FALSE);
+    _serchilo_call_command($command, $arguments, $variables);
   }
   else {
     // redirect to serchilo website

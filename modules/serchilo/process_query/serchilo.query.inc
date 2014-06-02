@@ -268,11 +268,11 @@ function _serchilo_call_command($command, $arguments, $variables, $redirect = TR
   if ($redirect) {
     if (empty($command['set_referrer'])) {
       // classic redirect
-      drupal_goto($url);
+      header('Location: ' . $url);
     }
     else {
-      // redirect for (paid) commands which need a referrer
-      _serchilo_redirect_via_html($url);
+      // redirect for commands which need a referrer
+      #_serchilo_redirect_via_html($url);
     }
   } else {
     return $url;
