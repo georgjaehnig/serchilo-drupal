@@ -9,3 +9,12 @@ function profilename_install() {
   include_once DRUPAL_ROOT . '/profiles/minimal/minimal.install';
   minimal_install();
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function profilo_form_install_configure_form_alter(&$form, $form_state) {
+  // Pre-populate fields
+  $form['site_information']['site_name']['#default_value'] = 'Serchilo';
+  $form['admin_account']['account']['name']['#default_value'] = 'admin';
+}
