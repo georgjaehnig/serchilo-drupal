@@ -1,7 +1,15 @@
-# Ignore everything
-*
+# Ignore Drupal core
+.htaccess
+*.config
+*.php
+*.txt
+includes
+misc
+modules
+profiles
+scripts
+sites
+themes
 
-# But not these files...
-!profiles/profilo/
-!serchilo.make
-!.gitignore
+# Include Serchilo profile
+!profiles/profilo/*
