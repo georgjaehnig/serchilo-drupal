@@ -3,6 +3,7 @@ description = Custom code for Serchilo
 core = 7.x
 package = Features
 dependencies[] = block
+dependencies[] = dblog
 dependencies[] = comment
 dependencies[] = content_taxonomy
 dependencies[] = content_taxonomy_autocomplete
