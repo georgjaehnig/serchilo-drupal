@@ -78,6 +78,74 @@ function serchilo_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'field_collection_item-field_test-field_test_arguments'
+  $field_instances['field_collection_item-field_test-field_test_arguments'] = array(
+    'bundle' => 'field_test',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_test_arguments',
+    'label' => 'Arguments',
+    'required' => 1,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'field_collection_item-field_test-field_test_expected_content'
+  $field_instances['field_collection_item-field_test-field_test_expected_content'] = array(
+    'bundle' => 'field_test',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_test_expected_content',
+    'label' => 'Expected content',
+    'required' => 1,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 2,
+    ),
+  );
+
   // Exported field_instance: 'node-shortcut-field_argument_count'
   $field_instances['node-shortcut-field_argument_count'] = array(
     'bundle' => 'shortcut',
@@ -211,6 +279,47 @@ function serchilo_field_default_field_instances() {
       'settings' => array(),
       'type' => 'number',
       'weight' => 12,
+    ),
+  );
+
+  // Exported field_instance: 'node-shortcut-field_command_tags'
+  $field_instances['node-shortcut-field_command_tags'] = array(
+    'bundle' => 'shortcut',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 13,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_command_tags',
+    'label' => 'Tags',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'content_taxonomy_autocomplete_new_terms' => 'allow',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 7,
     ),
   );
 
@@ -519,6 +628,49 @@ function serchilo_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-shortcut-field_test'
+  $field_instances['node-shortcut-field_test'] = array(
+    'bundle' => 'shortcut',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'field_collection',
+        'settings' => array(
+          'add' => 'Add',
+          'delete' => 'Delete',
+          'description' => TRUE,
+          'edit' => 'Edit',
+          'view_mode' => 'full',
+        ),
+        'type' => 'field_collection_view',
+        'weight' => 12,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_test',
+    'label' => 'test',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'field_collection',
+      'settings' => array(),
+      'type' => 'field_collection_embed',
+      'weight' => 15,
+    ),
+  );
+
   // Exported field_instance: 'node-shortcut-field_url'
   $field_instances['node-shortcut-field_url'] = array(
     'bundle' => 'shortcut',
@@ -609,15 +761,50 @@ function serchilo_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'taxonomy_term-namespaces-field_namespace_type'
+  $field_instances['taxonomy_term-namespaces-field_namespace_type'] = array(
+    'bundle' => 'namespaces',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_namespace_type',
+    'label' => 'Namespace type',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'content_taxonomy_opt_groups' => 0,
+      ),
+      'type' => 'options_select',
+      'weight' => 41,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('A change will result in saving only a draft, needed to be moderated by an editor.');
   t('Arguments');
   t('Description');
   t('Examples');
+  t('Expected content');
   t('Input Encoding');
   t('Keyword');
   t('Namespace');
+  t('Namespace type');
   t('Tags');
   t('URL');
   t('argument_count');
@@ -625,6 +812,7 @@ function serchilo_field_default_field_instances() {
   t('command_id');
   t('invisible');
   t('set_referrer');
+  t('test');
   t('weight');
 
   return $field_instances;
