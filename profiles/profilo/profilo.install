@@ -6,8 +6,12 @@
  * Perform actions to set up the site for this profile.
  */
 function profilo_install() {
-  include_once DRUPAL_ROOT . '/profiles/minimal/minimal.install';
-  minimal_install();
+  //include_once DRUPAL_ROOT . '/profiles/minimal/minimal.install';
+  //minimal_install();
+
+  theme_enable(array('bootstrap_serchilo'));
+  variable_set('theme_default', 'bootstrap_serchilo');
+  variable_set('admin_theme', 'seven');
 }
 
 /**
