@@ -12,6 +12,8 @@ function profilo_install() {
   theme_enable(array('bootstrap_serchilo'));
   variable_set('theme_default', 'bootstrap_serchilo');
   variable_set('admin_theme', 'seven');
+
+  variable_set('user_register', USER_REGISTER_VISITORS);
 }
 
 /**
