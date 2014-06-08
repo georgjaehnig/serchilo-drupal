@@ -27,6 +27,8 @@ mv profilo drupal/profiles/
 
 # run drupal installer in your browser,
 # simply by calling the main page http://l.serchilo/
+# Choose Serchilo Profilo!!
+# (todo: preselect this?)
 
 # During install, you need to create writable files/ dir and settings.php file:
 mkdir drupal/sites/default/files
@@ -46,6 +48,7 @@ cd drupal
 drush pm-enable serchilo
 
 # Enable Serchilo theme
+drush dl bootstrap
 drush pm-enable bootstrap_serchilo
 
 # Set Serchilo theme as default
