@@ -1,22 +1,6 @@
 <?PHP
 
 /**
- * Implement hook_install().
- *
- * Perform actions to set up the site for this profile.
- */
-function profilo_install() {
-  //include_once DRUPAL_ROOT . '/profiles/minimal/minimal.install';
-  //minimal_install();
-
-  theme_enable(array('bootstrap_serchilo'));
-  variable_set('theme_default', 'bootstrap_serchilo');
-  variable_set('admin_theme', 'seven');
-
-  variable_set('user_register', USER_REGISTER_VISITORS);
-}
-
-/**
  * Implements hook_form_FORM_ID_alter().
  */
 function profilo_form_install_configure_form_alter(&$form, $form_state) {
