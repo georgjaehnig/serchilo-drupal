@@ -142,6 +142,13 @@ function serchilo_user_default_permissions() {
     'module' => 'filter',
   );
 
+  // Exported permission: 'administer languages'.
+  $permissions['administer languages'] = array(
+    'name' => 'administer languages',
+    'roles' => array(),
+    'module' => 'locale',
+  );
+
   // Exported permission: 'administer menu'.
   $permissions['administer menu'] = array(
     'name' => 'administer menu',
@@ -189,6 +196,13 @@ function serchilo_user_default_permissions() {
     'name' => 'administer permissions',
     'roles' => array(),
     'module' => 'user',
+  );
+
+  // Exported permission: 'administer profiler builder'.
+  $permissions['administer profiler builder'] = array(
+    'name' => 'administer profiler builder',
+    'roles' => array(),
+    'module' => 'profiler_builder',
   );
 
   // Exported permission: 'administer shortcuts'.
@@ -380,6 +394,16 @@ function serchilo_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: 'create field_test'.
+  $permissions['create field_test'] = array(
+    'name' => 'create field_test',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'create field_url'.
   $permissions['create field_url'] = array(
     'name' => 'create field_url',
@@ -442,6 +466,20 @@ function serchilo_user_default_permissions() {
     'name' => 'delete revisions',
     'roles' => array(),
     'module' => 'node',
+  );
+
+  // Exported permission: 'delete terms in command_tags'.
+  $permissions['delete terms in command_tags'] = array(
+    'name' => 'delete terms in command_tags',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'delete terms in namespace_types'.
+  $permissions['delete terms in namespace_types'] = array(
+    'name' => 'delete terms in namespace_types',
+    'roles' => array(),
+    'module' => 'taxonomy',
   );
 
   // Exported permission: 'delete terms in namespaces'.
@@ -566,6 +604,16 @@ function serchilo_user_default_permissions() {
   // Exported permission: 'edit field_tags'.
   $permissions['edit field_tags'] = array(
     'name' => 'edit field_tags',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'edit field_test'.
+  $permissions['edit field_test'] = array(
+    'name' => 'edit field_test',
     'roles' => array(
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
@@ -711,6 +759,16 @@ function serchilo_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: 'edit own field_test'.
+  $permissions['edit own field_test'] = array(
+    'name' => 'edit own field_test',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'edit own field_url'.
   $permissions['edit own field_url'] = array(
     'name' => 'edit own field_url',
@@ -745,6 +803,20 @@ function serchilo_user_default_permissions() {
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'revisioning',
+  );
+
+  // Exported permission: 'edit terms in command_tags'.
+  $permissions['edit terms in command_tags'] = array(
+    'name' => 'edit terms in command_tags',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'edit terms in namespace_types'.
+  $permissions['edit terms in namespace_types'] = array(
+    'name' => 'edit terms in namespace_types',
+    'roles' => array(),
+    'module' => 'taxonomy',
   );
 
   // Exported permission: 'edit terms in namespaces'.
@@ -858,6 +930,13 @@ function serchilo_user_default_permissions() {
     'module' => 'devel',
   );
 
+  // Exported permission: 'translate interface'.
+  $permissions['translate interface'] = array(
+    'name' => 'translate interface',
+    'roles' => array(),
+    'module' => 'locale',
+  );
+
   // Exported permission: 'unpublish current revision'.
   $permissions['unpublish current revision'] = array(
     'name' => 'unpublish current revision',
@@ -966,6 +1045,16 @@ function serchilo_user_default_permissions() {
   // Exported permission: 'view field_tags'.
   $permissions['view field_tags'] = array(
     'name' => 'view field_tags',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'view field_test'.
+  $permissions['view field_test'] = array(
+    'name' => 'view field_test',
     'roles' => array(
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
@@ -1091,6 +1180,16 @@ function serchilo_user_default_permissions() {
   // Exported permission: 'view own field_tags'.
   $permissions['view own field_tags'] = array(
     'name' => 'view own field_tags',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'view own field_test'.
+  $permissions['view own field_test'] = array(
+    'name' => 'view own field_test',
     'roles' => array(
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
