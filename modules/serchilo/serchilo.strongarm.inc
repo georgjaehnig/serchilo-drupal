@@ -83,34 +83,6 @@ function serchilo_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'cron_key';
-  $strongarm->value = 'mJfQWejsP745qlmW78N7MFzAkFBM12T30OjdD-HL-yw';
-  $export['cron_key'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'cron_last';
-  $strongarm->value = 1402314436;
-  $export['cron_last'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'css_js_query_string';
-  $strongarm->value = 'n6wgtb';
-  $export['css_js_query_string'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'ctools_last_cron';
-  $strongarm->value = 1402271568;
-  $export['ctools_last_cron'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'date_default_timezone';
   $strongarm->value = 'Europe/Berlin';
   $export['date_default_timezone'] = $strongarm;
@@ -192,13 +164,6 @@ function serchilo_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'drupal_private_key';
-  $strongarm->value = 'oxYJXtQzsP0hDvmPRrcPtjcaGHUfBMVCyTPEP9BNHjU';
-  $export['drupal_private_key'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'entity_cache_tables_created';
   $strongarm->value = '';
   $export['entity_cache_tables_created'] = $strongarm;
@@ -209,18 +174,18 @@ function serchilo_strongarm() {
   $strongarm->name = 'features_codecache';
   $strongarm->value = array(
     'serchilo' => array(
-      'field_base' => '9305f119f206a60e57246204acc55b08',
-      'field_instance' => '096b381fdafb8aa1241a8d6b818a421f',
+      'field_base' => '597f8d3b9d68de9d15678d314089d4cc',
+      'field_instance' => '1a1d879279abd0264ea09a6d9280d3fe',
       'filter' => '687596a4865e419cebdd3b866cbd702c',
       'menu_custom' => '8ca9f6f82f4b161f169a1f32bbf43f41',
       'menu_links' => 'c56195dac1f373c975e300a201befb68',
       'taxonomy' => 'bb1fd2f35636be5b54acbf2a397d6c8d',
-      'user_permission' => '2dff7590c1fa3621c948a9cd83a764b1',
-      'dependencies' => '54fbde277a93829d88970d10f16fc542',
+      'user_permission' => '693c49beccaa313bdb256d510d40a23b',
+      'dependencies' => '5d317eb3031d5cbf2f61fdaefaabde79',
       'node' => 'f19431c73528264f32a374522a827e99',
       'metatag' => '096259acfc1532f3d061b6cd6c923141',
       'views_view' => '9ec85b133918806a373d8e65d51776b8',
-      'variable' => '7c41f1c9ed5c17d5c24a164badaf9ee6',
+      'variable' => 'b76fda0c84403449b15fc94868e9700a',
     ),
   );
   $export['features_codecache'] = $strongarm;
@@ -384,13 +349,6 @@ function serchilo_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'install_time';
-  $strongarm->value = 1398110700;
-  $export['install_time'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'javascript_parsed';
   $strongarm->value = array(
     0 => 'misc/drupal.js',
@@ -419,9 +377,6 @@ function serchilo_strongarm() {
     20 => 'misc/progress.js',
     21 => 'sites/all/modules/jquery_update/js/jquery_update.js',
     22 => 'misc/ajax.js',
-    23 => 'misc/tableselect.js',
-    24 => 'sites/all/modules/module_filter/js/permissions.js',
-    25 => 'modules/user/user.permissions.js',
   );
   $export['javascript_parsed'] = $strongarm;
 
@@ -459,13 +414,6 @@ function serchilo_strongarm() {
   $strongarm->name = 'language_content_type_shortcut';
   $strongarm->value = '0';
   $export['language_content_type_shortcut'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'language_count';
-  $strongarm->value = 4;
-  $export['language_count'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -625,7 +573,9 @@ function serchilo_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'module_filter_recent_modules';
-  $strongarm->value = array();
+  $strongarm->value = array(
+    'profiler_builder' => 1402317042,
+  );
   $export['module_filter_recent_modules'] = $strongarm;
 
   $strongarm = new stdClass();
