@@ -164,35 +164,6 @@ function serchilo_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'entity_cache_tables_created';
-  $strongarm->value = '';
-  $export['entity_cache_tables_created'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'features_codecache';
-  $strongarm->value = array(
-    'serchilo' => array(
-      'field_base' => '597f8d3b9d68de9d15678d314089d4cc',
-      'field_instance' => '1a1d879279abd0264ea09a6d9280d3fe',
-      'filter' => '687596a4865e419cebdd3b866cbd702c',
-      'menu_custom' => '8ca9f6f82f4b161f169a1f32bbf43f41',
-      'menu_links' => 'c56195dac1f373c975e300a201befb68',
-      'taxonomy' => 'bb1fd2f35636be5b54acbf2a397d6c8d',
-      'user_permission' => '693c49beccaa313bdb256d510d40a23b',
-      'dependencies' => '5d317eb3031d5cbf2f61fdaefaabde79',
-      'node' => 'f19431c73528264f32a374522a827e99',
-      'metatag' => '096259acfc1532f3d061b6cd6c923141',
-      'views_view' => '9ec85b133918806a373d8e65d51776b8',
-      'variable' => 'b76fda0c84403449b15fc94868e9700a',
-    ),
-  );
-  $export['features_codecache'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'features_ignored_orphans';
   $strongarm->value = array();
   $export['features_ignored_orphans'] = $strongarm;
