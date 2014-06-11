@@ -52,6 +52,8 @@ drush pm-enable bootstrap_serchilo -y
 # You will be prompted to agree to download further modules, say yes.
 drush pm-enable serchilo -y
 
-# Set Bootstrap Serchilo theme as default
+# Strongarm somehow looses this, so we need to do it manually
 drush vset theme_default bootstrap_serchilo
+drush vset pathauto_node_pattern [node:title]
+
 ```
