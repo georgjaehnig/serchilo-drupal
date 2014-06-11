@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * serchilo.features.taxonomy.inc
+ * serchilo_features.features.taxonomy.inc
  */
 
 /**
  * Implements hook_taxonomy_default_vocabularies().
  */
-function serchilo_taxonomy_default_vocabularies() {
+function serchilo_features_taxonomy_default_vocabularies() {
   return array(
     'command_tags' => array(
       'name' => 'Command tags',

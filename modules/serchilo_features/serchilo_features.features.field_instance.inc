@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * serchilo.features.field_instance.inc
+ * serchilo_features.features.field_instance.inc
  */
 
 /**
  * Implements hook_field_default_field_instances().
  */
-function serchilo_field_default_field_instances() {
+function serchilo_features_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance: 'comment-comment_node_shortcut-comment_body'

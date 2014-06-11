@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * serchilo.views_default.inc
+ * serchilo_features.views_default.inc
  */
 
 /**
  * Implements hook_views_default_views().
  */
-function serchilo_views_default_views() {
+function serchilo_features_views_default_views() {
   $export = array();
 
   $view = new view();

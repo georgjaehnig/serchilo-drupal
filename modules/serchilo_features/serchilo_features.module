@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * @file
+ * Code for the Serchilo feature.
+ */
+
+include_once 'serchilo_features.features.inc';

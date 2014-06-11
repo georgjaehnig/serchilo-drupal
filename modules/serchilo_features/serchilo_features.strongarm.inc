@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * serchilo.strongarm.inc
+ * serchilo_features.strongarm.inc
  */
 
 /**
  * Implements hook_strongarm().
  */
-function serchilo_strongarm() {
+function serchilo_features_strongarm() {
   $export = array();
 
   $strongarm = new stdClass();

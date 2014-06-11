@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * serchilo.features.filter.inc
+ * serchilo_features.features.filter.inc
  */
 
 /**
  * Implements hook_filter_default_formats().
  */
-function serchilo_filter_default_formats() {
+function serchilo_features_filter_default_formats() {
   $formats = array();
 
   // Exported format: Plain text.

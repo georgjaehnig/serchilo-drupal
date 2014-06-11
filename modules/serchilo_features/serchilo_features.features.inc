@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * serchilo.features.inc
+ * serchilo_features.features.inc
  */
 
 /**
  * Implements hook_ctools_plugin_api().
  */
-function serchilo_ctools_plugin_api($module = NULL, $api = NULL) {
+function serchilo_features_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -16,14 +16,14 @@ function serchilo_ctools_plugin_api($module = NULL, $api = NULL) {
 /**
  * Implements hook_views_api().
  */
-function serchilo_views_api($module = NULL, $api = NULL) {
+function serchilo_features_views_api($module = NULL, $api = NULL) {
   return array("api" => "3.0");
 }
 
 /**
  * Implements hook_node_info().
  */
-function serchilo_node_info() {
+function serchilo_features_node_info() {
   $items = array(
     'shortcut' => array(
       'name' => t('Shortcut'),

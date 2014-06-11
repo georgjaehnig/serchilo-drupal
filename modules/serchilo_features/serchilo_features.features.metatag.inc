@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * serchilo.features.metatag.inc
+ * serchilo_features.features.metatag.inc
  */
 
 /**
  * Implements hook_metatag_export_default().
  */
-function serchilo_metatag_export_default() {
+function serchilo_features_metatag_export_default() {
   $config = array();
 
   // Exported Metatag config instance: global.

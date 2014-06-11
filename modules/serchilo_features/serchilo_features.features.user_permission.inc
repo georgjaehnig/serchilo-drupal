@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * serchilo.features.user_permission.inc
+ * serchilo_features.features.user_permission.inc
  */
 
 /**
  * Implements hook_user_default_permissions().
  */
-function serchilo_user_default_permissions() {
+function serchilo_features_user_default_permissions() {
   $permissions = array();
 
   // Exported permission: 'access administration pages'.

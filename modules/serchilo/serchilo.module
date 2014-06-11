@@ -20,14 +20,6 @@ define('METATAG_INSTANCE_CONSOLE', 'serchilo_console');
 define('METATAG_INSTANCE_CONSOLE_NAMESPACES', 'serchilo_console:namespaces');
 define('METATAG_INSTANCE_CONSOLE_USER', 'serchilo_console:user');
 
-/**
- * @file
- * Code for the Serchilo feature.
- */
-
-include_once 'serchilo.features.inc';
-
-
 // HOOKS 
 
 /**
