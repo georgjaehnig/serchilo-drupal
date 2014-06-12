@@ -48,8 +48,11 @@ cd drupal
 drush dl bootstrap
 drush pm-enable bootstrap_serchilo -y
 
-# Enable Serchilo module
-# You will be prompted to agree to download further modules, say yes.
+# First Enable Serchilo Features
+drush pm-enable serchilo_features -y
+# ... then the module itself.
+# (Doesn't work via module depency because, weirdly, 
+# dependencies get enable _after_ the module)
 drush pm-enable serchilo -y
 
 # Strongarm somehow looses this, so we need to do it manually

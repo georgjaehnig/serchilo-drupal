@@ -1,0 +1,102 @@
+<?PHP
+
+/**
+ * Implements hook_install().
+ */
+function serchilo_install(){
+
+  module_load_include('module', 'taxonomy', 'taxonomy');
+
+  $vocabularies = taxonomy_vocabulary_get_names();
+  $languages = serchilo_create_namespaces_from_file($vocabularies['namespaces'], $vocabularies['namespace_types']);
+  #serchilo_create_user_namespaces($vocabulary_namespaces, $vocabulary_namespace_types);
+
+  //serchilo_add_defaults_to_admin();
+
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function serchilo_uninstall(){
+  $vocabularies = taxonomy_vocabulary_get_names();
+  taxonomy_vocabulary_delete($vocabularies['namespaces']->vid);
+  taxonomy_vocabulary_delete($vocabularies['namespace_types']->vid);
+}
+
+function serchilo_create_namespaces_from_file($vocabulary_namespaces, $vocabulary_namespace_types) {
+
+  # read from file
+  $module_path = drupal_get_path('module', 'serchilo');
+  $lines = file($module_path . '/csv/namespaces.csv');
+
+  $languages = array();
+  # create objects from lines in file
+  foreach ($lines as $line) {
+    $line = trim($line);
+
+    # skip comments and empty lines
+    if (
+      (!$line) ||
+      $line[0] == '#'
+    ) {
+      continue; 
+    }
+
+    $values = explode("\t", $line);
+    
+    #if (count($values) !=3) {
+    #  echo "Error in $line \n"; 
+    #}
+    $namespace_type_name = $values[0];
+    $namespace_name = $values[1];
+    $namespace_description = $values[2];
+
+    $namespace_type = _serchilo_taxonomy_ensure_term($namespace_type_name, 'namespace_types');
+
+    $namespace = (object) array(
+      'name' => $namespace_name,
+      'description' => $namespace_description,
+      'vid' => (int) $vocabulary_namespaces->vid,
+      'field_namespace_type' => array(
+        LANGUAGE_NONE => array(
+          0 => array(
+            'tid' => $namespace_type->tid,
+          ),
+        ), 
+      ),
+    );
+    # remember languages
+    #print_r($namespace);
+    taxonomy_term_save($namespace);
+    /*
+    if ($namespace_type_name == 'language'){
+      $languages[$namespace_name] = array(
+        'tid' => $namespace->tid, 
+        'description' => $namespace_description,
+      ); # TODO: put here description value from
+    }
+     */
+  }
+  return $languages;
+}
+
+function _serchilo_taxonomy_ensure_term($term_name, $vocabulary_name, $term = array()) {
+
+  $term_list = taxonomy_get_term_by_name($term_name, $vocabulary_name );
+  # if namespace_type does not exist yet:
+  # create it
+  if(empty($term_list)) {
+    $vocabulary = taxonomy_vocabulary_machine_name_load($vocabulary_name);
+    $term = array(
+      'name' => $term_name,
+      'vid' => (int) $vocabulary->vid,
+    ) + $term;
+    $term = (object) $term;
+    taxonomy_term_save($term);
+    $term_list = taxonomy_get_term_by_name($term_name, $vocabulary_name );
+  }
+  # get first element, the only one
+  $term = array_shift($term_list);
+  return $term;
+}
