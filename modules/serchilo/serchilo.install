@@ -19,9 +19,9 @@ function serchilo_install(){
  * Implements hook_uninstall().
  */
 function serchilo_uninstall(){
-  $vocabularies = taxonomy_vocabulary_get_names();
-  taxonomy_vocabulary_delete($vocabularies['namespaces']->vid);
-  taxonomy_vocabulary_delete($vocabularies['namespace_types']->vid);
+  #$vocabularies = taxonomy_vocabulary_get_names();
+  #taxonomy_vocabulary_delete($vocabularies['namespaces']->vid);
+  #taxonomy_vocabulary_delete($vocabularies['namespace_types']->vid);
 }
 
 function serchilo_create_namespaces_from_file($vocabulary_namespaces, $vocabulary_namespace_types) {
