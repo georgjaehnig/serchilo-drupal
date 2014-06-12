@@ -54,30 +54,20 @@ function serchilo_create_namespaces_from_file($vocabulary_namespaces, $vocabular
 
     $namespace_type = _serchilo_taxonomy_ensure_term($namespace_type_name, 'namespace_types');
 
-    $namespace = (object) array(
-      'name' => $namespace_name,
-      'description' => $namespace_description,
-      'vid' => (int) $vocabulary_namespaces->vid,
-      'field_namespace_type' => array(
-        LANGUAGE_NONE => array(
-          0 => array(
-            'tid' => $namespace_type->tid,
-          ),
-        ), 
-      ),
-    );
-    taxonomy_term_save($namespace);
+    if (!taxonomy_get_term_by_name($namespace_name, 'namespaces')) {
+      $namespace              = new StdClass;
+      $namespace->name        = $namespace_name;
+      $namespace->description = $namespace_description;
+      $namespace->vid         = (int) $vocabulary_namespaces->vid;
+      $namespace->field_namespace_type[LANGUAGE_NONE][0]['tid'] = $namespace_type->tid;
+      taxonomy_term_save($namespace);
+    }
   }
 }
 
 function serchilo_create_user_namespaces($vocabulary_namespaces, $vocabulary_namespace_types) {
-  # creating user NS type
-  $namespace_type = (object) array(
-    'name' => 'user',
-    'vid' => (int) $vocabulary_namespace_types->vid,
-  );
 
-  taxonomy_term_save($namespace_type);
+  $namespace_type = _serchilo_taxonomy_ensure_term('user', 'namespace_types');
 
   # creating user NS
 
@@ -96,19 +86,14 @@ function serchilo_create_user_namespaces($vocabulary_namespaces, $vocabulary_nam
     }
      */
     
-    $namespace = (object) array(
-      'name' => $user->name,
-      'vid' => (int) $vocabulary_namespaces->vid,
-      'field_namespace_type' => array(
-        LANGUAGE_NONE => array(
-          0 => array(
-            'tid' => $namespace_type->tid,
-          ),
-        ), 
-      ),
-    );
-    #print_r($namespace);
-    taxonomy_term_save($namespace);
+    if (!taxonomy_get_term_by_name($user->name, 'namespaces')) {
+      $namespace              = new StdClass;
+      $namespace->name        = $user->name;
+      $namespace->description = $namespace_description;
+      $namespace->vid         = (int) $vocabulary_namespaces->vid;
+      $namespace->field_namespace_type[LANGUAGE_NONE][0]['tid'] = $namespace_type->tid;
+      taxonomy_term_save($namespace);
+    }
   }
 }
 
