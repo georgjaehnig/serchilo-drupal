@@ -8,8 +8,8 @@ function serchilo_install(){
   module_load_include('module', 'taxonomy', 'taxonomy');
 
   $vocabularies = taxonomy_vocabulary_get_names();
-  $languages = serchilo_create_namespaces_from_file($vocabularies['namespaces'], $vocabularies['namespace_types']);
-  #serchilo_create_user_namespaces($vocabulary_namespaces, $vocabulary_namespace_types);
+  serchilo_create_namespaces_from_file($vocabularies['namespaces'], $vocabularies['namespace_types']);
+  serchilo_create_user_namespaces($vocabularies['namespaces'], $vocabularies['namespace_types']);
 
   //serchilo_add_defaults_to_admin();
 
@@ -57,6 +57,47 @@ function serchilo_create_namespaces_from_file($vocabulary_namespaces, $vocabular
     $namespace = (object) array(
       'name' => $namespace_name,
       'description' => $namespace_description,
+      'vid' => (int) $vocabulary_namespaces->vid,
+      'field_namespace_type' => array(
+        LANGUAGE_NONE => array(
+          0 => array(
+            'tid' => $namespace_type->tid,
+          ),
+        ), 
+      ),
+    );
+    taxonomy_term_save($namespace);
+  }
+}
+
+function serchilo_create_user_namespaces($vocabulary_namespaces, $vocabulary_namespace_types) {
+  # creating user NS type
+  $namespace_type = (object) array(
+    'name' => 'user',
+    'vid' => (int) $vocabulary_namespace_types->vid,
+  );
+
+  taxonomy_term_save($namespace_type);
+
+  # creating user NS
+
+  $users = entity_load('user');
+  foreach($users as $user) {
+    # omit anonymous user
+    if ($user->uid == 0) {
+      continue; 
+    }
+    # omit admin user 
+    # because "admin" in path must call admin interface
+    # --removing that since (currently) there is no path conflict
+    /*
+    if ($user->name == 'admin') {
+      continue; 
+    }
+     */
+    
+    $namespace = (object) array(
+      'name' => $user->name,
       'vid' => (int) $vocabulary_namespaces->vid,
       'field_namespace_type' => array(
         LANGUAGE_NONE => array(
