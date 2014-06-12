@@ -66,19 +66,9 @@ function serchilo_create_namespaces_from_file($vocabulary_namespaces, $vocabular
         ), 
       ),
     );
-    # remember languages
     #print_r($namespace);
     taxonomy_term_save($namespace);
-    /*
-    if ($namespace_type_name == 'language'){
-      $languages[$namespace_name] = array(
-        'tid' => $namespace->tid, 
-        'description' => $namespace_description,
-      ); # TODO: put here description value from
-    }
-     */
   }
-  return $languages;
 }
 
 function _serchilo_taxonomy_ensure_term($term_name, $vocabulary_name, $term = array()) {
