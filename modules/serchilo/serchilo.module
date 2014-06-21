@@ -1,5 +1,6 @@
 <?php
 
+define('DEFAULT_LANGUAGE', 'en');
 define('DEFAULT_COUNTRY', 'deu');
 #define('DEFAULT_COUNTRY', 'usa');
 define('DEFAULT_LIMIT', 8);
