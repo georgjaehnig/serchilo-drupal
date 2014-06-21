@@ -6,7 +6,7 @@
 define('NAMESPACE_VOCABULARY_ID', 1);
 define('STAR_NAMESPACE', 'o');
 
-require_once('../../../../../sites/default/settings.php');
+require_once('serchilo.settings.php');
 require_once('serchilo.query.inc');
 
 $db = $databases['default']['default'];
