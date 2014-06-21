@@ -191,6 +191,8 @@ function _serchilo_extract_keyword_and_arguments($query, $max_arguments = -1) {
   return array($keyword, $arguments);
 }
 
+
+// TODO: replace with _serchilo_get_values_from_table
 function _serchilo_get_namespace_id($namespace_name) {
 
   global $mysqli;
@@ -355,6 +357,7 @@ function _serchilo_replace_sql_arguments($mysqli, $sql_template, $arguments, $le
   return $sql_replaced;
 }
 
+// TODO: replace with _serchilo_get_values_from_table
 function _serchilo_get_vocabulary_id($vocabulary_name) {
 
   global $mysqli;
