@@ -417,3 +417,17 @@ function _serchilo_get_values_from_table($table, $where_column_name, $where_valu
   }
   return $values;
 }
+
+function _serchilo_get_path_elements() {
+  $path = $_SERVER['REDIRECT_URL'];
+  // example: '/n/en.usa'
+  $path_elements = explode('/', $path);
+  return $path_elements;
+}
+
+function _serchilo_get_user_name_from_path_elements() {
+  $path_elements = _serchilo_get_path_elements();
+  if ('u' == $path_elements[1]) {
+    return $path_elements[2];
+  }
+}
