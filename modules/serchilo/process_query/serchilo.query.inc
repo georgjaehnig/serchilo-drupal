@@ -373,3 +373,23 @@ function _serchilo_get_vocabulary_id($vocabulary_name) {
     return $row['vid'];
   }
 }
+function _serchilo_get_values_from_table($table, $where_column_name, $where_value, $value_column_name) {
+
+  global $mysqli;
+
+  $sql = "
+    SELECT $value_column_name
+    FROM $table
+    WHERE
+    $where_column_name = '" . $mysqli->real_escape_string($where_value) . "' 
+  ";
+
+  $result = $mysqli->query($sql);
+  
+  $values = array();
+  if ($result->num_rows > 0) {
+    $rows = $result->fetch_all();
+    $values = array_map(function($row) { return array_shift($row); }, $rows);
+  }
+  return $values;
+}
