@@ -222,8 +222,6 @@ function _serchilo_get_namespace_names_from_path($path_elements_offset = 0) {
       return $namespace_names;
       break;
     case 'u':
-      // evtl user namespaces zwischenspeichern in
-      // serchilo_users_namespaces
       break;
   }
 }
