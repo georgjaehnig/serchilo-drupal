@@ -361,7 +361,6 @@ function _serchilo_get_vocabulary_id($vocabulary_name) {
 
   global $mysqli;
 
-  $vocabulary_name = 'namespaces';
   $sql = "
     SELECT *
     FROM taxonomy_vocabulary
