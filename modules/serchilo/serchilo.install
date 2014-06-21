@@ -77,14 +77,6 @@ function serchilo_create_user_namespaces($vocabulary_namespaces, $vocabulary_nam
     if ($user->uid == 0) {
       continue; 
     }
-    # omit admin user 
-    # because "admin" in path must call admin interface
-    # --removing that since (currently) there is no path conflict
-    /*
-    if ($user->name == 'admin') {
-      continue; 
-    }
-     */
     
     if (!taxonomy_get_term_by_name($user->name, 'namespaces')) {
       $namespace              = new StdClass;
