@@ -28,11 +28,26 @@ case 'ajax':
 }
 
 function _serchilo_process_query_console() {
+
   $query = $_GET['query'];
 
-  $namespace_names = _serchilo_get_namespace_names_from_path();
-  list($keyword, $arguments, $extra_namespace_name) = _serchilo_parse_query($query);
-  $namespace_ids = array_map('_serchilo_get_namespace_id', array_merge($namespace_names, array($extra_namespace_name)));
+  # can be:
+  # 'n' (e.g. n/en.usa) or 
+  # 'u' (e.g. u/admin)
+  $call_type = $_GET['call_type'];
+
+  switch ($call_type) {
+  case 'n':
+    $namespace_names = _serchilo_get_namespace_names_from_path();
+    list($keyword, $arguments, $extra_namespace_name) = _serchilo_parse_query($query);
+    $namespace_ids = array_map('_serchilo_get_namespace_id', array_merge($namespace_names, array($extra_namespace_name)));
+    break;
+  case 'u':
+    list($keyword, $arguments, $extra_namespace_name) = _serchilo_parse_query($query);
+    $user_name = _serchilo_get_user_name_from_path_elements();
+    $namespace_ids = _serchilo_get_namespace_ids_from_user($user_name);
+    break;
+  }
 
   #echo '<pre>';
   #print_r($namespace_ids);
