@@ -211,7 +211,7 @@ function _serchilo_get_namespace_id($namespace_name) {
   return $row['tid'];
 }
 
-function _serchilo_get_namespace_names($path_elements_offset = 0) {
+function _serchilo_get_namespace_names_from_path($path_elements_offset = 0) {
   $path = $_SERVER['REDIRECT_URL'];
   // example: '/n/en.usa'
   $path_elements = explode('/', $path);

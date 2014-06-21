@@ -32,7 +32,7 @@ case 'ajax':
 function _serchilo_process_query_console() {
   $query = $_GET['query'];
 
-  $namespace_names = _serchilo_get_namespace_names();
+  $namespace_names = _serchilo_get_namespace_names_from_path();
   list($keyword, $arguments, $extra_namespace_name) = _serchilo_parse_query($query);
   $namespace_ids = array_map('_serchilo_get_namespace_id', array_merge($namespace_names, array($extra_namespace_name)));
 
@@ -55,7 +55,7 @@ function _serchilo_process_query_console() {
 function _serchilo_process_query_ajax() {
 
   $query = $_GET['term'];
-  $namespace_names = _serchilo_get_namespace_names(1);
+  $namespace_names = _serchilo_get_namespace_names_from_path(1);
 
   list($keyword, $arguments, $extra_namespace_name) = _serchilo_parse_query($query);
   $namespace_ids = array_map('_serchilo_get_namespace_id', array_merge($namespace_names, array($extra_namespace_name)));
