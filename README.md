@@ -60,3 +60,18 @@ drush vset theme_default bootstrap_serchilo
 drush vset pathauto_node_pattern [node:title]
 
 ```
+
+To `drupal/.htaccess`, add:
+```
+# must start with 'u' or 'n'
+RewriteCond %{REQUEST_URI} ^\/(u|n)\/.*
+# must have 'query' parameter
+RewriteCond %{QUERY_STRING} (^|&)query=
+RewriteRule ^(.*)$ profiles/profilo/modules/serchilo/process_query/process_query.php?page_type=console [L,QSA]
+
+# must start with 'u' or 'n'
+RewriteCond %{REQUEST_URI} ^\/ajax\/(u|n)\/.*
+# must have 'query' parameter
+RewriteCond %{QUERY_STRING} (^|&)term=
+RewriteRule ^(.*)$ profiles/profilo/modules/serchilo/process_query/process_query.php?page_type=ajax [L,QSA]
+```
