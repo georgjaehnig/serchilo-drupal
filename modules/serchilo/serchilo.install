@@ -25,6 +25,91 @@ function serchilo_uninstall(){
   #taxonomy_vocabulary_delete($vocabularies['namespace_types']->vid);
 }
 
+/**
+ * Implements hook_install().
+ */
+function serchilo_schema() {
+
+  $schema['serchilo_shortcut'] = array(
+    'description' => 'TODO: please describe this table!',
+    'fields' => array(
+      'nid' => array(
+        'description' => 'TODO: please describe this field!',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'title' => array(
+        'description' => 'TODO: please describe this field!',
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => FALSE,
+      ),
+      'keyword' => array(
+        'description' => 'TODO: please describe this field!',
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => FALSE,
+      ),
+      'argument_names' => array(
+        'description' => 'TODO: please describe this field!',
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => FALSE,
+      ),
+      'argument_count' => array(
+        'description' => 'TODO: please describe this field!',
+        'type' => 'int',
+        'not null' => FALSE,
+      ),
+      'url' => array(
+        'description' => 'TODO: please describe this field!',
+        'type' => 'text',
+        'not null' => FALSE,
+      ),
+      'weight' => array(
+        'description' => 'TODO: please describe this field!',
+        'type' => 'float',
+        'not null' => FALSE,
+      ),
+      'invisible' => array(
+        'description' => 'TODO: please describe this field!',
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => FALSE,
+        'default' => 0,
+      ),
+      'set_referrer' => array(
+        'description' => 'TODO: please describe this field!',
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => FALSE,
+        'default' => 0,
+      ),
+      'namespace_id' => array(
+        'description' => 'TODO: please describe this field!',
+        'type' => 'int',
+        'not null' => FALSE,
+      ),
+      'namespace_name' => array(
+        'description' => 'TODO: please describe this field!',
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => FALSE,
+      ),
+      'input_encoding' => array(
+        'description' => 'TODO: please describe this field!',
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => FALSE,
+      ),
+    ),
+    'primary key' => array('nid'),
+  );
+
+  return $schema;
+}
+
 function serchilo_create_namespaces_from_file($vocabulary_namespaces, $vocabulary_namespace_types) {
 
   # read from file
