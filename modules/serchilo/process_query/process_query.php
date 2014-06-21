@@ -1,9 +1,5 @@
 <?PHP
 
-// TODO:
-// better read out taxonomy_vocabulary (tiny table)
-// by the machine name "namespace"
-define('NAMESPACE_VOCABULARY_ID', 1);
 define('STAR_NAMESPACE', 'o');
 
 require_once('serchilo.settings.php');
@@ -17,6 +13,8 @@ $mysqli = new mysqli(
   $db['password'],
   $db['database']
 );
+
+define('NAMESPACE_VOCABULARY_ID', _serchilo_get_vocabulary_id('namespaces'));
 
 $page_type = $_GET['page_type'];
 
