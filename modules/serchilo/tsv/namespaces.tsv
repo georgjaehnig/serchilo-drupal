@@ -1,427 +1,427 @@
-type	name	description	native language name (currently unused)
-other	o	Earth 
-country	abw	Aruba
-country	afg	Afghanistan
-country	ago	Angola
-country	aia	Anguilla
-country	ala	Åland Islands
-country	alb	Albania
-country	and	Andorra
-country	are	United Arab Emirates
-country	arg	Argentina
-country	arm	Armenia
-country	asm	American Samoa
-country	ata	Antarctica
-country	atf	French Southern Territories
-country	atg	Antigua and Barbuda
-country	aus	Australia
-country	aut	Austria
-country	aze	Azerbaijan
-country	bdi	Burundi
-country	bel	Belgium
-country	ben	Benin
-country	bes	Bonaire, Sint Eustatius and Saba
-country	bfa	Burkina Faso
-country	bgd	Bangladesh
-country	bgr	Bulgaria
-country	bhr	Bahrain
-country	bhs	Bahamas
-country	bih	Bosnia and Herzegovina
-country	blm	Saint Barthélemy
-country	blr	Belarus
-country	blz	Belize
-country	bmu	Bermuda
-country	bol	Bolivia, Plurinational State of
-country	bra	Brazil
-country	brb	Barbados
-country	brn	Brunei Darussalam
-country	btn	Bhutan
-country	bvt	Bouvet Island
-country	bwa	Botswana
-country	caf	Central African Republic
-country	can	Canada
-country	cck	Cocos (Keeling) Islands
-country	che	Switzerland
-country	chl	Chile
-country	chn	China
-country	civ	Côte d'Ivoire
-country	cmr	Cameroon
-country	cod	Congo, the Democratic Republic of the
-country	cog	Congo
-country	cok	Cook Islands
-country	col	Colombia
-country	com	Comoros
-country	cpv	Cape Verde
-country	cri	Costa Rica
-country	cub	Cuba
-country	cuw	Curaçao
-country	cxr	Christmas Island
-country	cym	Cayman Islands
-country	cyp	Cyprus
-country	cze	Czech Republic
-country	deu	Germany
-country	dji	Djibouti
-country	dma	Dominica
-country	dnk	Denmark
-country	dom	Dominican Republic
-country	dza	Algeria
-country	ecu	Ecuador
-country	egy	Egypt
-country	eri	Eritrea
-country	esh	Western Sahara
-country	esp	Spain
-country	est	Estonia
-country	eth	Ethiopia
-country	fin	Finland
-country	fji	Fiji
-country	flk	Falkland Islands (Malvinas)
-country	fra	France
-country	fro	Faroe Islands
-country	fsm	Micronesia, Federated States of
-country	gab	Gabon
-country	gbr	United Kingdom
-country	geo	Georgia
-country	ggy	Guernsey
-country	gha	Ghana
-country	gib	Gibraltar
-country	gin	Guinea
-country	glp	Guadeloupe
-country	gmb	Gambia
-country	gnb	Guinea-Bissau
-country	gnq	Equatorial Guinea
-country	grc	Greece
-country	grd	Grenada
-country	grl	Greenland
-country	gtm	Guatemala
-country	guf	French Guiana
-country	gum	Guam
-country	guy	Guyana
-country	hkg	Hong Kong
-country	hmd	Heard Island and McDonald Islands
-country	hnd	Honduras
-country	hrv	Croatia
-country	hti	Haiti
-country	hun	Hungary
-country	idn	Indonesia
-country	imn	Isle of Man
-country	ind	India
-country	iot	British Indian Ocean Territory
-country	irl	Ireland
-country	irn	Iran, Islamic Republic of
-country	irq	Iraq
-country	isl	Iceland
-country	isr	Israel
-country	ita	Italy
-country	jam	Jamaica
-country	jey	Jersey
-country	jor	Jordan
-country	jpn	Japan
-country	kaz	Kazakhstan
-country	ken	Kenya
-country	kgz	Kyrgyzstan
-country	khm	Cambodia
-country	kir	Kiribati
-country	kna	Saint Kitts and Nevis
-country	kor	Korea, Republic of
-country	kwt	Kuwait
-country	lao	Lao People's Democratic Republic
-country	lbn	Lebanon
-country	lbr	Liberia
-country	lby	Libya
-country	lca	Saint Lucia
-country	lie	Liechtenstein
-country	lka	Sri Lanka
-country	lso	Lesotho
-country	ltu	Lithuania
-country	lux	Luxembourg
-country	lva	Latvia
-country	mac	Macao
-country	maf	Saint Martin (French part)
-country	mar	Morocco
-country	mco	Monaco
-country	mda	Moldova, Republic of
-country	mdg	Madagascar
-country	mdv	Maldives
-country	mex	Mexico
-country	mhl	Marshall Islands
-country	mkd	Macedonia, the former Yugoslav Republic of
-country	mli	Mali
-country	mlt	Malta
-country	mmr	Myanmar
-country	mne	Montenegro
-country	mng	Mongolia
-country	mnp	Northern Mariana Islands
-country	moz	Mozambique
-country	mrt	Mauritania
-country	msr	Montserrat
-country	mtq	Martinique
-country	mus	Mauritius
-country	mwi	Malawi
-country	mys	Malaysia
-country	myt	Mayotte
-country	nam	Namibia
-country	ncl	New Caledonia
-country	ner	Niger
-country	nfk	Norfolk Island
-country	nga	Nigeria
-country	nic	Nicaragua
-country	niu	Niue
-country	nld	Netherlands
-country	nor	Norway
-country	npl	Nepal
-country	nru	Nauru
-country	nzl	New Zealand
-country	omn	Oman
-country	pak	Pakistan
-country	pan	Panama
-country	pcn	Pitcairn
-country	per	Peru
-country	phl	Philippines
-country	plw	Palau
-country	png	Papua New Guinea
-country	pol	Poland
-country	pri	Puerto Rico
-country	prk	Korea, Democratic People's Republic of
-country	prt	Portugal
-country	pry	Paraguay
-country	pse	Palestinian Territory, Occupied
-country	pyf	French Polynesia
-country	qat	Qatar
-country	reu	Réunion
-country	rou	Romania
-country	rus	Russian Federation
-country	rwa	Rwanda
-country	sau	Saudi Arabia
-country	sdn	Sudan
-country	sen	Senegal
-country	sgp	Singapore
-country	sgs	South Georgia and the South Sandwich Islands
-country	shn	Saint Helena, Ascension and Tristan da Cunha
-country	sjm	Svalbard and Jan Mayen
-country	slb	Solomon Islands
-country	sle	Sierra Leone
-country	slv	El Salvador
-country	smr	San Marino
-country	som	Somalia
-country	spm	Saint Pierre and Miquelon
-country	srb	Serbia
-country	ssd	South Sudan
-country	stp	Sao Tome and Principe
-country	sur	Suriname
-country	svk	Slovakia
-country	svn	Slovenia
-country	swe	Sweden
-country	swz	Swaziland
-country	sxm	Sint Maarten (Dutch part)
-country	syc	Seychelles
-country	syr	Syrian Arab Republic
-country	tca	Turks and Caicos Islands
-country	tcd	Chad
-country	tgo	Togo
-country	tha	Thailand
-country	tjk	Tajikistan
-country	tkl	Tokelau
-country	tkm	Turkmenistan
-country	tls	Timor-Leste
-country	ton	Tonga
-country	tto	Trinidad and Tobago
-country	tun	Tunisia
-country	tur	Turkey
-country	tuv	Tuvalu
-country	twn	Taiwan, Province of China
-country	tza	Tanzania, United Republic of
-country	uga	Uganda
-country	ukr	Ukraine
-country	umi	United States Minor Outlying Islands
-country	ury	Uruguay
-country	usa	United States
-country	uzb	Uzbekistan
-country	vat	Holy See (Vatican City State)
-country	vct	Saint Vincent and the Grenadines
-country	ven	Venezuela, Bolivarian Republic of
-country	vgb	Virgin Islands, British
-country	vir	Virgin Islands, U.S.
-country	vnm	Viet Nam
-country	vut	Vanuatu
-country	wlf	Wallis and Futuna
-country	wsm	Samoa
-country	yem	Yemen
-country	zaf	South Africa
-country	zmb	Zambia
-country	zwe	Zimbabwe
-language	aa	Afar	
+type	name	description	native language name (currently unused)	
+other	o	Earth 	
+country	abw	Aruba	
+country	afg	Afghanistan	
+country	ago	Angola	
+country	aia	Anguilla	
+country	ala	Åland Islands	
+country	alb	Albania	
+country	and	Andorra	
+country	are	United Arab Emirates	
+country	arg	Argentina	
+country	arm	Armenia	
+country	asm	American Samoa	
+country	ata	Antarctica	
+country	atf	French Southern Territories	
+country	atg	Antigua and Barbuda	
+country	aus	Australia	
+country	aut	Austria	
+country	aze	Azerbaijan	
+country	bdi	Burundi	
+country	bel	Belgium	
+country	ben	Benin	
+country	bes	Bonaire, Sint Eustatius and Saba	
+country	bfa	Burkina Faso	
+country	bgd	Bangladesh	
+country	bgr	Bulgaria	
+country	bhr	Bahrain	
+country	bhs	Bahamas	
+country	bih	Bosnia and Herzegovina	
+country	blm	Saint Barthélemy	
+country	blr	Belarus	
+country	blz	Belize	
+country	bmu	Bermuda	
+country	bol	Bolivia, Plurinational State of	
+country	bra	Brazil	
+country	brb	Barbados	
+country	brn	Brunei Darussalam	
+country	btn	Bhutan	
+country	bvt	Bouvet Island	
+country	bwa	Botswana	
+country	caf	Central African Republic	
+country	can	Canada	
+country	cck	Cocos (Keeling) Islands	
+country	che	Switzerland	
+country	chl	Chile	
+country	chn	China	
+country	civ	Côte d'Ivoire	
+country	cmr	Cameroon	
+country	cod	Congo, the Democratic Republic of the	
+country	cog	Congo	
+country	cok	Cook Islands	
+country	col	Colombia	
+country	com	Comoros	
+country	cpv	Cape Verde	
+country	cri	Costa Rica	
+country	cub	Cuba	
+country	cuw	Curaçao	
+country	cxr	Christmas Island	
+country	cym	Cayman Islands	
+country	cyp	Cyprus	
+country	cze	Czech Republic	
+country	deu	Germany	
+country	dji	Djibouti	
+country	dma	Dominica	
+country	dnk	Denmark	
+country	dom	Dominican Republic	
+country	dza	Algeria	
+country	ecu	Ecuador	
+country	egy	Egypt	
+country	eri	Eritrea	
+country	esh	Western Sahara	
+country	esp	Spain	
+country	est	Estonia	
+country	eth	Ethiopia	
+country	fin	Finland	
+country	fji	Fiji	
+country	flk	Falkland Islands (Malvinas)	
+country	fra	France	
+country	fro	Faroe Islands	
+country	fsm	Micronesia, Federated States of	
+country	gab	Gabon	
+country	gbr	United Kingdom	
+country	geo	Georgia	
+country	ggy	Guernsey	
+country	gha	Ghana	
+country	gib	Gibraltar	
+country	gin	Guinea	
+country	glp	Guadeloupe	
+country	gmb	Gambia	
+country	gnb	Guinea-Bissau	
+country	gnq	Equatorial Guinea	
+country	grc	Greece	
+country	grd	Grenada	
+country	grl	Greenland	
+country	gtm	Guatemala	
+country	guf	French Guiana	
+country	gum	Guam	
+country	guy	Guyana	
+country	hkg	Hong Kong	
+country	hmd	Heard Island and McDonald Islands	
+country	hnd	Honduras	
+country	hrv	Croatia	
+country	hti	Haiti	
+country	hun	Hungary	
+country	idn	Indonesia	
+country	imn	Isle of Man	
+country	ind	India	
+country	iot	British Indian Ocean Territory	
+country	irl	Ireland	
+country	irn	Iran, Islamic Republic of	
+country	irq	Iraq	
+country	isl	Iceland	
+country	isr	Israel	
+country	ita	Italy	
+country	jam	Jamaica	
+country	jey	Jersey	
+country	jor	Jordan	
+country	jpn	Japan	
+country	kaz	Kazakhstan	
+country	ken	Kenya	
+country	kgz	Kyrgyzstan	
+country	khm	Cambodia	
+country	kir	Kiribati	
+country	kna	Saint Kitts and Nevis	
+country	kor	Korea, Republic of	
+country	kwt	Kuwait	
+country	lao	Lao People's Democratic Republic	
+country	lbn	Lebanon	
+country	lbr	Liberia	
+country	lby	Libya	
+country	lca	Saint Lucia	
+country	lie	Liechtenstein	
+country	lka	Sri Lanka	
+country	lso	Lesotho	
+country	ltu	Lithuania	
+country	lux	Luxembourg	
+country	lva	Latvia	
+country	mac	Macao	
+country	maf	Saint Martin (French part)	
+country	mar	Morocco	
+country	mco	Monaco	
+country	mda	Moldova, Republic of	
+country	mdg	Madagascar	
+country	mdv	Maldives	
+country	mex	Mexico	
+country	mhl	Marshall Islands	
+country	mkd	Macedonia, the former Yugoslav Republic of	
+country	mli	Mali	
+country	mlt	Malta	
+country	mmr	Myanmar	
+country	mne	Montenegro	
+country	mng	Mongolia	
+country	mnp	Northern Mariana Islands	
+country	moz	Mozambique	
+country	mrt	Mauritania	
+country	msr	Montserrat	
+country	mtq	Martinique	
+country	mus	Mauritius	
+country	mwi	Malawi	
+country	mys	Malaysia	
+country	myt	Mayotte	
+country	nam	Namibia	
+country	ncl	New Caledonia	
+country	ner	Niger	
+country	nfk	Norfolk Island	
+country	nga	Nigeria	
+country	nic	Nicaragua	
+country	niu	Niue	
+country	nld	Netherlands	
+country	nor	Norway	
+country	npl	Nepal	
+country	nru	Nauru	
+country	nzl	New Zealand	
+country	omn	Oman	
+country	pak	Pakistan	
+country	pan	Panama	
+country	pcn	Pitcairn	
+country	per	Peru	
+country	phl	Philippines	
+country	plw	Palau	
+country	png	Papua New Guinea	
+country	pol	Poland	
+country	pri	Puerto Rico	
+country	prk	Korea, Democratic People's Republic of	
+country	prt	Portugal	
+country	pry	Paraguay	
+country	pse	Palestinian Territory, Occupied	
+country	pyf	French Polynesia	
+country	qat	Qatar	
+country	reu	Réunion	
+country	rou	Romania	
+country	rus	Russian Federation	
+country	rwa	Rwanda	
+country	sau	Saudi Arabia	
+country	sdn	Sudan	
+country	sen	Senegal	
+country	sgp	Singapore	
+country	sgs	South Georgia and the South Sandwich Islands	
+country	shn	Saint Helena, Ascension and Tristan da Cunha	
+country	sjm	Svalbard and Jan Mayen	
+country	slb	Solomon Islands	
+country	sle	Sierra Leone	
+country	slv	El Salvador	
+country	smr	San Marino	
+country	som	Somalia	
+country	spm	Saint Pierre and Miquelon	
+country	srb	Serbia	
+country	ssd	South Sudan	
+country	stp	Sao Tome and Principe	
+country	sur	Suriname	
+country	svk	Slovakia	
+country	svn	Slovenia	
+country	swe	Sweden	
+country	swz	Swaziland	
+country	sxm	Sint Maarten (Dutch part)	
+country	syc	Seychelles	
+country	syr	Syrian Arab Republic	
+country	tca	Turks and Caicos Islands	
+country	tcd	Chad	
+country	tgo	Togo	
+country	tha	Thailand	
+country	tjk	Tajikistan	
+country	tkl	Tokelau	
+country	tkm	Turkmenistan	
+country	tls	Timor-Leste	
+country	ton	Tonga	
+country	tto	Trinidad and Tobago	
+country	tun	Tunisia	
+country	tur	Turkey	
+country	tuv	Tuvalu	
+country	twn	Taiwan, Province of China	
+country	tza	Tanzania, United Republic of	
+country	uga	Uganda	
+country	ukr	Ukraine	
+country	umi	United States Minor Outlying Islands	
+country	ury	Uruguay	
+country	usa	United States	
+country	uzb	Uzbekistan	
+country	vat	Holy See (Vatican City State)	
+country	vct	Saint Vincent and the Grenadines	
+country	ven	Venezuela, Bolivarian Republic of	
+country	vgb	Virgin Islands, British	
+country	vir	Virgin Islands, U.S.	
+country	vnm	Viet Nam	
+country	vut	Vanuatu	
+country	wlf	Wallis and Futuna	
+country	wsm	Samoa	
+country	yem	Yemen	
+country	zaf	South Africa	
+country	zmb	Zambia	
+country	zwe	Zimbabwe	
+language	aa	Afar		
 language	ab	Abkhazian	аҧсуа бызшәа
-language	ae	Avestan	
-language	af	Afrikaans	
-language	ak	Akan	
+language	ae	Avestan		
+language	af	Afrikaans		
+language	ak	Akan		
 language	am	Amharic	አማርኛ
 language	ar	Arabic	العربية
-language	as	Assamese	
-language	av	Avar	
-language	ay	Aymara	
+language	as	Assamese		
+language	av	Avar		
+language	ay	Aymara		
 language	az	Azerbaijani	azərbaycan
-language	ba	Bashkir	
+language	ba	Bashkir		
 language	be	Belarusian	Беларуская
 language	bg	Bulgarian	Български
-language	bh	Bihari	
-language	bi	Bislama	
+language	bh	Bihari		
+language	bi	Bislama		
 language	bm	Bambara	Bamanankan
-language	bn	Bengali	
-language	bo	Tibetan	
-language	br	Breton	
+language	bn	Bengali		
+language	bo	Tibetan		
+language	br	Breton		
 language	bs	Bosnian	Bosanski
 language	ca	Catalan	Català
-language	ce	Chechen	
-language	ch	Chamorro	
-language	co	Corsican	
-language	cr	Cree	
+language	ce	Chechen		
+language	ch	Chamorro		
+language	co	Corsican		
+language	cr	Cree		
 language	cs	Czech	Čeština
-language	cu	Old Slavonic	
-language	cv	Chuvash	
+language	cu	Old Slavonic		
+language	cv	Chuvash		
 language	cy	Welsh	Cymraeg
 language	da	Danish	Dansk
 language	de	German	Deutsch
-language	dv	Maldivian	
-language	dz	Bhutani	
+language	dv	Maldivian		
+language	dz	Bhutani		
 language	ee	Ewe	Ɛʋɛ
 language	el	Greek	Ελληνικά
-language	en	English	
-language	eo	Esperanto	
+language	en	English		
+language	eo	Esperanto		
 language	es	Spanish	Español
 language	et	Estonian	Eesti
 language	eu	Basque	Euskera
 language	fa	Persian	فارسی
 language	ff	Fulah	Fulfulde
 language	fi	Finnish	Suomi
-language	fj	Fiji	
-language	fo	Faeroese	
+language	fj	Fiji		
+language	fo	Faeroese		
 language	fr	French	Français
 language	fy	Frisian	Frysk
 language	ga	Irish	Gaeilge
-language	gd	Scots Gaelic	
+language	gd	Scots Gaelic		
 language	gl	Galician	Galego
-language	gn	Guarani	
-language	gu	Gujarati	
-language	gv	Manx	
-language	ha	Hausa	
+language	gn	Guarani		
+language	gu	Gujarati		
+language	gv	Manx		
+language	ha	Hausa		
 language	he	Hebrew	עברית
 language	hi	Hindi	हिन्दी
-language	ho	Hiri Motu	
+language	ho	Hiri Motu		
 language	hr	Croatian	Hrvatski
-language	ht	Haitian Creole	
+language	ht	Haitian Creole		
 language	hu	Hungarian	Magyar
 language	hy	Armenian	Հայերեն
-language	hz	Herero	
-language	ia	Interlingua	
+language	hz	Herero		
+language	ia	Interlingua		
 language	id	Indonesian	Bahasa Indonesia
-language	ie	Interlingue	
-language	ig	Igbo	
-language	ik	Inupiak	
+language	ie	Interlingue		
+language	ig	Igbo		
+language	ik	Inupiak		
 language	is	Icelandic	Íslenska
 language	it	Italian	Italiano
-language	iu	Inuktitut	
+language	iu	Inuktitut		
 language	ja	Japanese	日本語
-language	jv	Javanese	
-language	ka	Georgian	
-language	kg	Kongo	
-language	ki	Kikuyu	
-language	kj	Kwanyama	
+language	jv	Javanese		
+language	ka	Georgian		
+language	kg	Kongo		
+language	ki	Kikuyu		
+language	kj	Kwanyama		
 language	kk	Kazakh	Қазақ
-language	kl	Greenlandic	
-language	km	Cambodian	
+language	kl	Greenlandic		
+language	km	Cambodian		
 language	kn	Kannada	ಕನ್ನಡ
 language	ko	Korean	한국어
-language	kr	Kanuri	
-language	ks	Kashmiri	
+language	kr	Kanuri		
+language	ks	Kashmiri		
 language	ku	Kurdish	Kurdî
-language	kv	Komi	
-language	kw	Cornish	
+language	kv	Komi		
+language	kw	Cornish		
 language	ky	Kyrgyz	Кыргызча
 language	la	Latin	Latina
-language	lb	Luxembourgish	
-language	lg	Luganda	
-language	ln	Lingala	
-language	lo	Laothian	
+language	lb	Luxembourgish		
+language	lg	Luganda		
+language	ln	Lingala		
+language	lo	Laothian		
 language	lt	Lithuanian	Lietuvių
 language	lv	Latvian	Latviešu
-language	mg	Malagasy	
-language	mh	Marshallese	
-language	mi	Māori	
+language	mg	Malagasy		
+language	mh	Marshallese		
+language	mi	Māori		
 language	mk	Macedonian	Македонски
 language	ml	Malayalam	മലയാളം
-language	mn	Mongolian	
-language	mo	Moldavian	
-language	mr	Marathi	
+language	mn	Mongolian		
+language	mo	Moldavian		
+language	mr	Marathi		
 language	ms	Malay	Bahasa Melayu
 language	mt	Maltese	Malti
-language	my	Burmese	
-language	na	Nauru	
-language	nd	North Ndebele	
-language	ne	Nepali	
-language	ng	Ndonga	
+language	my	Burmese		
+language	na	Nauru		
+language	nd	North Ndebele		
+language	ne	Nepali		
+language	ng	Ndonga		
 language	nl	Dutch	Nederlands
 language	nb	Norwegian Bokmål	Bokmål
 language	nn	Norwegian Nynorsk	Nynorsk
-language	nr	South Ndebele	
-language	nv	Navajo	
-language	ny	Chichewa	
-language	oc	Occitan	
-language	om	Oromo	
-language	or	Oriya	
-language	os	Ossetian	
-language	pa	Punjabi	
-language	pi	Pali	
+language	nr	South Ndebele		
+language	nv	Navajo		
+language	ny	Chichewa		
+language	oc	Occitan		
+language	om	Oromo		
+language	or	Oriya		
+language	os	Ossetian		
+language	pa	Punjabi		
+language	pi	Pali		
 language	pl	Polish	Polski
-language	ps	Pashto	پښتو
-language	pt	Portuguese, International	
-language	qu	Quechua	
-language	rm	Rhaeto-Romance	
-language	rn	Kirundi	
+language	ps	Pashto	پښتو	
+language	pt	Portuguese, International		
+language	qu	Quechua		
+language	rm	Rhaeto-Romance		
+language	rn	Kirundi		
 language	ro	Romanian	Română
 language	ru	Russian	Русский
-language	rw	Kinyarwanda	
-language	sa	Sanskrit	
-language	sc	Sardinian	
-language	sd	Sindhi	
-language	se	Northern Sami	
-language	sg	Sango	
-language	sh	Serbo-Croatian	
+language	rw	Kinyarwanda		
+language	sa	Sanskrit		
+language	sc	Sardinian		
+language	sd	Sindhi		
+language	se	Northern Sami		
+language	sg	Sango		
+language	sh	Serbo-Croatian		
 language	si	Sinhala	සිංහල
 language	sk	Slovak	Slovenčina
 language	sl	Slovenian	Slovenščina
-language	sm	Samoan	
-language	sn	Shona	
-language	so	Somali	
+language	sm	Samoan		
+language	sn	Shona		
+language	so	Somali		
 language	sq	Albanian	Shqip
 language	sr	Serbian	Српски
-language	ss	Siswati	
-language	st	Sesotho	
-language	su	Sudanese	
+language	ss	Siswati		
+language	st	Sesotho		
+language	su	Sudanese		
 language	sv	Swedish	Svenska
 language	sw	Swahili	Kiswahili
 language	ta	Tamil	தமிழ்
 language	te	Telugu	తెలుగు
-language	tg	Tajik	
+language	tg	Tajik		
 language	th	Thai	ภาษาไทย
-language	ti	Tigrinya	
-language	tk	Turkmen	
-language	tl	Tagalog	
-language	tn	Setswana	
-language	to	Tonga	
+language	ti	Tigrinya		
+language	tk	Turkmen		
+language	tl	Tagalog		
+language	tn	Setswana		
+language	to	Tonga		
 language	tr	Turkish	Türkçe
-language	ts	Tsonga	
+language	ts	Tsonga		
 language	tt	Tatar	Tatarça
-language	tw	Twi	
-language	ty	Tahitian	
-language	ug	Uighur	
+language	tw	Twi		
+language	ty	Tahitian		
+language	ug	Uighur		
 language	uk	Ukrainian	Українська
 language	ur	Urdu	اردو
 language	uz	Uzbek	o'zbek
-language	ve	Venda	
+language	ve	Venda		
 language	vi	Vietnamese	Tiếng Việt
-language	wo	Wolof	
+language	wo	Wolof		
 language	xh	Xhosa	isiXhosa
-language	yi	Yiddish	
+language	yi	Yiddish		
 language	yo	Yoruba	Yorùbá
-language	za	Zhuang	
+language	za	Zhuang		
 language	zu	Zulu	isiZulu
