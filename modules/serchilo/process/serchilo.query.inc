@@ -393,14 +393,10 @@ function _serchilo_get_path_elements() {
 
 function _serchilo_get_namespace_names_from_path($path_elements_offset = 0) {
   $path_elements = _serchilo_get_path_elements();
-  switch ($path_elements[$path_elements_offset + 1]) {
-    case 'n':
-      $namespace_names = explode('.', $path_elements[$path_elements_offset + 2]);
-      array_unshift($namespace_names, STAR_NAMESPACE);
-      return $namespace_names;
-      break;
-    case 'u':
-      break;
+  if ('n' == $path_elements[$path_elements_offset + 1]) {
+    $namespace_names = explode('.', $path_elements[$path_elements_offset + 2]);
+    array_unshift($namespace_names, STAR_NAMESPACE);
+    return $namespace_names;
   }
 }
 
