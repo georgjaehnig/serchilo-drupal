@@ -2,17 +2,9 @@
 
 define('STAR_NAMESPACE', 'o');
 
-require_once('serchilo.settings.php');
 require_once('serchilo.query.inc');
 
-$db = $databases['default']['default'];
-
-$mysqli = new mysqli(
-  $db['host'],
-  $db['username'],
-  $db['password'],
-  $db['database']
-);
+_serchilo_connect_db();
 
 define('NAMESPACE_VOCABULARY_ID', _serchilo_get_values_from_table('taxonomy_vocabulary', 'machine_name', 'namespaces', 'vid')[0]);
 
@@ -25,6 +17,21 @@ case 'console':
 case 'ajax':
   _serchilo_process_query_ajax();
   break;
+}
+
+function _serchilo_connect_db() {
+
+  global $mysqli;
+
+  require_once('serchilo.settings.php');
+  $db = $databases['default']['default'];
+
+  $mysqli = new mysqli(
+    $db['host'],
+    $db['username'],
+    $db['password'],
+    $db['database']
+  );
 }
 
 function _serchilo_process_query_console() {
