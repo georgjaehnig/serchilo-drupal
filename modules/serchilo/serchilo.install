@@ -8,7 +8,7 @@ function serchilo_install(){
   module_load_include('module', 'taxonomy', 'taxonomy');
 
   $vocabularies = taxonomy_vocabulary_get_names();
-  _serchilo_create_namespaces_from_file($vocabularies['namespaces'], $vocabularies['namespace_types']);
+  _serchilo_create_namespaces_from_file($vocabularies['namespaces']);
   _serchilo_create_user_namespaces($vocabularies['namespaces'], $vocabularies['namespace_types']);
   _serchilo_set_default_user_settings();
   _serchilo_create_shortcuts_from_file();
@@ -112,44 +112,28 @@ function serchilo_schema() {
 }
 
 
-function _serchilo_create_namespaces_from_file($vocabulary_namespaces, $vocabulary_namespace_types) {
+function _serchilo_create_namespaces_from_file($vocabulary_namespaces) {
 
-  # read from file
-  $module_path = drupal_get_path('module', 'serchilo');
-  $lines = file($module_path . '/tsv/namespaces.tsv');
+  $tsvs = serchilo_read_tsv_file(drupal_get_path('module', 'serchilo') . '/tsv/namespaces.tsv', $filename);
+   
+  foreach ($tsvs as $tsv) {
 
-  $languages = array();
-  # create objects from lines in file
-  foreach ($lines as $line) {
-    $line = trim($line);
+    $namespace      = new StdClass;
+    $namespace->vid = (int) $vocabulary_namespaces->vid;
 
-    # skip comments and empty lines
-    if (
-      (!$line) ||
-      $line[0] == '#'
-    ) {
-      continue; 
+    foreach (array_keys($tsv) as $column_name) {
+      switch ($column_name) {
+      case 'type':
+        $namespace_type = serchilo_taxonomy_ensure_term($tsv[$column_name], 'namespace_types');
+        $namespace->field_namespace_type[LANGUAGE_NONE][0]['tid'] = $namespace_type->tid;
+        break;
+      case 'name':
+      case 'description':
+        $namespace->{$column_name} = $tsv[$column_name];
+        break;
+      }
     }
-
-    $values = explode("\t", $line);
-    
-    #if (count($values) !=3) {
-    #  echo "Error in $line \n"; 
-    #}
-    $namespace_type_name = $values[0];
-    $namespace_name = $values[1];
-    $namespace_description = $values[2];
-
-    $namespace_type = serchilo_taxonomy_ensure_term($namespace_type_name, 'namespace_types');
-
-    if (!taxonomy_get_term_by_name($namespace_name, 'namespaces')) {
-      $namespace              = new StdClass;
-      $namespace->name        = $namespace_name;
-      $namespace->description = $namespace_description;
-      $namespace->vid         = (int) $vocabulary_namespaces->vid;
-      $namespace->field_namespace_type[LANGUAGE_NONE][0]['tid'] = $namespace_type->tid;
-      taxonomy_term_save($namespace);
-    }
+    taxonomy_term_save($namespace);
   }
 }
 
