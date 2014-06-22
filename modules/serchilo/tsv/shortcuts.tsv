@@ -1,0 +1,27 @@
+title	keyword	argument_names	argument_count	url	weight	invisible	set_referrer	namespace_name	input_encoding
+Google.com	g	query	1	https://www.google.com/search?hl={language}&q={s:query}&ie=utf-8	0	0	0	o	UTF-8
+Google.ch	g	query	1	https://www.google.ch/search?hl={language}&q={s:query}&ie=utf-8	0	0	0	o	UTF-8
+Google.co.uk	g	query	1	https://www.google.co.uk/search?hl={language}&q={s:query}&ie=utf-8	0	0	0	o	UTF-8
+Google.de	g	query	1	https://www.google.de/search?hl={language}&q={s:query}&ie=utf-8	0	0	0	o	UTF-8
+Google.fr	g	query	1	https://www.google.fr/search?hl={language}&q={s:query}&ie=utf-8	0	0	0	o	UTF-8
+Google.us	g	query	1	https://www.google.us/search?hl={language}&q={s:query}&ie=utf-8	0	0	0	o	UTF-8
+Google.at	g	query	1	https://www.google.at/search?hl={language}&q={s:query}&ie=utf-8	0	0	0	o	UTF-8
+Google.pl	g	query	1	https://www.google.pl/search?hl={language}&q={s:query}&ie=utf-8	0	0	0	o	UTF-8
+Google.cz	g	query	1	https://www.google.cz/search?hl={language}&q={s:query}&ie=utf-8	0	0	0	o	UTF-8
+Google.es	g	query	1	https://www.google.es/search?hl={language}&q={s:query}&ie=utf-8	0	0	0	o	UTF-8
+Google.nl	g	query	1	https://www.google.nl/search?hl={language}&q={s:query}&ie=utf-8	0	0	0	o	UTF-8
+Google.be	g	query	1	https://www.google.be/search?hl={language}&q={s:query}&ie=utf-8	0	0	0	o	UTF-8
+Wikipedia Main Page	w		0	https://{language}.wikipedia.org/	0	0	0	o	UTF-8
+Wikipedia Article Search	w	article	1	https://{language}.wikipedia.org/wiki/Special:Search?go=Article&search={s:article}	0	0	0	o	UTF-8
+Wikipedia Fulltext Search	wf	query	1	https://{language}.wikipedia.org/wiki/Special:Search?fulltext=Search&search={s:query}	0	0	0	o	UTF-8
+Wikipedia, Wikipedia Namespace	ww	project page	1	https://{language}.wikipedia.org/wiki/Special:Search?go=Article&search=Wikipedia:{s:project page}	0	0	0	o	UTF-8
+Wikipedia, User Namespace	wu	user	1	https://{language}.wikipedia.org/wiki/Special:Search?go=Article&search=User:{s:user}	0	0	0	o	UTF-8
+Wikipedia, User Contributions	wc	user	1	https://{language}.wikipedia.org/wiki/Special:Contributions/{s:user}	0	0	0	o	UTF-8
+Wikipedia via Google	wg	article	1	https://www.google.com/search?hl={language}&sitesearch={language}.wikipedia.org&q={s:article}	0	0	0	o	UTF-8
+Wikipedia via Google in all languages	wgo	article	1	https://www.google.com/search?hl={language}&sitesearch=wikipedia.org&q={s:article}	0	0	0	o	UTF-8
+Deutsche Bahn Fahrplanauskunft	db	Start, Ziel	2	http://reiseauskunft.bahn.de/bin/query.exe/dn?S={s:Start}&Z={s:Ziel}&start=1	0	0	0	o	UTF-8
+Deutsche Bahn Fahrplanauskunft	db	Start, Ziel, Zeit	3	http://reiseauskunft.bahn.de/bin/query.exe/dn?S={s:Start}&Z={s:Ziel}&T={s:Zeit}&start=1	0	0	0	o	UTF-8
+Deutsche Bahn Fahrplanauskunft	db	Start, Ziel, Zeit, Datum	4	http://reiseauskunft.bahn.de/bin/query.exe/dn?S={s:Start}&Z={s:Ziel}&T={s:Zeit}&D={s:Datum}&start=1	0	0	0	o	UTF-8
+Deutsche Bahn Fahrplanauskunft Textversion	dbt	Start, Ziel	2	http://reiseauskunft.bahn.de/bin/query.exe/dl?S={s:Start}&Z={s:Ziel}&start=1	0	0	0	o	UTF-8
+Deutsche Bahn Fahrplanauskunft Textversion	dbt	Start, Ziel, Zeit	3	http://reiseauskunft.bahn.de/bin/query.exe/dl?S={s:Start}&Z={s:Ziel}&T={s:Zeit}&start=1	0	0	0	o	UTF-8
+Deutsche Bahn Fahrplanauskunft Textversion	dbt	Start, Ziel, Zeit, Datum	4	http://reiseauskunft.bahn.de/bin/query.exe/dl?S={s:Start}&Z={s:Ziel}&T={s:Zeit}&D={s:Datum}&start=1	0	0	0	o	UTF-8
