@@ -404,7 +404,7 @@ function _serchilo_get_path_elements() {
   return $path_elements;
 }
 
-function _serchilo_get_user_name_from_path_elements() {
+function _serchilo_get_user_name_from_path() {
   $path_elements = _serchilo_get_path_elements();
   if ('u' == $path_elements[1]) {
     return $path_elements[2];

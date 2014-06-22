@@ -58,7 +58,7 @@ function _serchilo_process_query_console() {
     break;
   case 'u':
     list($keyword, $arguments, $extra_namespace_name) = _serchilo_parse_query($query);
-    $user_name = _serchilo_get_user_name_from_path_elements();
+    $user_name = _serchilo_get_user_name_from_path();
     $namespace_ids = _serchilo_get_namespace_ids_from_user($user_name);
     break;
   }
