@@ -8,10 +8,10 @@ function serchilo_install(){
   module_load_include('module', 'taxonomy', 'taxonomy');
 
   $vocabularies = taxonomy_vocabulary_get_names();
-  serchilo_create_namespaces_from_file($vocabularies['namespaces'], $vocabularies['namespace_types']);
-  serchilo_create_user_namespaces($vocabularies['namespaces'], $vocabularies['namespace_types']);
-  serchilo_set_default_user_settings();
-  serchilo_create_shortcuts_from_file();
+  _serchilo_create_namespaces_from_file($vocabularies['namespaces'], $vocabularies['namespace_types']);
+  _serchilo_create_user_namespaces($vocabularies['namespaces'], $vocabularies['namespace_types']);
+  _serchilo_set_default_user_settings();
+  _serchilo_create_shortcuts_from_file();
 
   //serchilo_add_defaults_to_admin();
 
@@ -111,7 +111,8 @@ function serchilo_schema() {
   return $schema;
 }
 
-function serchilo_create_namespaces_from_file($vocabulary_namespaces, $vocabulary_namespace_types) {
+
+function _serchilo_create_namespaces_from_file($vocabulary_namespaces, $vocabulary_namespace_types) {
 
   # read from file
   $module_path = drupal_get_path('module', 'serchilo');
@@ -139,7 +140,7 @@ function serchilo_create_namespaces_from_file($vocabulary_namespaces, $vocabular
     $namespace_name = $values[1];
     $namespace_description = $values[2];
 
-    $namespace_type = _serchilo_taxonomy_ensure_term($namespace_type_name, 'namespace_types');
+    $namespace_type = serchilo_taxonomy_ensure_term($namespace_type_name, 'namespace_types');
 
     if (!taxonomy_get_term_by_name($namespace_name, 'namespaces')) {
       $namespace              = new StdClass;
@@ -152,9 +153,9 @@ function serchilo_create_namespaces_from_file($vocabulary_namespaces, $vocabular
   }
 }
 
-function serchilo_create_user_namespaces($vocabulary_namespaces, $vocabulary_namespace_types) {
+function _serchilo_create_user_namespaces($vocabulary_namespaces, $vocabulary_namespace_types) {
 
-  $namespace_type = _serchilo_taxonomy_ensure_term('user', 'namespace_types');
+  $namespace_type = serchilo_taxonomy_ensure_term('user', 'namespace_types');
 
   # creating user NS
 
@@ -176,7 +177,7 @@ function serchilo_create_user_namespaces($vocabulary_namespaces, $vocabulary_nam
   }
 }
 
-function serchilo_set_default_user_settings() {
+function _serchilo_set_default_user_settings() {
 
   $default_language_namespace = array_shift(taxonomy_get_term_by_name(DEFAULT_LANGUAGE, 'namespaces') ?: array());
   $default_country_namespace  = array_shift(taxonomy_get_term_by_name(DEFAULT_COUNTRY, 'namespaces') ?: array());
@@ -195,9 +196,9 @@ function serchilo_set_default_user_settings() {
   }
 }
 
-function serchilo_create_shortcuts_from_file() {
+function _serchilo_create_shortcuts_from_file() {
 
-  $shortcuts = _serchilo_read_tsv_file(drupal_get_path('module', 'serchilo') . '/tsv/shortcuts.tsv');
+  $shortcuts = serchilo_read_tsv_file(drupal_get_path('module', 'serchilo') . '/tsv/shortcuts.tsv');
 
   foreach ($shortcuts as $shortcut) {
 
@@ -213,7 +214,7 @@ function serchilo_create_shortcuts_from_file() {
         $node->{$column_name} = $shortcut[$column_name];
         break;
       case 'namespace_name':
-        $namespace = _serchilo_taxonomy_ensure_term($shortcut[$column_name], 'namespaces');
+        $namespace = serchilo_taxonomy_ensure_term($shortcut[$column_name], 'namespaces');
         $node->{'field_namespace'}[LANGUAGE_NONE][0]['tid'] = $namespace->tid;
         break;
 
@@ -226,7 +227,8 @@ function serchilo_create_shortcuts_from_file() {
   }
 }
 
-function _serchilo_taxonomy_ensure_term($term_name, $vocabulary_name, $term = array()) {
+
+function serchilo_taxonomy_ensure_term($term_name, $vocabulary_name, $term = array()) {
 
   $term_list = taxonomy_get_term_by_name($term_name, $vocabulary_name );
   # if namespace_type does not exist yet:
@@ -246,7 +248,7 @@ function _serchilo_taxonomy_ensure_term($term_name, $vocabulary_name, $term = ar
   return $term;
 }
 
-function _serchilo_read_tsv_file($filename) {
+function serchilo_read_tsv_file($filename) {
 
   // read all lines
   $lines = file($filename);
