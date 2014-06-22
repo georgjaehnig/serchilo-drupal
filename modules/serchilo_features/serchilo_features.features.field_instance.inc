@@ -528,18 +528,7 @@ function serchilo_features_field_default_field_instances() {
   // Exported field_instance: 'node-shortcut-field_namespace'
   $field_instances['node-shortcut-field_namespace'] = array(
     'bundle' => 'shortcut',
-    'default_value' => array(
-      0 => array(
-        'tid' => 1,
-        'vid' => 1,
-        'name' => 'o',
-        'description' => '',
-        'format' => 'plain_text',
-        'weight' => 0,
-        'vocabulary_machine_name' => 'namespaces',
-        'metatags' => array(),
-      ),
-    ),
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => 'A change will result in saving only a draft, needed to be moderated by an editor.',
     'display' => array(
