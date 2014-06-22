@@ -1,6 +1,6 @@
 # serchilo-drupal
 
-Drupal profile running Serchilo
+Drupal profile running Serchilo (a new version, currently being developed).
 
 ## Install
 
