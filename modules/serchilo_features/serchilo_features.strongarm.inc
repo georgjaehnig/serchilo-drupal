@@ -325,29 +325,19 @@ function serchilo_features_strongarm() {
     0 => 'misc/drupal.js',
     1 => 'misc/jquery.once.js',
     2 => 'sites/all/modules/devel/devel_krumo_path.js',
-    3 => 'sites/all/modules/ctools/js/dropbutton.js',
-    4 => 'misc/jquery.cookie.js',
-    5 => 'sites/all/modules/module_filter/js/module_filter.js',
-    6 => 'sites/all/modules/module_filter/js/modules.js',
-    7 => 'misc/jquery.ba-bbq.js',
-    8 => 'sites/all/modules/module_filter/js/module_filter_tab.js',
-    9 => 'sites/all/modules/module_filter/js/dynamic_position.js',
-    10 => 'misc/tableheader.js',
-    11 => 'sites/all/modules/jquery_update/replace/ui/external/jquery.cookie.js',
+    3 => 'sites/all/modules/features/features.js',
+    4 => 'misc/form.js',
+    5 => 'misc/collapse.js',
+    6 => 'misc/autocomplete.js',
+    7 => 'sites/all/modules/jquery_update/replace/ui/external/jquery.cookie.js',
+    8 => 'sites/all/modules/jquery_update/replace/misc/jquery.form.min.js',
+    9 => 'misc/progress.js',
+    10 => 'sites/all/modules/jquery_update/js/jquery_update.js',
+    11 => 'misc/ajax.js',
     12 => 'modules/toolbar/toolbar.js',
     'refresh:de' => 'waiting',
     'refresh:pl' => 'waiting',
     'refresh:es' => 'waiting',
-    13 => 'misc/form.js',
-    14 => 'misc/collapse.js',
-    15 => 'misc/states.js',
-    16 => 'sites/all/modules/features/features.js',
-    17 => 'misc/vertical-tabs.js',
-    18 => 'misc/autocomplete.js',
-    19 => 'sites/all/modules/jquery_update/replace/misc/jquery.form.min.js',
-    20 => 'misc/progress.js',
-    21 => 'sites/all/modules/jquery_update/js/jquery_update.js',
-    22 => 'misc/ajax.js',
   );
   $export['javascript_parsed'] = $strongarm;
 
@@ -539,15 +529,6 @@ function serchilo_features_strongarm() {
   $strongarm->name = 'metatag_schema_installed';
   $strongarm->value = TRUE;
   $export['metatag_schema_installed'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'module_filter_recent_modules';
-  $strongarm->value = array(
-    'profiler_builder' => 1402317042,
-  );
-  $export['module_filter_recent_modules'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

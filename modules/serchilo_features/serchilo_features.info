@@ -307,7 +307,6 @@ features[variable][] = menu_masks
 features[variable][] = menu_options_shortcut
 features[variable][] = menu_parent_shortcut
 features[variable][] = metatag_schema_installed
-features[variable][] = module_filter_recent_modules
 features[variable][] = new_revisions_shortcut
 features[variable][] = node_admin_theme
 features[variable][] = node_options_shortcut
