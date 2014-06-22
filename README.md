@@ -35,7 +35,7 @@ mv profilo drupal/profiles/
 - Set up a local virtual host pointing to `drupal/`, for instance called `http://l.serchilo/`.
 - Run drupal installer in your browser, simply by calling the main page `http://l.serchilo/`.
 - In the installer, choose `Serchilo Profilo` as installation profile.
-- During install, you need to create writable files/ dir and settings.php file:
+- During install, you need to create a writable `files/` dir and `settings.php` file:
 ```
 mkdir drupal/sites/default/files
 chmod 777 drupal/sites/default/files
