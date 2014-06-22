@@ -357,25 +357,6 @@ function _serchilo_replace_sql_arguments($mysqli, $sql_template, $arguments, $le
   return $sql_replaced;
 }
 
-// TODO: replace with _serchilo_get_values_from_table
-function _serchilo_get_vocabulary_id($vocabulary_name) {
-
-  global $mysqli;
-
-  $sql = "
-    SELECT *
-    FROM taxonomy_vocabulary
-    WHERE
-    machine_name = '" . $mysqli->real_escape_string($vocabulary_name) . "' 
-  ";
-
-  $result = $mysqli->query($sql);
-  
-  if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    return $row['vid'];
-  }
-}
 function _serchilo_get_namespace_ids_from_user($user_name) {
 
   $user_id = _serchilo_get_values_from_table('users', 'name', $user_name, 'uid', TRUE)[0];

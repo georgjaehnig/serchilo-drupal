@@ -14,7 +14,7 @@ $mysqli = new mysqli(
   $db['database']
 );
 
-define('NAMESPACE_VOCABULARY_ID', _serchilo_get_vocabulary_id('namespaces'));
+define('NAMESPACE_VOCABULARY_ID', _serchilo_get_values_from_table('taxonomy_vocabulary', 'machine_name', 'namespaces', 'vid')[0]);
 
 $page_type = $_GET['page_type'];
 
