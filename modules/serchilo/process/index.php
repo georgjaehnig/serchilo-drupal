@@ -31,24 +31,24 @@ function _serchilo_dispatch() {
 
   $page_type = $_GET['page_type'];
 
-  switch ($page_type) {
-  case 'console':
-    _serchilo_process_query_console();
-    break;
-  case 'ajax':
-    _serchilo_process_query_ajax();
-    break;
-  }
-}
-
-function _serchilo_process_query_console() {
-
-  $query = $_GET['query'];
-
   # can be:
   # 'n' (e.g. n/en.usa) or 
   # 'u' (e.g. u/admin)
   $call_type = $_GET['call_type'];
+
+  switch ($page_type) {
+  case 'console':
+    _serchilo_process_query_console($call_type);
+    break;
+  case 'ajax':
+    _serchilo_process_query_ajax($call_type);
+    break;
+  }
+}
+
+function _serchilo_process_query_console($call_type) {
+
+  $query = $_GET['query'];
 
   switch ($call_type) {
   case 'n':
@@ -79,7 +79,7 @@ function _serchilo_process_query_console() {
   }
 }
 
-function _serchilo_process_query_ajax() {
+function _serchilo_process_query_ajax($call_type) {
 
   $query = $_GET['term'];
   $namespace_names = _serchilo_get_namespace_names_from_path(1);
