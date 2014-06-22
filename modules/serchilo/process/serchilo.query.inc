@@ -214,9 +214,7 @@ function _serchilo_get_namespace_id($namespace_name) {
 }
 
 function _serchilo_get_namespace_names_from_path($path_elements_offset = 0) {
-  $path = $_SERVER['REDIRECT_URL'];
-  // example: '/n/en.usa'
-  $path_elements = explode('/', $path);
+  $path_elements = _serchilo_get_path_elements();
   switch ($path_elements[$path_elements_offset + 1]) {
     case 'n':
       $namespace_names = explode('.', $path_elements[$path_elements_offset + 2]);
