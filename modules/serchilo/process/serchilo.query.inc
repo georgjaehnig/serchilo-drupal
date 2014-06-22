@@ -400,9 +400,9 @@ function _serchilo_get_namespace_names_from_path($path_elements_offset = 0) {
   }
 }
 
-function _serchilo_get_user_name_from_path() {
+function _serchilo_get_user_name_from_path($path_elements_offset = 0) {
   $path_elements = _serchilo_get_path_elements();
-  if ('u' == $path_elements[1]) {
-    return $path_elements[2];
+  if ('u' == $path_elements[$path_elements_offset + 1]) {
+    return $path_elements[$path_elements_offset + 2];
   }
 }
