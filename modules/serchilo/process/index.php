@@ -1,7 +1,6 @@
 <?PHP
 
-define('STAR_NAMESPACE', 'o');
-
+require_once('../serchilo.constants.inc');
 require_once('serchilo.query.inc');
 
 _serchilo_connect_db();
