@@ -30,6 +30,15 @@ mv drupal-* drupal
 # Move Serchilo profile to profiles/
 mv profilo drupal/profiles/
 ```
+Your directory structure should now look like this:
+```
+serchilo/
+  drupal/
+    profiles/
+      profilo/
+      ...
+    ...
+```
 ### Run Drupal installer
 
 - Set up a local virtual host pointing to `drupal/`, for instance called `http://l.serchilo/`.
