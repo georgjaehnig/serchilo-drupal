@@ -11,6 +11,7 @@ function serchilo_install(){
   serchilo_create_namespaces_from_file($vocabularies['namespaces'], $vocabularies['namespace_types']);
   serchilo_create_user_namespaces($vocabularies['namespaces'], $vocabularies['namespace_types']);
   serchilo_set_default_user_settings();
+  serchilo_create_shortcuts_from_file();
 
   //serchilo_add_defaults_to_admin();
 
@@ -194,6 +195,37 @@ function serchilo_set_default_user_settings() {
   }
 }
 
+function serchilo_create_shortcuts_from_file() {
+
+  $shortcuts = _serchilo_read_tsv_file(drupal_get_path('module', 'serchilo') . '/tsv/shortcuts.tsv');
+
+  foreach ($shortcuts as $shortcut) {
+
+    $node = new StdClass;
+    $node->type = 'shortcut';
+    // created by admin
+    $node->uid = 1;
+    $node->revision_moderation = FALSE;
+
+    foreach (array_keys($shortcut) as $column_name) {
+      switch ($column_name) {
+      case 'title':
+        $node->{$column_name} = $shortcut[$column_name];
+        break;
+      case 'namespace_name':
+        $namespace = _serchilo_taxonomy_ensure_term($shortcut[$column_name], 'namespaces');
+        $node->{'field_namespace'}[LANGUAGE_NONE][0]['tid'] = $namespace->tid;
+        break;
+
+      default:
+        $node->{'field_' . $column_name}[LANGUAGE_NONE][0]['value'] = $shortcut[$column_name];
+        break;
+      }
+    }
+    node_save($node);
+  }
+}
+
 function _serchilo_taxonomy_ensure_term($term_name, $vocabulary_name, $term = array()) {
 
   $term_list = taxonomy_get_term_by_name($term_name, $vocabulary_name );
@@ -212,4 +244,31 @@ function _serchilo_taxonomy_ensure_term($term_name, $vocabulary_name, $term = ar
   # get first element, the only one
   $term = array_shift($term_list);
   return $term;
+}
+
+function _serchilo_read_tsv_file($filename) {
+
+  // read all lines
+  $lines = file($filename);
+
+  // first line is the header,
+  // specifying column names
+  $header = array_shift($lines);
+
+  // remove linebreak
+  $header = substr($header, 0, -1);
+
+  // get column names
+  $column_names = explode("\t", $header);
+
+  $data = array();
+  foreach ($lines as $line) {
+    $line = substr($line, 0, -1);
+    $field_values = explode("\t", $line);
+    for ($i=0; $i<count($column_names); $i++) {
+      $field_values_keyed[$column_names[$i]] = $field_values[$i];
+    } 
+    $data[] = $field_values_keyed;
+  }
+  return $data;
 }
