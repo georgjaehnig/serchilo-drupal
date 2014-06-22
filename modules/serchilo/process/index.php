@@ -8,16 +8,9 @@ _serchilo_connect_db();
 
 define('NAMESPACE_VOCABULARY_ID', _serchilo_get_values_from_table('taxonomy_vocabulary', 'machine_name', 'namespaces', 'vid')[0]);
 
-$page_type = $_GET['page_type'];
+_serchilo_dispatch();
 
-switch ($page_type) {
-case 'console':
-  _serchilo_process_query_console();
-  break;
-case 'ajax':
-  _serchilo_process_query_ajax();
-  break;
-}
+# --------------------------------
 
 function _serchilo_connect_db() {
 
@@ -32,6 +25,20 @@ function _serchilo_connect_db() {
     $db['password'],
     $db['database']
   );
+}
+
+function _serchilo_dispatch() {
+
+  $page_type = $_GET['page_type'];
+
+  switch ($page_type) {
+  case 'console':
+    _serchilo_process_query_console();
+    break;
+  case 'ajax':
+    _serchilo_process_query_ajax();
+    break;
+  }
 }
 
 function _serchilo_process_query_console() {
