@@ -89,6 +89,7 @@ function _serchilo_process_query_ajax() {
 
   $commands = _serchilo_search_commands( $keyword, $arguments, $query, $namespace_ids );
   
+  // filter keys that are allowed to be public
   $commands = array_map(
     function($command) {
       $filtered_command = array_intersect_key($command, array_flip(array('nid', 'keyword', 'arguments', 'title', 'namespace_name', 'reachable')));
