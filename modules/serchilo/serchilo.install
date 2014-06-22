@@ -118,8 +118,9 @@ function _serchilo_create_namespaces_from_file($vocabulary_namespaces) {
    
   foreach ($tsvs as $tsv) {
 
-    $namespace      = new StdClass;
-    $namespace->vid = (int) $vocabulary_namespaces->vid;
+    $namespace         = new StdClass;
+    $namespace->vid    = (int) $vocabulary_namespaces->vid;
+    $namespace->format = 'plain_text';
 
     foreach (array_keys($tsv) as $column_name) {
       switch ($column_name) {
@@ -222,6 +223,7 @@ function serchilo_taxonomy_ensure_term($term_name, $vocabulary_name, $term = arr
     $term = array(
       'name' => $term_name,
       'vid' => (int) $vocabulary->vid,
+      'format' => 'plain_text',
     ) + $term;
     $term = (object) $term;
     taxonomy_term_save($term);
