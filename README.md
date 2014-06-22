@@ -1,5 +1,8 @@
+# serchilo-drupal
 
-# Install
+Drupal profile running Serchilo
+
+## Install
 
 ```
 # Install drush
