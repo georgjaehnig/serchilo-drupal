@@ -14,7 +14,7 @@ mkdir serchilo
 cd serchilo
 
 # Get the Serchilo Drupal profile 
-git clone serchilo-drupal-profile profilo
+git clone git@github.com:georgjaehnig/serchilo-drupal.git profilo
 
 # Download drupal with drush
 drush dl drupal 
