@@ -361,7 +361,7 @@ function _serchilo_get_namespace_ids_from_user($user_name) {
 
   $user_id = _serchilo_get_values_from_table('users', 'name', $user_name, 'uid', TRUE)[0];
 
-  $star_namespace_id     = _serchilo_get_values_from_table('taxonomy_term_data', 'name', STAR_NAMESPACE, 'tid')[0];
+  $star_namespace_id     = _serchilo_get_namespace_id(STAR_NAMESPACE);
   $language_namespace_id = _serchilo_get_values_from_table('field_data_field_language_namespace', 'entity_id', $user_id, 'field_language_namespace_tid')[0];
   $country_namespace_id  = _serchilo_get_values_from_table('field_data_field_country_namespace', 'entity_id', $user_id, 'field_country_namespace_tid')[0];
   $custom_namespace_ids  = _serchilo_get_values_from_table('field_data_field_custom_namespaces', 'entity_id', $user_id, 'field_custom_namespaces_tid');
