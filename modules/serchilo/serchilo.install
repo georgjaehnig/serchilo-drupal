@@ -114,7 +114,7 @@ function serchilo_create_namespaces_from_file($vocabulary_namespaces, $vocabular
 
   # read from file
   $module_path = drupal_get_path('module', 'serchilo');
-  $lines = file($module_path . '/csv/namespaces.csv');
+  $lines = file($module_path . '/tsv/namespaces.tsv');
 
   $languages = array();
   # create objects from lines in file
