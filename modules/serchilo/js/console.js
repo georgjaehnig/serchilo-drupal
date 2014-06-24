@@ -347,7 +347,8 @@ function installSearchPlugin()
           hideOnSearch();
         }
 
-      }).data( "autocomplete" )._renderItem = function( ul, item ) {
+      })
+      .data('uiAutocomplete')._renderItem = function( ul, item ) {
         if (item[ID] > 0) {
           var namespace = 
             '<span' + ( item[REACHABLE] ? ' class="namespace"' : ' class="namespace-unreachable"' ) + 
