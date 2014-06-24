@@ -31,13 +31,6 @@ function installSearchPlugin()
 
   var commandSelectedIndex = -1;
 
-	function addAddToBrowserLink() {
-		if (window.external && ("AddSearchProvider" in window.external)) {
-			$('a[href$="help/integration"]').after(' <a href="javascript:installSearchPlugin()">(now)</a>');
-			$('a.installSearchPluginLink').attr('href', 'javascript:installSearchPlugin()');
-		}
-	}
-
   function startTypewrite() {
 
     //var examples = Drupal.settings.serchilo.typewrite_examples;
@@ -291,8 +284,6 @@ function installSearchPlugin()
       if (called) {
         return; 
       }
-
-			addAddToBrowserLink();
 
       searchInput = $('#searchInput');
       searchInputBackground = $('#searchInputBackground');
