@@ -288,36 +288,6 @@ function installSearchPlugin()
       searchInput = $('#searchInput');
       searchInputBackground = $('#searchInputBackground');
 
-      /*
-      autocomplete = searchInput.autocomplete({
-        minLength: 1,
-        delay: 300,
-
-        select: function( event, ui ) {
-          //console.log('select');
-          //console.log(ui.item[ID]);
-          if (ui.item[ID] == 0 ) {
-            window.location.href = ui.item[URL];
-            return; 
-          }
-          selectCommand(ui.item[ID], ui.item[REACHABLE] == 1);
-          // return false to set input value
-          return false;
-        },
-        // create autocomplete list
-        source: Drupal.settings.serchilo.autocomplete_url,
-
-        focus: function( event, ui ) {
-          // prevents input being emptied when scrolling over commands in autocomplete
-          return false;
-        },
-
-        search: function(event, ui) {
-          hideOnSearch();
-        }
-      }
-      );
-      */
       autocomplete = searchInput.autocomplete({
 
         minLength: 1,
@@ -393,6 +363,7 @@ function installSearchPlugin()
           )
           .appendTo( ul );
       };
+
   /*
       // hide all unecessary elements
       hideCommandElements();
