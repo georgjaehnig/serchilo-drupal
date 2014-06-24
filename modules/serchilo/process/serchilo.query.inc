@@ -192,7 +192,6 @@ function _serchilo_extract_keyword_and_arguments($query, $max_arguments = -1) {
 }
 
 
-// TODO: replace with _serchilo_get_values_from_table
 function _serchilo_get_namespace_id($namespace_name) {
 
   global $mysqli;
