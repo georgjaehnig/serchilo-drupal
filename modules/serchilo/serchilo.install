@@ -200,7 +200,7 @@ function _serchilo_create_shortcuts_from_file() {
         break;
       case 'namespace_name':
         $namespace = serchilo_taxonomy_ensure_term($shortcut[$column_name], 'namespaces');
-        $node->{'field_namespace'}[LANGUAGE_NONE][0]['tid'] = $namespace->tid;
+        $node->{'field_namespace'}[LANGUAGE_NONE][0] = (array) $namespace;
         break;
 
       default:
