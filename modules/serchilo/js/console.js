@@ -63,31 +63,34 @@
         }
 
         var keyword = item[KEYWORD];
+
+        // add "namespace." if unreachable
+        if (!item[REACHABLE]) {
+          keyword = item[NAMESPACE] + '.' + keyword; 
+        }
         var argument_names = item[ARGUMENT_NAMES].split(',').join(', ');
         var title = item[TITLE];
 
         var html = 
           '<a' + 
-          ( item[REACHABLE] ? "" : " class='unreachable'" ) + 
-          ( item[ID] > 0 ? ""  : " class='search-command'" ) + 
-          '>' + 
-          '&nbsp;'+ // to make bar visible /float:-related problem
-          '<span class="left">'+
-          '<span class="keyword">' + 
-          // add "namespace." if unreachable
-          keyword +
-          '</span>'+
-          '<span' +
-          '<span class="argument-names">' + 
-          argument_names +
-          '</span>'+
-          '</span>'+
-          '<span class="right">'+
-          '<span class="title">' + 
-          title +
-          '</span>' +
-          namespace_html +
-          '</span>'+
+            ( item[REACHABLE] ? "" : " class='unreachable'" ) + 
+            ( item[ID] > 0 ? ""  : " class='search-command'" ) + 
+            '>' + 
+            '&nbsp;'+ // to make bar visible /float:-related problem
+            '<span class="left">'+
+              '<span class="keyword">' + 
+                keyword +
+              '</span>'+
+              '<span class="argument-names">' + 
+                argument_names +
+              '</span>'+
+            '</span>'+
+            '<span class="right">'+
+              '<span class="title">' + 
+                title +
+              '</span>' +
+              namespace_html +
+            '</span>'+
           '</a>' +
           '';
           
