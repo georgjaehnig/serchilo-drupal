@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Default theme implementation to display a node.
+ * Serchilo's theme implementation to display a node of type shortcut.
  *
  * Available variables:
  * - $title: the (sanitized) title of the node.
