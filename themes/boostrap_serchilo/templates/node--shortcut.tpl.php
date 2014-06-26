@@ -101,13 +101,9 @@
       // We hide the comments and links now so that we can render them later.
       hide($content['comments']);
       hide($content['links']);
-      hide($content['field_keyword']);
-      hide($content['field_argument_names']);
-      hide($content['field_argument_count']);
-      hide($content['field_namespace']);
-      print render($content);
       print render($content['shortcut_call_form']);
-      //dpm($content);
+      print render($content['field_example']);
+      print render($content['field_url']);
     ?>
   </div>
   <?php print render($content['links']); ?>
