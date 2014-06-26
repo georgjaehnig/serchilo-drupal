@@ -328,39 +328,40 @@ function installSearchPlugin()
         } else {
           var namespace = ''; 
         }
+        var html = 
+          '<a' + 
+          ( item[REACHABLE] ? "" : " class='unreachable'" ) + 
+          ( item[ID] > 0 ? ""  : " class='search-command'" ) + 
+          '>' + 
+          '&nbsp;'+ // to make bar visible /float:-related problem
+          '<span class="left">'+
+          '<span' +
+          ( item[REACHABLE] ? ' class="keyword"' : ' class="keyword-unreachable"' ) + 
+          '>' + 
+          // add "namespace." if unreachable
+          ( item[REACHABLE] ? '' : item[NAMESPACE] + '.' ) + 
+          item[KEYWORD] + 
+          '</span>'+
+          '<span' +
+          ( item[REACHABLE] ? ' class="argument-names"' : ' class="argument-names-unreachable"' ) + 
+          '>' + 
+          item[ARGUMENT_NAMES].split(',').join(', ') + 
+          '</span>'+
+          '</span>'+
+          '<span class="right">'+
+          '<span' +
+          ( item[REACHABLE] ? ' class="title"' : ' class="title-unreachable"' ) + 
+          '>' + 
+          item[TITLE] + 
+          '</span>' +
+          namespace +
+          '</span>'+
+          '</a>' +
+          '';
+          
         return $( "<li></li>" )
           .data( "item.autocomplete", item )
-          .append(
-            '<a' + 
-            ( item[REACHABLE] ? "" : " class='unreachable'" ) + 
-            ( item[ID] > 0 ? ""  : " class='search-command'" ) + 
-            '>' + 
-            '&nbsp;'+ // to make bar visible /float:-related problem
-            '<span class="left">'+
-            '<span' +
-            ( item[REACHABLE] ? ' class="keyword"' : ' class="keyword-unreachable"' ) + 
-            '>' + 
-            // add "namespace." if unreachable
-            ( item[REACHABLE] ? '' : item[NAMESPACE] + '.' ) + 
-            item[KEYWORD] + 
-            '</span>'+
-            '<span' +
-            ( item[REACHABLE] ? ' class="argument-names"' : ' class="argument-names-unreachable"' ) + 
-            '>' + 
-            item[ARGUMENT_NAMES].split(',').join(', ') + 
-            '</span>'+
-            '</span>'+
-            '<span class="right">'+
-            '<span' +
-            ( item[REACHABLE] ? ' class="title"' : ' class="title-unreachable"' ) + 
-            '>' + 
-            item[TITLE] + 
-            '</span>' +
-            namespace +
-            '</span>'+
-            '</a>' +
-            ''
-          )
+          .append(html)
           .appendTo( ul );
       };
 
