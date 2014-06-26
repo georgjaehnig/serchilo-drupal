@@ -319,15 +319,22 @@ function installSearchPlugin()
 
       })
       .data('uiAutocomplete')._renderItem = function( ul, item ) {
+
+        var namespace_html = ''; 
+        // show namespace only on actual commands
+        // not on serchilo internal search links
+        // (e.g. "!t Show all commands with title = ... ")
         if (item[ID] > 0) {
-          var namespace = 
-            '<span' + ( item[REACHABLE] ? ' class="namespace"' : ' class="namespace-unreachable"' ) + 
-            '>' + 
+          namespace_html = 
+            '<span class="namespace">' + 
             item[NAMESPACE]   
             '</span>';
-        } else {
-          var namespace = ''; 
         }
+
+        var keyword = item[KEYWORD];
+        var argument_names = item[ARGUMENT_NAMES].split(',').join(', ');
+        var title = item[TITLE];
+
         var html = 
           '<a' + 
           ( item[REACHABLE] ? "" : " class='unreachable'" ) + 
@@ -335,26 +342,20 @@ function installSearchPlugin()
           '>' + 
           '&nbsp;'+ // to make bar visible /float:-related problem
           '<span class="left">'+
-          '<span' +
-          ( item[REACHABLE] ? ' class="keyword"' : ' class="keyword-unreachable"' ) + 
-          '>' + 
+          '<span class="keyword">' + 
           // add "namespace." if unreachable
-          ( item[REACHABLE] ? '' : item[NAMESPACE] + '.' ) + 
-          item[KEYWORD] + 
+          keyword +
           '</span>'+
           '<span' +
-          ( item[REACHABLE] ? ' class="argument-names"' : ' class="argument-names-unreachable"' ) + 
-          '>' + 
-          item[ARGUMENT_NAMES].split(',').join(', ') + 
+          '<span class="argument-names">' + 
+          argument_names +
           '</span>'+
           '</span>'+
           '<span class="right">'+
-          '<span' +
-          ( item[REACHABLE] ? ' class="title"' : ' class="title-unreachable"' ) + 
-          '>' + 
-          item[TITLE] + 
+          '<span class="title">' + 
+          title +
           '</span>' +
-          namespace +
+          namespace_html +
           '</span>'+
           '</a>' +
           '';

@@ -19,24 +19,21 @@
 .ui-menu-item .keyword {
 	font-weight:bold;
 }
-.ui-menu-item .keyword-unreachable {
-	font-weight:bold;
+.ui-menu-item .unreachable .keyword {
   color: #aaa;
 }
 .ui-menu-item .argument-names {
 	color: #444;
 }
-.ui-menu-item .argument-names-unreachable {
+.ui-menu-item .unreachable .argument-names {
   color: #aaa;
 }
-.ui-menu-item .title-unreachable {
+.ui-menu-item .unreachable .title {
   color: #aaa;
 }
 
 
-.namespace,
-a:link.namespace,
-a:visited.namespace {
+.namespace {
   color: #ffffff;
   background: #aa2c30;
   padding: 0.2em;
@@ -46,12 +43,6 @@ a:visited.namespace {
   margin-right: 0.2em;
 }
 
-.namespace-unreachable {
-  color: #ffffff;
+.unreachable .namespace {
   background: #8EaAaC;
-  padding: 0.2em;
-  text-decoration:none;
-  margin-left: 0.2em;
-  margin-right: 0.2em;
-  white-space: nowrap;
 }
