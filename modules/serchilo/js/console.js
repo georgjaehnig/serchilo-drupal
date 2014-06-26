@@ -294,15 +294,17 @@ function installSearchPlugin()
         delay: 300,
 
         select: function( event, ui ) {
-          //console.log('select');
-          //console.log(ui.item[ID]);
-          if (ui.item[ID] == 0 ) {
+          // If it is a shortcut
+          // go to its node page 
+          if (ui.item[ID] > 0 ) {
+            // Go to shortcut page
+            window.location.href = '/node/' + ui.item[ID];
+          } 
+          // Else: Call the given URL
+          else {
             window.location.href = ui.item[URL];
-            return; 
           }
-          selectCommand(ui.item[ID], ui.item[REACHABLE] == 1);
-          // return false to set input value
-          return false;
+          return; 
         },
 
         // create autocomplete list
