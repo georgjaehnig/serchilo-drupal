@@ -100,10 +100,15 @@ function _serchilo_process_query_ajax($call_type) {
   // filter keys that are allowed to be public
   $commands = array_map(
     function($command) {
-      $filtered_command = array_intersect_key($command, array_flip(array('nid', 'keyword', 'arguments', 'title', 'namespace_name', 'reachable')));
-      $filtered_command['reachable'] = (int) $filtered_command['reachable'];
-      $filtered_command_values = array_values($filtered_command);
-      return $filtered_command_values;
+      $filtered_command = array(
+        $command['nid'], 
+        $command['keyword'], 
+        $command['argument_names'], 
+        $command['title'], 
+        $command['namespace_name'], 
+        (int) $command['reachable'], 
+      );
+      return $filtered_command;
     },
     $commands
   );
