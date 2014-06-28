@@ -137,6 +137,7 @@ function serchilo_node_view($node, $view_mode, $langcode) {
   $node->content['shortcut_call_form'] = drupal_get_form('serchilo_shortcut_call_form', $node);
 }
 
+
 // FORM HOOKS
 
 function serchilo_shortcut_call_form($form, $form_state, $node) {
@@ -146,19 +147,20 @@ function serchilo_shortcut_call_form($form, $form_state, $node) {
   $form['#attributes']['class'] = array('form-inline'); 
   $form['#attributes']['role'] = 'form'; 
 
+  /*
   // TODO:
   // Check this again. Can't believe this needs to be so bloated. 
   $items = field_get_items('node', $node, 'field_namespace');
   $namespace_value = field_view_value('node', $node, 'field_namespace', $items[0]);
   $namespace_html = render($namespace_value);
-
+  */
   $form['keyword'] = array(
     '#theme' => 'html_tag',
     '#tag' => 'div',
     '#value' => 
       #render($node->field_namespace ) .
-      $namespace_html .
-      '.' .
+      #$namespace_html .
+      #'.' .
       $node->field_keyword[LANGUAGE_NONE][0]['value'],
     '#attributes' => array(
       'class' => array('keyword', 'form-group'), 
