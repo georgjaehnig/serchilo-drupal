@@ -291,7 +291,6 @@ features[variable][] = file_temporary_path
 features[variable][] = filter_fallback_format
 features[variable][] = install_profile
 features[variable][] = install_task
-features[variable][] = javascript_parsed
 features[variable][] = jquery_update_compression_type
 features[variable][] = jquery_update_jquery_admin_version
 features[variable][] = jquery_update_jquery_cdn

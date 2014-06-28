@@ -320,30 +320,6 @@ function serchilo_features_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'javascript_parsed';
-  $strongarm->value = array(
-    0 => 'misc/drupal.js',
-    1 => 'misc/jquery.once.js',
-    2 => 'sites/all/modules/devel/devel_krumo_path.js',
-    3 => 'sites/all/modules/features/features.js',
-    4 => 'misc/form.js',
-    5 => 'misc/collapse.js',
-    6 => 'misc/autocomplete.js',
-    7 => 'sites/all/modules/jquery_update/replace/ui/external/jquery.cookie.js',
-    8 => 'sites/all/modules/jquery_update/replace/misc/jquery.form.min.js',
-    9 => 'misc/progress.js',
-    10 => 'sites/all/modules/jquery_update/js/jquery_update.js',
-    11 => 'misc/ajax.js',
-    12 => 'modules/toolbar/toolbar.js',
-    'refresh:de' => 'waiting',
-    'refresh:pl' => 'waiting',
-    'refresh:es' => 'waiting',
-  );
-  $export['javascript_parsed'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'jquery_update_compression_type';
   $strongarm->value = 'min';
   $export['jquery_update_compression_type'] = $strongarm;
