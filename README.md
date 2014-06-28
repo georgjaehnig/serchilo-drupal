@@ -18,8 +18,10 @@ Drupal profile running Serchilo (a new version, currently being developed).
 mkdir serchilo
 cd serchilo
 
-# Get the Serchilo Drupal profile 
+# Get the Serchilo Drupal profile with submodules
 git clone git@github.com:georgjaehnig/serchilo-drupal.git profilo
+git submodule init
+git submodule update
 
 # Download drupal with drush
 drush dl drupal 
