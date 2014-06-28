@@ -1,0 +1,3 @@
+[submodule "themes/boostrap_serchilo/bootstrap"]
+	path = themes/boostrap_serchilo/bootstrap
+	url = git@github.com:twbs/bootstrap.git
