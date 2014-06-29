@@ -91,7 +91,7 @@ WHERE
     keyword LIKE :keyword_like_both OR 
     title LIKE :keyword_like_both 
     #OR
-    # match command_tags
+    # match tags
     #ttd.name LIKE :keyword_like_both 
   )
 

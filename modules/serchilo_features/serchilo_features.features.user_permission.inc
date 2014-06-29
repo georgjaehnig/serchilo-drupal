@@ -461,13 +461,6 @@ function serchilo_features_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'delete terms in command_tags'.
-  $permissions['delete terms in command_tags'] = array(
-    'name' => 'delete terms in command_tags',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
   // Exported permission: 'delete terms in namespace_types'.
   $permissions['delete terms in namespace_types'] = array(
     'name' => 'delete terms in namespace_types',
@@ -796,13 +789,6 @@ function serchilo_features_user_default_permissions() {
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'revisioning',
-  );
-
-  // Exported permission: 'edit terms in command_tags'.
-  $permissions['edit terms in command_tags'] = array(
-    'name' => 'edit terms in command_tags',
-    'roles' => array(),
-    'module' => 'taxonomy',
   );
 
   // Exported permission: 'edit terms in namespace_types'.
