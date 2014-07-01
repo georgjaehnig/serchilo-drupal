@@ -19,7 +19,7 @@ mkdir serchilo
 cd serchilo
 
 # Get the Serchilo Drupal profile with submodules
-git clone git@github.com:georgjaehnig/serchilo-drupal.git profilo
+git clone https://github.com/georgjaehnig/serchilo-drupal.git profilo
 cd profilo
 git submodule init
 git submodule update
