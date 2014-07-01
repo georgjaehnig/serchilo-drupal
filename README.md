@@ -94,13 +94,13 @@ RewriteCond %{QUERY_STRING} (^|&)query=
 RewriteRule ^(.*)$ profiles/profilo/modules/serchilo/process/?page_type=console&call_type=u [L,QSA]
 
 # call with namespaces
-RewriteCond %{REQUEST_URI} ^\/n\/.*
+RewriteCond %{REQUEST_URI} ^\/ajax\/n\/.*
 # must have 'query' parameter
 RewriteCond %{QUERY_STRING} (^|&)term=
 RewriteRule ^(.*)$ profiles/profilo/modules/serchilo/process/?page_type=ajax&call_type=n [L,QSA]
 
 # call with user name
-RewriteCond %{REQUEST_URI} ^\/u\/.*
+RewriteCond %{REQUEST_URI} ^\/ajax\/u\/.*
 # must have 'query' parameter
 RewriteCond %{QUERY_STRING} (^|&)term=
 RewriteRule ^(.*)$ profiles/profilo/modules/serchilo/process/?page_type=ajax&call_type=u [L,QSA]
