@@ -21,6 +21,7 @@ cd serchilo
 # Get the Serchilo Drupal profile with submodules
 git clone git@github.com:georgjaehnig/serchilo-drupal.git profilo
 git submodule init
+# TODO: test if really needed:
 git submodule update
 
 # Download drupal with drush
