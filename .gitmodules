@@ -1,6 +1,0 @@
-[submodule "themes/boostrap_serchilo/bootstrap"]
-	path = themes/boostrap_serchilo/bootstrap
-	url = git@github.com:twbs/bootstrap.git
-[submodule "themes/boostrap_serchilo/bootswatch"]
-	path = themes/boostrap_serchilo/bootswatch
-	url = git@github.com:thomaspark/bootswatch.git
