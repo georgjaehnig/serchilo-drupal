@@ -173,13 +173,11 @@ function _serchilo_page_console() {
     $query = $search;
   }
 
-  $typewrite_examples = array();
   $autocomplete_url = base_path() . AUTOCOMPLETE_PATH_AFFIX . '/' . join('/', arg());
 
   $settings = array(
     'autocomplete' => $autocomplete,
     'autocomplete_url' => $autocomplete_url,
-    'typewrite_examples' => $typewrite_examples,
   );
 
   drupal_add_js(array('serchilo' => $settings), 'setting');
