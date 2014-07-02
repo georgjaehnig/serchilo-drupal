@@ -137,7 +137,7 @@ LIMIT " . (int) $limit . ";
       # note: when prefix is the same
       # put short placeholder below
       'argument_count' => count($arguments), 
-      'extra_namespace_id' => ($extra_namespace ? $extra_namespace->tid : null),
+      'extra_namespace_id' => (isset($extra_namespace) ? $extra_namespace->tid : null),
       'keyword_like_right' => $keyword . '%',
       'keyword_like_both' => '%' . $keyword . '%',
       'keyword' => $keyword,
