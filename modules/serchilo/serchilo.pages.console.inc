@@ -192,6 +192,7 @@ function _serchilo_page_console() {
   $default_keyword = drupal_static('default_keyword' );
   $namespace_names = drupal_static('namespace_names');
 
+  /*
   $commands_of_current_namespaces_url = url(
     'commands',
     array(
@@ -200,6 +201,8 @@ function _serchilo_page_console() {
       ) 
     )
   );
+   */
+  $commands_of_current_namespaces_url = url('shortcuts');
 
   $content['console'] = array(
     '#type' => 'markup',
