@@ -95,14 +95,17 @@
       <?php print $submitted; ?>
     </div>
   <?php endif; ?>
-
+  <div class="namespace-tags">
+    <?php
+      print render($content['field_namespace']);
+      print render($content['field_tags']);
+    ?>
+  </div>
   <div class="content"<?php print $content_attributes; ?>>
     <?php
       // We hide the comments and links now so that we can render them later.
       hide($content['comments']);
       hide($content['links']);
-      print render($content['field_namespace']);
-      print render($content['field_tags']);
       print render($content['shortcut_call_form']);
       print render($content['field_example']);
       print render($content['field_url']);
