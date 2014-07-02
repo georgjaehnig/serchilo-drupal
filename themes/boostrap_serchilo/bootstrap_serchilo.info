@@ -24,6 +24,8 @@ regions[page_bottom]    = 'Page bottom'
 ;; Stylesheets
 ;;;;;;;;;;;;;;;;;;;;;
 
+;stylesheets[all][] = bootstrap/dist/css/bootstrap.min.css
+stylesheets[all][] = bootswatch/cosmo/bootstrap.min.css
 stylesheets[all][] = css/style.css
 
 
@@ -39,8 +41,6 @@ stylesheets[all][] = css/style.css
 ;; Scripts
 ;;;;;;;;;;;;;;;;;;;;;
 
-;stylesheets[all][] = bootstrap/dist/css/bootstrap.min.css
-stylesheets[all][] = bootswatch/cosmo/bootstrap.min.css
 scripts[]          = bootstrap/dist/js/bootstrap.min.js
 
 scripts[] = 'bootstrap/js/affix.js'
