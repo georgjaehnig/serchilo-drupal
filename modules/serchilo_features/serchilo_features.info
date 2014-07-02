@@ -254,7 +254,6 @@ features[user_permission][] = view revisions
 features[user_permission][] = view revisions of any shortcut content
 features[user_permission][] = view revisions of own shortcut content
 features[user_permission][] = view the administration theme
-features[variable][] = additional_settings__active_tab_shortcut
 features[variable][] = admin_theme
 features[variable][] = clean_url
 features[variable][] = comment_anonymous_shortcut
