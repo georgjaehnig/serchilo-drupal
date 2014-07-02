@@ -492,7 +492,7 @@ function serchilo_features_field_default_field_instances() {
     'description' => 'A change will result in saving only a draft, needed to be moderated by an editor.',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
@@ -576,7 +576,7 @@ function serchilo_features_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
