@@ -21,7 +21,7 @@
       var searchInput = $('#searchInput');
       searchInputBackground = $('#searchInputBackground');
 
-      autocomplete = searchInput.autocomplete({
+      var autocomplete = searchInput.autocomplete({
 
         minLength: 1,
         delay: 300,
