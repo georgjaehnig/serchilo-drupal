@@ -74,3 +74,11 @@
   text-decoration:none;
   white-space: nowrap;
 }
+
+.field.field-name-field-namespace,
+.field.field-name-field-tags,
+.field.field-name-field-namespace *,
+.field.field-name-field-tags *
+{
+  display: inline-block;
+}
