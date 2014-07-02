@@ -32,7 +32,6 @@
   color: #aaa;
 }
 
-
 .namespace {
   color: #ffffff;
   background: #aa2c30;
@@ -46,3 +45,28 @@
 .unreachable .namespace {
   background: #8EaAaC;
 }
+
+.field.field-name-field-namespace a,
+.field.field-name-field-namespace a:hover {
+  display: inline-block;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+  background: #aa2c30;
+  padding: 0.4em;
+  white-space: nowrap;
+  color: #ffffff;
+  text-decoration:none;
+}
+
+.views-field-field-namespace a,
+.views-field-field-namespace a:hover 
+{
+  color: #ffffff;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+  background: #aa2c30;
+  padding: 0.4em;
+  white-space: nowrap;
+  text-decoration: none;
+}
+

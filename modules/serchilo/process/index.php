@@ -11,6 +11,10 @@ _serchilo_dispatch();
 
 # --------------------------------
 
+/**
+ * Connect to the database using Drupal's settings.
+ * Remeber connection in global $mysqli.
+ */
 function _serchilo_connect_db() {
 
   global $mysqli;
@@ -26,6 +30,11 @@ function _serchilo_connect_db() {
   );
 }
 
+/**
+ * Dispatch the request.
+ * Can be a command call ('console') to redirect to a target
+ * or an AJAX ('ajax') call to get some JSON (for autocomplete).
+ */
 function _serchilo_dispatch() {
 
   $page_type = $_GET['page_type'];
@@ -45,6 +54,14 @@ function _serchilo_dispatch() {
   }
 }
 
+/**
+ * Process a command call query.
+ *
+ * @param string $call_type
+ *   Can be 
+ *   'n' for a call with namespaces or
+ *   'u' for a call with a username.
+ */
 function _serchilo_process_query_console($call_type) {
 
   $query = $_GET['query'];
@@ -67,10 +84,10 @@ function _serchilo_process_query_console($call_type) {
   // TODO:
   // default_keyword
   $command = _serchilo_find_command($keyword, count($arguments), $namespace_ids);
-  $variables = _serchilo_get_url_variables($namespace_names, $extra_namespace_name);
   #print_r($variables);
   #print_r($command);
   if ($command) {
+    $variables = _serchilo_get_url_variables($namespace_names, $extra_namespace_name);
     _serchilo_call_command($command, $arguments, $variables);
   }
   else {
@@ -78,6 +95,14 @@ function _serchilo_process_query_console($call_type) {
   }
 }
 
+/**
+ * Process a AJAX query.
+ *
+ * @param string $call_type
+ *   Can be 
+ *   'n' for a call with namespaces or
+ *   'u' for a call with a username.
+ */
 function _serchilo_process_query_ajax($call_type) {
 
   $query = $_GET['term'];

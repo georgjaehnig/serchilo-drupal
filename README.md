@@ -1,6 +1,10 @@
 # serchilo-drupal
 
 Drupal profile running Serchilo (a new version, currently being developed).
+- Demo: http://serchilo.org/
+- current official version (not this code here) http://www.serchilo.net/
+- mailing list: https://groups.google.com/d/forum/serchilo
+
 
 ## Install
 

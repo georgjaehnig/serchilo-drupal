@@ -1,5 +1,18 @@
 <?PHP
 
+/**
+ * Find a shortcut.
+ *
+ * @param string $keyword
+ *   Keyword of shortcut to be found.
+ * @param int $argument_count
+ *   Argument count of shortcut to be found.
+ * @param array $namespace_ids
+ *   Array of namespace IDs
+ *   in which the shortcut must be part of.
+ * @return
+ *   Associative array of the found shortcut.
+ */
 function _serchilo_find_command($keyword, $argument_count, $namespace_ids) {
 
   global $mysqli;
@@ -39,6 +52,23 @@ function _serchilo_find_command($keyword, $argument_count, $namespace_ids) {
   return $row;
 }
 
+/**
+ * Search for shortcuts.
+ *
+ * @param string $keyword
+ *   Keyword of shortcuts to be found.
+ * @param int $argument_count
+ *   Argument count of shortcuts to be found.
+ * @param string $query
+ *   Full entered query, also to be used for searching
+ * @param array $namespace_ids
+ *   Array of namespace IDs
+ *   in which the shortcut must be part of.
+ * @param int $limit
+ *   Maximum number of returned shortcuts.
+ * @return
+ *   Array of associative arrays of the found shortcuts.
+ */
 function _serchilo_search_commands( $keyword, $arguments, $query, $namespace_ids, $limit = 20 ) {
 
   global $mysqli;
@@ -157,12 +187,28 @@ LIMIT " . (int) $limit . ";
   return $commands;
 }
 
+/**
+ * Parse a query.
+ *
+ * @param string $query
+ *   The query to parse.
+ * @return
+ *   Array of query items.
+ */
 function _serchilo_parse_query($query) {
   list($keyword, $arguments) = _serchilo_extract_keyword_and_arguments($query);
   list($keyword, $extra_namespace_name) = _serchilo_get_extra_namespace_from_keyword($keyword);
   return array($keyword, $arguments, $extra_namespace_name);
 }
 
+/**
+ * Extract optional extra namespace from the keyword.
+ *
+ * @param string $keyword
+ *   The keyword to extract from.
+ * @return
+ *   Array of keyword and extra namespace (empty string if not existing).
+ */
 function _serchilo_get_extra_namespace_from_keyword($keyword) {
   # try to extract extra namespace from query
   # e.g.: de.w berlin
@@ -173,6 +219,17 @@ function _serchilo_get_extra_namespace_from_keyword($keyword) {
   return array($keyword, $extra_namespace_name);
 }
 
+/**
+ * Extract keyword and arguments from a query.
+ *
+ * @param string $query
+ *   The query to extract from.
+ * @param int $max_arguments
+ *   Maximum number of arguments to extract.
+ *   Default: unlimited
+ * @return
+ *   Array of keyword and arguments.
+ */
 function _serchilo_extract_keyword_and_arguments($query, $max_arguments = -1) {
 
   # extract keyword and arguments
@@ -314,8 +371,8 @@ function _serchilo_replace_url_arguments($url, $arguments, $variables, $input_en
 
 function _serchilo_get_url_variables($namespace_names, $extra_namespace_name) {
   $variables = array();
-  $variables['language'] = $namespace_names[0];
-  $variables['country:alpha3'] = $namespace_names[1];
+  $variables['language'] = $namespace_names[1];
+  $variables['country:alpha3'] = $namespace_names[2];
   switch (strlen($extra_namespace_name)) {
     case 2:
       $variables['language'] = $extra_namespace_name;

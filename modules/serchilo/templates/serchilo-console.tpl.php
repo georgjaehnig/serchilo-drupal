@@ -12,7 +12,7 @@
   </div>
 
   <div id="help">
-    Start with a <a href="<?php echo $commands_of_current_namespaces_url ?>">keyword</a>, continue with your search.
+    Enter one of the available <a href="<?php echo $commands_of_current_namespaces_url ?>">shortcuts</a>.
     Or watch a <a href="http://www.youtube.com/watch?v=lNx4CFM-P2M" target="_blank">screencast video</a> to learn more.
   </div>
 </div>
