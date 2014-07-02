@@ -67,10 +67,10 @@ function _serchilo_process_query_console($call_type) {
   // TODO:
   // default_keyword
   $command = _serchilo_find_command($keyword, count($arguments), $namespace_ids);
-  $variables = _serchilo_get_url_variables($namespace_names, $extra_namespace_name);
   #print_r($variables);
   #print_r($command);
   if ($command) {
+    $variables = _serchilo_get_url_variables($namespace_names, $extra_namespace_name);
     _serchilo_call_command($command, $arguments, $variables);
   }
   else {
