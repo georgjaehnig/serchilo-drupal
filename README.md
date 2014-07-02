@@ -40,7 +40,7 @@ cd ../..
 
 # Make sure you are within the drupal/ directory
 pwd
-# [...]/drupal/
+# [...]/drupal
 
 
 ```
