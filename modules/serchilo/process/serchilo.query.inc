@@ -314,8 +314,8 @@ function _serchilo_replace_url_arguments($url, $arguments, $variables, $input_en
 
 function _serchilo_get_url_variables($namespace_names, $extra_namespace_name) {
   $variables = array();
-  $variables['language'] = $namespace_names[0];
-  $variables['country:alpha3'] = $namespace_names[1];
+  $variables['language'] = $namespace_names[1];
+  $variables['country:alpha3'] = $namespace_names[2];
   switch (strlen($extra_namespace_name)) {
     case 2:
       $variables['language'] = $extra_namespace_name;
