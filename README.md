@@ -14,9 +14,6 @@ Drupal profile running Serchilo (a new version, currently being developed).
 - Apache server with mod_rewrite enabled
   - if not, enable with `sudo a2enmod rewrite`
 
-
-
-
 ### Preparations
 ```
 # create a new directory, for instance serchilo/
@@ -25,13 +22,6 @@ Drupal profile running Serchilo (a new version, currently being developed).
 mkdir serchilo
 cd serchilo
 
-# Get the Serchilo Drupal profile with submodules
-git clone https://github.com/georgjaehnig/serchilo-drupal.git profilo
-cd profilo
-git submodule init
-git submodule update
-cd ..
-
 # Download drupal with drush
 drush dl drupal 
 
@@ -39,7 +29,15 @@ drush dl drupal
 mv drupal-* drupal
 
 # Move Serchilo profile to profiles/
-mv profilo drupal/profiles/
+cd drupal/profiles/
+
+# Get the Serchilo Drupal profile with submodules
+git clone https://github.com/georgjaehnig/serchilo-drupal.git profilo
+cd profilo
+git submodule init
+git submodule update
+cd ../..
+
 ```
 Your directory structure should now look like this:
 ```
@@ -66,8 +64,9 @@ chmod 777 drupal/sites/default/settings.php
 
 ### After installing Drupal
 ```
-# Change into drupal/ directory
-cd drupal
+# Make sure you are within the drupal/ directory
+pwd
+# [...]/drupal/
 
 # Enable the theme
 drush dl bootstrap
