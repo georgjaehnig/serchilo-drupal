@@ -97,12 +97,14 @@ To `drupal/.htaccess`, add:
 RewriteCond %{REQUEST_URI} ^\/n\/.*
 # must have 'query' parameter
 RewriteCond %{QUERY_STRING} (^|&)query=
+RewriteCond %{QUERY_STRING} !(^|&)status=not_found
 RewriteRule ^(.*)$ profiles/profilo/modules/serchilo/process/?page_type=console&call_type=n [L,QSA]
 
 # call with user name
 RewriteCond %{REQUEST_URI} ^\/u\/.*
 # must have 'query' parameter
 RewriteCond %{QUERY_STRING} (^|&)query=
+RewriteCond %{QUERY_STRING} !(^|&)status=not_found
 RewriteRule ^(.*)$ profiles/profilo/modules/serchilo/process/?page_type=console&call_type=u [L,QSA]
 
 # call with namespaces

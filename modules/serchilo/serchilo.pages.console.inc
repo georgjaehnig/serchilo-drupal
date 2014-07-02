@@ -155,22 +155,14 @@ function _serchilo_page_console() {
 
   # call with a query?
 
-  $search = _serchilo_array_value($_GET, 'search');
   $query = _serchilo_array_value($_GET, 'query');
   $status = _serchilo_array_value($_GET, 'status');
   // TODO
   // redirect from ?query if not found
   // to search=.. and status=not_found
 
-  if (isset($search)) {
-    $search = trim($search);
-    $namespace_ids = drupal_static('namespace_ids');
-
-    $commands = _serchilo_search_commands($search, array(), $search);
-    $content['commands_search_result'] = _serchilo_display_commands($commands, array());
-
-    # copy to show in input field
-    $query = $search;
+  if ($status == 'not_found') {
+    drupal_set_message('No matching shortcut found.', 'error');
   }
 
   $autocomplete_url = base_path() . AUTOCOMPLETE_PATH_AFFIX . '/' . join('/', arg());
