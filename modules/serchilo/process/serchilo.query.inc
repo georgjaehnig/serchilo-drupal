@@ -249,6 +249,15 @@ function _serchilo_extract_keyword_and_arguments($query, $max_arguments = -1) {
 }
 
 
+/**
+ * Get the namespace ID from a namespace name.
+ *
+ * @param string $namespace_name
+ *   The namespace name.
+ * @return
+ *   ID of given namespace name.
+ *   0 if not found.
+ */
 function _serchilo_get_namespace_id($namespace_name) {
 
   global $mysqli;
