@@ -91,7 +91,9 @@ function _serchilo_process_query_console($call_type) {
     _serchilo_call_command($command, $arguments, $variables);
   }
   else {
-    // redirect to serchilo website
+    // redirect to Serchilo website
+    $url = $_SERVER['REQUEST_URI'] . '&status=not_found';
+    header('Location: ' . $url );
   }
 }
 
