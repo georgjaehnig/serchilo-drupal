@@ -28,7 +28,7 @@ drush dl drupal
 # Rename downloaded dir
 mv drupal-* drupal
 
-# Move Serchilo profile to profiles/
+# Change to profiles/
 cd drupal/profiles/
 
 # Get the Serchilo Drupal profile with submodules
@@ -37,6 +37,11 @@ cd profilo
 git submodule init
 git submodule update
 cd ../..
+
+# Make sure you are within the drupal/ directory
+pwd
+# [...]/drupal/
+
 
 ```
 Your directory structure should now look like this:
@@ -55,18 +60,15 @@ serchilo/
 - In the installer, choose `Serchilo Profilo` as installation profile.
 - During install, you need to create a writable `files/` dir and `settings.php` file:
 ```
-mkdir drupal/sites/default/files
-chmod 777 drupal/sites/default/files
-cp drupal/sites/default/default.settings.php drupal/sites/default/settings.php
-chmod 777 drupal/sites/default/settings.php
+mkdir sites/default/files
+chmod 777 sites/default/files
+cp sites/default/default.settings.php sites/default/settings.php
+chmod 777 sites/default/settings.php
 ```
 - Additionally, you will be asked to set up a database. Create one and enter its credentials in the installer.
 
 ### After installing Drupal
 ```
-# Make sure you are within the drupal/ directory
-pwd
-# [...]/drupal/
 
 # Enable the theme
 drush dl bootstrap
