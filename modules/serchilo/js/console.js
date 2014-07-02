@@ -101,6 +101,11 @@
       };
 
       searchInput.autocomplete('widget').removeClass('ui-corner-all');
+
+      // open autocomplete when input not empty
+      if (searchInput.val() != '') {
+        searchInput.autocomplete("search");
+      }
       searchInput.focus();
 
       called = true;
