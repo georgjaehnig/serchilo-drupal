@@ -469,7 +469,10 @@ function serchilo_import_shortcuts($file = NULL) {
   }
 
   $rows = $data['shortcuts']; 
-  $rows = array_slice($rows, 0, 1);
+
+  //for debug: try to import only 1
+  //$rows = array_slice($rows, 0, 1);
+
   foreach ($rows as $row) {
     $namespace = serchilo_taxonomy_ensure_term($row['namespace'], 'namespaces');
     $shortcut = new StdClass;
