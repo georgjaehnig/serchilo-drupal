@@ -488,6 +488,7 @@ function serchilo_import_shortcuts($file = NULL) {
     drupal_array_set_nested_value($shortcut->field_weight,         array( LANGUAGE_NONE, 0, 'value'), $row['weight']);
     drupal_array_set_nested_value($shortcut->field_invisible,      array( LANGUAGE_NONE, 0, 'value'), $row['invisible']);
     drupal_array_set_nested_value($shortcut->field_set_referrer,   array( LANGUAGE_NONE, 0, 'value'), $row['set_referrer']);
+    drupal_array_set_nested_value($shortcut->field_command_id,     array( LANGUAGE_NONE, 0, 'value'), $row['id']);
     drupal_array_set_nested_value($shortcut->field_namespace,      array( LANGUAGE_NONE, 0, 'tid'),   $namespace->tid);
     for ($i=0; $i<count($row['tags']); $i++) {
       #print_r( $row['tags'][$i]);
