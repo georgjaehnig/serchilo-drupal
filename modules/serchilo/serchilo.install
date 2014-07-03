@@ -7,11 +7,15 @@ function serchilo_install(){
 
   module_load_include('module', 'taxonomy', 'taxonomy');
 
+  $shortcuts_file = drupal_get_path('module', 'serchilo') . '/json/serchilo.json';
+  echo "Importing shortcuts...\n";
+  serchilo_import_shortcuts($shortcuts_file);
+
   $vocabularies = taxonomy_vocabulary_get_names();
-  _serchilo_create_namespaces_from_file($vocabularies['namespaces']);
+  //_serchilo_create_namespaces_from_file($vocabularies['namespaces']);
   _serchilo_create_user_namespaces($vocabularies['namespaces'], $vocabularies['namespace_types']);
   _serchilo_set_default_user_settings();
-  _serchilo_create_shortcuts_from_file();
+  //_serchilo_create_shortcuts_from_file();
 
   //serchilo_add_defaults_to_admin();
 
