@@ -428,3 +428,25 @@ function _serchilo_array_value($array, $key, $default_value = null) {
   }
   return $default_value;
 }
+
+function serchilo_taxonomy_ensure_term($term_name, $vocabulary_name, $term = array()) {
+
+  $term_list = taxonomy_get_term_by_name($term_name, $vocabulary_name );
+  # if namespace_type does not exist yet:
+  # create it
+  if(empty($term_list)) {
+    $vocabulary = taxonomy_vocabulary_machine_name_load($vocabulary_name);
+    $term = array(
+      'name' => $term_name,
+      'vid' => (int) $vocabulary->vid,
+      'format' => 'plain_text',
+    ) + $term;
+    $term = (object) $term;
+    taxonomy_term_save($term);
+    $term_list = taxonomy_get_term_by_name($term_name, $vocabulary_name );
+  }
+  # get first element, the only one
+  $term = array_shift($term_list);
+  return $term;
+}
+
