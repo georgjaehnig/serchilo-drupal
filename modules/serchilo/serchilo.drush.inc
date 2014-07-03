@@ -15,5 +15,5 @@ function serchilo_drush_command() {
 
 
 function drush_serchilo_import_shortcuts($file = NULL) {
-  serchilo_import_shortcuts($file);
+  serchilo_import_shortcuts($file, TRUE);
 }

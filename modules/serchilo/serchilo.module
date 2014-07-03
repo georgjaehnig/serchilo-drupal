@@ -432,7 +432,11 @@ function _serchilo_array_value($array, $key, $default_value = null) {
 
 // IMPORT
 
-function serchilo_import_shortcuts($file = NULL) {
+function serchilo_import_shortcuts($file = NULL, $verbose = FALSE) {
+
+  if ($verbose) {
+    echo "Importing shortcuts...\n";
+  }
 
   if (!file_exists($file)) {
     return 'Could not find file ' . $file;
@@ -503,6 +507,7 @@ function serchilo_import_shortcuts($file = NULL) {
       $field_collection_item->save();
     }
     node_save($shortcut);
+    echo ".";
   }
 }
 

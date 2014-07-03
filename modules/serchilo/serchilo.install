@@ -8,8 +8,7 @@ function serchilo_install(){
   module_load_include('module', 'taxonomy', 'taxonomy');
 
   $shortcuts_file = drupal_get_path('module', 'serchilo') . '/json/serchilo.json';
-  echo "Importing shortcuts...\n";
-  serchilo_import_shortcuts($shortcuts_file);
+  serchilo_import_shortcuts($shortcuts_file, TRUE);
 
   $vocabularies = taxonomy_vocabulary_get_names();
   //_serchilo_create_namespaces_from_file($vocabularies['namespaces']);
