@@ -83,12 +83,6 @@ drush pm-enable serchilo_features -y
 
 # ... then the module itself.
 drush pm-enable serchilo -y
-
-# Set some variables
-# (Strongarm somehow looses these ones, 
-# so we need to do set them manually)
-drush vset theme_default bootstrap_serchilo
-drush vset pathauto_node_pattern [node:title]
 ```
 
 To `drupal/.htaccess`, add:

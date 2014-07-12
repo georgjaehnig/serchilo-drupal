@@ -18,6 +18,11 @@ function serchilo_install(){
 
   //serchilo_add_defaults_to_admin();
 
+  // Set some variables
+  // (Strongarm somehow looses these ones, 
+  // so we need to do set them manually)
+  variable_set('theme_default', 'bootstrap_serchilo');
+  variable_set('pathauto_node_pattern', '[node:title]');
 }
 
 /**
