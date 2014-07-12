@@ -323,6 +323,8 @@ function _serchilo_call_command($command, $arguments, $variables, $redirect = TR
     else {
       // redirect for commands which need a referrer
       #_serchilo_redirect_via_html($url);
+	// TODO: ...
+      header('Location: ' . $url);
     }
   } else {
     return $url;
