@@ -114,6 +114,80 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Keyword (field_keyword) */
+  $handler->display->display_options['filters']['field_keyword_value']['id'] = 'field_keyword_value';
+  $handler->display->display_options['filters']['field_keyword_value']['table'] = 'field_data_field_keyword';
+  $handler->display->display_options['filters']['field_keyword_value']['field'] = 'field_keyword_value';
+  $handler->display->display_options['filters']['field_keyword_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_keyword_value']['expose']['operator_id'] = 'keyword_op';
+  $handler->display->display_options['filters']['field_keyword_value']['expose']['label'] = 'Keyword';
+  $handler->display->display_options['filters']['field_keyword_value']['expose']['use_operator'] = TRUE;
+  $handler->display->display_options['filters']['field_keyword_value']['expose']['operator'] = 'field_keyword_value_op';
+  $handler->display->display_options['filters']['field_keyword_value']['expose']['identifier'] = 'keyword';
+  $handler->display->display_options['filters']['field_keyword_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+  );
+  /* Filter criterion: Content: Title */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Title';
+  $handler->display->display_options['filters']['title']['expose']['use_operator'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+  );
+  /* Filter criterion: Content: URL (field_url) */
+  $handler->display->display_options['filters']['field_url_value']['id'] = 'field_url_value';
+  $handler->display->display_options['filters']['field_url_value']['table'] = 'field_data_field_url';
+  $handler->display->display_options['filters']['field_url_value']['field'] = 'field_url_value';
+  $handler->display->display_options['filters']['field_url_value']['operator'] = 'contains';
+  $handler->display->display_options['filters']['field_url_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_url_value']['expose']['operator_id'] = 'url_op';
+  $handler->display->display_options['filters']['field_url_value']['expose']['label'] = 'URL';
+  $handler->display->display_options['filters']['field_url_value']['expose']['use_operator'] = TRUE;
+  $handler->display->display_options['filters']['field_url_value']['expose']['operator'] = 'field_url_value_op';
+  $handler->display->display_options['filters']['field_url_value']['expose']['identifier'] = 'url';
+  $handler->display->display_options['filters']['field_url_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+  );
+  /* Filter criterion: Content: Namespace (field_namespace) */
+  $handler->display->display_options['filters']['field_namespace_tid']['id'] = 'field_namespace_tid';
+  $handler->display->display_options['filters']['field_namespace_tid']['table'] = 'field_data_field_namespace';
+  $handler->display->display_options['filters']['field_namespace_tid']['field'] = 'field_namespace_tid';
+  $handler->display->display_options['filters']['field_namespace_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_namespace_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_namespace_tid']['expose']['operator_id'] = 'field_namespace_tid_op';
+  $handler->display->display_options['filters']['field_namespace_tid']['expose']['label'] = 'Namespace';
+  $handler->display->display_options['filters']['field_namespace_tid']['expose']['operator'] = 'field_namespace_tid_op';
+  $handler->display->display_options['filters']['field_namespace_tid']['expose']['identifier'] = 'namespace';
+  $handler->display->display_options['filters']['field_namespace_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+  );
+  $handler->display->display_options['filters']['field_namespace_tid']['vocabulary'] = 'namespaces';
+  /* Filter criterion: Content: Tags (field_tags) */
+  $handler->display->display_options['filters']['field_tags_tid']['id'] = 'field_tags_tid';
+  $handler->display->display_options['filters']['field_tags_tid']['table'] = 'field_data_field_tags';
+  $handler->display->display_options['filters']['field_tags_tid']['field'] = 'field_tags_tid';
+  $handler->display->display_options['filters']['field_tags_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_tags_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_tags_tid']['expose']['operator_id'] = 'field_tags_tid_op';
+  $handler->display->display_options['filters']['field_tags_tid']['expose']['label'] = 'Tags';
+  $handler->display->display_options['filters']['field_tags_tid']['expose']['operator'] = 'field_tags_tid_op';
+  $handler->display->display_options['filters']['field_tags_tid']['expose']['identifier'] = 'tags';
+  $handler->display->display_options['filters']['field_tags_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+  );
+  $handler->display->display_options['filters']['field_tags_tid']['vocabulary'] = 'tags';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -139,6 +213,7 @@ function serchilo_features_views_default_views() {
     t('Title'),
     t('Namespace'),
     t('Tags'),
+    t('URL'),
     t('Page'),
   );
   $export['shortcuts'] = $view;
