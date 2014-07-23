@@ -48,8 +48,8 @@
 
 .field.field-name-field-namespace a,
 .field.field-name-field-namespace a:hover,
-.views-field-field-namespace a,
-.views-field-field-namespace a:hover 
+td.views-field-field-namespace a,
+td.views-field-field-namespace a:hover 
 {
   color: #ffffff;
   margin-left: 0.2em;
