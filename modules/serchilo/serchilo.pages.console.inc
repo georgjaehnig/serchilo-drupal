@@ -131,8 +131,6 @@ function serchilo_page_dispatch($page_type) {
   // Other requests shall be solely handled by the PHP standalone processor.
   case AUTOCOMPLETE_PATH_AFFIX:
     return _serchilo_autocomplete();
-  case OPENSEARCH_DEFINITION_PATH_AFFIX:
-    return _serchilo_opensearch_definition(arg(1), arg(2));
   case OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
     return _serchilo_opensearch_suggestions();
   case URL_PATH_AFFIX:
