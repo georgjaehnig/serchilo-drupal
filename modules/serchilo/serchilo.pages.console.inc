@@ -481,6 +481,15 @@ function _serchilo_field_get_items_taxonomy_term_load_multiple($entity_type, $en
 }
 
 
+/**
+ * Add the Opensearch link tag to the HTML head 
+ * Loads the full Taxonomy terms stored in a Entity Field.
+ *
+ * @param string $default_keyword_get
+ *    The default keyword that is set as GET variable.
+ *
+ * @return void
+ */
 function serchilo_add_opensearch_link($default_keyword_get) {
 
   drupal_add_html_head_link(array(
