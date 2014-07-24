@@ -45,10 +45,10 @@ function _serchilo_dispatch() {
   $call_type = $_GET['call_type'];
 
   switch ($page_type) {
-  case 'console':
+  case CONSOLE:
     _serchilo_process_query_console($call_type);
     break;
-  case 'ajax':
+  case AUTOCOMPLETE_PATH_AFFIX:
     _serchilo_process_query_ajax($call_type);
     break;
   }
