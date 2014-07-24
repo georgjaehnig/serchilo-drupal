@@ -129,10 +129,10 @@ function _serchilo_process_query_ajax($call_type) {
     function($command) {
       $filtered_command = array(
         $command['nid'], 
-        utf8_encode($command['keyword']), 
-        utf8_encode($command['argument_names']), 
-        utf8_encode($command['title']), 
-        utf8_encode($command['namespace_name']), 
+        $command['keyword'], 
+        $command['argument_names'], 
+        $command['title'], 
+        $command['namespace_name'], 
         (int) $command['reachable'], 
       );
       return $filtered_command;

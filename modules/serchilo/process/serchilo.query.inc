@@ -178,6 +178,7 @@ LIMIT " . (int) $limit . ";
     )
   );
 
+  $mysqli->set_charset("utf8");
   $result = $mysqli->query($sql);
   if (!$result) {
     return; 
