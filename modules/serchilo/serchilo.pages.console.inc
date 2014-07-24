@@ -155,9 +155,6 @@ function _serchilo_page_console() {
 
   $query = _serchilo_array_value($_GET, 'query');
   $status = _serchilo_array_value($_GET, 'status');
-  // TODO
-  // redirect from ?query if not found
-  // to search=.. and status=not_found
 
   if ($status == 'not_found') {
     drupal_set_message('No matching shortcut found.', 'error');
