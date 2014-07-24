@@ -67,18 +67,3 @@ function serchilo_page_opensearch($pathElement1, $pathElement2) {
 
   drupal_exit();
 }
-
-/**
- * Return the title for the Opensearch head link.
- *
- * @param $namespaces_path
- *    String of namespaces seperated by NAMESPACE_PATH_SEPARATOR.
- * @param $default_keyword
- *    (optional) String of the default keyword.
- * @return $title
- *    String of the Opensearch head link.
- */
-function _serchilo_opensearch_title($namespaces_path, $default_keyword = NULL) {
-  return $title;
-}
-
