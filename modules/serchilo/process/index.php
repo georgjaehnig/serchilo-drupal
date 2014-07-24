@@ -79,8 +79,6 @@ function _serchilo_process_query_console($call_type) {
     break;
   }
 
-  #echo '<pre>';
-  #print_r($namespace_ids);
   // TODO:
   // default_keyword
   $command = _serchilo_find_command($keyword, count($arguments), $namespace_ids);
