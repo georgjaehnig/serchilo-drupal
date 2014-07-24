@@ -45,14 +45,14 @@ function serchilo_menu() {
 
     OPENSEARCH_DEFINITION_PATH_AFFIX . '/' . NAMESPACES_PATH_AFFIX => array(
       'page callback' => 'serchilo_page_opensearch',
-      'page arguments' => array(OPENSEARCH_DEFINITION_PATH_AFFIX, 2),
+      'page arguments' => array(1, 2),
       'access callback' => true,
       'type' => MENU_CALLBACK,
       'file' => 'serchilo.pages.opensearch.inc',
     ),
     OPENSEARCH_DEFINITION_PATH_AFFIX . '/' . USER_PATH_AFFIX . '/%' => array(
       'page callback' => 'serchilo_page_opensearch',
-      'page arguments' => array(OPENSEARCH_DEFINITION_PATH_AFFIX, 2),
+      'page arguments' => array(1, 2),
       'access callback' => true,
       'type' => MENU_CALLBACK,
       'file' => 'serchilo.pages.opensearch.inc',
