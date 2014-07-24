@@ -6,12 +6,7 @@ function serchilo_page_opensearch($pathElement1, $pathElement2) {
     $default_keyword_get = $_GET['default_keyword'];
   }
 
-  if( $default_keyword ) {
-    $content['ShortName'] =  'Serchilo: ' . $pathElement2 . ' | ' . $default_keyword;
-  }
-  else {
-    $content['ShortName'] =  'Serchilo: ' . $pathElement2;
-  }
+  $content['ShortName'] = _serchilo_opensearch_title($pathElement2, $default_keyword_get);
 
   $content['UrlTemplate'] = 
     $GLOBALS['base_url'] . 
