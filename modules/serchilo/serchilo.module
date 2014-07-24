@@ -153,7 +153,6 @@ function serchilo_revision_publish($node) {
   }
 }
 
-
 /**
  * Implements hook_node_view().
  */
@@ -438,6 +437,7 @@ function _serchilo_is_sensible_edit($node)
 }
 
 
+// PHP HELPERS
 
 function _serchilo_array_value($array, $key, $default_value = null) {
   if (isset($array[$key])) {
