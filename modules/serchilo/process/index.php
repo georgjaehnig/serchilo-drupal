@@ -51,6 +51,9 @@ function _serchilo_dispatch() {
   case AUTOCOMPLETE_PATH_AFFIX:
     _serchilo_process_query_ajax($call_type);
     break;
+  case OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
+    _serchilo_process_opensearch_suggestions($call_type);
+    break;
   }
 }
 
@@ -141,5 +144,70 @@ function _serchilo_process_query_ajax($call_type) {
   require_once('../../../../../includes/common.inc');
   require_once('../../../../../includes/bootstrap.inc');
   drupal_json_output($commands);
+}
+
+/**
+ * Process an Opensearch suggestions query.
+ *
+ * @param string $call_type
+ *   Can be 
+ *   'n' for a call with namespaces or
+ *   'u' for a call with a username.
+ */
+function _serchilo_process_opensearch_suggestions($call_type) {
+
+  $query = $_GET['query'];
+
+  switch ($call_type) {
+  case 'n':
+    $namespace_names = _serchilo_get_namespace_names_from_path(1);
+    list($keyword, $arguments, $extra_namespace_name) = _serchilo_parse_query($query);
+    $namespace_ids = array_map('_serchilo_get_namespace_id', array_merge($namespace_names, array($extra_namespace_name)));
+    break;
+  case 'u':
+    list($keyword, $arguments, $extra_namespace_name) = _serchilo_parse_query($query);
+    $user_name = _serchilo_get_user_name_from_path(1);
+    $namespace_ids = _serchilo_get_namespace_ids_from_user($user_name);
+    break;
+  }
+
+  $commands = _serchilo_search_commands( $keyword, $arguments, $query, $namespace_ids );
+  
+  $completions = array();
+  $descriptions = array();
+
+  foreach ($commands as $command) {
+
+    # add braces to argument names
+    $argument_names_braces = array();
+
+    foreach (explode(',', $command['argument_names']) as $argument_name) {
+
+      $argument_name = trim($argument_name);
+      if ($argument_name == '') {
+        continue; 
+      }
+      $argument_names_braces[] = '{' . $argument_name . '}';
+    }
+
+    $completions[] = 
+      # add namespace to keyword if not reachable
+      ( (bool) $command->reachable ? '' : $command['namespace_name'] . '.' ) .
+      $command['keyword'] . 
+      ' ' .
+      join(', ', $argument_names_braces) . 
+      '';
+    $descriptions[] = $command['title']; 
+  }
+
+  $output = array(
+    $query,
+    $completions,
+    $descriptions, 
+  );
+
+  require_once('../../../../../includes/common.inc');
+  require_once('../../../../../includes/bootstrap.inc');
+  drupal_json_output($output);
 }
 
