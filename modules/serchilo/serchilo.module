@@ -474,7 +474,7 @@ function _serchilo_opensearch_title($namespaces_path, $default_keyword = NULL) {
 function serchilo_import_shortcuts($file = NULL, $verbose = FALSE) {
 
   if ($verbose) {
-    echo "Importing shortcuts...\n";
+    echo "Importing data:\n";
   }
 
   if (!file_exists($file)) {
@@ -486,6 +486,10 @@ function serchilo_import_shortcuts($file = NULL, $verbose = FALSE) {
 
   if ($data === NULL) {
     return 'Could not parse file ' . $file;
+  }
+
+  if ($verbose) {
+    echo "Importing namespaces...\n";
   }
 
   $rows = $data['namespaces']; 
@@ -509,6 +513,8 @@ function serchilo_import_shortcuts($file = NULL, $verbose = FALSE) {
       }
     }
     taxonomy_term_save($namespace);
+
+    echo '.';
   }
 
   $rows = $data['shortcuts']; 
@@ -516,6 +522,9 @@ function serchilo_import_shortcuts($file = NULL, $verbose = FALSE) {
   //for debug: try to import only 1
   //$rows = array_slice($rows, 0, 1);
 
+  if ($verbose) {
+    echo "Importing shortcuts...\n";
+  }
   foreach ($rows as $row) {
     $namespace = serchilo_taxonomy_ensure_term($row['namespace'], 'namespaces');
     $shortcut = new StdClass;
