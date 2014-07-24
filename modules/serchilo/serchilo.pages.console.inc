@@ -406,26 +406,6 @@ function _serchilo_validate_namespace_path($namespace_path_original) {
   return $namespace_path_validated;
 }
 
-/**
- * Return the title for the Opensearch head link.
- *
- * @param $namespaces_path
- *    String of namespaces seperated by NAMESPACE_PATH_SEPARATOR.
- * @param $default_keyword
- *    (optional) String of the default keyword.
- * @return $title
- *    String of the Opensearch head link.
- */
-function _serchilo_opensearch_title($namespaces_path, $default_keyword = NULL) {
-  if( $default_keyword ) {
-    $title =  'Serchilo: ' . $namespaces_path . ' | ' . $default_keyword;
-  }
-  else {
-    $title =  'Serchilo: ' . $namespaces_path;
-  }
-  return $title;
-}
-
 
 /**
  * Set the default keyword of a user via drupal_static().

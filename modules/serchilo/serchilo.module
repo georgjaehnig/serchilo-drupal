@@ -43,6 +43,22 @@ function serchilo_menu() {
       'file' => 'serchilo.pages.console.inc',
     ),
 
+    OPENSEARCH_DEFINITION_PATH_AFFIX . '/' . NAMESPACES_PATH_AFFIX => array(
+      'page callback' => 'serchilo_page_opensearch',
+      'page arguments' => array(OPENSEARCH_DEFINITION_PATH_AFFIX, 2),
+      'access callback' => true,
+      'type' => MENU_CALLBACK,
+      'file' => 'serchilo.pages.opensearch.inc',
+    ),
+    OPENSEARCH_DEFINITION_PATH_AFFIX . '/' . USER_PATH_AFFIX . '/%' => array(
+      'page callback' => 'serchilo_page_opensearch',
+      'page arguments' => array(OPENSEARCH_DEFINITION_PATH_AFFIX, 2),
+      'access callback' => true,
+      'type' => MENU_CALLBACK,
+      'file' => 'serchilo.pages.opensearch.inc',
+    ),
+
+
   );
 
   return $items;
@@ -79,11 +95,12 @@ function serchilo_theme() {
       'variables' => array('query' => null), 
       'path' => drupal_get_path('module', 'serchilo') . '/templates',
     ),
-    /*
     'serchilo-opensearch' => array(
       'template' => 'serchilo-opensearch', 
       'variables' => array('content' => null), 
+      'path' => drupal_get_path('module', 'serchilo') . '/templates',
     ),
+    /*
     'serchilo-redirect' => array(
       'template' => 'serchilo-redirect', 
       'variables' => array('content' => null), 
