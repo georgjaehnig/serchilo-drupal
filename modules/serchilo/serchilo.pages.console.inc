@@ -480,7 +480,6 @@ function _serchilo_field_get_items_taxonomy_term_load_multiple($entity_type, $en
   }
 }
 
-
 /**
  * Add the Opensearch link tag to the HTML head 
  * Loads the full Taxonomy terms stored in a Entity Field.
