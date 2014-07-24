@@ -15,5 +15,8 @@ function serchilo_drush_command() {
 
 
 function drush_serchilo_import_shortcuts($file = NULL) {
-  serchilo_import_shortcuts($file, TRUE);
+  $msg = serchilo_import_shortcuts($file, TRUE);
+  if (is_string($msg)) {
+    echo $msg . "\n"; 
+  }
 }
