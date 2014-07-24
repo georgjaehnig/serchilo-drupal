@@ -497,7 +497,7 @@ function serchilo_import_shortcuts($file = NULL, $verbose = FALSE) {
   foreach ($rows as $row) {
 
     $namespace         = new StdClass;
-    $namespace->vid    = (int) $vocabularies['namespace_types']->vid;
+    $namespace->vid    = (int) $vocabularies['namespaces']->vid;
     $namespace->format = 'plain_text';
 
     foreach (array_keys($row) as $key) {
