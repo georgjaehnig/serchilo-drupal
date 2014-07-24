@@ -2,9 +2,7 @@
 
 function serchilo_page_opensearch($pathElement1, $pathElement2) {
 
-  if (isset($_GET['default_keyword'])) {
-    $default_keyword_get = $_GET['default_keyword'];
-  }
+  $default_keyword_get = drupal_array_get_nested_value($_GET, array('default_keyword'));
 
   $content['ShortName'] = _serchilo_opensearch_title($pathElement2, $default_keyword_get);
 
