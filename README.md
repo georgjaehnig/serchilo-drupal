@@ -112,6 +112,18 @@ RewriteCond %{REQUEST_URI} ^\/ajax\/u\/.*
 # must have 'query' parameter
 RewriteCond %{QUERY_STRING} (^|&)term=
 RewriteRule ^(.*)$ profiles/profilo/modules/serchilo/process/?page_type=ajax&call_type=u [L,QSA]
+
+# call with namespaces
+RewriteCond %{REQUEST_URI} ^\/opensearch-suggestions\/n\/.*
+# must have 'query' parameter
+RewriteCond %{QUERY_STRING} (^|&)query=
+RewriteRule ^(.*)$ profiles/profilo/modules/serchilo/process/?page_type=opensearch-suggestions&call_type=n [L,QSA]
+
+# call with user name
+RewriteCond %{REQUEST_URI} ^\/opensearch-suggestions\/u\/.*
+# must have 'query' parameter
+RewriteCond %{QUERY_STRING} (^|&)query=
+RewriteRule ^(.*)$ profiles/profilo/modules/serchilo/process/?page_type=opensearch-suggestions&call_type=u [L,QSA]
 ```
 
 That's it. You should now be able to see Serchilo in your browser at `http://l.serchilo/`.
