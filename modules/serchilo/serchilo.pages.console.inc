@@ -111,19 +111,6 @@ function serchilo_page_dispatch_user($page_type, $path_affix) {
 function serchilo_page_dispatch($page_type) {
   switch ($page_type) {
   case CONSOLE:
-    $default_keyword_get =& drupal_static('default_keyword_get' );
-    drupal_add_html_head_link(array(
-      'rel' => 'search',
-      'type' => 'application/opensearchdescription+xml',
-      'href' => url( 
-        OPENSEARCH_DEFINITION_PATH_AFFIX .  '/' .  arg(0) .  '/' .  arg(1),
-        array(
-          'absolute' => TRUE,
-          'query' => drupal_get_query_parameters(),
-        )
-      ),
-      'title' => _serchilo_opensearch_title(arg(1), $default_keyword_get)
-    ));
     return _serchilo_page_console();
   // TODO:
   // remove this as namespace validation (and redirection)
@@ -147,6 +134,10 @@ function serchilo_page_dispatch($page_type) {
  *   A Drupal render array.
  */
 function _serchilo_page_console() {
+
+  $default_keyword_get =& drupal_static('default_keyword_get' );
+
+  serchilo_add_opensearch_link($default_keyword_get);
 
   $autocomplete = true; 
   $content = array();
@@ -489,3 +480,19 @@ function _serchilo_field_get_items_taxonomy_term_load_multiple($entity_type, $en
   }
 }
 
+
+function serchilo_add_opensearch_link($default_keyword_get) {
+
+  drupal_add_html_head_link(array(
+    'rel' => 'search',
+    'type' => 'application/opensearchdescription+xml',
+    'href' => url( 
+      OPENSEARCH_DEFINITION_PATH_AFFIX .  '/' .  arg(0) .  '/' .  arg(1),
+      array(
+        'absolute' => TRUE,
+        'query' => drupal_get_query_parameters(),
+      )
+    ),
+    'title' => _serchilo_opensearch_title(arg(1), $default_keyword_get)
+  ));
+}
