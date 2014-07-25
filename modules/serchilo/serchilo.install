@@ -28,6 +28,7 @@ function serchilo_install(){
   // so we need to do set them manually)
   variable_set('theme_default', 'bootstrap_serchilo');
   variable_set('pathauto_node_pattern', '[node:title]');
+  variable_set('site_slogan', 'Search with Shortcuts.');
 }
 
 /**

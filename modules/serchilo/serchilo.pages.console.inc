@@ -135,6 +135,10 @@ function serchilo_page_dispatch($page_type) {
  */
 function _serchilo_page_console() {
 
+  // Make it the front page.
+  $is_front = &drupal_static('drupal_is_front_page');
+  $is_front = TRUE;
+
   $default_keyword_get =& drupal_static('default_keyword_get' );
 
   serchilo_add_opensearch_link($default_keyword_get);
