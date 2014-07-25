@@ -208,7 +208,12 @@ function serchilo_shortcut_call_form($form, $form_state, $node) {
 
   $form['arguments']['#tree'] = true;
 
-  $argument_names = explode(',', $node->field_argument_names[LANGUAGE_NONE][0]['value']);
+  if (!empty($node->field_argument_names[LANGUAGE_NONE][0]['value'])) {
+    $argument_names = explode(',', $node->field_argument_names[LANGUAGE_NONE][0]['value']);
+  }
+  else {
+    $argument_names = array();
+  }
   for ($i=0; $i<count($argument_names); $i++) {
     $argument_name = $argument_names[$i];
 
