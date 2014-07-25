@@ -192,7 +192,7 @@ function _serchilo_process_opensearch_suggestions($call_type) {
 
     $completions[] = 
       # add namespace to keyword if not reachable
-      ( (bool) $command->reachable ? '' : $command['namespace_name'] . '.' ) .
+      ( (bool) $command['reachable'] ? '' : $command['namespace_name'] . '.' ) .
       $command['keyword'] . 
       ' ' .
       join(', ', $argument_names_braces) . 
