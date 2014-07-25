@@ -192,10 +192,12 @@ function _serchilo_page_console() {
     ),
   );
 
+  /*
   # add id
   foreach ($content as $key=>$value) {
     $content[$key]['#attributes']['id'] = $key;
   }
+   */
 
   return $content;
 }
