@@ -163,6 +163,22 @@ function serchilo_node_view($node, $view_mode, $langcode) {
 
 // FORM HOOKS
 
+/**
+ * Implements hook_FORM_ID_form().
+ *
+ * Builds a form for calling a shortcut.
+ *
+ * @param array $form
+ * @param array $form_state
+ *   Standard form hook arguments.
+ *
+ * @param object $node
+ *   The node of type shortcut
+ *   to build the from.
+ *
+ * @return array $form
+ *   The built form.
+ */
 function serchilo_shortcut_call_form($form, $form_state, $node) {
 
   $form = array();
