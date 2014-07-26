@@ -262,7 +262,6 @@ function serchilo_shortcut_call_form_submit($form, &$form_state) {
     $path = 'u/' . $user->name;
   } else {
     // Anonymous user get the default language and country namespace.
-    module_load_include('inc', 'serchilo', 'serchilo.pages.console');
     $path = 'n/' .
       _serchilo_get_default_language_namespace()->name .
       '.' .
