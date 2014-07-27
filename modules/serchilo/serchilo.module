@@ -386,6 +386,9 @@ function serchilo_user_presave(&$edit, $account, $category) {
   if (empty($edit['field_country_namespace'][LANGUAGE_NONE])) {
      $edit['field_country_namespace'][LANGUAGE_NONE][0] = (array) _serchilo_get_default_country_namespace();
   }
+  // create user namespace if necessary
+  $term['field_namespace_type'][LANGUAGE_NONE][0] = (array) serchilo_taxonomy_ensure_term('user', 'namespace_types');
+  serchilo_taxonomy_ensure_term($edit['name'], 'namespaces', $term);
 }
 
 
