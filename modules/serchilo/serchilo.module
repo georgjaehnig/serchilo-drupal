@@ -563,7 +563,7 @@ function _serchilo_opensearch_title($namespaces_path, $default_keyword = NULL) {
 }
 
 
-// DISPATCH HELPER
+// DISPATCH HELPERS
 
 /**
  * Loads default language namespace.
