@@ -379,6 +379,7 @@ function serchilo_form_user_register_form_alter(&$form, &$form_state, $form_id) 
  * Implements hook_user_presave().
  */
 function serchilo_user_presave(&$edit, $account, $category) {
+  // set default language and country namespace if necessary
   if (empty($edit['field_language_namespace'][LANGUAGE_NONE])) {
      $edit['field_language_namespace'][LANGUAGE_NONE][0] = (array) _serchilo_get_default_language_namespace();
   }
