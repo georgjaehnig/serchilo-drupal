@@ -573,7 +573,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Separate tags with comma. Add any useful tags for the shortcut to be easily found in listings and autocomplete.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -926,6 +926,7 @@ function serchilo_features_field_default_field_instances() {
   t('Language namespace');
   t('Namespace');
   t('Namespace type');
+  t('Separate tags with comma. Add any useful tags for the shortcut to be easily found in listings and autocomplete.');
   t('Tags');
   t('URL');
   t('argument_count');
