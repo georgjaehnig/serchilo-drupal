@@ -27,10 +27,7 @@ mkdir serchilo
 cd serchilo
 
 # Download drupal with drush
-drush dl drupal 
-
-# Rename downloaded dir
-mv drupal-* drupal
+drush dl --drupal-project-rename
 
 # Change to profiles/
 cd drupal/profiles/
