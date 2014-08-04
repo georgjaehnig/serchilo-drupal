@@ -22,7 +22,12 @@ function serchilo_install(){
   //_serchilo_create_shortcuts_from_file();
 
   //serchilo_add_defaults_to_admin();
+}
 
+/**
+ * Implements hook_enable().
+ */
+function serchilo_enable() {
   // Set some variables
   // (Strongarm somehow looses these ones, 
   // so we need to do set them manually)
