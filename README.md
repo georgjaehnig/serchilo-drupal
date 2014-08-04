@@ -42,11 +42,6 @@ git submodule init
 git submodule update
 cd ../..
 
-# Make sure you are within the drupal/ directory
-pwd
-# [...]/drupal
-
-
 ```
 Your directory structure should now look like this:
 ```
