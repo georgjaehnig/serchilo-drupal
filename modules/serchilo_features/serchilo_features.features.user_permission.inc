@@ -198,13 +198,6 @@ function serchilo_features_user_default_permissions() {
     'module' => 'user',
   );
 
-  // Exported permission: 'administer shortcuts'.
-  $permissions['administer shortcuts'] = array(
-    'name' => 'administer shortcuts',
-    'roles' => array(),
-    'module' => 'shortcut',
-  );
-
   // Exported permission: 'administer site configuration'.
   $permissions['administer site configuration'] = array(
     'name' => 'administer site configuration',
@@ -429,13 +422,6 @@ function serchilo_features_user_default_permissions() {
     'name' => 'create url aliases',
     'roles' => array(),
     'module' => 'path',
-  );
-
-  // Exported permission: 'customize shortcut links'.
-  $permissions['customize shortcut links'] = array(
-    'name' => 'customize shortcut links',
-    'roles' => array(),
-    'module' => 'shortcut',
   );
 
   // Exported permission: 'delete any shortcut content'.
@@ -893,13 +879,6 @@ function serchilo_features_user_default_permissions() {
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'comment',
-  );
-
-  // Exported permission: 'switch shortcut sets'.
-  $permissions['switch shortcut sets'] = array(
-    'name' => 'switch shortcut sets',
-    'roles' => array(),
-    'module' => 'shortcut',
   );
 
   // Exported permission: 'switch users'.
