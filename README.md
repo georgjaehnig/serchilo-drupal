@@ -125,6 +125,7 @@ That's it. You should now be able to see Serchilo in your browser at `http://l.s
 If you already have Serchilo installed and want to update the code and Serchilo's settings:
 ```
 git pull
+drush cache-clear all
 drush pm-disable serchilo
 drush pm-enable serchilo
 ```
