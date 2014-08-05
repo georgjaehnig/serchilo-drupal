@@ -1,12 +1,5 @@
 <?php
 
-/* General TODO:
- *
- * Replace all occurences of 'command' with 'shortcut'.
- * (var and function names)
- *
- */
-
 require_once('serchilo.constants.inc');
 
 // HOOKS 
