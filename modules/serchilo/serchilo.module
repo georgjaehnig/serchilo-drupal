@@ -239,6 +239,7 @@ function serchilo_namespace_link($namespace) {
   return $namespace_link;
 }
 
+
 // NODE HOOKS
 
 /**
