@@ -74,6 +74,12 @@ function serchilo_features_views_default_views() {
       'empty_column' => 0,
     ),
   );
+  /* Header: Global: Unfiltered text */
+  $handler->display->display_options['header']['area_text_custom']['id'] = 'area_text_custom';
+  $handler->display->display_options['header']['area_text_custom']['table'] = 'views';
+  $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
+  $handler->display->display_options['header']['area_text_custom']['empty'] = TRUE;
+  $handler->display->display_options['header']['area_text_custom']['content'] = '<a href="/node/add/shortcut">Add new shortcut</a>';
   /* Field: Content: Keyword */
   $handler->display->display_options['fields']['field_keyword']['id'] = 'field_keyword';
   $handler->display->display_options['fields']['field_keyword']['table'] = 'field_data_field_keyword';
@@ -208,6 +214,7 @@ function serchilo_features_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('<a href="/node/add/shortcut">Add new shortcut</a>'),
     t('Keyword'),
     t('Arguments'),
     t('Title'),
