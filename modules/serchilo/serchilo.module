@@ -51,6 +51,14 @@ function serchilo_menu() {
       'file' => 'serchilo.pages.opensearch.inc',
     ),
 
+    'user/%user/shortcuts' => array(
+      'title' => 'My shortcuts',
+      'page callback' => 'serchilo_page_user_shortcuts',
+      'page arguments' => array(1),
+      'access callback' => TRUE,
+      'type' => MENU_LOCAL_TASK,
+      'file' => 'serchilo.pages.user.inc',
+    ),
 
   );
 
