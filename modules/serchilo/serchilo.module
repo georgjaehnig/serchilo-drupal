@@ -433,7 +433,7 @@ function serchilo_user_presave(&$edit, $account, $category) {
  */
 function serchilo_options_list_namespace_by_type($namespace_type) {
 
-  $namespace_type_id = reset(array_keys(taxonomy_get_term_by_name($namespace_type, 'namespace_types')));
+  $namespace_type_id = key(taxonomy_get_term_by_name($namespace_type, 'namespace_types'));
 
   $query = new EntityFieldQuery;
 
