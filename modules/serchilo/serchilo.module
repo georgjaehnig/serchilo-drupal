@@ -122,6 +122,125 @@ function serchilo_theme() {
   );
 }
 
+
+// BLOCK HOOKS
+
+/**
+ * Implements hook_block_info().
+ */
+function serchilo_block_info() {
+
+  $blocks = array();
+
+  $blocks['namespaces'] = array(
+    'info' => 'Namespaces',
+    'status' => 1,
+    'region' => 'header',
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function serchilo_block_view($delta='') {
+
+  $block = array();
+
+  switch ($delta) {
+    case 'namespaces':
+      $block['subject'] = NULL;
+      $block['content'] = serchilo_block_namespaces();
+      break;
+  }
+
+  return $block;
+}
+
+/**
+ * Display current namespaces.
+ */
+function serchilo_block_namespaces() {
+
+  $namespaces = drupal_static('namespaces');
+
+  // Get out if no namespaces are set.
+  if (count($namespaces) == 0) {
+    return;
+  }
+
+  // Create links for all namespaces.
+  $namespace_links = array();
+  foreach ($namespaces as $namespace) {
+    $uri = entity_uri('taxonomy_term', $namespace);
+    $namespace_links[] = array(
+      '#type' => 'link',
+      '#title' => $namespace->name,
+      '#href' => $uri['path'],
+      '#options' => $uri['options'],
+      '#attributes' => array(
+        'class' => array('namespace'),
+        'title' => $namespace->description,
+      ),
+    );
+
+  }
+
+  // Create edit link if namespaces are editable.
+  if (NAMESPACES_PATH_AFFIX == arg(0)) {
+    $link_path = NAMESPACES_PATH_AFFIX . '/' . arg(1) . '/edit';
+  }
+  else if (user_is_logged_in()) {
+    $uri = entity_uri('user', $GLOBALS['user']);
+    $link_path = $uri['path'] . '/edit';
+  }
+
+  if (isset($link_path)) {
+    $edit_link = array(
+      '#type' => 'link',
+      '#title' => 'change',
+      '#href' => $link_path,
+      '#attributes' => array(
+        'class' => array('tab'),
+      ),
+    );
+  }
+  else {
+    $edit_link = array();
+  }
+ 
+  return array_merge(
+    $namespace_links,
+    array($edit_link)
+  );
+}
+
+function serchilo_namespace_link($namespace) {
+
+  if (!$namespace) {
+    return; 
+  }
+  $namespace_link = array(
+    '#type' => 'link',
+    '#title' => $namespace->name,
+    '#href' => 'commands',
+    '#options' => array(
+      'query' => array(
+        'namespace' => $namespace->name,
+      ),
+    ),
+    '#attributes' => array(
+      'class' => array('namespace'),
+      'title' => $namespace->description,
+    ),
+  );
+
+  return $namespace_link;
+}
+
+// NODE HOOKS
+
 /**
  * Implements hook_node_insert().
  */
