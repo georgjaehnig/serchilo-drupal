@@ -179,6 +179,43 @@ function serchilo_features_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'field_collection_item-field_test-field_test_passed'
+  $field_instances['field_collection_item-field_test-field_test_passed'] = array(
+    'bundle' => 'field_test',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'If true, the last test succeeded. If false, it failed.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_test_passed',
+    'label' => 'Test passed',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 3,
+    ),
+  );
+
   // Exported field_instance: 'node-shortcut-field_argument_count'
   $field_instances['node-shortcut-field_argument_count'] = array(
     'bundle' => 'shortcut',
@@ -930,6 +967,7 @@ function serchilo_features_field_default_field_instances() {
   t('Examples');
   t('Examples show how the command can be used. Add various examples to cover as many use cases as possible.');
   t('Expected content');
+  t('If true, the last test succeeded. If false, it failed.');
   t('If true, the redirect will be done through a HTML page displayed by Serchilo. Thus, the target site will get Serchilo as a referrer site. Useful for affiliate links that require a correct referrer.');
   t('If true, the shortcut will not be shown in the shortcut view or in the autocomplete. Useful for outdated shortcuts, only redirecting the the current shortcut page.');
   t('Input Encoding');
@@ -943,6 +981,7 @@ function serchilo_features_field_default_field_instances() {
   t('Tags');
   t('Test');
   t('Test arguments to call this shortcut. Separate multiple arguments with comma.');
+  t('Test passed');
   t('The URL can contain placeholders of the form {s:foo}. A change will result in saving only a draft, needed to be moderated by an editor.');
   t('The argument count is extracted automatically from the URL.');
   t('The argument names are extracted automatically from the URL.');
