@@ -13,7 +13,7 @@
  * @return
  *   Associative array of the found shortcut.
  */
-function serchilo_find_command($keyword, $argument_count, $namespace_ids) {
+function serchilo_find_shortcut($keyword, $argument_count, $namespace_ids) {
 
   global $mysqli;
 
@@ -69,7 +69,7 @@ function serchilo_find_command($keyword, $argument_count, $namespace_ids) {
  * @return
  *   Array of associative arrays of the found shortcuts.
  */
-function serchilo_search_commands( $keyword, $arguments, $query, $namespace_ids, $limit = 20 ) {
+function serchilo_search_shortcuts( $keyword, $arguments, $query, $namespace_ids, $limit = 20 ) {
 
   global $mysqli;
 
@@ -126,7 +126,7 @@ WHERE
   )
 
   # if extra_namespace_id set:
-  # command MUST be in extra_namespace 
+  # shortcut MUST be in extra_namespace 
   AND IF (
     :extra_namespace_id, 
     namespace_id = :extra_namespace_id, 
@@ -183,9 +183,9 @@ LIMIT " . (int) $limit . ";
   if (!$result) {
     return; 
   }
-  $commands = $result->fetch_all(MYSQLI_ASSOC);
+  $shortcuts = $result->fetch_all(MYSQLI_ASSOC);
 
-  return $commands;
+  return $shortcuts;
 }
 
 /**
@@ -279,7 +279,7 @@ function serchilo_get_namespace_id($namespace_name) {
   return $row['tid'];
 }
 
-function serchilo_call_command($command, $arguments, $variables, $redirect = TRUE) {
+function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = TRUE) {
   
 /*
   $language_namespace = drupal_static('language_namespace');
@@ -304,25 +304,25 @@ function serchilo_call_command($command, $arguments, $variables, $redirect = TRU
     'user:id' => ($user_namespace ? user_load_by_name($user_namespace->name)->uid : ''), 
   );
 
-  if (strpos($command->url, '{country:alpha2}') !== false) {
+  if (strpos($shortcut->url, '{country:alpha2}') !== false) {
     module_load_include('inc', 'serchilo', 'serchilo.countries');
     $variables['country:alpha2'] = serchilo_country_alpha3_to_alpha2($country_namespace->name);
   }
  */
 
-  $input_encoding = $command['input_encoding'];
+  $input_encoding = $shortcut['input_encoding'];
 
-  $url = serchilo_replace_url_arguments($command['url'], $arguments, $variables, $input_encoding);
+  $url = serchilo_replace_url_arguments($shortcut['url'], $arguments, $variables, $input_encoding);
 
-  //serchilo_log_call($command, $arguments);
+  //serchilo_log_call($shortcut, $arguments);
   
   if ($redirect) {
-    if (empty($command['set_referrer'])) {
+    if (empty($shortcut['set_referrer'])) {
       // classic redirect
       header('Location: ' . $url);
     }
     else {
-      // redirect for commands which need a referrer
+      // redirect for shortcuts which need a referrer
       #serchilo_redirect_via_html($url);
 	// TODO: ...
       header('Location: ' . $url);

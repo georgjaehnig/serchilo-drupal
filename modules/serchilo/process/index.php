@@ -32,7 +32,7 @@ function serchilo_connect_db() {
 
 /**
  * Dispatch the request.
- * Can be a command call ('console') to redirect to a target
+ * Can be a shortcut call ('console') to redirect to a target
  * or an AJAX ('ajax') call to get some JSON (for autocomplete).
  */
 function serchilo_dispatch() {
@@ -58,7 +58,7 @@ function serchilo_dispatch() {
 }
 
 /**
- * Process a command call query.
+ * Process a shortcut call query.
  *
  * @param string $call_type
  *   Can be 
@@ -84,12 +84,12 @@ function serchilo_process_query_console($call_type) {
 
   // TODO:
   // default_keyword
-  $command = serchilo_find_command($keyword, count($arguments), $namespace_ids);
+  $shortcut = serchilo_find_shortcut($keyword, count($arguments), $namespace_ids);
   #print_r($variables);
-  #print_r($command);
-  if ($command) {
+  #print_r($shortcut);
+  if ($shortcut) {
     $variables = serchilo_get_url_variables($namespace_names, $extra_namespace_name);
-    serchilo_call_command($command, $arguments, $variables);
+    serchilo_call_shortcut($shortcut, $arguments, $variables);
   }
   else {
     // redirect to Serchilo website
@@ -123,27 +123,27 @@ function serchilo_process_query_ajax($call_type) {
     break;
   }
 
-  $commands = serchilo_search_commands( $keyword, $arguments, $query, $namespace_ids );
+  $shortcuts = serchilo_search_shortcuts( $keyword, $arguments, $query, $namespace_ids );
   
   // filter keys that are allowed to be public
-  $commands = array_map(
-    function($command) {
-      $filtered_command = array(
-        $command['nid'], 
-        $command['keyword'], 
-        $command['argument_names'], 
-        $command['title'], 
-        $command['namespace_name'], 
-        (int) $command['reachable'], 
+  $shortcuts = array_map(
+    function($shortcut) {
+      $filtered_shortcut = array(
+        $shortcut['nid'], 
+        $shortcut['keyword'], 
+        $shortcut['argument_names'], 
+        $shortcut['title'], 
+        $shortcut['namespace_name'], 
+        (int) $shortcut['reachable'], 
       );
-      return $filtered_command;
+      return $filtered_shortcut;
     },
-    $commands
+    $shortcuts
   );
 
   require_once('../../../../../includes/common.inc');
   require_once('../../../../../includes/bootstrap.inc');
-  drupal_json_output($commands);
+  drupal_json_output($shortcuts);
 }
 
 /**
@@ -171,17 +171,17 @@ function serchilo_process_opensearch_suggestions($call_type) {
     break;
   }
 
-  $commands = serchilo_search_commands( $keyword, $arguments, $query, $namespace_ids );
+  $shortcuts = serchilo_search_shortcuts( $keyword, $arguments, $query, $namespace_ids );
   
   $completions = array();
   $descriptions = array();
 
-  foreach ($commands as $command) {
+  foreach ($shortcuts as $shortcut) {
 
     # add braces to argument names
     $argument_names_braces = array();
 
-    foreach (explode(',', $command['argument_names']) as $argument_name) {
+    foreach (explode(',', $shortcut['argument_names']) as $argument_name) {
 
       $argument_name = trim($argument_name);
       if ($argument_name == '') {
@@ -192,12 +192,12 @@ function serchilo_process_opensearch_suggestions($call_type) {
 
     $completions[] = 
       # add namespace to keyword if not reachable
-      ( (bool) $command['reachable'] ? '' : $command['namespace_name'] . '.' ) .
-      $command['keyword'] . 
+      ( (bool) $shortcut['reachable'] ? '' : $shortcut['namespace_name'] . '.' ) .
+      $shortcut['keyword'] . 
       ' ' .
       join(', ', $argument_names_braces) . 
       '';
-    $descriptions[] = $command['title']; 
+    $descriptions[] = $shortcut['title']; 
   }
 
   $output = array(
