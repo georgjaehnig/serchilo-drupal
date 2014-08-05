@@ -65,6 +65,15 @@ function serchilo_menu() {
   return $items;
 }
 
+
+/**
+ * Implements hook_menu_alter().
+ */
+function serchilo_menu_alter(&$items) {
+  # rename edit tab
+  $items['user/%user/edit']['title'] = 'My account';
+}
+
 /**
  * Implements hook_node_presave().
  */
