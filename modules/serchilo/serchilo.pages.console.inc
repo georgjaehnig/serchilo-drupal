@@ -173,8 +173,8 @@ function serchilo_page_console() {
   $namespace_names = drupal_static('namespace_names');
 
   /*
-  $commands_of_current_namespaces_url = url(
-    'commands',
+  $shortcuts_of_current_namespaces_url = url(
+    'shortcuts',
     array(
       'query' => array(
         'namespace' => join(',', $namespace_names),
@@ -182,7 +182,7 @@ function serchilo_page_console() {
     )
   );
    */
-  $commands_of_current_namespaces_url = url('shortcuts');
+  $shortcuts_of_current_namespaces_url = url('shortcuts');
 
   $content['console'] = array(
     '#type' => 'markup',
@@ -191,7 +191,7 @@ function serchilo_page_console() {
       array(
         'query' => (string) $query,
         'default_keyword' => (string) $default_keyword,
-        'commands_of_current_namespaces_url' => $commands_of_current_namespaces_url,
+        'shortcuts_of_current_namespaces_url' => $shortcuts_of_current_namespaces_url,
       )
     ),
   );
