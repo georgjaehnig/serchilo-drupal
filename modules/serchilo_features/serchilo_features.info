@@ -31,7 +31,6 @@ dependencies[] = path
 dependencies[] = pathauto
 dependencies[] = revisioning
 dependencies[] = revisioning_ux
-dependencies[] = shortcut
 dependencies[] = strongarm
 dependencies[] = system
 dependencies[] = taxonomy
