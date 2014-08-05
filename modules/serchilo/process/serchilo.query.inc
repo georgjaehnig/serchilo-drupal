@@ -13,7 +13,7 @@
  * @return
  *   Associative array of the found shortcut.
  */
-function _serchilo_find_command($keyword, $argument_count, $namespace_ids) {
+function serchilo_find_command($keyword, $argument_count, $namespace_ids) {
 
   global $mysqli;
 
@@ -69,7 +69,7 @@ function _serchilo_find_command($keyword, $argument_count, $namespace_ids) {
  * @return
  *   Array of associative arrays of the found shortcuts.
  */
-function _serchilo_search_commands( $keyword, $arguments, $query, $namespace_ids, $limit = 20 ) {
+function serchilo_search_commands( $keyword, $arguments, $query, $namespace_ids, $limit = 20 ) {
 
   global $mysqli;
 
@@ -160,7 +160,7 @@ LIMIT " . (int) $limit . ";
 
   ";
 
-  $sql = _serchilo_replace_sql_arguments(
+  $sql = serchilo_replace_sql_arguments(
     $mysqli, 
     $sql,
     array(
@@ -196,9 +196,9 @@ LIMIT " . (int) $limit . ";
  * @return
  *   Array of query items.
  */
-function _serchilo_parse_query($query) {
-  list($keyword, $arguments) = _serchilo_extract_keyword_and_arguments($query);
-  list($keyword, $extra_namespace_name) = _serchilo_get_extra_namespace_from_keyword($keyword);
+function serchilo_parse_query($query) {
+  list($keyword, $arguments) = serchilo_extract_keyword_and_arguments($query);
+  list($keyword, $extra_namespace_name) = serchilo_get_extra_namespace_from_keyword($keyword);
   return array($keyword, $arguments, $extra_namespace_name);
 }
 
@@ -210,7 +210,7 @@ function _serchilo_parse_query($query) {
  * @return
  *   Array of keyword and extra namespace (empty string if not existing).
  */
-function _serchilo_get_extra_namespace_from_keyword($keyword) {
+function serchilo_get_extra_namespace_from_keyword($keyword) {
   # try to extract extra namespace from query
   # e.g.: de.w berlin
   $extra_namespace_name = '';
@@ -231,7 +231,7 @@ function _serchilo_get_extra_namespace_from_keyword($keyword) {
  * @return
  *   Array of keyword and arguments.
  */
-function _serchilo_extract_keyword_and_arguments($query, $max_arguments = -1) {
+function serchilo_extract_keyword_and_arguments($query, $max_arguments = -1) {
 
   # extract keyword and arguments
   $keyword_arguments = preg_split('/\s+/', $query, 2);
@@ -259,7 +259,7 @@ function _serchilo_extract_keyword_and_arguments($query, $max_arguments = -1) {
  *   ID of given namespace name.
  *   0 if not found.
  */
-function _serchilo_get_namespace_id($namespace_name) {
+function serchilo_get_namespace_id($namespace_name) {
 
   global $mysqli;
 
@@ -279,7 +279,7 @@ function _serchilo_get_namespace_id($namespace_name) {
   return $row['tid'];
 }
 
-function _serchilo_call_command($command, $arguments, $variables, $redirect = TRUE) {
+function serchilo_call_command($command, $arguments, $variables, $redirect = TRUE) {
   
 /*
   $language_namespace = drupal_static('language_namespace');
@@ -292,7 +292,7 @@ function _serchilo_call_command($command, $arguments, $variables, $redirect = TR
   # if it is a language namespace
   if (
     ($extra_namespace) &&
-    ( 'language' == array_shift(_serchilo_field_get_items_taxonomy_term_names('taxonomy_term', $extra_namespace, 'field_namespace_type')) )
+    ( 'language' == array_shift(serchilo_field_get_items_taxonomy_term_names('taxonomy_term', $extra_namespace, 'field_namespace_type')) )
   ) {
     $language_namespace = $extra_namespace;
   }
@@ -312,9 +312,9 @@ function _serchilo_call_command($command, $arguments, $variables, $redirect = TR
 
   $input_encoding = $command['input_encoding'];
 
-  $url = _serchilo_replace_url_arguments($command['url'], $arguments, $variables, $input_encoding);
+  $url = serchilo_replace_url_arguments($command['url'], $arguments, $variables, $input_encoding);
 
-  //_serchilo_log_call($command, $arguments);
+  //serchilo_log_call($command, $arguments);
   
   if ($redirect) {
     if (empty($command['set_referrer'])) {
@@ -323,7 +323,7 @@ function _serchilo_call_command($command, $arguments, $variables, $redirect = TR
     }
     else {
       // redirect for commands which need a referrer
-      #_serchilo_redirect_via_html($url);
+      #serchilo_redirect_via_html($url);
 	// TODO: ...
       header('Location: ' . $url);
     }
@@ -335,7 +335,7 @@ function _serchilo_call_command($command, $arguments, $variables, $redirect = TR
   #return '.';
 }
 
-function _serchilo_replace_url_arguments($url, $arguments, $variables, $input_encoding = 'utf-8')
+function serchilo_replace_url_arguments($url, $arguments, $variables, $input_encoding = 'utf-8')
 {
   foreach ($variables as $key=>$value) {
     $url = str_replace(
@@ -381,7 +381,7 @@ function _serchilo_replace_url_arguments($url, $arguments, $variables, $input_en
   return $url;
 }
 
-function _serchilo_get_url_variables($namespace_names, $extra_namespace_name) {
+function serchilo_get_url_variables($namespace_names, $extra_namespace_name) {
   $variables = array();
   $variables['language'] = $namespace_names[1];
   $variables['country:alpha3'] = $namespace_names[2];
@@ -401,7 +401,7 @@ function _serchilo_get_url_variables($namespace_names, $extra_namespace_name) {
   return $variables;
 }
 
-function _serchilo_replace_sql_arguments($mysqli, $sql_template, $arguments, $left_delimiter = ':', $right_delimiter = '') {
+function serchilo_replace_sql_arguments($mysqli, $sql_template, $arguments, $left_delimiter = ':', $right_delimiter = '') {
   $sql_replaced = $sql_template;
   foreach ($arguments as $key=>$value) {
     $value_escaped = $mysqli->real_escape_string($value);
@@ -410,14 +410,14 @@ function _serchilo_replace_sql_arguments($mysqli, $sql_template, $arguments, $le
   return $sql_replaced;
 }
 
-function _serchilo_get_namespace_ids_from_user($user_name) {
+function serchilo_get_namespace_ids_from_user($user_name) {
 
-  $user_id = _serchilo_get_values_from_table('users', 'name', $user_name, 'uid', TRUE)[0];
+  $user_id = serchilo_get_values_from_table('users', 'name', $user_name, 'uid', TRUE)[0];
 
-  $star_namespace_id     = _serchilo_get_namespace_id(STAR_NAMESPACE);
-  $language_namespace_id = _serchilo_get_values_from_table('field_data_field_language_namespace', 'entity_id', $user_id, 'field_language_namespace_tid')[0];
-  $country_namespace_id  = _serchilo_get_values_from_table('field_data_field_country_namespace', 'entity_id', $user_id, 'field_country_namespace_tid')[0];
-  $custom_namespace_ids  = _serchilo_get_values_from_table('field_data_field_custom_namespaces', 'entity_id', $user_id, 'field_custom_namespaces_tid');
+  $star_namespace_id     = serchilo_get_namespace_id(STAR_NAMESPACE);
+  $language_namespace_id = serchilo_get_values_from_table('field_data_field_language_namespace', 'entity_id', $user_id, 'field_language_namespace_tid')[0];
+  $country_namespace_id  = serchilo_get_values_from_table('field_data_field_country_namespace', 'entity_id', $user_id, 'field_country_namespace_tid')[0];
+  $custom_namespace_ids  = serchilo_get_values_from_table('field_data_field_custom_namespaces', 'entity_id', $user_id, 'field_custom_namespaces_tid');
 
   $namespace_ids = array_merge(
     array(
@@ -431,7 +431,7 @@ function _serchilo_get_namespace_ids_from_user($user_name) {
   return $namespace_ids;
 }
 
-function _serchilo_get_values_from_table($table, $where_column_name, $where_value, $value_column_name) {
+function serchilo_get_values_from_table($table, $where_column_name, $where_value, $value_column_name) {
 
   global $mysqli;
 
@@ -452,15 +452,15 @@ function _serchilo_get_values_from_table($table, $where_column_name, $where_valu
   return $values;
 }
 
-function _serchilo_get_path_elements() {
+function serchilo_get_path_elements() {
   $path = $_SERVER['REDIRECT_URL'];
   // example: '/n/en.usa'
   $path_elements = explode('/', $path);
   return $path_elements;
 }
 
-function _serchilo_get_namespace_names_from_path($path_elements_offset = 0) {
-  $path_elements = _serchilo_get_path_elements();
+function serchilo_get_namespace_names_from_path($path_elements_offset = 0) {
+  $path_elements = serchilo_get_path_elements();
   if ('n' == $path_elements[$path_elements_offset + 1]) {
     $namespace_names = explode('.', $path_elements[$path_elements_offset + 2]);
     array_unshift($namespace_names, STAR_NAMESPACE);
@@ -468,8 +468,8 @@ function _serchilo_get_namespace_names_from_path($path_elements_offset = 0) {
   }
 }
 
-function _serchilo_get_user_name_from_path($path_elements_offset = 0) {
-  $path_elements = _serchilo_get_path_elements();
+function serchilo_get_user_name_from_path($path_elements_offset = 0) {
+  $path_elements = serchilo_get_path_elements();
   if ('u' == $path_elements[$path_elements_offset + 1]) {
     return $path_elements[$path_elements_offset + 2];
   }

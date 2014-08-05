@@ -3,11 +3,11 @@
 require_once('../serchilo.constants.inc');
 require_once('serchilo.query.inc');
 
-_serchilo_connect_db();
+serchilo_connect_db();
 
-define('NAMESPACE_VOCABULARY_ID', _serchilo_get_values_from_table('taxonomy_vocabulary', 'machine_name', 'namespaces', 'vid')[0]);
+define('NAMESPACE_VOCABULARY_ID', serchilo_get_values_from_table('taxonomy_vocabulary', 'machine_name', 'namespaces', 'vid')[0]);
 
-_serchilo_dispatch();
+serchilo_dispatch();
 
 # --------------------------------
 
@@ -15,7 +15,7 @@ _serchilo_dispatch();
  * Connect to the database using Drupal's settings.
  * Remeber connection in global $mysqli.
  */
-function _serchilo_connect_db() {
+function serchilo_connect_db() {
 
   global $mysqli;
 
@@ -35,7 +35,7 @@ function _serchilo_connect_db() {
  * Can be a command call ('console') to redirect to a target
  * or an AJAX ('ajax') call to get some JSON (for autocomplete).
  */
-function _serchilo_dispatch() {
+function serchilo_dispatch() {
 
   $page_type = $_GET['page_type'];
 
@@ -46,13 +46,13 @@ function _serchilo_dispatch() {
 
   switch ($page_type) {
   case CONSOLE:
-    _serchilo_process_query_console($call_type);
+    serchilo_process_query_console($call_type);
     break;
   case AUTOCOMPLETE_PATH_AFFIX:
-    _serchilo_process_query_ajax($call_type);
+    serchilo_process_query_ajax($call_type);
     break;
   case OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
-    _serchilo_process_opensearch_suggestions($call_type);
+    serchilo_process_opensearch_suggestions($call_type);
     break;
   }
 }
@@ -65,31 +65,31 @@ function _serchilo_dispatch() {
  *   'n' for a call with namespaces or
  *   'u' for a call with a username.
  */
-function _serchilo_process_query_console($call_type) {
+function serchilo_process_query_console($call_type) {
 
   $query = $_GET['query'];
 
   switch ($call_type) {
   case 'n':
-    $namespace_names = _serchilo_get_namespace_names_from_path();
-    list($keyword, $arguments, $extra_namespace_name) = _serchilo_parse_query($query);
-    $namespace_ids = array_map('_serchilo_get_namespace_id', array_merge($namespace_names, array($extra_namespace_name)));
+    $namespace_names = serchilo_get_namespace_names_from_path();
+    list($keyword, $arguments, $extra_namespace_name) = serchilo_parse_query($query);
+    $namespace_ids = array_map('serchilo_get_namespace_id', array_merge($namespace_names, array($extra_namespace_name)));
     break;
   case 'u':
-    list($keyword, $arguments, $extra_namespace_name) = _serchilo_parse_query($query);
-    $user_name = _serchilo_get_user_name_from_path();
-    $namespace_ids = _serchilo_get_namespace_ids_from_user($user_name);
+    list($keyword, $arguments, $extra_namespace_name) = serchilo_parse_query($query);
+    $user_name = serchilo_get_user_name_from_path();
+    $namespace_ids = serchilo_get_namespace_ids_from_user($user_name);
     break;
   }
 
   // TODO:
   // default_keyword
-  $command = _serchilo_find_command($keyword, count($arguments), $namespace_ids);
+  $command = serchilo_find_command($keyword, count($arguments), $namespace_ids);
   #print_r($variables);
   #print_r($command);
   if ($command) {
-    $variables = _serchilo_get_url_variables($namespace_names, $extra_namespace_name);
-    _serchilo_call_command($command, $arguments, $variables);
+    $variables = serchilo_get_url_variables($namespace_names, $extra_namespace_name);
+    serchilo_call_command($command, $arguments, $variables);
   }
   else {
     // redirect to Serchilo website
@@ -106,24 +106,24 @@ function _serchilo_process_query_console($call_type) {
  *   'n' for a call with namespaces or
  *   'u' for a call with a username.
  */
-function _serchilo_process_query_ajax($call_type) {
+function serchilo_process_query_ajax($call_type) {
 
   $query = $_GET['term'];
 
   switch ($call_type) {
   case 'n':
-    $namespace_names = _serchilo_get_namespace_names_from_path(1);
-    list($keyword, $arguments, $extra_namespace_name) = _serchilo_parse_query($query);
-    $namespace_ids = array_map('_serchilo_get_namespace_id', array_merge($namespace_names, array($extra_namespace_name)));
+    $namespace_names = serchilo_get_namespace_names_from_path(1);
+    list($keyword, $arguments, $extra_namespace_name) = serchilo_parse_query($query);
+    $namespace_ids = array_map('serchilo_get_namespace_id', array_merge($namespace_names, array($extra_namespace_name)));
     break;
   case 'u':
-    list($keyword, $arguments, $extra_namespace_name) = _serchilo_parse_query($query);
-    $user_name = _serchilo_get_user_name_from_path(1);
-    $namespace_ids = _serchilo_get_namespace_ids_from_user($user_name);
+    list($keyword, $arguments, $extra_namespace_name) = serchilo_parse_query($query);
+    $user_name = serchilo_get_user_name_from_path(1);
+    $namespace_ids = serchilo_get_namespace_ids_from_user($user_name);
     break;
   }
 
-  $commands = _serchilo_search_commands( $keyword, $arguments, $query, $namespace_ids );
+  $commands = serchilo_search_commands( $keyword, $arguments, $query, $namespace_ids );
   
   // filter keys that are allowed to be public
   $commands = array_map(
@@ -154,24 +154,24 @@ function _serchilo_process_query_ajax($call_type) {
  *   'n' for a call with namespaces or
  *   'u' for a call with a username.
  */
-function _serchilo_process_opensearch_suggestions($call_type) {
+function serchilo_process_opensearch_suggestions($call_type) {
 
   $query = $_GET['query'];
 
   switch ($call_type) {
   case 'n':
-    $namespace_names = _serchilo_get_namespace_names_from_path(1);
-    list($keyword, $arguments, $extra_namespace_name) = _serchilo_parse_query($query);
-    $namespace_ids = array_map('_serchilo_get_namespace_id', array_merge($namespace_names, array($extra_namespace_name)));
+    $namespace_names = serchilo_get_namespace_names_from_path(1);
+    list($keyword, $arguments, $extra_namespace_name) = serchilo_parse_query($query);
+    $namespace_ids = array_map('serchilo_get_namespace_id', array_merge($namespace_names, array($extra_namespace_name)));
     break;
   case 'u':
-    list($keyword, $arguments, $extra_namespace_name) = _serchilo_parse_query($query);
-    $user_name = _serchilo_get_user_name_from_path(1);
-    $namespace_ids = _serchilo_get_namespace_ids_from_user($user_name);
+    list($keyword, $arguments, $extra_namespace_name) = serchilo_parse_query($query);
+    $user_name = serchilo_get_user_name_from_path(1);
+    $namespace_ids = serchilo_get_namespace_ids_from_user($user_name);
     break;
   }
 
-  $commands = _serchilo_search_commands( $keyword, $arguments, $query, $namespace_ids );
+  $commands = serchilo_search_commands( $keyword, $arguments, $query, $namespace_ids );
   
   $completions = array();
   $descriptions = array();
