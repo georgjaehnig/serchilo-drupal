@@ -48,7 +48,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'field_example',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Example arguments to call this shortcut. Separate multiple arguments with comma.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -82,7 +82,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'field_example',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Where will this example call be redirected?',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -116,7 +116,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'field_test',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Test arguments to call this shortcut. Separate multiple arguments with comma.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -150,7 +150,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'field_test',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Content that the target page must contain.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -188,7 +188,7 @@ function serchilo_features_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The argument count is extracted automatically from the URL.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -211,7 +211,7 @@ function serchilo_features_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_argument_count',
-    'label' => 'argument_count',
+    'label' => 'Argument count',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -234,7 +234,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The argument names are extracted automatically from the URL.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -252,7 +252,7 @@ function serchilo_features_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_argument_names',
-    'label' => 'argument_names',
+    'label' => 'Argument names',
     'required' => 0,
     'settings' => array(
       'text_processing' => 0,
@@ -274,7 +274,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Ensures backwards compatibility to the old (Drupal) Serchilo (launched 2013). Requests calling command/[command_id] can be redirected to the current Shortcut node page.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -297,7 +297,7 @@ function serchilo_features_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_command_id',
-    'label' => 'command_id',
+    'label' => 'Command ID',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -320,7 +320,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Examples show how the command can be used. Add various examples to cover as many use cases as possible.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -367,7 +367,7 @@ function serchilo_features_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The arguments from the query will be encoded in the URL with the encoding provided here.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -410,7 +410,7 @@ function serchilo_features_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => '',
+    'description' => 'If true, the shortcut will not be shown in the shortcut view or in the autocomplete. Useful for outdated shortcuts, only redirecting the the current shortcut page.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -428,7 +428,7 @@ function serchilo_features_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_invisible',
-    'label' => 'invisible',
+    'label' => 'Invisible',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -489,7 +489,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'A change will result in saving only a draft, needed to be moderated by an editor.',
+    'description' => 'The shortcut will be available only to users using this namespace. A change will result in saving only a draft, needed to be moderated by an editor.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -534,7 +534,7 @@ function serchilo_features_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => '',
+    'description' => 'If true, the redirect will be done through a HTML page displayed by Serchilo. Thus, the target site will get Serchilo as a referrer site. Useful for affiliate links that require a correct referrer.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -552,7 +552,7 @@ function serchilo_features_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_set_referrer',
-    'label' => 'set_referrer',
+    'label' => 'Set referrer',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -573,7 +573,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Separate tags with comma. Add any useful tags for the shortcut to be easily found in listings and autocomplete.',
+    'description' => 'Separate tags with comma. Add any useful tags for the shortcut to be easily found in listings and autocomplete. Tags do not influence the availability of a shortcut.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -614,7 +614,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Allows regular automatic testing if the shortcut URL is still valid.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -638,7 +638,7 @@ function serchilo_features_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_test',
-    'label' => 'test',
+    'label' => 'Test',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -657,7 +657,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'A change will result in saving only a draft, needed to be moderated by an editor.',
+    'description' => 'The URL can contain placeholders of the form {s:foo}. A change will result in saving only a draft, needed to be moderated by an editor.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -701,7 +701,7 @@ function serchilo_features_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Calculated automatically from usage statistics. Can be used to improve the order of the listed shortcuts in the shortcut view or autocomplete.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -724,7 +724,7 @@ function serchilo_features_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_weight',
-    'label' => 'weight',
+    'label' => 'Weight',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -913,29 +913,44 @@ function serchilo_features_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('A change will result in saving only a draft, needed to be moderated by an editor.');
+  t('Allows regular automatic testing if the shortcut URL is still valid.');
+  t('Argument count');
+  t('Argument names');
   t('Arguments');
+  t('Calculated automatically from usage statistics. Can be used to improve the order of the listed shortcuts in the shortcut view or autocomplete.');
+  t('Command ID');
   t('Comment');
+  t('Content that the target page must contain.');
   t('Country namespace');
   t('Custom namespaces');
   t('Default keyword');
   t('Description');
+  t('Ensures backwards compatibility to the old (Drupal) Serchilo (launched 2013). Requests calling command/[command_id] can be redirected to the current Shortcut node page.');
+  t('Example arguments to call this shortcut. Separate multiple arguments with comma.');
   t('Examples');
+  t('Examples show how the command can be used. Add various examples to cover as many use cases as possible.');
   t('Expected content');
+  t('If true, the redirect will be done through a HTML page displayed by Serchilo. Thus, the target site will get Serchilo as a referrer site. Useful for affiliate links that require a correct referrer.');
+  t('If true, the shortcut will not be shown in the shortcut view or in the autocomplete. Useful for outdated shortcuts, only redirecting the the current shortcut page.');
   t('Input Encoding');
+  t('Invisible');
   t('Keyword');
   t('Language namespace');
   t('Namespace');
   t('Namespace type');
-  t('Separate tags with comma. Add any useful tags for the shortcut to be easily found in listings and autocomplete.');
+  t('Separate tags with comma. Add any useful tags for the shortcut to be easily found in listings and autocomplete. Tags do not influence the availability of a shortcut.');
+  t('Set referrer');
   t('Tags');
+  t('Test');
+  t('Test arguments to call this shortcut. Separate multiple arguments with comma.');
+  t('The URL can contain placeholders of the form {s:foo}. A change will result in saving only a draft, needed to be moderated by an editor.');
+  t('The argument count is extracted automatically from the URL.');
+  t('The argument names are extracted automatically from the URL.');
+  t('The arguments from the query will be encoded in the URL with the encoding provided here.');
+  t('The shortcut will be available only to users using this namespace. A change will result in saving only a draft, needed to be moderated by an editor.');
   t('URL');
-  t('argument_count');
-  t('argument_names');
-  t('command_id');
-  t('invisible');
-  t('set_referrer');
-  t('test');
-  t('weight');
+  t('Weight');
+  t('Where will this example call be redirected?');
 
   return $field_instances;
 }

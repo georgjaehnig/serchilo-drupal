@@ -85,7 +85,7 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['fields']['field_keyword']['table'] = 'field_data_field_keyword';
   $handler->display->display_options['fields']['field_keyword']['field'] = 'field_keyword';
   $handler->display->display_options['fields']['field_keyword']['element_label_colon'] = FALSE;
-  /* Field: Content: argument_names */
+  /* Field: Content: Argument names */
   $handler->display->display_options['fields']['field_argument_names']['id'] = 'field_argument_names';
   $handler->display->display_options['fields']['field_argument_names']['table'] = 'field_data_field_argument_names';
   $handler->display->display_options['fields']['field_argument_names']['field'] = 'field_argument_names';
