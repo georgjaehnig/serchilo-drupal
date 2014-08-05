@@ -220,8 +220,8 @@ function serchilo_page_console() {
 function serchilo_validate_and_set_namespaces($path_elements = array()) {
 
   # get language and country namespace types
-  $namespace_type_language_id = array_shift(taxonomy_get_term_by_name('language', 'namespace_types')?:0)->tid;
-  $namespace_type_country_id = array_shift(taxonomy_get_term_by_name('country', 'namespace_types')?:0)->tid;
+  $namespace_type_language_id = current(taxonomy_get_term_by_name('language', 'namespace_types'))->tid;
+  $namespace_type_country_id = current(taxonomy_get_term_by_name('country', 'namespace_types'))->tid;
 
   # no namespace duplicates
   # keep namespaces 'from right', e.g.
@@ -265,7 +265,7 @@ function serchilo_validate_and_set_namespaces($path_elements = array()) {
 
   # set star namespace as first if not already in path
   if (!isset($star_namespace)) {
-    $star_namespace = array_shift(taxonomy_get_term_by_name(STAR_NAMESPACE, 'namespaces')?:0); 
+    $star_namespace = current(taxonomy_get_term_by_name(STAR_NAMESPACE, 'namespaces')); 
     array_unshift($namespaces, $star_namespace);
   }
 

@@ -656,7 +656,7 @@ function serchilo_get_default_language_namespace() {
   global $language;
 
   $default_language = $language->language;
-  $language_namespace = array_shift(taxonomy_get_term_by_name($default_language, 'namespaces')?:0); 
+  $language_namespace = current(taxonomy_get_term_by_name($default_language, 'namespaces')); 
 
   return $language_namespace;
 }
