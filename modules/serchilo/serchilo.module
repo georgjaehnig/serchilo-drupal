@@ -216,29 +216,6 @@ function serchilo_block_namespaces() {
   );
 }
 
-function serchilo_namespace_link($namespace) {
-
-  if (!$namespace) {
-    return; 
-  }
-  $namespace_link = array(
-    '#type' => 'link',
-    '#title' => $namespace->name,
-    '#href' => 'commands',
-    '#options' => array(
-      'query' => array(
-        'namespace' => $namespace->name,
-      ),
-    ),
-    '#attributes' => array(
-      'class' => array('namespace'),
-      'title' => $namespace->description,
-    ),
-  );
-
-  return $namespace_link;
-}
-
 
 // NODE HOOKS
 
