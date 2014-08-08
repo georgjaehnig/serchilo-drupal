@@ -62,7 +62,7 @@ cp sites/default/default.settings.php sites/default/settings.php
 chmod 777 sites/default/settings.php
 ```
 - Additionally, you will be asked to set up a database. Create one and enter its credentials in the installer.
-  - (For currently unknown reasons, you might asked twice for the database credentials. Additionally, after clicking "Save and continue", a white page may appear. Clicking back and forward on the browser resolves the issue, though. Both is an ugly issue, if you know what might help please tell.)
+  - (For currently unknown reasons, you might be asked twice for entering the database credentials. Additionally, after clicking "Save and continue", a white page may appear. Clicking back and forward on the browser resolves the issue, though. Both is an ugly issue, if you know what might help please tell.)
 
 ### After installing Drupal
 ```
