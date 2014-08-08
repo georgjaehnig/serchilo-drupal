@@ -60,6 +60,17 @@ function serchilo_menu() {
       'file' => 'serchilo.pages.user.inc',
     ),
 
+    // Change console namespaces
+
+    NAMESPACES_PATH_AFFIX . '/%/edit' => array(
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('serchilo_form_console_namespaces', 1),
+      'access callback' => TRUE,
+      'type' => MENU_CALLBACK,
+      'file' => 'serchilo.pages.console.edit.inc',
+      'title' => 'Change namespaces',
+    ),
+
   );
 
   return $items;
