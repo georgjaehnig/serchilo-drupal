@@ -86,3 +86,9 @@ td.views-field-field-namespace a:hover
   margin-top: 1em;
   margin-bottom: 1em;
 }
+
+/* Spamicide */
+
+#user-register-form .edit-city-wrapper {
+  display: none;
+}
