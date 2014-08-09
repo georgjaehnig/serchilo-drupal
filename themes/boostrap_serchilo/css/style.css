@@ -89,6 +89,8 @@ td.views-field-field-namespace a:hover
 
 /* Spamicide */
 
-#user-register-form .edit-city-wrapper {
+#user-register-form .edit-city-wrapper,
+#shortcut-node-form .edit-city-wrapper 
+{
   display: none;
 }
