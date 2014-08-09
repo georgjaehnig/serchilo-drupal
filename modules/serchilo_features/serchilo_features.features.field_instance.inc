@@ -872,7 +872,7 @@ function serchilo_features_field_default_field_instances() {
       'module' => 'taxonomy',
       'settings' => array(
         'autocomplete_path' => 'taxonomy/autocomplete',
-        'content_taxonomy_autocomplete_new_terms' => 'allow',
+        'content_taxonomy_autocomplete_new_terms' => 'deny',
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
