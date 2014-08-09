@@ -212,6 +212,13 @@ function serchilo_features_user_default_permissions() {
     'module' => 'system',
   );
 
+  // Exported permission: 'administer spamicide'.
+  $permissions['administer spamicide'] = array(
+    'name' => 'administer spamicide',
+    'roles' => array(),
+    'module' => 'spamicide',
+  );
+
   // Exported permission: 'administer taxonomy'.
   $permissions['administer taxonomy'] = array(
     'name' => 'administer taxonomy',
