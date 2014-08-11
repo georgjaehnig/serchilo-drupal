@@ -374,7 +374,6 @@ features[variable][] = revisioning_view_callback
 features[variable][] = save_continue_shortcut
 features[variable][] = site_default_country
 features[variable][] = spamicide_administration_mode
-features[variable][] = spamicide_attempt_counter
 features[variable][] = spamicide_description
 features[variable][] = spamicide_dir
 features[variable][] = spamicide_log_attempts
