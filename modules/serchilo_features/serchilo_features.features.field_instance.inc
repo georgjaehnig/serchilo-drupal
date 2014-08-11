@@ -1006,7 +1006,7 @@ function serchilo_features_field_default_field_instances() {
   t('The shortcut will be available only to users using this namespace. A change will result in saving only a draft, needed to be moderated by an editor.');
   t('URL');
   t('Weight');
-  t('Where will this example call be redirected?');
+  t('What happens when calling this shortcut?');
 
   return $field_instances;
 }
