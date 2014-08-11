@@ -850,7 +850,15 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The namespaces will have the following priority (first = highest):
+    <ol>
+      <li>Your user namespace</li>
+      <li>Custom namespaces</li>
+      <li>Country namespace</li>
+      <li>Language namespace</li>
+      <li>o (planet namespace)</li>
+    </ol>   
+    So it will be first checked, if a query matches a command in your user namespace, then in one of your custom namespaces ..., and at least in the planet namespace.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -986,6 +994,15 @@ function serchilo_features_field_default_field_instances() {
   t('The argument count is extracted automatically from the URL.');
   t('The argument names are extracted automatically from the URL.');
   t('The arguments from the query will be encoded in the URL with the encoding provided here.');
+  t('The namespaces will have the following priority (first = highest):
+    <ol>
+      <li>Your user namespace</li>
+      <li>Custom namespaces</li>
+      <li>Country namespace</li>
+      <li>Language namespace</li>
+      <li>o (planet namespace)</li>
+    </ol>   
+    So it will be first checked, if a query matches a command in your user namespace, then in one of your custom namespaces ..., and at least in the planet namespace.');
   t('The shortcut will be available only to users using this namespace. A change will result in saving only a draft, needed to be moderated by an editor.');
   t('URL');
   t('Weight');
