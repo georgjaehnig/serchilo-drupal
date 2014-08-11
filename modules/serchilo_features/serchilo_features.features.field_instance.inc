@@ -82,7 +82,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'field_example',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Where will this example call be redirected?',
+    'description' => 'What happens when calling this shortcut?',
     'display' => array(
       'default' => array(
         'label' => 'above',
