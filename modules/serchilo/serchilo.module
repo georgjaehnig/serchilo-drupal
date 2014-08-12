@@ -71,6 +71,14 @@ function serchilo_menu() {
       'title' => 'Change namespaces',
     ),
 
+    'shortcut/%' => array(
+      'page callback' => 'serchilo_redirect_shortcuts',
+      'page arguments' => array(1),
+      'access callback' => TRUE,
+      'type' => MENU_CALLBACK,
+      'file' => 'serchilo.redirect.inc',
+    ),
+
   );
 
   return $items;
