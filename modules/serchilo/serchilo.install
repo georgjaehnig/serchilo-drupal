@@ -22,6 +22,7 @@ function serchilo_install(){
   //serchilo_create_shortcuts_from_file();
 
   //serchilo_add_defaults_to_admin();
+  serchilo_set_spamicide(); 
 }
 
 /**
@@ -231,6 +232,30 @@ function serchilo_create_shortcuts_from_file() {
   }
 }
 
+
+/**
+ * Setup forms to be protected with Spamicide.
+ *
+ * @return void
+ */
+function serchilo_set_spamicide() {
+
+  db_insert('spamicide')
+    ->fields(array(
+      'form_id' => 'user_register_form',
+      'form_field' => 'feed_me',
+      'enabled' => 1,
+    ))
+    ->execute();
+
+  db_insert('spamicide')
+    ->fields(array(
+      'form_id' => 'shortcut_node_form',
+      'form_field' => 'feed_me',
+      'enabled' => 1,
+    ))
+    ->execute();
+}
 
 function serchilo_read_tsv_file($filename) {
 
