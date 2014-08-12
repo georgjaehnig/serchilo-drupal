@@ -71,6 +71,18 @@ function serchilo_menu() {
       'title' => 'Change namespaces',
     ),
 
+    // Shortcut 'changed' view
+
+    'shortcut/%/changed' => array(
+      'page callback' => 'serchilo_page_shortcut_changed',
+      'page arguments' => array(1),
+      'type' => MENU_CALLBACK,
+      'access callback' => TRUE,
+      'file' => 'serchilo.pages.shortcut.inc',
+    ),
+
+    // Redirect broken Shortcut URLs
+
     'shortcut/%' => array(
       'page callback' => 'serchilo_redirect_shortcuts',
       'page arguments' => array(1),
@@ -78,6 +90,8 @@ function serchilo_menu() {
       'type' => MENU_CALLBACK,
       'file' => 'serchilo.redirect.inc',
     ),
+
+    // Redirect old command URLs
 
     'command/%' => array(
       'page callback' => 'serchilo_redirect_commands',
