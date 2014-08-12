@@ -16,6 +16,7 @@ dependencies[] = field_collection
 dependencies[] = field_permissions
 dependencies[] = field_ui
 dependencies[] = filter
+dependencies[] = globalredirect
 dependencies[] = jquery_update
 dependencies[] = libraries
 dependencies[] = list
