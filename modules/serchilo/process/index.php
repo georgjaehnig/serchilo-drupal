@@ -87,21 +87,31 @@ function serchilo_process_query_console($call_type) {
     $namespace_names[2] = $country_namespace_name;
     break;
   }
-
-  // TODO:
-  // default_keyword
+  // Find shortcut and call it.
   $shortcut = serchilo_find_shortcut($keyword, count($arguments), $namespace_ids);
-  #print_r($variables);
-  #print_r($shortcut);
   if ($shortcut) {
     $variables = serchilo_get_url_variables($namespace_names, $extra_namespace_name);
     serchilo_call_shortcut($shortcut, $arguments, $variables);
   }
-  else {
-    // redirect to Serchilo website
-    $url = $_SERVER['REQUEST_URI'] . '&status=not_found';
-    header('Location: ' . $url );
+
+  // Try again with default keyword.
+  $default_keyword = serchilo_get_default_keyword($user_name ?: NULL);
+  $query = $default_keyword . ' ' . $query;
+  list($keyword, $arguments, $extra_namespace_name) = serchilo_parse_query($query);
+
+  // Find shortcut and call it.
+  $shortcut = serchilo_find_shortcut($keyword, count($arguments), $namespace_ids);
+  if ($shortcut) {
+    $variables = serchilo_get_url_variables($namespace_names, $extra_namespace_name);
+    serchilo_call_shortcut($shortcut, $arguments, $variables);
   }
+
+  // If all failed:
+  // Redirect to Serchilo website.
+  $url = $_SERVER['REQUEST_URI'] . '&status=not_found';
+  header('Location: ' . $url );
+  exit();
+
 }
 
 /**

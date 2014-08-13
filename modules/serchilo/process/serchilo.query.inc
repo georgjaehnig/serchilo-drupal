@@ -477,3 +477,17 @@ function serchilo_get_user_name_from_path($path_elements_offset = 0) {
     return $path_elements[$path_elements_offset + 2];
   }
 }
+
+function serchilo_get_default_keyword($user_name = NULL) {
+
+  // Setting via GET parameter has always the highest priority.
+  if (!empty($_GET['default_keyword'])) {
+    return $_GET['default_keyword'];
+  }
+  if ($user_name) {
+    $user_id         = serchilo_get_values_from_table('users', 'name', $user_name, 'uid')[0];
+    $default_keyword = serchilo_get_values_from_table('field_data_field_default_keyword', 'entity_id', $user_id, 'field_default_keyword_value')[0];
+    return $default_keyword;
+  }
+  return NULL;
+}
