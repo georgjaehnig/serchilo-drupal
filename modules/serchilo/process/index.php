@@ -157,9 +157,9 @@ function serchilo_process_query_ajax($call_type) {
     $shortcuts
   );
 
-  require_once('../../../../../includes/common.inc');
-  require_once('../../../../../includes/bootstrap.inc');
-  drupal_json_output($shortcuts);
+  header('Content-Type: application/json');
+  echo json_encode($shortcuts, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT);
+  exit();
 }
 
 /**
@@ -222,8 +222,8 @@ function serchilo_process_opensearch_suggestions($call_type) {
     $descriptions, 
   );
 
-  require_once('../../../../../includes/common.inc');
-  require_once('../../../../../includes/bootstrap.inc');
-  drupal_json_output($output);
+  header('Content-Type: application/json');
+  echo json_encode($output, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT);
+  exit();
 }
 
