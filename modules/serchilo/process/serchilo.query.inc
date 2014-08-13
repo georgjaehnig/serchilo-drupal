@@ -292,37 +292,28 @@ function serchilo_get_namespace_id($namespace_name) {
   return $row['tid'];
 }
 
+
+/**
+ * Call a shortcut URL.
+ *
+ * @param array $shortcut
+ *   The shortcut to call.
+ * @param array $arguments
+ *   The arguments to be filled into the
+ *   placeholders of the shortcut URL.
+ * @param array $variables
+ *   The variables to be filled into the
+ *   placeholders of the shortcut URL.
+ * @param bool $redirect
+ *   (optional, default: TRUE)
+ *   TRUE if actually redirect to the URL.
+ *   FALSE if only return the URL (e.g. for debugging).
+ *
+ * @return string $url
+ *   Only if $redirect=FALSE.
+ */
 function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = TRUE) {
   
-/*
-  $language_namespace = drupal_static('language_namespace');
-  $country_namespace = drupal_static('country_namespace');
-  $user_namespace = drupal_static('user_namespace');
-
-  $extra_namespace = drupal_static('extra_namespace');
-
-  # take language from extra_namespace
-  # if it is a language namespace
-  if (
-    ($extra_namespace) &&
-    ( 'language' == array_shift(serchilo_field_get_items_taxonomy_term_names('taxonomy_term', $extra_namespace, 'field_namespace_type')) )
-  ) {
-    $language_namespace = $extra_namespace;
-  }
-
-  $variables = array(
-    'language' => $language_namespace->name, 
-    'country:alpha3' => $country_namespace->name, 
-    'user:name' => ($user_namespace ? $user_namespace->name : ''), 
-    'user:id' => ($user_namespace ? user_load_by_name($user_namespace->name)->uid : ''), 
-  );
-
-  if (strpos($shortcut->url, '{country:alpha2}') !== false) {
-    module_load_include('inc', 'serchilo', 'serchilo.countries');
-    $variables['country:alpha2'] = serchilo_country_alpha3_to_alpha2($country_namespace->name);
-  }
- */
-
   $input_encoding = $shortcut['input_encoding'];
 
   $url = serchilo_replace_url_arguments($shortcut['url'], $arguments, $variables, $input_encoding);
@@ -347,10 +338,37 @@ function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = T
   }
 }
 
+/*
+ * Output a HTML file with 
+ * <meta http-equiv="refresh"> 
+ * to redirect to the given URL.
+ *
+ * @param string $url
+ *   The URL to redirect to.
+ *
+ * @return void
+ */
 function serchilo_redirect_via_html($url) {
   require_once('tpl/serchilo-redirect.tpl.php'); 
 }
 
+/*
+ * Replace the placeholders of the URL
+ * with arguments and variables.
+ *
+ * @param string $url
+ *   The URL with placeholders.
+ * @param array $arguments
+ *   The arguments to replace in the $url.
+ * @param array $variables
+ *   The variables to replace in the $url.
+ * @param string $input_encoding
+ *   The encoding into which the arguments
+ *   shall be converted when being replaced.
+ *   
+ * @return string $url
+ *   The replaced URL. 
+ */
 function serchilo_replace_url_arguments($url, $arguments, $variables, $input_encoding = 'utf-8')
 {
   foreach ($variables as $key=>$value) {
@@ -397,6 +415,15 @@ function serchilo_replace_url_arguments($url, $arguments, $variables, $input_enc
   return $url;
 }
 
+/*
+ * Get the variables for replacing within the shortcut URL. 
+ *
+ * @param array $env
+ *   The environment, holding all relevant data of the request.
+ *
+ * @return array $variables
+ *   The $variables to replace within the shortcut URL.
+ */
 function serchilo_get_url_variables($env) {
   $variables = array();
   $variables['language'] = $env['language_namespace_name'];
