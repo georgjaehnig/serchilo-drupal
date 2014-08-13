@@ -322,17 +322,17 @@ function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = T
       header('Location: ' . $url);
     }
     else {
-      // redirect for shortcuts which need a referrer
-      #serchilo_redirect_via_html($url);
-	// TODO: ...
-      header('Location: ' . $url);
+      // Redirect via HTML page
+      // for shortcuts which need a referrer.
+      serchilo_redirect_via_html($url);
     }
   } else {
     return $url;
   }
-   
-  #drupal_set_message($url);
-  #return '.';
+}
+
+function serchilo_redirect_via_html($url) {
+  require_once('tpl/serchilo-redirect.tpl.php'); 
 }
 
 function serchilo_replace_url_arguments($url, $arguments, $variables, $input_encoding = 'utf-8')
