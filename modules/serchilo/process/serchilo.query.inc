@@ -316,18 +316,19 @@ function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = T
 
   //serchilo_log_call($shortcut, $arguments);
   
-  if ($redirect) {
-    if (empty($shortcut['set_referrer'])) {
-      // Classic redirect.
-      header('Location: ' . $url);
-    }
-    else {
-      // Redirect via HTML page
-      // for shortcuts which need a referrer.
-      serchilo_redirect_via_html($url);
-    }
-  } else {
+  // Debugging: Only output URL.
+  if (!$redirect) {
     return $url;
+  }
+
+  if (empty($shortcut['set_referrer'])) {
+    // Classic redirect.
+    header('Location: ' . $url);
+  }
+  else {
+    // Redirect via HTML page
+    // for shortcuts which need a referrer.
+    serchilo_redirect_via_html($url);
   }
 }
 
