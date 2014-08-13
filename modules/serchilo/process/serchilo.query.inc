@@ -324,11 +324,13 @@ function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = T
   if (empty($shortcut['set_referrer'])) {
     // Classic redirect.
     header('Location: ' . $url);
+    exit();
   }
   else {
     // Redirect via HTML page
     // for shortcuts which need a referrer.
     serchilo_redirect_via_html($url);
+    exit();
   }
 }
 
