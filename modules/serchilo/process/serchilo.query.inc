@@ -194,12 +194,15 @@ LIMIT " . (int) $limit . ";
  * @param string $query
  *   The query to parse.
  * @return
- *   Array of query items.
+ *   Keyed Array of query items:
+ *   - keyword
+ *   - arguments
+ *   - extra_namespace_name
  */
 function serchilo_parse_query($query) {
-  list($keyword, $arguments) = serchilo_extract_keyword_and_arguments($query);
-  list($keyword, $extra_namespace_name) = serchilo_get_extra_namespace_from_keyword($keyword);
-  return array($keyword, $arguments, $extra_namespace_name);
+  $env = serchilo_extract_keyword_and_arguments($query);
+  $env = serchilo_get_extra_namespace_from_keyword($env['keyword']) + $env;
+  return $env;
 }
 
 /**
@@ -208,7 +211,9 @@ function serchilo_parse_query($query) {
  * @param string $keyword
  *   The keyword to extract from.
  * @return
- *   Array of keyword and extra namespace (empty string if not existing).
+ *   Keyed array with 
+ *   - keyword 
+ *   - extra namespace (empty string if not existing).
  */
 function serchilo_get_extra_namespace_from_keyword($keyword) {
   # try to extract extra namespace from query
@@ -217,7 +222,10 @@ function serchilo_get_extra_namespace_from_keyword($keyword) {
   if (strpos($keyword,'.') !== false) {
     list($extra_namespace_name, $keyword) = explode('.', $keyword, 2);
   }
-  return array($keyword, $extra_namespace_name);
+  return array(
+    'keyword' => $keyword, 
+    'extra_namespace_name' => $extra_namespace_name
+  );
 }
 
 /**
@@ -229,7 +237,9 @@ function serchilo_get_extra_namespace_from_keyword($keyword) {
  *   Maximum number of arguments to extract.
  *   Default: unlimited
  * @return
- *   Array of keyword and arguments.
+ *   Keyed array with
+ *   - keyword 
+ *   - arguments.
  */
 function serchilo_extract_keyword_and_arguments($query, $max_arguments = -1) {
 
@@ -246,7 +256,10 @@ function serchilo_extract_keyword_and_arguments($query, $max_arguments = -1) {
   else {
     $arguments = array();
   }
-  return array($keyword, $arguments);
+  return array(
+    'keyword'   => $keyword, 
+    'arguments' => $arguments
+  );
 }
 
 
@@ -384,16 +397,16 @@ function serchilo_replace_url_arguments($url, $arguments, $variables, $input_enc
   return $url;
 }
 
-function serchilo_get_url_variables($namespace_names, $extra_namespace_name) {
+function serchilo_get_url_variables($env) {
   $variables = array();
-  $variables['language'] = $namespace_names[1];
-  $variables['country:alpha3'] = $namespace_names[2];
-  switch (strlen($extra_namespace_name)) {
+  $variables['language'] = $env['language_namespace_name'];
+  $variables['country:alpha3'] = $env['country_namespace_name'];
+  switch (strlen($env['extra_namespace_name'])) {
     case 2:
-      $variables['language'] = $extra_namespace_name;
+      $variables['language'] = $env['extra_namespace_name'];
       break;
     case 3:
-      $variables['country:alpha3'] = $extra_namespace_name;
+      $variables['country:alpha3'] = $env['extra_namespace_name'];
       break;
   }
   // TODO:
