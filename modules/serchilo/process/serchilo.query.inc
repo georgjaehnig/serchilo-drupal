@@ -318,7 +318,7 @@ function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = T
   
   if ($redirect) {
     if (empty($shortcut['set_referrer'])) {
-      // classic redirect
+      // Classic redirect.
       header('Location: ' . $url);
     }
     else {
