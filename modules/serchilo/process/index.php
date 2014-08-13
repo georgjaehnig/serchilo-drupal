@@ -79,6 +79,12 @@ function serchilo_process_query_console($call_type) {
     list($keyword, $arguments, $extra_namespace_name) = serchilo_parse_query($query);
     $user_name = serchilo_get_user_name_from_path();
     $namespace_ids = serchilo_get_namespace_ids_from_user($user_name);
+
+    $language_namespace_name = serchilo_get_values_from_table('taxonomy_term_data', 'tid', $namespace_ids['1'], 'name')[0];
+    $country_namespace_name  = serchilo_get_values_from_table('taxonomy_term_data', 'tid', $namespace_ids['2'], 'name')[0];
+
+    $namespace_names[1] = $language_namespace_name;
+    $namespace_names[2] = $country_namespace_name;
     break;
   }
 
