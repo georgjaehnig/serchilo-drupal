@@ -33,8 +33,8 @@ drush dl --drupal-project-rename
 cd drupal/profiles/
 
 # Get the Serchilo Drupal profile with submodules
-git clone https://github.com/georgjaehnig/serchilo-drupal.git profilo
-cd profilo
+git clone https://github.com/georgjaehnig/serchilo-drupal.git serchilo_profile
+cd serchilo_profile
 git submodule init
 git submodule update
 cd ../..
@@ -45,7 +45,7 @@ Your directory structure should now look like this:
 serchilo/
   drupal/
     profiles/
-      profilo/
+      serchilo_profile/
       ...
     ...
 ```
@@ -53,7 +53,7 @@ serchilo/
 
 - Set up a local virtual host pointing to `drupal/`, for instance called `http://l.serchilo/`.
 - Run drupal installer in your browser, simply by calling the main page `http://l.serchilo/`.
-- In the installer, choose `Serchilo Profilo` as installation profile.
+- In the installer, choose `Serchilo profile` as installation profile.
 - During install, you need to create a writable `files/` dir and `settings.php` file:
 ```
 mkdir sites/default/files
@@ -85,38 +85,38 @@ RewriteCond %{REQUEST_URI} ^\/n\/.*
 # must have 'query' parameter
 RewriteCond %{QUERY_STRING} (^|&)query=
 RewriteCond %{QUERY_STRING} !(^|&)status=not_found
-RewriteRule ^(.*)$ profiles/profilo/modules/serchilo/process/?page_type=console&call_type=n [L,QSA]
+RewriteRule ^(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=console&call_type=n [L,QSA]
 
 # call with user name
 RewriteCond %{REQUEST_URI} ^\/u\/.*
 # must have 'query' parameter
 RewriteCond %{QUERY_STRING} (^|&)query=
 RewriteCond %{QUERY_STRING} !(^|&)status=not_found
-RewriteRule ^(.*)$ profiles/profilo/modules/serchilo/process/?page_type=console&call_type=u [L,QSA]
+RewriteRule ^(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=console&call_type=u [L,QSA]
 
 # call with namespaces
 RewriteCond %{REQUEST_URI} ^\/ajax\/n\/.*
 # must have 'query' parameter
 RewriteCond %{QUERY_STRING} (^|&)term=
-RewriteRule ^(.*)$ profiles/profilo/modules/serchilo/process/?page_type=ajax&call_type=n [L,QSA]
+RewriteRule ^(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=ajax&call_type=n [L,QSA]
 
 # call with user name
 RewriteCond %{REQUEST_URI} ^\/ajax\/u\/.*
 # must have 'query' parameter
 RewriteCond %{QUERY_STRING} (^|&)term=
-RewriteRule ^(.*)$ profiles/profilo/modules/serchilo/process/?page_type=ajax&call_type=u [L,QSA]
+RewriteRule ^(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=ajax&call_type=u [L,QSA]
 
 # call with namespaces
 RewriteCond %{REQUEST_URI} ^\/opensearch-suggestions\/n\/.*
 # must have 'query' parameter
 RewriteCond %{QUERY_STRING} (^|&)query=
-RewriteRule ^(.*)$ profiles/profilo/modules/serchilo/process/?page_type=opensearch-suggestions&call_type=n [L,QSA]
+RewriteRule ^(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=opensearch-suggestions&call_type=n [L,QSA]
 
 # call with user name
 RewriteCond %{REQUEST_URI} ^\/opensearch-suggestions\/u\/.*
 # must have 'query' parameter
 RewriteCond %{QUERY_STRING} (^|&)query=
-RewriteRule ^(.*)$ profiles/profilo/modules/serchilo/process/?page_type=opensearch-suggestions&call_type=u [L,QSA]
+RewriteRule ^(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=opensearch-suggestions&call_type=u [L,QSA]
 ```
 
 That's it. You should now be able to see Serchilo in your browser at `http://l.serchilo/`.

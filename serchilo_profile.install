@@ -3,7 +3,7 @@
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function profilo_form_install_configure_form_alter(&$form, $form_state) {
+function serchilo_profile_form_install_configure_form_alter(&$form, $form_state) {
   // Pre-populate fields
   $form['site_information']['site_name']['#default_value'] = 'Serchilo';
   $form['admin_account']['account']['name']['#default_value'] = 'admin';
