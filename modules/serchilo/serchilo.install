@@ -241,10 +241,20 @@ function serchilo_create_shortcuts_from_file() {
  */
 function serchilo_set_spamicide() {
 
+  // Rename form_field to "city".
+  db_update('spamicide')
+    ->condition('form_id', 'user_register_form')
+    ->fields(array(
+      'form_field' => 'city',
+      'enabled' => 1,
+    ))
+    ->execute();
+
+  // Insert spamicide for shortcut_node_form.
   db_insert('spamicide')
     ->fields(array(
       'form_id' => 'shortcut_node_form',
-      'form_field' => 'feed_me',
+      'form_field' => 'city',
       'enabled' => 1,
     ))
     ->execute();
