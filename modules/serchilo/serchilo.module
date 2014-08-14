@@ -589,9 +589,9 @@ function serchilo_options_list_namespace_by_type($namespace_type) {
 
   $namespace_type_id = key(taxonomy_get_term_by_name($namespace_type, 'namespace_types'));
 
-  $query = new EntityFieldQuery;
+  $efq = new EntityFieldQuery;
 
-  $result = $query
+  $result = $efq
     ->entityCondition('entity_type', 'taxonomy_term')
     ->fieldCondition('field_namespace_type', 'tid',  $namespace_type_id)
     ->propertyOrderBy('description')

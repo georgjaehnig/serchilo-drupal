@@ -46,9 +46,9 @@ function serchilo_redirect_commands($command_id) {
     return;
   }
 
-  $query = new EntityFieldQuery;
+  $efq = new EntityFieldQuery;
 
-  $result = $query
+  $result = $efq
     ->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'shortcut')
     ->fieldCondition('field_command_id', 'value',  $command_id)
