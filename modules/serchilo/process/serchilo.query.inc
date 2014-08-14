@@ -64,20 +64,37 @@ function serchilo_find_shortcut($keyword, $argument_count, $namespace_ids) {
  * @param array $namespace_ids
  *   Array of namespace IDs
  *   in which the shortcut must be part of.
+ * @param string $extra_namespace_name
+ *   Namespace to be forced for that query.
+ *   in which the shortcut must be part of.
  * @param int $limit
  *   Maximum number of returned shortcuts.
+ *
  * @return
  *   Array of associative arrays of the found shortcuts.
  */
-function serchilo_search_shortcuts( $keyword, $arguments, $query, $namespace_ids, $limit = 20 ) {
+function serchilo_search_shortcuts( $keyword, $arguments, $query, $namespace_ids, $extra_namespace_name = NULL, $limit = 20 ) {
 
   global $mysqli;
 
-  if ($keyword == '') {
+  // No keyword and no extra_namespace:
+  // Return empty list.
+  if (
+    ($keyword == '') &&
+    (empty($extra_namespace_name)) &&
+    TRUE
+  ) {
     return array(); 
   }
 
-  # use only extra_namespace when searching
+  // If set extra_namespace_name ...
+  if (!empty($extra_namespace_name)) {
+    // ... get its ID.
+    $extra_namespace_id = serchilo_get_values_from_table('taxonomy_term_data', 'name', $extra_namespace_name, 'tid')[0];
+    if (empty($extra_namespace_id)) {
+      return array(); 
+    }
+  }
 
   $order_namespace_ids = array_map(
     function ($namespace_id) {
@@ -164,10 +181,8 @@ LIMIT " . (int) $limit . ";
     $mysqli, 
     $sql,
     array(
-      # note: when prefix is the same
-      # put short placeholder below
       'argument_count' => count($arguments), 
-      'extra_namespace_id' => (isset($extra_namespace) ? $extra_namespace->tid : null),
+      'extra_namespace_id' => $extra_namespace_id,
       'keyword_like_right' => $keyword . '%',
       'keyword_like_both' => '%' . $keyword . '%',
       'keyword' => $keyword,

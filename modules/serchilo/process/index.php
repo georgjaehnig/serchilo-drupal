@@ -103,7 +103,7 @@ function serchilo_process_query_console($env) {
  */
 function serchilo_process_query_ajax($env) {
 
-  $shortcuts = serchilo_search_shortcuts($env['keyword'], $env['arguments'], $env['query'], $env['namespace_ids'] );
+  $shortcuts = serchilo_search_shortcuts($env['keyword'], $env['arguments'], $env['query'], $env['namespace_ids'], $env['extra_namespace_name'] );
   
   // filter keys that are allowed to be public
   $shortcuts = array_map(
