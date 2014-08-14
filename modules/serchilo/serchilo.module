@@ -502,12 +502,37 @@ function serchilo_form_validate_no_whitespace($element, &$form_state) {
  * Implements hook_node_validate().
  */
 function serchilo_node_validate($node, $form, &$form_state) {
-return;
+
   if ($node->type == 'shortcut') {
-    // dpm($argument_names);
-    // dpm($node);
-    // TODO:
-    // check for collisions
+
+    $efq = new EntityFieldQuery;
+
+    $result = $efq
+      ->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'shortcut')
+      ->fieldCondition('field_keyword',        'value',  $node->field_keyword[LANGUAGE_NONE][0]['value'])
+      ->fieldCondition('field_argument_count', 'value',  $node->field_argument_count[LANGUAGE_NONE][0]['value'])
+      ->fieldCondition('field_namespace',      'tid',    $node->field_namespace[LANGUAGE_NONE][0]['tid'])
+      ->execute();
+
+    // If found a colliding shortcut:
+    if (!empty($result)) {
+      $existing_shortcut_nid = array_keys($result['node'])[0];
+      $existing_shortcut = node_load($existing_shortcut_nid);
+      form_set_error(
+        'field_keyword',
+        format_plural(
+          $existing_shortcut->field_argument_count[LANGUAGE_NONE][0]['value'],
+          'The shortcut !title is already using the keyword %keyword and %argument_count argument.',
+          'The shortcut !title is already using the keyword %keyword and %argument_count arguments.',
+          array(
+            '!title' => l($existing_shortcut->title, 'node/' . $existing_shortcut->nid),
+            '%keyword' => $existing_shortcut->field_keyword[LANGUAGE_NONE][0]['value'],
+            '%argument_count' => $existing_shortcut->field_argument_count[LANGUAGE_NONE][0]['value'],
+          )
+        )
+      );
+    }
   }
 }
 
