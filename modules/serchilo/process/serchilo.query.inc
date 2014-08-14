@@ -182,7 +182,7 @@ LIMIT " . (int) $limit . ";
     $sql,
     array(
       'argument_count' => count($arguments), 
-      'extra_namespace_id' => $extra_namespace_id,
+      'extra_namespace_id' => (isset($extra_namespace_id) ? $extra_namespace_id : NULL),
       'keyword_like_right' => $keyword . '%',
       'keyword_like_both' => '%' . $keyword . '%',
       'keyword' => $keyword,
