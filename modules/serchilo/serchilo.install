@@ -7,6 +7,8 @@ function serchilo_install(){
 
   module_load_include('module', 'taxonomy', 'taxonomy');
 
+  serchilo_set_spamicide(); 
+
   $shortcuts_file = drupal_get_path('module', 'serchilo') . '/json/serchilo.json';
   serchilo_import_shortcuts($shortcuts_file, TRUE);
 
@@ -22,7 +24,6 @@ function serchilo_install(){
   //serchilo_create_shortcuts_from_file();
 
   //serchilo_add_defaults_to_admin();
-  serchilo_set_spamicide(); 
 }
 
 /**
@@ -239,14 +240,6 @@ function serchilo_create_shortcuts_from_file() {
  * @return void
  */
 function serchilo_set_spamicide() {
-
-  db_insert('spamicide')
-    ->fields(array(
-      'form_id' => 'user_register_form',
-      'form_field' => 'feed_me',
-      'enabled' => 1,
-    ))
-    ->execute();
 
   db_insert('spamicide')
     ->fields(array(
