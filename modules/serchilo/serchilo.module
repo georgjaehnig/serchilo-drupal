@@ -463,7 +463,15 @@ function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) 
 function serchilo_form_validate_no_tags($element, &$form_state) {
   $value = drupal_array_get_nested_value($form_state['values'], $element['#parents']);
   if ($value != preg_replace('/<.*>/', '', $value)) {
-    form_set_error(join('][', $element['#parents']), t('No HTML tags are allowed.'));
+    form_error(
+      $element, 
+      t(
+        '@title must not contain HTML tags.', 
+        array(
+          '@title' => $element['#title'], 
+        )
+      )
+    );
   }
 }
 
@@ -473,8 +481,8 @@ function serchilo_form_validate_no_tags($element, &$form_state) {
 function serchilo_form_validate_no_dots($element, &$form_state) {
   $value = drupal_array_get_nested_value( $form_state['values'], $element['#parents']);
   if (strpos($value, '.') !== FALSE) {
-    form_set_error(
-      join('][', $element['#parents']),
+    form_error(
+      $element,
       t(
         'No dots are allowed in the keyword, since !dots_are used_for_forcing_a_namespace.',
         array(
@@ -492,7 +500,15 @@ function serchilo_form_validate_no_whitespace($element, &$form_state) {
 
   $value = drupal_array_get_nested_value($form_state['values'], $element['#parents']);
   if ($value != preg_replace('/\s*/', '', $value)) {
-    form_set_error( join( '][', $element['#parents']), t('Spaces are not allowed.'));
+    form_error(
+      $element, 
+      t(
+        '@title must not contain spaces.', 
+        array(
+          '@title' => $element['#title'], 
+        )
+      )
+    );
   }
 }
 
