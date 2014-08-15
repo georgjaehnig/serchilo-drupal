@@ -282,6 +282,26 @@ function serchilo_features_user_default_permissions() {
     'module' => 'user',
   );
 
+  // Exported permission: 'clone node'.
+  $permissions['clone node'] = array(
+    'name' => 'clone node',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'clone',
+  );
+
+  // Exported permission: 'clone own nodes'.
+  $permissions['clone own nodes'] = array(
+    'name' => 'clone own nodes',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'clone',
+  );
+
   // Exported permission: 'create field_argument_count'.
   $permissions['create field_argument_count'] = array(
     'name' => 'create field_argument_count',

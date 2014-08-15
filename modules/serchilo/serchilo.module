@@ -113,6 +113,13 @@ function serchilo_menu_alter(&$items) {
 
   // Rename user edit tab.
   $items['user/%user/edit']['title'] = 'My account';
+
+  // Make shortcut clone link a tab.
+  $items['node/%node/clone/%clone_token']['type'] = MENU_LOCAL_TASK;
+
+  // Rename shortcut clone tab.
+  $items['node/%node/clone/%clone_token']['title'] = 'Clone';
+  $items['node/%node/clone/%clone_token']['title callback'] = '';
 }
 
 /**
