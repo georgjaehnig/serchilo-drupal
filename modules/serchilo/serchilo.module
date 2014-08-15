@@ -91,16 +91,6 @@ function serchilo_menu() {
       'file' => 'serchilo.redirect.inc',
     ),
 
-    // Redirect old command URLs
-
-    'command/%' => array(
-      'page callback' => 'serchilo_redirect_commands',
-      'page arguments' => array(1),
-      'access callback' => TRUE,
-      'type' => MENU_CALLBACK,
-      'file' => 'serchilo.redirect.inc',
-    ),
-
   );
 
   return $items;
