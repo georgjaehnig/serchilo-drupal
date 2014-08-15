@@ -110,7 +110,8 @@ function serchilo_menu() {
  * Implements hook_menu_alter().
  */
 function serchilo_menu_alter(&$items) {
-  # rename edit tab
+
+  // Rename user edit tab.
   $items['user/%user/edit']['title'] = 'My account';
 }
 
