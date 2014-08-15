@@ -446,6 +446,7 @@ function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) 
     'serchilo_form_validate_no_tags',
     'serchilo_form_validate_no_dots',
     'serchilo_form_validate_no_whitespace',
+    'serchilo_form_validate_lowercase',
   );
   $form['field_argument_names'][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_no_tags');
   $form['field_url'           ][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_no_tags');
@@ -504,6 +505,25 @@ function serchilo_form_validate_no_whitespace($element, &$form_state) {
       $element, 
       t(
         '@title must not contain spaces.', 
+        array(
+          '@title' => $element['#title'], 
+        )
+      )
+    );
+  }
+}
+
+/**
+ * Validate a form element that must be lowercase.
+ */
+function serchilo_form_validate_lowercase($element, &$form_state) {
+
+  $value = drupal_array_get_nested_value($form_state['values'], $element['#parents']);
+  if ($value != strtolower($value)) {
+    form_error(
+      $element, 
+      t(
+        '@title must be lowercase.', 
         array(
           '@title' => $element['#title'], 
         )
