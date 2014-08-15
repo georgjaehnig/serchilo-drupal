@@ -311,7 +311,6 @@ features[variable][] = language_negotiation_language_url
 features[variable][] = language_types
 features[variable][] = locale_language_providers_weight_language
 features[variable][] = menu_expanded
-features[variable][] = menu_masks
 features[variable][] = menu_options_shortcut
 features[variable][] = menu_parent_shortcut
 features[variable][] = metatag_schema_installed
