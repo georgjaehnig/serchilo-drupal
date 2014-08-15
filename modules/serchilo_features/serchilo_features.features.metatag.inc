@@ -49,9 +49,6 @@ function serchilo_features_metatag_export_default() {
       'generator' => array(
         'value' => 'Drupal 7 (http://drupal.org)',
       ),
-      'copyright' => array(
-        'value' => '',
-      ),
       'image_src' => array(
         'value' => '',
       ),
@@ -73,6 +70,9 @@ function serchilo_features_metatag_export_default() {
       'revisit-after' => array(
         'value' => '',
         'period' => '',
+      ),
+      'rights' => array(
+        'value' => '',
       ),
     ),
   );
