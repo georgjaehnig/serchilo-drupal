@@ -277,7 +277,6 @@ function serchilo_extract_keyword_and_arguments($query, $max_arguments = -1) {
   );
 }
 
-
 /**
  * Get the namespace ID from a namespace name.
  *
@@ -306,7 +305,6 @@ function serchilo_get_namespace_id($namespace_name) {
   $row = $result->fetch_assoc();
   return $row['tid'];
 }
-
 
 /**
  * Call a shortcut URL.
@@ -353,7 +351,7 @@ function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = T
   }
 }
 
-/*
+/**
  * Output a HTML file with 
  * <meta http-equiv="refresh"> 
  * to redirect to the given URL.
@@ -367,7 +365,7 @@ function serchilo_redirect_via_html($url) {
   require_once('tpl/serchilo-redirect.tpl.php'); 
 }
 
-/*
+/**
  * Replace the placeholders of the URL
  * with arguments and variables.
  *
@@ -427,10 +425,11 @@ function serchilo_replace_url_arguments($url, $arguments, $variables, $input_enc
       $url 
     );
   }
+
   return $url;
 }
 
-/*
+/**
  * Get the variables for replacing within the shortcut URL. 
  *
  * @param array $env
