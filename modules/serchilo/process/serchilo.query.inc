@@ -329,7 +329,8 @@ function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = T
   
   $input_encoding = $shortcut['input_encoding'];
 
-  $url = serchilo_replace_url_arguments($shortcut['url'], $arguments, $variables, $input_encoding);
+  $url = serchilo_replace_url_variables($shortcut['url'], $variables );
+  $url = serchilo_replace_url_arguments($shortcut['url'], $arguments, $shortcut['input_encoding']);
 
   //serchilo_log_call($shortcut, $arguments);
   
@@ -367,23 +368,18 @@ function serchilo_redirect_via_html($url) {
 
 /**
  * Replace the placeholders of the URL
- * with arguments and variables.
+ * with variables.
  *
  * @param string $url
  *   The URL with placeholders.
- * @param array $arguments
- *   The arguments to replace in the $url.
  * @param array $variables
  *   The variables to replace in the $url.
- * @param string $input_encoding
- *   The encoding into which the arguments
- *   shall be converted when being replaced.
  *   
  * @return string $url
  *   The replaced URL. 
  */
-function serchilo_replace_url_arguments($url, $arguments, $variables, $input_encoding = 'utf-8')
-{
+function serchilo_replace_url_variables($url, $variables ) {
+
   foreach ($variables as $key=>$value) {
     $url = str_replace(
       '{' . $key . '}',
@@ -391,6 +387,26 @@ function serchilo_replace_url_arguments($url, $arguments, $variables, $input_enc
       $url
     );
   }
+
+  return $url;
+}
+
+/**
+ * Replace the placeholders of the URL
+ * with arguments.
+ *
+ * @param string $url
+ *   The URL with placeholders.
+ * @param array $arguments
+ *   The arguments to replace in the $url.
+ * @param string $input_encoding
+ *   The encoding into which the arguments
+ *   shall be converted when being replaced.
+ *   
+ * @return string $url
+ *   The replaced URL. 
+ */
+function serchilo_replace_url_arguments($url, $arguments, $input_encoding = 'utf-8') {
 
   foreach ($arguments as $argument) {
     preg_match(
