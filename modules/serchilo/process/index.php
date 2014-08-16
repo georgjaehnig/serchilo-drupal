@@ -66,6 +66,9 @@ function serchilo_dispatch() {
   }
 }
 
+
+// Process
+
 /**
  * Process a shortcut call query.
  *
@@ -206,6 +209,9 @@ function serchilo_process_query_url($env) {
     echo $output['url']['replaced_variables'];
   }
 }
+
+
+// Process helpers
 
 /**
  * Get a shortcut given the environment.
