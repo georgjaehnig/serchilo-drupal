@@ -57,6 +57,12 @@ function serchilo_dispatch() {
   case OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
     serchilo_process_opensearch_suggestions($env);
     break;
+  case API_PATH_AFFIX:
+    serchilo_process_query_api($env);
+    break;
+  case URL_PATH_AFFIX:
+    serchilo_process_query_url($env);
+    break;
   }
 }
 
@@ -171,6 +177,115 @@ function serchilo_process_opensearch_suggestions($env) {
 }
 
 /**
+ * Process a shortcut API query.
+ *
+ * @param array $env
+ *   The environment, holding all relevant data of the request.
+ */
+function serchilo_process_query_api($env) {
+
+  $output = serchilo_get_shortcut($env);
+  serchilo_output_json($output);
+}
+
+/**
+ * Process a shortcut URL query.
+ *
+ * @param array $env
+ *   The environment, holding all relevant data of the request.
+ */
+function serchilo_process_query_url($env) {
+
+  $output = serchilo_get_shortcut($env);
+
+  //header('Content-Type: application/text');
+  if (!empty($output['url']['final'])) {
+    echo $output['url']['final'];
+  }
+  else if (!empty($output['url']['replaced_variables'])) {
+    echo $output['url']['replaced_variables'];
+  }
+}
+
+/**
+ * Get a shortcut given the environment.
+ *
+ * @param array $env
+ *   The environment, holding all relevant data of the request.
+ *
+ * @return array $output
+ *   Array holding all data of the found shortcut,
+ *   ready to output as JSON
+ */
+function serchilo_get_shortcut($env) {
+
+  if (!empty($env['query'])) {
+
+    $shortcut = serchilo_find_shortcut($env['keyword'], count($env['arguments']), $env['namespace_ids']);
+    if ($shortcut) {
+      $output['url']['template'] = $shortcut['url'];
+      $variables = serchilo_get_url_variables($env);
+      $output['url']['replaced_variables'] = serchilo_replace_url_variables($shortcut['url'],  $variables);
+      $output['url']['final'] = serchilo_replace_url_arguments(
+        $output['url']['replaced_variables'],
+        $env['arguments'], 
+        $shortcut['input_encoding']
+      );
+      $output['status'] = 'found';
+    } else {
+      // Try again with default keyword.
+      $env['default_keyword'] = serchilo_get_default_keyword($env['user_name'] ?: NULL);
+      $env['query'] = $env['default_keyword'] . ' ' . $env['query'];
+      $env = serchilo_parse_query($env['query']) + $env;
+
+      $shortcut = serchilo_find_shortcut($env['keyword'], count($env['arguments']), $env['namespace_ids']);
+      if ($shortcut) {
+        $output['url']['template'] = $shortcut['url'];
+        $variables = serchilo_get_url_variables($env);
+        $output['url']['replaced_variables'] = serchilo_replace_url_variables($shortcut['url'],  $variables);
+        $output['url']['final'] = serchilo_replace_url_arguments(
+          $output['url']['replaced_variables'],
+          $env['arguments'], 
+          $shortcut['input_encoding']
+        );
+        $output['status'] = 'found_with_default_keyword';
+      }
+    }
+  }
+  else {
+    $env['keyword']        = $_GET['keyword'];
+    $env['argument_count'] = $_GET['argument_count'];
+    $shortcut = serchilo_find_shortcut($env['keyword'], $env['argument_count'], $env['namespace_ids']);
+    if ($shortcut) {
+      $output['url']['template'] = $shortcut['url'];
+      $variables = serchilo_get_url_variables($env);
+      $output['url']['replaced_variables'] = serchilo_replace_url_variables($shortcut['url'],  $variables);
+      $output['status'] = 'found';
+    }
+  }
+
+  if (empty($output['url'])) {
+    $output['status'] = 'not_found';
+  }
+  else {
+    $output['input_encoding'] = $shortcut['input_encoding'];
+  }
+
+  if (!empty($env['user_name'])) {
+    $output['user']['name'] = $env['user_name'];
+  }
+
+  $output['version'] = 2;
+
+  // Not set when calling via u/
+  // .. so left out for now, maybe not needed.
+  //$output['namespaces'] = $env['namespace_names'];
+
+  return $output;
+}
+
+
+/**
  * Populate the environment array with
  * - keyword
  * - arguments
@@ -202,6 +317,8 @@ function serchilo_populate_environment(&$env) {
     $env['path_elements_offset'] = 0;
     break;
   case OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
+  case API_PATH_AFFIX:
+  case URL_PATH_AFFIX:
     $env['query'] = $_GET['query'];
     $env['path_elements_offset'] = 1;
     break;
