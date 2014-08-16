@@ -218,6 +218,10 @@ function serchilo_parse_query($query) {
 
   $env = serchilo_extract_keyword_and_arguments($query);
   $env = serchilo_get_extra_namespace_from_keyword($env['keyword']) + $env;
+  
+  // Lowercase the keyword.
+  $env['keyword'] = strtolower($env['keyword']);
+
   return $env;
 }
 
