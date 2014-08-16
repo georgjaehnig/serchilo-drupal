@@ -327,8 +327,6 @@ function serchilo_get_namespace_id($namespace_name) {
  */
 function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = TRUE) {
   
-  $input_encoding = $shortcut['input_encoding'];
-
   $url = serchilo_replace_url_variables($shortcut['url'], $variables );
   $url = serchilo_replace_url_arguments($shortcut['url'], $arguments, $shortcut['input_encoding']);
 
