@@ -215,6 +215,7 @@ LIMIT " . (int) $limit . ";
  *   - extra_namespace_name
  */
 function serchilo_parse_query($query) {
+
   $env = serchilo_extract_keyword_and_arguments($query);
   $env = serchilo_get_extra_namespace_from_keyword($env['keyword']) + $env;
   return $env;
