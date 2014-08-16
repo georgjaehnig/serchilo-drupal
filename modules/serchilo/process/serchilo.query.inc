@@ -545,3 +545,9 @@ function serchilo_get_default_keyword($user_name = NULL) {
   }
   return NULL;
 }
+
+function serchilo_output_json($output) {
+  header('Content-Type: application/json');
+  echo json_encode($output, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT);
+  exit();
+}

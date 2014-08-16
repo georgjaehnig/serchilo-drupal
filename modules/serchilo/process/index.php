@@ -121,9 +121,7 @@ function serchilo_process_query_ajax($env) {
     $shortcuts
   );
 
-  header('Content-Type: application/json');
-  echo json_encode($shortcuts, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT);
-  exit();
+  serchilo_output_json($shortcuts);
 }
 
 /**
@@ -169,9 +167,7 @@ function serchilo_process_opensearch_suggestions($env) {
     $descriptions, 
   );
 
-  header('Content-Type: application/json');
-  echo json_encode($output, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT);
-  exit();
+  serchilo_output_json($output);
 }
 
 /**
