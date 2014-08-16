@@ -374,7 +374,6 @@ function serchilo_get_shortcut($env) {
   return $output;
 }
 
-
 /**
  * Find a shortcut.
  *
@@ -578,6 +577,9 @@ LIMIT " . (int) $limit . ";
   return $shortcuts;
 }
 
+
+// Query 
+
 /**
  * Parse a query.
  *
@@ -657,6 +659,9 @@ function serchilo_extract_keyword_and_arguments($query, $max_arguments = -1) {
   );
 }
 
+
+// Namespace 
+
 /**
  * Get the namespace ID from a namespace name.
  *
@@ -685,6 +690,56 @@ function serchilo_get_namespace_id($namespace_name) {
   $row = $result->fetch_assoc();
   return $row['tid'];
 }
+
+function serchilo_get_namespace_ids_from_user($user_name) {
+
+  $user_id = serchilo_get_values_from_table('users', 'name', $user_name, 'uid', TRUE)[0];
+
+  $star_namespace_id     = serchilo_get_namespace_id(STAR_NAMESPACE);
+  $language_namespace_id = serchilo_get_values_from_table('field_data_field_language_namespace', 'entity_id', $user_id, 'field_language_namespace_tid')[0];
+  $country_namespace_id  = serchilo_get_values_from_table('field_data_field_country_namespace', 'entity_id', $user_id, 'field_country_namespace_tid')[0];
+  $custom_namespace_ids  = serchilo_get_values_from_table('field_data_field_custom_namespaces', 'entity_id', $user_id, 'field_custom_namespaces_tid');
+
+  $namespace_ids = array_merge(
+    array(
+      $star_namespace_id, 
+      $language_namespace_id, 
+      $country_namespace_id
+    ),
+    $custom_namespace_ids
+  );
+
+  return $namespace_ids;
+}
+
+
+// Path 
+
+function serchilo_get_path_elements() {
+  $path = $_SERVER['REDIRECT_URL'];
+  // example: '/n/en.usa'
+  $path_elements = explode('/', $path);
+  return $path_elements;
+}
+
+function serchilo_get_namespace_names_from_path($path_elements_offset = 0) {
+  $path_elements = serchilo_get_path_elements();
+  if ('n' == $path_elements[$path_elements_offset + 1]) {
+    $namespace_names = explode('.', $path_elements[$path_elements_offset + 2]);
+    array_unshift($namespace_names, STAR_NAMESPACE);
+    return $namespace_names;
+  }
+}
+
+function serchilo_get_user_name_from_path($path_elements_offset = 0) {
+  $path_elements = serchilo_get_path_elements();
+  if ('u' == $path_elements[$path_elements_offset + 1]) {
+    return $path_elements[$path_elements_offset + 2];
+  }
+}
+
+
+// Call, redirect, output
 
 /**
  * Call a shortcut URL.
@@ -743,6 +798,15 @@ function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = T
 function serchilo_redirect_via_html($url) {
   require_once('tpl/serchilo-redirect.tpl.php'); 
 }
+
+function serchilo_output_json($output) {
+  header('Content-Type: application/json');
+  echo json_encode($output, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT);
+  exit();
+}
+
+
+// URL
 
 /**
  * Replace the placeholders of the URL
@@ -852,6 +916,9 @@ function serchilo_get_url_variables($env) {
   return $variables;
 }
 
+
+// Database
+
 function serchilo_replace_sql_arguments($mysqli, $sql_template, $arguments, $left_delimiter = ':', $right_delimiter = '') {
   $sql_replaced = $sql_template;
   foreach ($arguments as $key=>$value) {
@@ -859,27 +926,6 @@ function serchilo_replace_sql_arguments($mysqli, $sql_template, $arguments, $lef
     $sql_replaced = str_replace($left_delimiter . $key . $right_delimiter, "'" . $value_escaped . "'", $sql_replaced);
   }
   return $sql_replaced;
-}
-
-function serchilo_get_namespace_ids_from_user($user_name) {
-
-  $user_id = serchilo_get_values_from_table('users', 'name', $user_name, 'uid', TRUE)[0];
-
-  $star_namespace_id     = serchilo_get_namespace_id(STAR_NAMESPACE);
-  $language_namespace_id = serchilo_get_values_from_table('field_data_field_language_namespace', 'entity_id', $user_id, 'field_language_namespace_tid')[0];
-  $country_namespace_id  = serchilo_get_values_from_table('field_data_field_country_namespace', 'entity_id', $user_id, 'field_country_namespace_tid')[0];
-  $custom_namespace_ids  = serchilo_get_values_from_table('field_data_field_custom_namespaces', 'entity_id', $user_id, 'field_custom_namespaces_tid');
-
-  $namespace_ids = array_merge(
-    array(
-      $star_namespace_id, 
-      $language_namespace_id, 
-      $country_namespace_id
-    ),
-    $custom_namespace_ids
-  );
-
-  return $namespace_ids;
 }
 
 function serchilo_get_values_from_table($table, $where_column_name, $where_value, $value_column_name) {
@@ -903,29 +949,6 @@ function serchilo_get_values_from_table($table, $where_column_name, $where_value
   return $values;
 }
 
-function serchilo_get_path_elements() {
-  $path = $_SERVER['REDIRECT_URL'];
-  // example: '/n/en.usa'
-  $path_elements = explode('/', $path);
-  return $path_elements;
-}
-
-function serchilo_get_namespace_names_from_path($path_elements_offset = 0) {
-  $path_elements = serchilo_get_path_elements();
-  if ('n' == $path_elements[$path_elements_offset + 1]) {
-    $namespace_names = explode('.', $path_elements[$path_elements_offset + 2]);
-    array_unshift($namespace_names, STAR_NAMESPACE);
-    return $namespace_names;
-  }
-}
-
-function serchilo_get_user_name_from_path($path_elements_offset = 0) {
-  $path_elements = serchilo_get_path_elements();
-  if ('u' == $path_elements[$path_elements_offset + 1]) {
-    return $path_elements[$path_elements_offset + 2];
-  }
-}
-
 function serchilo_get_default_keyword($user_name = NULL) {
 
   // Setting via GET parameter has always the highest priority.
@@ -940,8 +963,3 @@ function serchilo_get_default_keyword($user_name = NULL) {
   return NULL;
 }
 
-function serchilo_output_json($output) {
-  header('Content-Type: application/json');
-  echo json_encode($output, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT);
-  exit();
-}
