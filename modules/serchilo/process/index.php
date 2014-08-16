@@ -198,7 +198,7 @@ function serchilo_process_query_url($env) {
 
   $output = serchilo_get_shortcut($env);
 
-  //header('Content-Type: application/text');
+  header('Content-Type: text/plain');
   if (!empty($output['url']['final'])) {
     echo $output['url']['final'];
   }
