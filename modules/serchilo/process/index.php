@@ -67,6 +67,91 @@ function serchilo_dispatch() {
 }
 
 
+// Dispatch helpers
+
+/**
+ * Populate the environment array with
+ * - keyword
+ * - arguments
+ * - namespace_ids
+ * - language_namespace_name
+ * - country_namespace_name
+ * - user_name (optional).
+ *
+ * @param array $env
+ *   The environment, holding already
+ *   - call_type
+ *     Can be 
+ *     - 'n'
+ *     - 'u'.
+ *   - page_type
+ *     Can be
+ *     - CONSOLE
+ *     - OPENSEARCH_SUGGESTIONS_PATH_AFFIX
+ *     - AUTOCOMPLETE_PATH_AFFIX.
+ *
+ * @return void
+ *
+ */
+function serchilo_populate_environment(&$env) {
+
+  switch ($env['page_type']) {
+  case CONSOLE:
+    $env['query'] = $_GET['query'];
+    $env['path_elements_offset'] = 0;
+    break;
+  case OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
+  case API_PATH_AFFIX:
+  case URL_PATH_AFFIX:
+    $env['query'] = $_GET['query'];
+    $env['path_elements_offset'] = 1;
+    break;
+  case AUTOCOMPLETE_PATH_AFFIX:
+    $env['query'] = $_GET['term'];
+    $env['path_elements_offset'] = 1;
+    break;
+  }
+
+  switch ($env['call_type']) {
+
+  case NAMESPACES_PATH_AFFIX:
+
+    // Get namespace names.
+    $env['namespace_names'] = serchilo_get_namespace_names_from_path($env['path_elements_offset']);
+    $env['language_namespace_name'] = $env['namespace_names'][1];
+    $env['country_namespace_name']  = $env['namespace_names'][2];
+
+    // Parse the query and set keyword, arguments and extra_namespace_name.
+    $env += serchilo_parse_query($env['query']);
+
+    // Get namespace_ids from namespace_names.
+    $env['namespace_ids'] = array_map(
+      'serchilo_get_namespace_id', 
+      array_merge(
+        $env['namespace_names'], 
+        array($env['extra_namespace_name'])
+      )
+    );
+
+    break;
+
+  case USER_PATH_AFFIX:
+
+    // Parse the query and set keyword, arguments and extra_namespace_name.
+    $env += serchilo_parse_query($env['query']);
+
+    $env['user_name'] = serchilo_get_user_name_from_path($env['path_elements_offset']);
+    $env['namespace_ids'] = serchilo_get_namespace_ids_from_user($env['user_name']);
+
+    // Get namespace_names from namespace_ids.
+    $env['language_namespace_name'] = serchilo_get_values_from_table('taxonomy_term_data', 'tid', $env['namespace_ids']['1'], 'name')[0];
+    $env['country_namespace_name']  = serchilo_get_values_from_table('taxonomy_term_data', 'tid', $env['namespace_ids']['2'], 'name')[0];
+
+    break;
+  }
+}
+
+
 // Process
 
 /**
@@ -291,84 +376,3 @@ function serchilo_get_shortcut($env) {
 }
 
 
-/**
- * Populate the environment array with
- * - keyword
- * - arguments
- * - namespace_ids
- * - language_namespace_name
- * - country_namespace_name
- * - user_name (optional).
- *
- * @param array $env
- *   The environment, holding already
- *   - call_type
- *     Can be 
- *     - 'n'
- *     - 'u'.
- *   - page_type
- *     Can be
- *     - CONSOLE
- *     - OPENSEARCH_SUGGESTIONS_PATH_AFFIX
- *     - AUTOCOMPLETE_PATH_AFFIX.
- *
- * @return void
- *
- */
-function serchilo_populate_environment(&$env) {
-
-  switch ($env['page_type']) {
-  case CONSOLE:
-    $env['query'] = $_GET['query'];
-    $env['path_elements_offset'] = 0;
-    break;
-  case OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
-  case API_PATH_AFFIX:
-  case URL_PATH_AFFIX:
-    $env['query'] = $_GET['query'];
-    $env['path_elements_offset'] = 1;
-    break;
-  case AUTOCOMPLETE_PATH_AFFIX:
-    $env['query'] = $_GET['term'];
-    $env['path_elements_offset'] = 1;
-    break;
-  }
-
-  switch ($env['call_type']) {
-
-  case NAMESPACES_PATH_AFFIX:
-
-    // Get namespace names.
-    $env['namespace_names'] = serchilo_get_namespace_names_from_path($env['path_elements_offset']);
-    $env['language_namespace_name'] = $env['namespace_names'][1];
-    $env['country_namespace_name']  = $env['namespace_names'][2];
-
-    // Parse the query and set keyword, arguments and extra_namespace_name.
-    $env += serchilo_parse_query($env['query']);
-
-    // Get namespace_ids from namespace_names.
-    $env['namespace_ids'] = array_map(
-      'serchilo_get_namespace_id', 
-      array_merge(
-        $env['namespace_names'], 
-        array($env['extra_namespace_name'])
-      )
-    );
-
-    break;
-
-  case USER_PATH_AFFIX:
-
-    // Parse the query and set keyword, arguments and extra_namespace_name.
-    $env += serchilo_parse_query($env['query']);
-
-    $env['user_name'] = serchilo_get_user_name_from_path($env['path_elements_offset']);
-    $env['namespace_ids'] = serchilo_get_namespace_ids_from_user($env['user_name']);
-
-    // Get namespace_names from namespace_ids.
-    $env['language_namespace_name'] = serchilo_get_values_from_table('taxonomy_term_data', 'tid', $env['namespace_ids']['1'], 'name')[0];
-    $env['country_namespace_name']  = serchilo_get_values_from_table('taxonomy_term_data', 'tid', $env['namespace_ids']['2'], 'name')[0];
-
-    break;
-  }
-}
