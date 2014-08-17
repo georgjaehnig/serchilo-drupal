@@ -16,12 +16,16 @@ function serchilo_redirect_shortcuts($shortcut_id) {
   if (
     (empty($shortcut_id)) ||
     (!is_numeric($shortcut_id)) ||
-    (!$path = drupal_lookup_path('alias', 'node/' . $shortcut_id)) ||
     FALSE
   ) {
     drupal_not_found();
     return;
   }
-  drupal_goto($path); 
+  drupal_goto(
+    'node/' . $shortcut_id,
+    array(
+      'query' => drupal_get_query_parameters(),
+    )
+  ); 
 }
 
