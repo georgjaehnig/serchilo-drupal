@@ -8,7 +8,7 @@ function serchilo_migrate_menu() {
 
   $items['command/%'] = array(
     'page callback' => 'serchilo_migrate_redirect_commands',
-    'page arguments' => array(1),
+    'page arguments' => array(1,2),
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
     'file' => 'serchilo_migrate.redirect.inc',
