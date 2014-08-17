@@ -32,8 +32,12 @@ function serchilo_migrate_redirect_commands($command_id) {
 
   if (!empty($result)) {
     $shortcut_id = array_keys($result['node'])[0];
-    module_load_include('inc', 'serchilo', 'serchilo.redirect');
-    serchilo_redirect_shortcuts($shortcut_id);
+    drupal_goto(
+      'node/' . $shortcut_id . '/' . $path_element,
+      array(
+        'query' => drupal_get_query_parameters(),
+      )
+    );
   }
   else {
     drupal_not_found();
