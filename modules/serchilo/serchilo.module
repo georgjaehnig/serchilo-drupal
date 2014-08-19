@@ -202,7 +202,7 @@ function serchilo_block_view($delta='') {
  */
 function serchilo_block_namespaces() {
 
-  $namespaces = drupal_static('namespaces');
+  $namespaces = drupal_static('serchilo_namespaces');
 
   // Get out if no namespaces are set.
   if (count($namespaces) == 0) {

@@ -23,7 +23,7 @@ function serchilo_page_home() {
   } 
   else {
     serchilo_validate_and_set_namespaces();
-    $namespace_names = drupal_static('namespace_names');
+    $namespace_names = drupal_static('serchilo_namespace_names');
     $namespace_path =  join(
       NAMESPACE_PATH_SEPARATOR,
       # omit star-namespace if at first pos
@@ -69,9 +69,9 @@ function serchilo_page_dispatch_namespaces($page_type, $namespace_path_original)
   }
 
   # allow setting of default keyword
-  $default_keyword =& drupal_static('default_keyword' );
+  $default_keyword =& drupal_static('serchilo_default_keyword' );
 
-  $default_keyword_get =& drupal_static('default_keyword_get' );
+  $default_keyword_get =& drupal_static('serchilo_default_keyword_get' );
 
   # override default keyword from GET params
   if ($default_keyword_get = serchilo_array_value($_GET, 'default_keyword')) {
@@ -139,7 +139,7 @@ function serchilo_page_console() {
   $is_front = &drupal_static('drupal_is_front_page');
   $is_front = TRUE;
 
-  $default_keyword_get =& drupal_static('default_keyword_get' );
+  $default_keyword_get =& drupal_static('serchilo_default_keyword_get' );
 
   serchilo_add_opensearch_link($default_keyword_get);
 
@@ -169,8 +169,8 @@ function serchilo_page_console() {
   drupal_add_library('system', 'ui.autocomplete');
   
 
-  $default_keyword = drupal_static('default_keyword' );
-  $namespace_names = drupal_static('namespace_names');
+  $default_keyword = drupal_static('serchilo_default_keyword' );
+  $namespace_names = drupal_static('serchilo_namespace_names');
 
   /*
   $shortcuts_of_current_namespaces_url = url(
@@ -272,14 +272,14 @@ function serchilo_validate_and_set_namespaces($path_elements = array()) {
   $namespace_names = array_map(function ($namespace) { return $namespace->name; }, $namespaces );
   $namespace_ids = array_map(function ($namespace) { return $namespace->tid; }, $namespaces );
 
-  drupal_static('namespaces', $namespaces );
-  drupal_static('namespace_ids', $namespace_ids );
-  drupal_static('namespace_names', $namespace_names );
+  drupal_static('serchilo_namespaces', $namespaces );
+  drupal_static('serchilo_namespace_ids', $namespace_ids );
+  drupal_static('serchilo_namespace_names', $namespace_names );
 
-  drupal_static('language_namespace', $language_namespace );
-  drupal_static('country_namespace', $country_namespace );
+  drupal_static('serchilo_language_namespace', $language_namespace );
+  drupal_static('serchilo_country_namespace', $country_namespace );
 
-  drupal_static('namespaces_validated', TRUE );
+  drupal_static('serchilo_namespaces_validated', TRUE );
 
   return $namespaces;
 
@@ -344,7 +344,7 @@ function serchilo_validate_namespace_path($namespace_path_original) {
  */
 function serchilo_set_default_keyword($account) {
 
-  $default_keyword =& drupal_static('default_keyword');
+  $default_keyword =& drupal_static('serchilo_default_keyword');
 
   # get default keyword
   $default_keyword = 
@@ -384,17 +384,17 @@ function serchilo_set_user_namespaces($account) {
   $namespace_names = array_map(function ($namespace) { return $namespace->name; }, $namespaces );
   $namespace_ids   = array_map(function ($namespace) { return $namespace->tid; }, $namespaces );
 
-  drupal_static('namespaces',         $namespaces         );
-  drupal_static('namespace_names',    $namespace_names    );
-  drupal_static('namespace_ids',      $namespace_ids      );
+  drupal_static('serchilo_namespaces',         $namespaces         );
+  drupal_static('serchilo_namespace_names',    $namespace_names    );
+  drupal_static('serchilo_namespace_ids',      $namespace_ids      );
 
-  drupal_static('language_namespace', $language_namespace );
-  drupal_static('country_namespace',  $country_namespace  );
-  drupal_static('user_namespace',     $user_namespace     );
+  drupal_static('serchilo_language_namespace', $language_namespace );
+  drupal_static('serchilo_country_namespace',  $country_namespace  );
+  drupal_static('serchilo_user_namespace',     $user_namespace     );
 
-  drupal_static('user_id',            $account->uid       );
+  drupal_static('serchilo_user_id',            $account->uid       );
 
-  drupal_static('namespaces_validated', TRUE );
+  drupal_static('serchilo_namespaces_validated', TRUE );
 
   return $namespaces;
 }
