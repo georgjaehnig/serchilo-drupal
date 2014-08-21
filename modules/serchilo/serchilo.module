@@ -539,6 +539,9 @@ function serchilo_node_validate($node, $form, &$form_state) {
 
   if ($node->type == 'shortcut') {
 
+    // Check if another shortcut with the same
+    // keyword, argument_count and namespace exists.
+
     $efq = new EntityFieldQuery;
 
     $result = $efq
