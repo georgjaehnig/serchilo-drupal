@@ -11,6 +11,7 @@ dependencies[] = ctools
 dependencies[] = dblog
 dependencies[] = devel
 dependencies[] = diff
+dependencies[] = emaillog
 dependencies[] = entity
 dependencies[] = features
 dependencies[] = field_collection
