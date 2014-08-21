@@ -775,7 +775,7 @@ function serchilo_options_list_country_namespace() {
  */
 function serchilo_shortcut_to_db_fields($node) {
 
-  $tags = array_map(function ($tag) { return $tag['name']; }, $node->field_tags[LANGUAGE_NONE] );
+  $tags = array_map(function ($tag) { return $tag['name']; }, $node->field_tags[LANGUAGE_NONE] ?: array() );
   
   $fields = array(
     'nid'            => $node->nid,
