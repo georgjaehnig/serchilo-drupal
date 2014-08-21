@@ -987,6 +987,7 @@ function serchilo_import_shortcuts($file = NULL, $verbose = FALSE) {
     $shortcut->type = 'shortcut';
     $shortcut->uid = 1;
     $shortcut->status = 1;
+    $shortcut->comment = COMMENT_NODE_OPEN;
     $shortcut->revision_moderation = FALSE;
     $shortcut->title = $row['title'];
     drupal_array_set_nested_value($shortcut->field_keyword,        array( LANGUAGE_NONE, 0, 'value'), $row['keyword']);
