@@ -886,6 +886,13 @@ function serchilo_features_user_default_permissions() {
     'module' => 'revisioning',
   );
 
+  // Exported permission: 'rename features'.
+  $permissions['rename features'] = array(
+    'name' => 'rename features',
+    'roles' => array(),
+    'module' => 'features',
+  );
+
   // Exported permission: 'revert revisions'.
   $permissions['revert revisions'] = array(
     'name' => 'revert revisions',

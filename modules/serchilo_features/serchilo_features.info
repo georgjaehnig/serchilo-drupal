@@ -221,6 +221,7 @@ features[user_permission][] = post comments
 features[user_permission][] = publish revisions
 features[user_permission][] = publish revisions of any shortcut content
 features[user_permission][] = publish revisions of own shortcut content
+features[user_permission][] = rename features
 features[user_permission][] = revert revisions
 features[user_permission][] = select account cancellation method
 features[user_permission][] = skip comment approval
