@@ -774,15 +774,43 @@ function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = T
 
   if (empty($shortcut['set_referrer'])) {
     // Classic redirect.
+    serchilo_log_shortcut_call($shortcut);
     header('Location: ' . $url);
     exit();
   }
   else {
     // Redirect via HTML page
     // for shortcuts which need a referrer.
+    serchilo_log_shortcut_call($shortcut);
     serchilo_redirect_via_html($url);
     exit();
   }
+}
+
+
+function serchilo_log_shortcut_call($shortcut) {
+
+  global $mysqli;
+
+  $sql ="
+    
+INSERT INTO 
+  serchilo_shortcut_log
+  (nid, called)
+  VALUES (:nid, :called);
+
+  ";
+
+  $sql = serchilo_replace_sql_arguments(
+    $mysqli, 
+    $sql,
+    array(
+      'nid'    => $shortcut['nid'],
+      'called' => time(),
+    )
+  );
+
+  $mysqli->query($sql);
 }
 
 /**

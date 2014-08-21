@@ -128,7 +128,32 @@ function serchilo_schema() {
     ),
     'primary key' => array('nid'),
   );
-
+ 
+  $schema['serchilo_shortcut_log'] = array(
+    'description' => 'Logged shortcut calls.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The id of the call.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'nid' => array(
+        'description' => 'The node id.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'called' => array(
+        'description' => 'The UNIX timestamp when the call happened.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+ 
   return $schema;
 }
 
