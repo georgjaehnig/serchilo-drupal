@@ -555,15 +555,15 @@ LIMIT " . (int) $limit . ";
     $mysqli, 
     $sql,
     array(
-      'argument_count' => count($arguments), 
+      'argument_count'     => count($arguments),
       'extra_namespace_id' => (isset($extra_namespace_id) ? $extra_namespace_id : NULL),
       'keyword_like_right' => $keyword . '%',
-      'keyword_like_both' => '%' . $keyword . '%',
-      'keyword' => $keyword,
-      'query_like_right' => $query . '%',
-      'query_like_both' => '%' . $query . '%',
-      'query' => $query,
-      'limit' => (int) $limit,
+      'keyword_like_both'  => '%' . $keyword . '%',
+      'keyword'            => $keyword,
+      'query_like_right'   => $query . '%',
+      'query_like_both'    => '%' . $query . '%',
+      'query'              => $query,
+      'limit'              => (int) $limit,
     )
   );
 
