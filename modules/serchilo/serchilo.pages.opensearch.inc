@@ -19,7 +19,7 @@ function serchilo_page_opensearch($pathElement1, $pathElement2) {
 
   $content['UrlSuggestionsTemplate'] = 
     $GLOBALS['base_url'] . '/' . 
-    OPENSEARCH_SUGGESTIONS_PATH_AFFIX . 
+    SERCHILO_OPENSEARCH_SUGGESTIONS_PATH_AFFIX . 
     '/' . 
     $pathElement1 . 
     '/' . 
@@ -29,7 +29,7 @@ function serchilo_page_opensearch($pathElement1, $pathElement2) {
 
   $content['UrlOpensearchTemplate'] = 
     $GLOBALS['base_url'] . '/' . 
-    OPENSEARCH_DEFINITION_PATH_AFFIX . 
+    SERCHILO_OPENSEARCH_DEFINITION_PATH_AFFIX . 
     '/' . 
     $pathElement1 . 
     '/' . 

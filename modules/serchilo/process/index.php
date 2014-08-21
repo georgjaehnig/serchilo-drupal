@@ -47,19 +47,19 @@ function serchilo_dispatch() {
   serchilo_populate_environment($env);
 
   switch ($env['page_type']) {
-  case CONSOLE:
+  case SERCHILO_CONSOLE:
     serchilo_process_query_console($env);
     break;
-  case AUTOCOMPLETE_PATH_AFFIX:
+  case SERCHILO_AUTOCOMPLETE_PATH_AFFIX:
     serchilo_process_query_ajax($env);
     break;
-  case OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
+  case SERCHILO_OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
     serchilo_process_opensearch_suggestions($env);
     break;
-  case API_PATH_AFFIX:
+  case SERCHILO_API_PATH_AFFIX:
     serchilo_process_query_api($env);
     break;
-  case URL_PATH_AFFIX:
+  case SERCHILO_URL_PATH_AFFIX:
     serchilo_process_query_url($env);
     break;
   }
@@ -85,9 +85,9 @@ function serchilo_dispatch() {
  *     - 'u'.
  *   - page_type
  *     Can be
- *     - CONSOLE
- *     - OPENSEARCH_SUGGESTIONS_PATH_AFFIX
- *     - AUTOCOMPLETE_PATH_AFFIX.
+ *     - SERCHILO_CONSOLE
+ *     - SERCHILO_OPENSEARCH_SUGGESTIONS_PATH_AFFIX
+ *     - SERCHILO_AUTOCOMPLETE_PATH_AFFIX.
  *
  * @return void
  *
@@ -95,17 +95,17 @@ function serchilo_dispatch() {
 function serchilo_populate_environment(&$env) {
 
   switch ($env['page_type']) {
-  case CONSOLE:
+  case SERCHILO_CONSOLE:
     $env['query'] = $_GET['query'];
     $env['path_elements_offset'] = 0;
     break;
-  case OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
-  case API_PATH_AFFIX:
-  case URL_PATH_AFFIX:
+  case SERCHILO_OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
+  case SERCHILO_API_PATH_AFFIX:
+  case SERCHILO_URL_PATH_AFFIX:
     $env['query'] = $_GET['query'];
     $env['path_elements_offset'] = 1;
     break;
-  case AUTOCOMPLETE_PATH_AFFIX:
+  case SERCHILO_AUTOCOMPLETE_PATH_AFFIX:
     $env['query'] = $_GET['term'];
     $env['path_elements_offset'] = 1;
     break;
@@ -113,7 +113,7 @@ function serchilo_populate_environment(&$env) {
 
   switch ($env['call_type']) {
 
-  case NAMESPACES_PATH_AFFIX:
+  case SERCHILO_NAMESPACES_PATH_AFFIX:
 
     // Get namespace names.
     $env['namespace_names'] = serchilo_get_namespace_names_from_path($env['path_elements_offset']);
@@ -134,7 +134,7 @@ function serchilo_populate_environment(&$env) {
 
     break;
 
-  case USER_PATH_AFFIX:
+  case SERCHILO_USER_PATH_AFFIX:
 
     // Parse the query and set keyword, arguments and extra_namespace_name.
     $env += serchilo_parse_query($env['query']);
@@ -695,7 +695,7 @@ function serchilo_get_namespace_ids_from_user($user_name) {
 
   $user_id = serchilo_get_values_from_table('users', 'name', $user_name, 'uid', TRUE)[0];
 
-  $star_namespace_id     = serchilo_get_namespace_id(STAR_NAMESPACE);
+  $star_namespace_id     = serchilo_get_namespace_id(SERCHILO_PLANET_NAMESPACE);
   $language_namespace_id = serchilo_get_values_from_table('field_data_field_language_namespace', 'entity_id', $user_id, 'field_language_namespace_tid')[0];
   $country_namespace_id  = serchilo_get_values_from_table('field_data_field_country_namespace', 'entity_id', $user_id, 'field_country_namespace_tid')[0];
   $custom_namespace_ids  = serchilo_get_values_from_table('field_data_field_custom_namespaces', 'entity_id', $user_id, 'field_custom_namespaces_tid');
@@ -726,7 +726,7 @@ function serchilo_get_namespace_names_from_path($path_elements_offset = 0) {
   $path_elements = serchilo_get_path_elements();
   if ('n' == $path_elements[$path_elements_offset + 1]) {
     $namespace_names = explode('.', $path_elements[$path_elements_offset + 2]);
-    array_unshift($namespace_names, STAR_NAMESPACE);
+    array_unshift($namespace_names, SERCHILO_PLANET_NAMESPACE);
     return $namespace_names;
   }
 }

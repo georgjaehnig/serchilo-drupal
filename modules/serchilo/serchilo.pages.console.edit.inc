@@ -8,7 +8,7 @@ function serchilo_form_console_namespaces($form, &$form_state, $namespace_path_o
 
   // Redirect if path changed.
   if ($namespace_path != $namespace_path_original) {
-      drupal_goto( NAMESPACES_PATH_AFFIX . '/' . $namespace_path . '/edit', array(), 301);
+      drupal_goto( SERCHILO_NAMESPACES_PATH_AFFIX . '/' . $namespace_path . '/edit', array(), 301);
   }
 
   $namespace_ids = drupal_static('namespace_ids');
@@ -50,7 +50,7 @@ function serchilo_form_console_namespaces_submit($form, $form_state) {
 
   // Redirect to new console page.
   drupal_goto( 
-    NAMESPACES_PATH_AFFIX . 
+    SERCHILO_NAMESPACES_PATH_AFFIX . 
     '/' . 
     join('.', $namespace_names)
   );

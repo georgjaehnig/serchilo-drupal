@@ -185,8 +185,8 @@ function serchilo_create_user_namespaces($vocabulary_namespaces, $vocabulary_nam
 
 function serchilo_set_default_user_settings() {
 
-  $default_language_namespace = array_shift(taxonomy_get_term_by_name(DEFAULT_LANGUAGE, 'namespaces') ?: array());
-  $default_country_namespace  = array_shift(taxonomy_get_term_by_name(DEFAULT_COUNTRY, 'namespaces') ?: array());
+  $default_language_namespace = array_shift(taxonomy_get_term_by_name(SERCHILO_DEFAULT_LANGUAGE, 'namespaces') ?: array());
+  $default_country_namespace  = array_shift(taxonomy_get_term_by_name(SERCHILO_DEFAULT_COUNTRY, 'namespaces') ?: array());
 
   $accounts = entity_load('user');
 

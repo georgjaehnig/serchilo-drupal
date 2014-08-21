@@ -15,7 +15,7 @@ function serchilo_page_home() {
   if (user_is_logged_in()) {
     # goto u/[username]
     drupal_goto(
-      USER_PATH_AFFIX . '/' . $GLOBALS['user']->name,
+      SERCHILO_USER_PATH_AFFIX . '/' . $GLOBALS['user']->name,
       array(
         'query' => drupal_get_query_parameters() 
       )
@@ -25,13 +25,13 @@ function serchilo_page_home() {
     serchilo_validate_and_set_namespaces();
     $namespace_names = drupal_static('serchilo_namespace_names');
     $namespace_path =  join(
-      NAMESPACE_PATH_SEPARATOR,
+      SERCHILO_NAMESPACE_PATH_SEPARATOR,
       # omit star-namespace if at first pos
-      $namespace_names[0] == STAR_NAMESPACE ? array_slice($namespace_names, 1) : $namespace_names
+      $namespace_names[0] == SERCHILO_PLANET_NAMESPACE ? array_slice($namespace_names, 1) : $namespace_names
     );
     # goto n/[namespace_names]
     drupal_goto( 
-      NAMESPACES_PATH_AFFIX . '/' . $namespace_path,
+      SERCHILO_NAMESPACES_PATH_AFFIX . '/' . $namespace_path,
       array(
         'query' => drupal_get_query_parameters() 
       )
@@ -44,10 +44,10 @@ function serchilo_page_dispatch_namespaces($page_type, $namespace_path_original)
   # redirect if path changed
   if ($namespace_path != $namespace_path_original) {
     $path_elements = array(
-      NAMESPACES_PATH_AFFIX,
+      SERCHILO_NAMESPACES_PATH_AFFIX,
       $namespace_path, 
     );
-    if (CONSOLE != $page_type) {
+    if (SERCHILO_CONSOLE != $page_type) {
       array_unshift($path_elements, $page_type); 
     }
     drupal_goto( 
@@ -62,9 +62,9 @@ function serchilo_page_dispatch_namespaces($page_type, $namespace_path_original)
     );
   }
   switch ($page_type) {
-  case CONSOLE: 
-    $output = metatag_metatags_view(METATAG_INSTANCE_CONSOLE_NAMESPACES);
-    metatag_page_set_metatags(METATAG_INSTANCE_CONSOLE_NAMESPACES, $output);
+  case SERCHILO_CONSOLE: 
+    $output = metatag_metatags_view(SERCHILO_METATAG_INSTANCE_CONSOLE_NAMESPACES);
+    metatag_page_set_metatags(SERCHILO_METATAG_INSTANCE_CONSOLE_NAMESPACES, $output);
     break;
   }
 
@@ -100,9 +100,9 @@ function serchilo_page_dispatch_user($page_type, $path_affix) {
   serchilo_set_user_namespaces($account);
 
   switch ($page_type) {
-  case CONSOLE: 
-    $output = metatag_metatags_view(METATAG_INSTANCE_CONSOLE_USER);
-    metatag_page_set_metatags(METATAG_INSTANCE_CONSOLE_USER, $output);
+  case SERCHILO_CONSOLE: 
+    $output = metatag_metatags_view(SERCHILO_METATAG_INSTANCE_CONSOLE_USER);
+    metatag_page_set_metatags(SERCHILO_METATAG_INSTANCE_CONSOLE_USER, $output);
     break;
   }
   return serchilo_page_dispatch($page_type);
@@ -110,19 +110,19 @@ function serchilo_page_dispatch_user($page_type, $path_affix) {
 
 function serchilo_page_dispatch($page_type) {
   switch ($page_type) {
-  case CONSOLE:
+  case SERCHILO_CONSOLE:
     return serchilo_page_console();
   // TODO:
   // remove this as namespace validation (and redirection)
   // shall only happen at console requests. 
   // Other requests shall be solely handled by the PHP standalone processor.
-  case AUTOCOMPLETE_PATH_AFFIX:
+  case SERCHILO_AUTOCOMPLETE_PATH_AFFIX:
     return serchilo_autocomplete();
-  case OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
+  case SERCHILO_OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
     return serchilo_opensearch_suggestions();
-  case URL_PATH_AFFIX:
+  case SERCHILO_URL_PATH_AFFIX:
     return serchilo_url();
-  case API_PATH_AFFIX:
+  case SERCHILO_API_PATH_AFFIX:
     return serchilo_api();
   }
 }
@@ -155,7 +155,7 @@ function serchilo_page_console() {
     drupal_set_message('No matching shortcut found.', 'error');
   }
 
-  $autocomplete_url = base_path() . AUTOCOMPLETE_PATH_AFFIX . '/' . join('/', arg());
+  $autocomplete_url = base_path() . SERCHILO_AUTOCOMPLETE_PATH_AFFIX . '/' . join('/', arg());
 
   $settings = array(
     'autocomplete' => $autocomplete,
@@ -242,7 +242,7 @@ function serchilo_validate_and_set_namespaces($path_elements = array()) {
     }
 
     # check if we have the star namespace here
-    if ($namespace->name == STAR_NAMESPACE) {
+    if ($namespace->name == SERCHILO_PLANET_NAMESPACE) {
       $star_namespace = $namespace;
     }
   }
@@ -265,7 +265,7 @@ function serchilo_validate_and_set_namespaces($path_elements = array()) {
 
   # set star namespace as first if not already in path
   if (!isset($star_namespace)) {
-    $star_namespace = current(taxonomy_get_term_by_name(STAR_NAMESPACE, 'namespaces')); 
+    $star_namespace = current(taxonomy_get_term_by_name(SERCHILO_PLANET_NAMESPACE, 'namespaces')); 
     array_unshift($namespaces, $star_namespace);
   }
 
@@ -309,14 +309,14 @@ function serchilo_namespace_names_to_namespaces($namespace_names) {
  * Validates a given namespace path.
  *
  * @param $namespace_path_original
- *    String with namespaces seperated by NAMESPACE_PATH_SEPARATOR.
+ *    String with namespaces seperated by SERCHILO_NAMESPACE_PATH_SEPARATOR.
  * @return $namespace_path_validated
- *    String with validated namespaces seperated by NAMESPACE_PATH_SEPARATOR.
+ *    String with validated namespaces seperated by SERCHILO_NAMESPACE_PATH_SEPARATOR.
  */
 function serchilo_validate_namespace_path($namespace_path_original) {
 
   $namespace_names = explode(
-    NAMESPACE_PATH_SEPARATOR,
+    SERCHILO_NAMESPACE_PATH_SEPARATOR,
     $namespace_path_original
   );
 
@@ -325,9 +325,9 @@ function serchilo_validate_namespace_path($namespace_path_original) {
   $namespace_names = array_map(function ($namespace) { return $namespace->name; }, $namespaces );
 
   $namespace_path_validated = join(
-    NAMESPACE_PATH_SEPARATOR,
+    SERCHILO_NAMESPACE_PATH_SEPARATOR,
     # omit star-namespace if at first pos
-    $namespace_names[0] == STAR_NAMESPACE ? array_slice($namespace_names, 1) : $namespace_names
+    $namespace_names[0] == SERCHILO_PLANET_NAMESPACE ? array_slice($namespace_names, 1) : $namespace_names
   );
 
   return $namespace_path_validated;
@@ -363,7 +363,7 @@ function serchilo_set_default_keyword($account) {
  */
 function serchilo_set_user_namespaces($account) {
 
-  $star_namespace     = array_shift(taxonomy_get_term_by_name(STAR_NAMESPACE, 'namespaces') ?: array());
+  $star_namespace     = array_shift(taxonomy_get_term_by_name(SERCHILO_PLANET_NAMESPACE, 'namespaces') ?: array());
   $language_namespace = array_shift(serchilo_field_get_items_taxonomy_term_load_multiple('user', $account, 'field_language_namespace') ?: array());
   $country_namespace  = array_shift(serchilo_field_get_items_taxonomy_term_load_multiple('user', $account, 'field_country_namespace') ?: array());
   $custom_namespaces  = serchilo_field_get_items_taxonomy_term_load_multiple('user', $account, 'field_custom_namespaces');
@@ -436,7 +436,7 @@ function serchilo_add_opensearch_link($default_keyword_get) {
     'rel' => 'search',
     'type' => 'application/opensearchdescription+xml',
     'href' => url( 
-      OPENSEARCH_DEFINITION_PATH_AFFIX .  '/' .  arg(0) .  '/' .  arg(1),
+      SERCHILO_OPENSEARCH_DEFINITION_PATH_AFFIX .  '/' .  arg(0) .  '/' .  arg(1),
       array(
         'absolute' => TRUE,
         'query' => drupal_get_query_parameters(),

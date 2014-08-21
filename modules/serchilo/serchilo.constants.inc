@@ -1,25 +1,24 @@
 <?PHP
 
-define('DEFAULT_LANGUAGE', 'en');
-define('DEFAULT_COUNTRY', 'deu');
-#define('DEFAULT_COUNTRY', 'usa');
-define('DEFAULT_LIMIT', 8);
-define('NAMESPACE_PATH_SEPARATOR', '.');
-define('STAR_NAMESPACE', 'o');
+define('SERCHILO_DEFAULT_LANGUAGE', 'en');
+define('SERCHILO_DEFAULT_COUNTRY', 'deu');
+//define('SERCHILO_DEFAULT_COUNTRY', 'usa');
+define('SERCHILO_NAMESPACE_PATH_SEPARATOR', '.');
+define('SERCHILO_PLANET_NAMESPACE', 'o');
 
-define('NAMESPACES_PATH_AFFIX', 'n');
-define('USER_PATH_AFFIX', 'u');
+define('SERCHILO_NAMESPACES_PATH_AFFIX', 'n');
+define('SERCHILO_USER_PATH_AFFIX', 'u');
 
-define('CONSOLE', 'console');
-define('AUTOCOMPLETE_PATH_AFFIX', 'ajax');
-define('OPENSEARCH_DEFINITION_PATH_AFFIX', 'opensearch');
-define('OPENSEARCH_SUGGESTIONS_PATH_AFFIX', 'opensearch-suggestions');
-define('URL_PATH_AFFIX', 'url');
-define('API_PATH_AFFIX', 'api');
+define('SERCHILO_CONSOLE', 'console');
+define('SERCHILO_AUTOCOMPLETE_PATH_AFFIX', 'ajax');
+define('SERCHILO_OPENSEARCH_DEFINITION_PATH_AFFIX', 'opensearch');
+define('SERCHILO_OPENSEARCH_SUGGESTIONS_PATH_AFFIX', 'opensearch-suggestions');
+define('SERCHILO_URL_PATH_AFFIX', 'url');
+define('SERCHILO_API_PATH_AFFIX', 'api');
 
-define('METATAG_INSTANCE_CONSOLE', 'serchilo_console');
-define('METATAG_INSTANCE_CONSOLE_NAMESPACES', 'serchilo_console:namespaces');
-define('METATAG_INSTANCE_CONSOLE_USER', 'serchilo_console:user');
+define('SERCHILO_METATAG_INSTANCE_CONSOLE', 'serchilo_console');
+define('SERCHILO_METATAG_INSTANCE_CONSOLE_NAMESPACES', 'serchilo_console:namespaces');
+define('SERCHILO_METATAG_INSTANCE_CONSOLE_USER', 'serchilo_console:user');
 
 define('SERCHILO_WATCHDOG_MAIL_INTERVAL', 60*60 );
 
