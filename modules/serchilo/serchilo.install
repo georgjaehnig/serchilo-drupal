@@ -125,6 +125,11 @@ function serchilo_schema() {
         'length' => '255',
         'not null' => FALSE,
       ),
+      'tags' => array(
+        'description' => 'The tags of the shortcut, as string, separated by comma.',
+        'type' => 'text',
+        'not null' => FALSE,
+      ),
     ),
     'primary key' => array('nid'),
   );

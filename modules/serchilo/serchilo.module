@@ -775,6 +775,8 @@ function serchilo_options_list_country_namespace() {
  */
 function serchilo_shortcut_to_db_fields($node) {
 
+  $tags = array_map(function ($tag) { return $tag['name']; }, $node->field_tags[LANGUAGE_NONE] );
+  
   $fields = array(
     'nid'            => $node->nid,
     'title'          => $node->title,
@@ -788,6 +790,7 @@ function serchilo_shortcut_to_db_fields($node) {
     'set_referrer'   => drupal_array_get_nested_value($node->field_set_referrer,   array(LANGUAGE_NONE, 0, 'value')),
     'namespace_id'   => drupal_array_get_nested_value($node->field_namespace,      array(LANGUAGE_NONE, 0, 'tid'  )),
     'namespace_name' => drupal_array_get_nested_value($node->field_namespace,      array(LANGUAGE_NONE, 0, 'name' )),
+    'tags'           => join(',', $tags),
   );
 
   return $fields;
