@@ -450,6 +450,7 @@ function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) 
   );
   $form['field_argument_names'][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_no_tags');
   $form['field_url'           ][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_no_tags');
+  $form['field_namespace'     ][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_namespace');
   foreach (element_children($form['field_example'][LANGUAGE_NONE]) as $index) {
     if (is_int($index)) {
       $form['field_example'][LANGUAGE_NONE][$index]['field_example_arguments  '][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_no_tags');
@@ -529,6 +530,26 @@ function serchilo_form_validate_lowercase($element, &$form_state) {
         )
       )
     );
+  }
+}
+
+/**
+ * Validate namespace.
+ */
+function serchilo_form_validate_namespace($element, &$form_state) {
+
+  global $user;
+
+  $namespace_name = drupal_array_get_nested_value($form_state['values'], array_slice($element['#parents'], 0, 2));
+
+  if (strlen($namespace_name) >= 4) {
+    if (user_is_logged_in()) {
+      if ($namespace_name != $user->name) {
+        form_error( $element, t('Namespace must be a site namespace or your user namespace.'));
+      }
+    } else {
+      form_error( $element, t('Namespace must be a site namespace.'));
+    }
   }
 }
 
