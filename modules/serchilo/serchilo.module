@@ -172,8 +172,8 @@ function serchilo_watchdog($log_entry) {
   // Mail all PHP errors to $site_mail.
   if (
     ('php' == $log_entry['type']) &&
-    (strpos($log_entry['variables']['%file'],'custom/serchilo') !== false) &&
-    ( $last_watchdog_mail < time() - WATCHDOG_MAIL_INTERVAL ) &&
+    //(strpos($log_entry['variables']['%file'],'custom/serchilo') !== false) &&
+    ( $last_watchdog_mail < time() - SERCHILO_WATCHDOG_MAIL_INTERVAL ) &&
     TRUE
   ) {
     $params['subject'] = 'Error on new Serchilo';
@@ -181,7 +181,7 @@ function serchilo_watchdog($log_entry) {
       'log_entry: ' . var_export($log_entry, TRUE) .
       ''
     ;
-    drupal_mail('serchilo', 'error', $site_mail, LANGUAGE_NONE, $params);
+    //drupal_mail('serchilo', 'error', $site_mail, LANGUAGE_NONE, $params);
     variable_set('serchilo_last_watchdog_mail', time());
   }
 }
