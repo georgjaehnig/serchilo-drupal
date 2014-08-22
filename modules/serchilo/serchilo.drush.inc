@@ -16,8 +16,15 @@ function serchilo_drush_command() {
   return $items;
 }
 
-
+/**
+ * Import shortcuts from file.
+ *
+ * @param string $file
+ *   The path to the file to import,
+ *   based from DRUPAL_ROOT.
+ */
 function drush_serchilo_import_shortcuts($file = NULL) {
+
   $msg = serchilo_import_shortcuts($file, TRUE);
   if (is_string($msg)) {
     echo $msg . "\n"; 
