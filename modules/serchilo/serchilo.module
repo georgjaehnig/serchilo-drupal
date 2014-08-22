@@ -1087,7 +1087,7 @@ function serchilo_import_shortcuts($file = NULL, $verbose = FALSE) {
     for ($i=0; $i<count($row['tags']); $i++) {
       #print_r( $row['tags'][$i]);
       $tag = serchilo_taxonomy_ensure_term($row['tags'][$i], 'tags');
-      drupal_array_set_nested_value($shortcut->field_tags, array( LANGUAGE_NONE, $i, 'tid'), $tag->tid);
+      drupal_array_set_nested_value($shortcut->field_tags, array( LANGUAGE_NONE, $i), (array) $tag);
     }
     for ($i=0; $i<count($row['examples']); $i++) {
       $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_example'));
