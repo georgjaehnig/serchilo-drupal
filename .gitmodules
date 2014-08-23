@@ -4,3 +4,7 @@
 [submodule "themes/boostrap_serchilo/bootswatch"]
 	path = themes/boostrap_serchilo/bootswatch
 	url = https://github.com/thomaspark/bootswatch.git
+[submodule "libraries/openid-selector"]
+	path = libraries/openid-selector
+	url = https://github.com/krtek4/openid-selector
+	branch = svn-master
