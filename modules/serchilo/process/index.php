@@ -715,6 +715,15 @@ function serchilo_get_namespace_ids_from_user($user_name) {
 
 // Path 
 
+/**
+ * Get all path elements of the current request, e.g.:
+ *   /foo/bar/baz
+ *   will return
+ *   array('foo', 'bar', 'baz')
+ *
+ * @return array $path_elements
+ *   The path elements.
+ */
 function serchilo_get_path_elements() {
   $path = $_SERVER['REDIRECT_URL'];
   // example: '/n/en.usa'
@@ -722,6 +731,17 @@ function serchilo_get_path_elements() {
   return $path_elements;
 }
 
+/**
+ * Get the namespace names from the path.
+ *
+ * @param int $path_elements_offset
+ *   The offset of the relevant path elements, e.g
+ *     0 when /n/foo.bar
+ *     1 when /baz/n/foo.bar.
+ *
+ * @return array $namespace_names
+ *   The namespace names.
+ */
 function serchilo_get_namespace_names_from_path($path_elements_offset = 0) {
   $path_elements = serchilo_get_path_elements();
   if ('n' == $path_elements[$path_elements_offset + 1]) {
@@ -731,6 +751,17 @@ function serchilo_get_namespace_names_from_path($path_elements_offset = 0) {
   }
 }
 
+/**
+ * Get the user name from the path.
+ *
+ * @param int $path_elements_offset
+ *   The offset of the relevant path elements, e.g
+ *     0 when /n/foo.bar
+ *     1 when /baz/n/foo.bar.
+ *
+ * @return string $user_name
+ *   The user name.
+ */
 function serchilo_get_user_name_from_path($path_elements_offset = 0) {
   $path_elements = serchilo_get_path_elements();
   if ('u' == $path_elements[$path_elements_offset + 1]) {
@@ -788,6 +819,18 @@ function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = T
 }
 
 
+/**
+ * Log a shortcut call.
+ *   Adds a row with
+ *   - nid
+ *   - called (timestamp)
+ *   to the serchilo_shortcut_log table.
+ *
+ * @param array $shortcut
+ *   The shortcut being called.
+ *
+ * @return void
+ */
 function serchilo_log_shortcut_call($shortcut) {
 
   global $mysqli;
@@ -947,6 +990,23 @@ function serchilo_get_url_variables($env) {
 
 // Database
 
+/**
+ * Replace argument placeholders in a SQL query string.
+ *
+ * @param object $mysqli
+ *   The Mysqli object, holding the DB connection.
+ * @param string $sql_template
+ *   The SQL query string containing placeholders.
+ * @param array $arguments
+ *   The arguments to replace.
+ * @param string $left_delimiter
+ *   (optional) The left delimiter of the arguments.
+ * @param string $right_delimiter
+ *   (optional) The right delimiter of the arguments.
+ *
+ * @return string $sql_replaced
+ *   The replaced SQL query string.
+ */
 function serchilo_replace_sql_arguments($mysqli, $sql_template, $arguments, $left_delimiter = ':', $right_delimiter = '') {
   $sql_replaced = $sql_template;
   foreach ($arguments as $key=>$value) {
@@ -956,6 +1016,21 @@ function serchilo_replace_sql_arguments($mysqli, $sql_template, $arguments, $lef
   return $sql_replaced;
 }
 
+/**
+ * Do a simple SQL select query.
+ *
+ * @param string $table
+ *   The table name to query.
+ * @param string $where_column_name
+ *   The column for the WHERE condition.
+ * @param string $where_value
+ *   The value for the WHERE condition.
+ * @param string $value_column_name
+ *   The column name of the value to return.
+ *
+ * @return array $values
+ *   The array of return values.
+ */
 function serchilo_get_values_from_table($table, $where_column_name, $where_value, $value_column_name) {
 
   global $mysqli;
@@ -977,6 +1052,17 @@ function serchilo_get_values_from_table($table, $where_column_name, $where_value
   return $values;
 }
 
+/**
+ * Get the default keyword
+ * - of the GET parameters (priority) or
+ * - of an user.
+ *
+ * @param string $user_name
+ *   (optional ) The name of the user to get the default keyword from.
+ *
+ * @return string $default_keyword
+ *   The default_keyword. Can be NULL if none found.
+ */
 function serchilo_get_default_keyword($user_name = NULL) {
 
   // Setting via GET parameter has always the highest priority.
