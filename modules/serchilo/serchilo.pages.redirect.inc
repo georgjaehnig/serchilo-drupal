@@ -29,3 +29,38 @@ function serchilo_redirect_shortcuts($shortcut_id) {
   ); 
 }
 
+
+/**
+ * Redirect 
+ * - namespace/[name] and
+ * - tag/[name]
+ * paths to
+ * - shorcuts/namespace=[name]
+ * - shorcuts/tags=[name]
+ *
+ * @param object $term
+ *  The term object.
+ *
+ * @return void
+ */
+function serchilo_redirect_taxonomy($term) {
+
+  switch ($term->vocabulary_machine_name) {
+  case 'namespaces':
+    $param_name = 'namespace';
+    break; 
+  case 'tags':
+    $param_name = 'tags';
+    break; 
+  }
+
+  drupal_goto(
+    'shortcuts', 
+    array(
+      'query' => array(
+        $param_name => $term->name,
+      )
+    )
+  ); 
+}
+

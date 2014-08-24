@@ -110,6 +110,11 @@ function serchilo_menu_alter(&$items) {
   // Rename shortcut clone tab.
   $items['node/%node/clone/%clone_token']['title'] = 'Clone';
   $items['node/%node/clone/%clone_token']['title callback'] = '';
+
+  // Redirect taxonomy terms to shortcuts/.
+  $items['taxonomy/term/%taxonomy_term']['page callback'] = 'serchilo_redirect_taxonomy';
+  $items['taxonomy/term/%taxonomy_term']['file'] = 'serchilo.pages.redirect.inc';
+  $items['taxonomy/term/%taxonomy_term']['module'] = 'serchilo';
 }
 
 /**
