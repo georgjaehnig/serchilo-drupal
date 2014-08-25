@@ -9,8 +9,8 @@ function serchilo_install(){
 
   serchilo_set_spamicide(); 
 
-  $shortcuts_file = drupal_get_path('module', 'serchilo') . '/json/serchilo.json';
-  serchilo_import_shortcuts($shortcuts_file, TRUE);
+  $import_file = drupal_get_path('module', 'serchilo') . '/json/serchilo.json';
+  serchilo_import($import_file, TRUE);
 
   $vocabularies = taxonomy_vocabulary_get_names();
 

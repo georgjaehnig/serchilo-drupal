@@ -7,15 +7,17 @@ function serchilo_drush_command() {
 
   $items = array();
 
-  $items['import-shortcuts'] = array(
-    'aliases' => array('isc'), 
+  $items['import-serchilo-data'] = array(
+    'callback' => 'drush_serchilo_import',
+    'aliases' => array('isd'), 
     'arguments' => array(
       'file' => 'Full path to the Serchilo JSON file with shortcuts. ',
     ),
   );
 
-  $items['export-shortcuts'] = array(
-    'aliases' => array('esc'), 
+  $items['export-serchilo-data'] = array(
+    'callback' => 'drush_serchilo_export',
+    'aliases' => array('esd'), 
     'arguments' => array(
       'file' => 'Full path to the destination file. ',
     ),
@@ -31,15 +33,15 @@ function serchilo_drush_command() {
  *   The path to the file to import,
  *   based from DRUPAL_ROOT.
  */
-function drush_serchilo_import_shortcuts($file = NULL) {
+function drush_serchilo_import($file = NULL) {
 
-  $msg = serchilo_import_shortcuts($file, TRUE);
+  $msg = serchilo_import($file, TRUE);
   if (is_string($msg)) {
     echo $msg . "\n"; 
   }
 }
 
-function drush_serchilo_export_shortcuts($file) {
+function drush_serchilo_export($file) {
 
   serchilo_export_to_json_gz_file($file);
 }

@@ -1024,7 +1024,7 @@ function serchilo_get_default_country_namespace() {
 
 // IMPORT
 
-function serchilo_import_shortcuts($file = NULL, $verbose = FALSE) {
+function serchilo_import($file = NULL, $verbose = FALSE) {
 
   if ($verbose) {
     echo "Importing data:\n";
