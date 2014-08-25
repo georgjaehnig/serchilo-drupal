@@ -1045,7 +1045,13 @@ function serchilo_import($file = NULL, $verbose = FALSE) {
     echo "Importing namespaces...\n";
   }
 
-  $rows = $data['namespaces']; 
+  serchilo_import_namespaces($data['namespaces'], $verbose);
+  serchilo_import_shortcuts( $data['shortcuts'],  $verbose);
+}
+
+
+function serchilo_import_namespaces($rows) {
+
   $vocabularies = taxonomy_vocabulary_get_names();
   foreach ($rows as $row) {
 
@@ -1069,8 +1075,10 @@ function serchilo_import($file = NULL, $verbose = FALSE) {
 
     echo '.';
   }
+}
 
-  $rows = $data['shortcuts']; 
+
+function serchilo_import_shortcuts($rows) {
 
   //for debug: try to import only 1
   //$rows = array_slice($rows, 0, 1);
@@ -1112,6 +1120,7 @@ function serchilo_import($file = NULL, $verbose = FALSE) {
     echo ".";
   }
 }
+
 
 function serchilo_taxonomy_ensure_term($term_name, $vocabulary_name, $term = array()) {
 
