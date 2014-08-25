@@ -794,7 +794,7 @@ function serchilo_get_user_name_from_path($path_elements_offset = 0) {
 function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = TRUE) {
   
   $url = serchilo_replace_url_variables($shortcut['url'], $variables );
-  $url = serchilo_replace_url_arguments($shortcut['url'], $arguments, $shortcut['input_encoding']);
+  $url = serchilo_replace_url_arguments($url, $arguments, $shortcut['input_encoding']);
 
   //serchilo_log_call($shortcut, $arguments);
   
