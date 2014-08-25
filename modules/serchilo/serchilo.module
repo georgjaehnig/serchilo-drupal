@@ -1055,25 +1055,14 @@ function serchilo_import_namespaces($rows) {
   $vocabularies = taxonomy_vocabulary_get_names();
   foreach ($rows as $row) {
 
-    $namespace         = new StdClass;
-    $namespace->vid    = (int) $vocabularies['namespaces']->vid;
-    $namespace->format = 'plain_text';
+    $term = array();
+    $term['description'] = $row['description'];
 
-    foreach (array_keys($row) as $key) {
-      switch ($key) {
-      case 'type':
-        $namespace_type = serchilo_taxonomy_ensure_term($row[$key], 'namespace_types');
-        $namespace->field_namespace_type[LANGUAGE_NONE][0]['tid'] = $namespace_type->tid;
-        break;
-      case 'name':
-      case 'description':
-        $namespace->{$key} = $row[$key];
-        break;
-      }
-    }
-    taxonomy_term_save($namespace);
+    $namespace_type = serchilo_taxonomy_ensure_term($row['type'], 'namespace_types');
+    $term['field_namespace_type'][LANGUAGE_NONE][0] = (array) $namespace_type;
 
     echo '.';
+    serchilo_taxonomy_ensure_term($row['name'], 'namespaces', $term);
   }
 }
 
