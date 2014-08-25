@@ -76,6 +76,7 @@ drush pm-enable serchilo_features -y
 
 # ... then the module itself.
 drush pm-enable serchilo -y
+drush features-revert-all -y
 ```
 
 To `drupal/.htaccess`, add:
