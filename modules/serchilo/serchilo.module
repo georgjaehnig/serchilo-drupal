@@ -1050,7 +1050,7 @@ function serchilo_import($file = NULL, $verbose = FALSE) {
 }
 
 
-function serchilo_import_namespaces($rows) {
+function serchilo_import_namespaces($rows, $verbose = FALSE) {
 
   foreach ($rows as $row) {
 
@@ -1060,13 +1060,16 @@ function serchilo_import_namespaces($rows) {
     $namespace_type = serchilo_taxonomy_ensure_term($row['type'], 'namespace_types');
     $term['field_namespace_type'][LANGUAGE_NONE][0] = (array) $namespace_type;
 
-    echo '.';
     serchilo_taxonomy_ensure_term($row['name'], 'namespaces', $term);
+
+    if ($verbose) {
+      echo '.';
+    }
   }
 }
 
 
-function serchilo_import_shortcuts($rows) {
+function serchilo_import_shortcuts($rows, $verbose = FALSE) {
 
   //for debug: try to import only 1
   //$rows = array_slice($rows, 0, 1);
@@ -1105,7 +1108,10 @@ function serchilo_import_shortcuts($rows) {
       $field_collection_item->save();
     }
     node_save($shortcut);
-    echo ".";
+
+    if ($verbose) {
+      echo '.';
+    }
   }
 }
 
