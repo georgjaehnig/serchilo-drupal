@@ -1052,7 +1052,6 @@ function serchilo_import($file = NULL, $verbose = FALSE) {
 
 function serchilo_import_namespaces($rows) {
 
-  $vocabularies = taxonomy_vocabulary_get_names();
   foreach ($rows as $row) {
 
     $term = array();
