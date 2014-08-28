@@ -81,67 +81,17 @@ drush features-revert-all -y
 
 To `drupal/.htaccess`, add:
 ```
-# call with namespaces
-RewriteCond %{REQUEST_URI} ^\/n\/.*
+# Console call
 # must have 'query' parameter
 RewriteCond %{QUERY_STRING} (^|&)query=
 RewriteCond %{QUERY_STRING} !(^|&)status=not_found
-RewriteRule ^(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=console&call_type=n [L,QSA]
+RewriteCond %{REQUEST_URI} ^\/(n|u)\/.*
+RewriteRule ^(n|u)/(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=console&call_type=$1 [L,QSA]
 
-# call with user name
-RewriteCond %{REQUEST_URI} ^\/u\/.*
-# must have 'query' parameter
-RewriteCond %{QUERY_STRING} (^|&)query=
-RewriteCond %{QUERY_STRING} !(^|&)status=not_found
-RewriteRule ^(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=console&call_type=u [L,QSA]
-
-# call with namespaces
-RewriteCond %{REQUEST_URI} ^\/ajax\/n\/.*
-# must have 'query' parameter
-RewriteCond %{QUERY_STRING} (^|&)term=
-RewriteRule ^(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=ajax&call_type=n [L,QSA]
-
-# call with user name
-RewriteCond %{REQUEST_URI} ^\/ajax\/u\/.*
-# must have 'query' parameter
-RewriteCond %{QUERY_STRING} (^|&)term=
-RewriteRule ^(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=ajax&call_type=u [L,QSA]
-
-# call with namespaces
-RewriteCond %{REQUEST_URI} ^\/opensearch-suggestions\/n\/.*
-# must have 'query' parameter
-RewriteCond %{QUERY_STRING} (^|&)query=
-RewriteRule ^(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=opensearch-suggestions&call_type=n [L,QSA]
-
-# call with user name
-RewriteCond %{REQUEST_URI} ^\/opensearch-suggestions\/u\/.*
-# must have 'query' parameter
-RewriteCond %{QUERY_STRING} (^|&)query=
-RewriteRule ^(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=opensearch-suggestions&call_type=u [L,QSA]
-
-# call with namespaces
-RewriteCond %{REQUEST_URI} ^\/api\/n\/.*
-# must have 'query' parameter
-RewriteCond %{QUERY_STRING} (^|&)(query|keyword)=
-RewriteRule ^(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=api&call_type=n [L,QSA]
-
-# call with user name
-RewriteCond %{REQUEST_URI} ^\/api\/u\/.*
-# must have 'query' parameter
-RewriteCond %{QUERY_STRING} (^|&)(query|keyword)=
-RewriteRule ^(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=api&call_type=u [L,QSA]
-
-# call with namespaces
-RewriteCond %{REQUEST_URI} ^\/url\/n\/.*
-# must have 'query' parameter
-RewriteCond %{QUERY_STRING} (^|&)(query|keyword)=
-RewriteRule ^(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=url&call_type=n [L,QSA]
-
-# call with user name
-RewriteCond %{REQUEST_URI} ^\/url\/u\/.*
-# must have 'query' parameter
-RewriteCond %{QUERY_STRING} (^|&)(query|keyword)=
-RewriteRule ^(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=url&call_type=u [L,QSA]
+# Non-console call
+RewriteCond %{REQUEST_URI} ^\/(ajax|opensearch-suggestions|api|url)\/(n|u)\/.*
+RewriteCond %{QUERY_STRING} (^|&)(query|term)=
+RewriteRule ^(ajax|opensearch-suggestions|api|url)/(n|u)/(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=$1&call_type=$2 [L,QSA]
 ```
 
 That's it. You should now be able to see Serchilo in your browser at `http://l.serchilo/`.
