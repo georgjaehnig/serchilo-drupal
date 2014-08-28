@@ -27,7 +27,6 @@ dependencies[] = metatag
 dependencies[] = metatag_views
 dependencies[] = module_filter
 dependencies[] = node
-dependencies[] = node_clone
 dependencies[] = number
 dependencies[] = options
 dependencies[] = path
