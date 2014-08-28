@@ -1,17 +1,17 @@
 <?PHP
 
-function serchilo_migrate_menu() {
+function serchilo_legacy_menu() {
 
   $items = array();
 
   // Redirect old command URLs
 
   $items['command/%'] = array(
-    'page callback' => 'serchilo_migrate_redirect_commands',
+    'page callback' => 'serchilo_legacy_redirect_commands',
     'page arguments' => array(1,2),
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
-    'file' => 'serchilo_migrate.redirect.inc',
+    'file' => 'serchilo_legacy.redirect.inc',
   );
 
   return $items;

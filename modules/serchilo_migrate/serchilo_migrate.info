@@ -1,5 +1,0 @@
-name = Serchilo Migrate
-description = Migration code for old Serchilo
-core = 7.x
-
-dependencies[] = serchilo
