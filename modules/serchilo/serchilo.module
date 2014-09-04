@@ -984,6 +984,7 @@ function serchilo_get_default_country_namespace() {
   $default_country_namespace_name = @geoip_country_code3_by_name($ip_address);
   $default_country_namespace_name = strtolower($default_country_namespace_name);
 
+  // If no country namespace found: use default.
   if (
     (!$default_country_namespace_name) ||
     (strlen($default_country_namespace_name) != 3 )
