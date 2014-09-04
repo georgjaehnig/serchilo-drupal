@@ -991,27 +991,6 @@ function serchilo_get_default_country_namespace() {
     $default_country_namespace_name  = SERCHILO_DEFAULT_COUNTRY;
   }
 
-  /*
-  # fallback if geoip did not find anything
-  if (
-    (!$default_country_namespace_name) ||
-    (strlen($default_country_namespace_name) != 3 )
-  ) {
-
-    if (!isset($_SESSION['smart_ip'])) {
-      $location = smart_ip_get_location($ip_address);
-      smart_ip_set_session_data($location);
-    }
-
-    if ( $_SESSION['smart_ip']['location']['country_code'] ) {
-      module_load_include('inc', 'serchilo', 'serchilo');
-      $default_country_namespace_name = strtolower(
-        serchilo_2letter_to_3letter_country_code( $_SESSION['smart_ip']['location']['country_code'])
-      );
-    }
-    watchdog('serchilo', 'Retrieved coutry by IP via smart_ip: ' . $default_country_namespace_name);
-  }
-   */
   $default_country_namespace = current(taxonomy_get_term_by_name($default_country_namespace_name, 'namespaces')); 
 
   return $default_country_namespace;
