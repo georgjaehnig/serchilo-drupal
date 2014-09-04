@@ -1236,6 +1236,7 @@ function serchilo_export_shortcuts() {
     $exported_shortcut['argument_names'] = $node->field_argument_names[LANGUAGE_NONE][0]['value'];
     $exported_shortcut['set_referrer']   = $node->field_set_referrer[LANGUAGE_NONE][0]['value'];
     $exported_shortcut['invisible']      = $node->field_invisible[LANGUAGE_NONE][0]['value'];
+    $exported_shortcut['input_encoding'] = $node->field_input_encoding[LANGUAGE_NONE][0]['value'];
 
     $wnode = entity_metadata_wrapper('node', $node);
 
