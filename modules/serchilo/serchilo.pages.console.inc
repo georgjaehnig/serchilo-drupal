@@ -219,51 +219,52 @@ function serchilo_page_console() {
  */
 function serchilo_validate_and_set_namespaces($path_elements = array()) {
 
-  # get language and country namespace types
+  // Get language and country namespace types.
   $namespace_type_language_id = current(taxonomy_get_term_by_name('language', 'namespace_types'))->tid;
   $namespace_type_country_id = current(taxonomy_get_term_by_name('country', 'namespace_types'))->tid;
 
-  # no namespace duplicates
-  # keep namespaces 'from right', e.g.
-  # *,de,deu,* => de,deu,*
+  // No namespace duplicates.
+  // And if duplicates exists: Keep those 'from right', e.g.
+  // *,de,deu,* => de,deu,*
   $path_elements = array_reverse(array_unique(array_reverse($path_elements)));
 
   $namespaces = serchilo_namespace_names_to_namespaces($path_elements);
 
   foreach ($namespaces as $namespace) {
-    # check if we have the language here
+    
+    // Check if this is a language namespace.
     if ($namespace->field_namespace_type[LANGUAGE_NONE][0]['tid'] == $namespace_type_language_id) {
       $language_namespace = $namespace;
     }
 
-    # check if we have the country here
+    // Check if this is a country namespace.
     if ($namespace->field_namespace_type[LANGUAGE_NONE][0]['tid'] == $namespace_type_country_id) {
       $country_namespace = $namespace;
     }
 
-    # check if we have the star namespace here
+    // Check if this is the planet namespace.
     if ($namespace->name == SERCHILO_PLANET_NAMESPACE) {
       $star_namespace = $namespace;
     }
   }
 
-  # set default language
+  // Set default language.
   if (!isset($language_namespace)) {
     $language_namespace = serchilo_get_default_language_namespace();
-    # add to namespace array
+    // Add to namespace array.
     array_unshift($namespaces, $language_namespace);
   }
 
-  # set default country after language if not already in path
+  // Set default country after language, if not already in path.
   if (!isset($country_namespace)) {
     $country_namespace = serchilo_get_default_country_namespace();
 
-    # inject $country_namespace into $namespaces right after language namespace
+    // Inject $country_namespace into $namespaces right after language namespace.
     $language_namespace_pos = array_search($language_namespace, $namespaces);
     array_splice($namespaces, $language_namespace_pos + 1, 0, array($country_namespace));
   }
 
-  # set star namespace as first if not already in path
+  // Set star namespace as first if not already in path.
   if (!isset($star_namespace)) {
     $star_namespace = current(taxonomy_get_term_by_name(SERCHILO_PLANET_NAMESPACE, 'namespaces')); 
     array_unshift($namespaces, $star_namespace);
