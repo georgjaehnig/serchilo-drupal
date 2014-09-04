@@ -1,5 +1,6 @@
 name = Serchilo
 description = Custom code for Serchilo
 core = 7.x
+package = Serchilo
 
 dependencies[] = serchilo_features

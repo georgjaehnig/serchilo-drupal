@@ -1,5 +1,6 @@
 name = Serchilo Legacy
 description = Legacy code for old Serchilo
 core = 7.x
+package = Serchilo
 
 dependencies[] = serchilo
