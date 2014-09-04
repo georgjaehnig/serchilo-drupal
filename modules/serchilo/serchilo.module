@@ -981,10 +981,6 @@ function serchilo_get_default_country_namespace() {
 
   $ip_address = ip_address();
 
-  # set debug IP
-  if ('127.0.0.1' == $ip_address) {
-    $ip_address = '78.55.17.101';
-  }
   $default_country_namespace_name = @geoip_country_code3_by_name($ip_address);
   $default_country_namespace_name = strtolower($default_country_namespace_name);
 
