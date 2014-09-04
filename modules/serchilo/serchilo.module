@@ -1025,7 +1025,6 @@ function serchilo_import($file = NULL, $verbose = FALSE) {
   serchilo_import_shortcuts( $data['shortcuts'],  $verbose);
 }
 
-
 function serchilo_import_namespaces($rows, $verbose = FALSE) {
 
   foreach ($rows as $row) {
@@ -1043,7 +1042,6 @@ function serchilo_import_namespaces($rows, $verbose = FALSE) {
     }
   }
 }
-
 
 function serchilo_import_shortcuts($rows, $verbose = FALSE) {
 
@@ -1091,7 +1089,6 @@ function serchilo_import_shortcuts($rows, $verbose = FALSE) {
     }
   }
 }
-
 
 function serchilo_taxonomy_ensure_term($term_name, $vocabulary_name, $term = array()) {
 
