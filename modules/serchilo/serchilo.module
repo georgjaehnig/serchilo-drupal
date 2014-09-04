@@ -1210,9 +1210,9 @@ function serchilo_export_shortcuts_and_namespaces() {
  */
 function serchilo_export_shortcuts() {
 
-  $query = new EntityFieldQuery;
+  $efq = new EntityFieldQuery;
 
-  $result = $query
+  $result = $efq
     ->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'shortcut')
     // TODO: only published revisions!
@@ -1271,8 +1271,8 @@ function serchilo_export_namespaces() {
 
   $vocabularies = taxonomy_vocabulary_get_names();
 
-  $query = new EntityFieldQuery;
-  $result = $query
+  $efq = new EntityFieldQuery;
+  $result = $efq
     ->entityCondition('entity_type', 'taxonomy_term')
     ->propertyCondition('vid', $vocabularies['namespaces']->vid )
     ->execute();
