@@ -144,7 +144,7 @@ function serchilo_features_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Serchilo: Namespaces';
+  $handler->display->display_options['title'] = 'Namespaces';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -342,7 +342,7 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['path'] = 'namespaces.xml';
   $translatables['namespaces'] = array(
     t('Master'),
-    t('Serchilo: Namespaces'),
+    t('Namespaces'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -363,6 +363,7 @@ function serchilo_features_views_default_views() {
     t('Shortcuts'),
     t('Page'),
     t('Feed'),
+    t('Serchilo: Namespaces'),
     t('[name]'),
     t('[description]'),
     t('URL'),
