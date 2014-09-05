@@ -400,3 +400,4 @@ features[variable][] = theme_default
 features[variable][] = user_register
 features[views_view][] = namespaces
 features[views_view][] = shortcuts
+features[views_view][] = tags

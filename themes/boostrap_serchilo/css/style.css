@@ -65,7 +65,8 @@ td.views-field-field-namespace a,
 }
 
 .field.field-name-field-tags a,
-.views-field-field-tags a
+.views-field-field-tags a,
+.view-tags td.views-field-name a
 {
   color: #011d24;
   background: #ffbe8d;
