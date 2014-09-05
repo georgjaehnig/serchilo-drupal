@@ -266,10 +266,10 @@ function serchilo_features_strongarm() {
           'weight' => '0',
         ),
         'metatags' => array(
-          'weight' => '14',
+          'weight' => '15',
         ),
         'path' => array(
-          'weight' => '13',
+          'weight' => '14',
         ),
       ),
       'display' => array(),
