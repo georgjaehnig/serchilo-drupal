@@ -614,7 +614,7 @@ function serchilo_features_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_shortcut_pattern';
-  $strongarm->value = 'shortcut/[node:nid]/[node:title]';
+  $strongarm->value = 'shortcuts/[node:nid]/[node:title]';
   $export['pathauto_node_shortcut_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -859,14 +859,14 @@ function serchilo_features_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_taxonomy_term_namespaces_pattern';
-  $strongarm->value = 'namespace/[term:name]';
+  $strongarm->value = 'namespaces/[term:name]';
   $export['pathauto_taxonomy_term_namespaces_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_taxonomy_term_namespace_types_pattern';
-  $strongarm->value = 'namespace-type/[term:name]';
+  $strongarm->value = 'namespace-types/[term:name]';
   $export['pathauto_taxonomy_term_namespace_types_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -894,7 +894,7 @@ function serchilo_features_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_user_pattern';
-  $strongarm->value = 'user/[user:name]';
+  $strongarm->value = 'users/[user:name]';
   $export['pathauto_user_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
