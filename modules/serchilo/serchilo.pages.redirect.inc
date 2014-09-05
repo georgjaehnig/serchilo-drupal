@@ -66,6 +66,16 @@ function serchilo_redirect_taxonomy($term) {
       )
     ); 
     break; 
+  case 'namespace_types':
+    drupal_goto(
+      'namespaces',
+      array(
+        'query' => array(
+          'namespace_type_tid' => $term->tid,
+        )
+      )
+    ); 
+    break; 
   }
 }
 
