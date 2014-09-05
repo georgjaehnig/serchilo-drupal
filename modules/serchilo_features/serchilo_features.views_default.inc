@@ -22,7 +22,7 @@ function serchilo_features_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Namespaces';
+  $handler->display->display_options['title'] = 'Serchilo: Namespaces';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -220,7 +220,7 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['path'] = 'namespaces.xml';
   $translatables['namespaces'] = array(
     t('Master'),
-    t('Namespaces'),
+    t('Serchilo: Namespaces'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -476,7 +476,7 @@ function serchilo_features_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Tags';
+  $handler->display->display_options['title'] = 'Serchilo: Tags';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -627,9 +627,10 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['fields']['nothing_1']['alter']['text'] = 'tags/[name]';
   $handler->display->display_options['fields']['nothing_1']['alter']['strip_tags'] = TRUE;
   $handler->display->display_options['path'] = 'tags.xml';
+  $handler->display->display_options['sitename_title'] = 0;
   $translatables['tags'] = array(
     t('Master'),
-    t('Tags'),
+    t('Serchilo: Tags'),
     t('more'),
     t('Apply'),
     t('Reset'),
