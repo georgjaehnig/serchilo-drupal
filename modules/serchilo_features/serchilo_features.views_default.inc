@@ -214,7 +214,6 @@ function serchilo_features_views_default_views() {
     t('Name'),
     t('Description'),
     t('Type'),
-    t('Custom text'),
     t('Page'),
     t('Feed'),
     t('[name]'),
