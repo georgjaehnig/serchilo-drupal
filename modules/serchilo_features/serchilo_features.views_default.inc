@@ -24,6 +24,7 @@ function serchilo_features_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Namespaces';
   $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -58,6 +59,11 @@ function serchilo_features_views_default_views() {
       'empty_column' => 0,
     ),
   );
+  /* Relationship: Taxonomy term: Content with term */
+  $handler->display->display_options['relationships']['nid']['id'] = 'nid';
+  $handler->display->display_options['relationships']['nid']['table'] = 'taxonomy_index';
+  $handler->display->display_options['relationships']['nid']['field'] = 'nid';
+  $handler->display->display_options['relationships']['nid']['label'] = 'count';
   /* Field: Taxonomy term: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
@@ -77,6 +83,14 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['fields']['field_namespace_type']['field'] = 'field_namespace_type';
   $handler->display->display_options['fields']['field_namespace_type']['label'] = 'Type';
   $handler->display->display_options['fields']['field_namespace_type']['element_label_colon'] = FALSE;
+  /* Field: COUNT(DISTINCT Content: Nid) */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['relationship'] = 'nid';
+  $handler->display->display_options['fields']['nid']['group_type'] = 'count_distinct';
+  $handler->display->display_options['fields']['nid']['label'] = 'Shortcuts';
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
   /* Filter criterion: Taxonomy vocabulary: Machine name */
   $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
   $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
@@ -211,9 +225,11 @@ function serchilo_features_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('count'),
     t('Name'),
     t('Description'),
     t('Type'),
+    t('Shortcuts'),
     t('Page'),
     t('Feed'),
     t('[name]'),
