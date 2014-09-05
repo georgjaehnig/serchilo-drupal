@@ -11,6 +11,126 @@ function serchilo_features_views_default_views() {
   $export = array();
 
   $view = new view();
+  $view->name = 'namespaces';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'taxonomy_term_data';
+  $view->human_name = 'Namespaces';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Namespaces';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '20';
+  $handler->display->display_options['style_plugin'] = 'table';
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['name']['link_to_taxonomy'] = TRUE;
+  /* Field: Taxonomy term: Term description */
+  $handler->display->display_options['fields']['description']['id'] = 'description';
+  $handler->display->display_options['fields']['description']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['description']['field'] = 'description';
+  $handler->display->display_options['fields']['description']['label'] = 'Description';
+  $handler->display->display_options['fields']['description']['element_label_colon'] = FALSE;
+  /* Field: Taxonomy term: Namespace type */
+  $handler->display->display_options['fields']['field_namespace_type']['id'] = 'field_namespace_type';
+  $handler->display->display_options['fields']['field_namespace_type']['table'] = 'field_data_field_namespace_type';
+  $handler->display->display_options['fields']['field_namespace_type']['field'] = 'field_namespace_type';
+  $handler->display->display_options['fields']['field_namespace_type']['label'] = 'Type';
+  $handler->display->display_options['fields']['field_namespace_type']['element_label_colon'] = FALSE;
+  /* Filter criterion: Taxonomy vocabulary: Machine name */
+  $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
+  $handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['value'] = array(
+    'namespaces' => 'namespaces',
+  );
+  /* Filter criterion: Taxonomy term: Name */
+  $handler->display->display_options['filters']['name']['id'] = 'name';
+  $handler->display->display_options['filters']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['filters']['name']['field'] = 'name';
+  $handler->display->display_options['filters']['name']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['name']['expose']['operator_id'] = 'name_op';
+  $handler->display->display_options['filters']['name']['expose']['label'] = 'Name';
+  $handler->display->display_options['filters']['name']['expose']['use_operator'] = TRUE;
+  $handler->display->display_options['filters']['name']['expose']['operator'] = 'name_op';
+  $handler->display->display_options['filters']['name']['expose']['identifier'] = 'name';
+  $handler->display->display_options['filters']['name']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  /* Filter criterion: Taxonomy term: Term description */
+  $handler->display->display_options['filters']['description']['id'] = 'description';
+  $handler->display->display_options['filters']['description']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['filters']['description']['field'] = 'description';
+  $handler->display->display_options['filters']['description']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['description']['expose']['operator_id'] = 'description_op';
+  $handler->display->display_options['filters']['description']['expose']['label'] = 'Description';
+  $handler->display->display_options['filters']['description']['expose']['use_operator'] = TRUE;
+  $handler->display->display_options['filters']['description']['expose']['operator'] = 'description_op';
+  $handler->display->display_options['filters']['description']['expose']['identifier'] = 'description';
+  $handler->display->display_options['filters']['description']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  /* Filter criterion: Taxonomy term: Namespace type (field_namespace_type) */
+  $handler->display->display_options['filters']['field_namespace_type_tid']['id'] = 'field_namespace_type_tid';
+  $handler->display->display_options['filters']['field_namespace_type_tid']['table'] = 'field_data_field_namespace_type';
+  $handler->display->display_options['filters']['field_namespace_type_tid']['field'] = 'field_namespace_type_tid';
+  $handler->display->display_options['filters']['field_namespace_type_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_namespace_type_tid']['expose']['operator_id'] = 'field_namespace_type_tid_op';
+  $handler->display->display_options['filters']['field_namespace_type_tid']['expose']['label'] = 'Type';
+  $handler->display->display_options['filters']['field_namespace_type_tid']['expose']['operator'] = 'field_namespace_type_tid_op';
+  $handler->display->display_options['filters']['field_namespace_type_tid']['expose']['identifier'] = 'field_namespace_type_tid';
+  $handler->display->display_options['filters']['field_namespace_type_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  $handler->display->display_options['filters']['field_namespace_type_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_namespace_type_tid']['vocabulary'] = 'namespace_types';
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'namespaces';
+  $translatables['namespaces'] = array(
+    t('Master'),
+    t('Namespaces'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Name'),
+    t('Description'),
+    t('Type'),
+    t('Page'),
+  );
+  $export['namespaces'] = $view;
+
+  $view = new view();
   $view->name = 'shortcuts';
   $view->description = '';
   $view->tag = 'default';

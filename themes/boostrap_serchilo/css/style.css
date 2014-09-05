@@ -53,6 +53,7 @@
 
 .field.field-name-field-namespace a,
 td.views-field-field-namespace a,
+.view-namespaces td.views-field-name a
 {
   color: #ffffff;
   margin-left: 0.2em;
