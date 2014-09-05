@@ -267,7 +267,7 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['filters']['field_namespace_type_tid']['expose']['operator_id'] = 'field_namespace_type_tid_op';
   $handler->display->display_options['filters']['field_namespace_type_tid']['expose']['label'] = 'Type';
   $handler->display->display_options['filters']['field_namespace_type_tid']['expose']['operator'] = 'field_namespace_type_tid_op';
-  $handler->display->display_options['filters']['field_namespace_type_tid']['expose']['identifier'] = 'field_namespace_type_tid';
+  $handler->display->display_options['filters']['field_namespace_type_tid']['expose']['identifier'] = 'namespace_type_tid';
   $handler->display->display_options['filters']['field_namespace_type_tid']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
