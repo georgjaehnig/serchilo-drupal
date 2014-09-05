@@ -1051,11 +1051,20 @@ function serchilo_import_shortcuts($rows, $verbose = FALSE) {
   if ($verbose) {
     echo "Importing shortcuts...\n";
   }
+
   foreach ($rows as $row) {
     $namespace = serchilo_taxonomy_ensure_term($row['namespace'], 'namespaces');
     $shortcut = new StdClass;
     $shortcut->type = 'shortcut';
-    $shortcut->uid = 1;
+
+    // If there exist a user with the name of the namespace:
+    if (strlen($namespace->name) >= 4) {
+      if ($account = user_load_by_name($namespace->name)) {
+        // Make this user the owner of the shortcut.
+        $shortcut->uid = $account->uid;
+      }
+    }
+
     $shortcut->comment = COMMENT_NODE_OPEN;
     $shortcut->status = NODE_PUBLISHED;
     $shortcut->revision_moderation = FALSE;
