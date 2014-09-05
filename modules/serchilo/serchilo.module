@@ -1185,6 +1185,7 @@ function serchilo_export_shortcuts_and_namespaces() {
  *   - set_referrer
  *   - invisible
  *   - namespace
+ *   - input_encoding
  *   - tags (array)
  *   - examples, array of two-item array containing
  *     - arguments (as string separated by comma)
