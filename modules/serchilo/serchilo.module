@@ -1070,6 +1070,7 @@ function serchilo_import_shortcuts($rows, $verbose = FALSE) {
     $shortcut->revision_moderation = FALSE;
     $shortcut->title = $row['title'];
     drupal_array_set_nested_value($shortcut->field_keyword,        array( LANGUAGE_NONE, 0, 'value'), $row['keyword']);
+    drupal_array_set_nested_value($shortcut->field_description,    array( LANGUAGE_NONE, 0, 'value'), $row['description']);
     drupal_array_set_nested_value($shortcut->field_argument_names, array( LANGUAGE_NONE, 0, 'value'), $row['argument_names']);
     drupal_array_set_nested_value($shortcut->field_argument_count, array( LANGUAGE_NONE, 0, 'value'), count(explode(',', $row['argument_names'])));
     drupal_array_set_nested_value($shortcut->field_url,            array( LANGUAGE_NONE, 0, 'value'), $row['url']);
@@ -1179,6 +1180,7 @@ function serchilo_export_shortcuts_and_namespaces() {
  *   Array containing namespaces with
  *   - id
  *   - title
+ *   - description
  *   - url
  *   - keyword
  *   - argument_names (array)
@@ -1214,6 +1216,7 @@ function serchilo_export_shortcuts() {
 
     $exported_shortcut['id']             = $node->nid;
     $exported_shortcut['title']          = $node->title;
+    $exported_shortcut['description']    = $node->field_description[0]['value'];
     $exported_shortcut['url']            = $node->field_url[LANGUAGE_NONE][0]['value'];
     $exported_shortcut['keyword']        = $node->field_keyword[LANGUAGE_NONE][0]['value'];
     $exported_shortcut['argument_names'] = $node->field_argument_names[LANGUAGE_NONE][0]['value'];
