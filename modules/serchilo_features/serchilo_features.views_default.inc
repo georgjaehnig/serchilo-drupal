@@ -50,6 +50,10 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['fields']['field_namespace_type']['field'] = 'field_namespace_type';
   $handler->display->display_options['fields']['field_namespace_type']['label'] = 'Type';
   $handler->display->display_options['fields']['field_namespace_type']['element_label_colon'] = FALSE;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   /* Filter criterion: Taxonomy vocabulary: Machine name */
   $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
   $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
@@ -107,6 +111,67 @@ function serchilo_features_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['path'] = 'namespaces';
+
+  /* Display: Feed */
+  $handler = $view->new_display('feed', 'Feed', 'feed_1');
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '0';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'rss';
+  $handler->display->display_options['row_plugin'] = 'rss_fields';
+  $handler->display->display_options['row_options']['title_field'] = 'name';
+  $handler->display->display_options['row_options']['link_field'] = 'nothing';
+  $handler->display->display_options['row_options']['description_field'] = 'description';
+  $handler->display->display_options['row_options']['creator_field'] = 'nothing_1';
+  $handler->display->display_options['row_options']['date_field'] = 'nothing_1';
+  $handler->display->display_options['row_options']['guid_field_options'] = array(
+    'guid_field' => 'nothing',
+    'guid_field_is_permalink' => 1,
+  );
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['alter']['text'] = '[name]';
+  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
+  /* Field: Taxonomy term: Term description */
+  $handler->display->display_options['fields']['description']['id'] = 'description';
+  $handler->display->display_options['fields']['description']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['description']['field'] = 'description';
+  $handler->display->display_options['fields']['description']['label'] = 'Description';
+  $handler->display->display_options['fields']['description']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['description']['alter']['text'] = '[description]';
+  $handler->display->display_options['fields']['description']['alter']['strip_tags'] = TRUE;
+  $handler->display->display_options['fields']['description']['element_label_colon'] = FALSE;
+  /* Field: Taxonomy term: Namespace type */
+  $handler->display->display_options['fields']['field_namespace_type']['id'] = 'field_namespace_type';
+  $handler->display->display_options['fields']['field_namespace_type']['table'] = 'field_data_field_namespace_type';
+  $handler->display->display_options['fields']['field_namespace_type']['field'] = 'field_namespace_type';
+  $handler->display->display_options['fields']['field_namespace_type']['label'] = 'Type';
+  $handler->display->display_options['fields']['field_namespace_type']['element_label_colon'] = FALSE;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = 'URL';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = 'namespaces/[name]';
+  $handler->display->display_options['fields']['nothing']['alter']['strip_tags'] = TRUE;
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
+  $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing_1']['label'] = 'Empty';
+  $handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Taxonomy term: Term ID */
+  $handler->display->display_options['sorts']['tid']['id'] = 'tid';
+  $handler->display->display_options['sorts']['tid']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['sorts']['tid']['field'] = 'tid';
+  $handler->display->display_options['sorts']['tid']['order'] = 'DESC';
+  $handler->display->display_options['path'] = 'namespaces.xml';
   $translatables['namespaces'] = array(
     t('Master'),
     t('Namespaces'),
@@ -126,7 +191,14 @@ function serchilo_features_views_default_views() {
     t('Name'),
     t('Description'),
     t('Type'),
+    t('Custom text'),
     t('Page'),
+    t('Feed'),
+    t('[name]'),
+    t('[description]'),
+    t('URL'),
+    t('namespaces/[name]'),
+    t('Empty'),
   );
   $export['namespaces'] = $view;
 
