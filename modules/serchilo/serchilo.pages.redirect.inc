@@ -47,20 +47,25 @@ function serchilo_redirect_taxonomy($term) {
 
   switch ($term->vocabulary_machine_name) {
   case 'namespaces':
-    $param_name = 'namespace';
+    drupal_goto(
+      'shortcuts',
+      array(
+        'query' => array(
+          'namespace' => $term->name,
+        )
+      )
+    ); 
     break; 
   case 'tags':
-    $param_name = 'tags';
+    drupal_goto(
+      'shortcuts',
+      array(
+        'query' => array(
+          'tags' => $term->name,
+        )
+      )
+    ); 
     break; 
   }
-
-  drupal_goto(
-    'shortcuts', 
-    array(
-      'query' => array(
-        $param_name => $term->name,
-      )
-    )
-  ); 
 }
 
