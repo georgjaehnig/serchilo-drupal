@@ -578,6 +578,95 @@ function serchilo_features_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['path'] = 'shortcuts';
+
+  /* Display: Feed */
+  $handler = $view->new_display('feed', 'Feed', 'feed_1');
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '20';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'rss';
+  $handler->display->display_options['row_plugin'] = 'rss_fields';
+  $handler->display->display_options['row_options']['title_field'] = 'title';
+  $handler->display->display_options['row_options']['link_field'] = 'path';
+  $handler->display->display_options['row_options']['description_field'] = 'field_description';
+  $handler->display->display_options['row_options']['creator_field'] = 'name';
+  $handler->display->display_options['row_options']['date_field'] = 'changed';
+  $handler->display->display_options['row_options']['guid_field_options'] = array(
+    'guid_field' => 'nothing_1',
+    'guid_field_is_permalink' => 1,
+  );
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Keyword */
+  $handler->display->display_options['fields']['field_keyword']['id'] = 'field_keyword';
+  $handler->display->display_options['fields']['field_keyword']['table'] = 'field_data_field_keyword';
+  $handler->display->display_options['fields']['field_keyword']['field'] = 'field_keyword';
+  $handler->display->display_options['fields']['field_keyword']['element_label_colon'] = FALSE;
+  /* Field: Content: Argument names */
+  $handler->display->display_options['fields']['field_argument_names']['id'] = 'field_argument_names';
+  $handler->display->display_options['fields']['field_argument_names']['table'] = 'field_data_field_argument_names';
+  $handler->display->display_options['fields']['field_argument_names']['field'] = 'field_argument_names';
+  $handler->display->display_options['fields']['field_argument_names']['label'] = 'Arguments';
+  $handler->display->display_options['fields']['field_argument_names']['element_label_colon'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Field: Content: Namespace */
+  $handler->display->display_options['fields']['field_namespace']['id'] = 'field_namespace';
+  $handler->display->display_options['fields']['field_namespace']['table'] = 'field_data_field_namespace';
+  $handler->display->display_options['fields']['field_namespace']['field'] = 'field_namespace';
+  $handler->display->display_options['fields']['field_namespace']['element_label_colon'] = FALSE;
+  /* Field: Content: Tags */
+  $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
+  $handler->display->display_options['fields']['field_tags']['table'] = 'field_data_field_tags';
+  $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
+  $handler->display->display_options['fields']['field_tags']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_tags']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_tags']['separator'] = '';
+  /* Field: Content: Path */
+  $handler->display->display_options['fields']['path']['id'] = 'path';
+  $handler->display->display_options['fields']['path']['table'] = 'node';
+  $handler->display->display_options['fields']['path']['field'] = 'path';
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = 'Empty';
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
+  $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing_1']['label'] = 'GUID';
+  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = 'shortcuts/[nid]';
+  /* Field: Content: Updated date */
+  $handler->display->display_options['fields']['changed']['id'] = 'changed';
+  $handler->display->display_options['fields']['changed']['table'] = 'node';
+  $handler->display->display_options['fields']['changed']['field'] = 'changed';
+  $handler->display->display_options['fields']['changed']['date_format'] = 'custom';
+  $handler->display->display_options['fields']['changed']['custom_date_format'] = 'r';
+  $handler->display->display_options['fields']['changed']['second_date_format'] = 'long';
+  /* Field: Content: Description */
+  $handler->display->display_options['fields']['field_description']['id'] = 'field_description';
+  $handler->display->display_options['fields']['field_description']['table'] = 'field_data_field_description';
+  $handler->display->display_options['fields']['field_description']['field'] = 'field_description';
+  $handler->display->display_options['path'] = 'shortcuts.xml';
+  $handler->display->display_options['displays'] = array(
+    'default' => 'default',
+    'page' => 'page',
+  );
   $translatables['shortcuts'] = array(
     t('Master'),
     t('Shortcuts'),
@@ -603,6 +692,15 @@ function serchilo_features_views_default_views() {
     t('Tags'),
     t('URL'),
     t('Page'),
+    t('Feed'),
+    t('Path'),
+    t('Empty'),
+    t('Name'),
+    t('Nid'),
+    t('GUID'),
+    t('shortcuts/[nid]'),
+    t('Updated date'),
+    t('Description'),
   );
   $export['shortcuts'] = $view;
 
