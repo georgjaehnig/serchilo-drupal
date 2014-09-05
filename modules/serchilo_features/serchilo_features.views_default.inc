@@ -91,12 +91,13 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['fields']['field_namespace_type']['field'] = 'field_namespace_type';
   $handler->display->display_options['fields']['field_namespace_type']['label'] = 'Type';
   $handler->display->display_options['fields']['field_namespace_type']['element_label_colon'] = FALSE;
-  /* Field: COUNT(DISTINCT Content: Nid) */
+  /* Field: COUNT(DISTINCT count) */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
   $handler->display->display_options['fields']['nid']['relationship'] = 'nid';
   $handler->display->display_options['fields']['nid']['group_type'] = 'count_distinct';
+  $handler->display->display_options['fields']['nid']['ui_name'] = 'count';
   $handler->display->display_options['fields']['nid']['label'] = 'Shortcuts';
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
   /* Filter criterion: Taxonomy vocabulary: Machine name */
