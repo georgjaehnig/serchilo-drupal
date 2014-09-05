@@ -73,7 +73,7 @@ function serchilo_menu() {
 
     // Shortcut 'changed' view
 
-    'shortcut/%/changed' => array(
+    'shortcuts/%/changed' => array(
       'page callback' => 'serchilo_page_shortcut_changed',
       'page arguments' => array(1),
       'type' => MENU_CALLBACK,
@@ -83,7 +83,7 @@ function serchilo_menu() {
 
     // Redirect broken Shortcut URLs
 
-    'shortcut/%' => array(
+    'shortcuts/%' => array(
       'page callback' => 'serchilo_redirect_shortcuts',
       'page arguments' => array(1),
       'access callback' => TRUE,
