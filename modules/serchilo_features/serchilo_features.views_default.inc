@@ -11,6 +11,128 @@ function serchilo_features_views_default_views() {
   $export = array();
 
   $view = new view();
+  $view->name = 'namespace_types';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'taxonomy_term_data';
+  $view->human_name = 'Namespace types';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Namespace types';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['group_by'] = TRUE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['style_plugin'] = 'table';
+  /* Relationship: Taxonomy term: Taxonomy term using Namespace type */
+  $handler->display->display_options['relationships']['reverse_field_namespace_type_taxonomy_term']['id'] = 'reverse_field_namespace_type_taxonomy_term';
+  $handler->display->display_options['relationships']['reverse_field_namespace_type_taxonomy_term']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['relationships']['reverse_field_namespace_type_taxonomy_term']['field'] = 'reverse_field_namespace_type_taxonomy_term';
+  $handler->display->display_options['relationships']['reverse_field_namespace_type_taxonomy_term']['label'] = 'count';
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['name']['link_to_taxonomy'] = TRUE;
+  /* Field: COUNT(DISTINCT Taxonomy term: Term ID) */
+  $handler->display->display_options['fields']['tid']['id'] = 'tid';
+  $handler->display->display_options['fields']['tid']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['tid']['field'] = 'tid';
+  $handler->display->display_options['fields']['tid']['relationship'] = 'reverse_field_namespace_type_taxonomy_term';
+  $handler->display->display_options['fields']['tid']['group_type'] = 'count_distinct';
+  $handler->display->display_options['fields']['tid']['label'] = 'Count';
+  /* Filter criterion: Taxonomy vocabulary: Machine name */
+  $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
+  $handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['value'] = array(
+    'namespace_types' => 'namespace_types',
+  );
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'namespace-types';
+
+  /* Display: Feed */
+  $handler = $view->new_display('feed', 'Feed', 'feed_1');
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['style_plugin'] = 'rss';
+  $handler->display->display_options['row_plugin'] = 'rss_fields';
+  $handler->display->display_options['row_options']['title_field'] = 'name';
+  $handler->display->display_options['row_options']['link_field'] = 'nothing_1';
+  $handler->display->display_options['row_options']['description_field'] = 'nothing';
+  $handler->display->display_options['row_options']['creator_field'] = 'nothing';
+  $handler->display->display_options['row_options']['date_field'] = 'nothing';
+  $handler->display->display_options['row_options']['guid_field_options'] = array(
+    'guid_field' => 'nothing_1',
+    'guid_field_is_permalink' => 1,
+  );
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
+  /* Field: COUNT(DISTINCT Taxonomy term: Term ID) */
+  $handler->display->display_options['fields']['tid']['id'] = 'tid';
+  $handler->display->display_options['fields']['tid']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['tid']['field'] = 'tid';
+  $handler->display->display_options['fields']['tid']['relationship'] = 'reverse_field_namespace_type_taxonomy_term';
+  $handler->display->display_options['fields']['tid']['group_type'] = 'count_distinct';
+  $handler->display->display_options['fields']['tid']['label'] = 'Count';
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = 'Empty';
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
+  $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing_1']['label'] = 'URL';
+  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = 'namespace-types/[name]';
+  $handler->display->display_options['path'] = 'namespace-types.xml';
+  $translatables['namespace_types'] = array(
+    t('Master'),
+    t('Namespace types'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('count'),
+    t('Name'),
+    t('Count'),
+    t('.'),
+    t(','),
+    t('Page'),
+    t('Feed'),
+    t('Empty'),
+    t('URL'),
+    t('namespace-types/[name]'),
+  );
+  $export['namespace_types'] = $view;
+
+  $view = new view();
   $view->name = 'namespaces';
   $view->description = '';
   $view->tag = 'default';
