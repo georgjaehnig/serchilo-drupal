@@ -1017,15 +1017,15 @@ function serchilo_import($file = NULL, $verbose = FALSE) {
     return 'Could not parse file ' . $file;
   }
 
-  if ($verbose) {
-    echo "Importing namespaces...\n";
-  }
-
   serchilo_import_namespaces($data['namespaces'], $verbose);
   serchilo_import_shortcuts( $data['shortcuts'],  $verbose);
 }
 
 function serchilo_import_namespaces($rows, $verbose = FALSE) {
+
+  if ($verbose) {
+    echo "Importing namespaces...\n";
+  }
 
   foreach ($rows as $row) {
 
