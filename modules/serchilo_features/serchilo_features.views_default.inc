@@ -105,6 +105,10 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['fields']['nothing_1']['label'] = 'URL';
   $handler->display->display_options['fields']['nothing_1']['alter']['text'] = 'namespace-types/[name]';
   $handler->display->display_options['path'] = 'namespace-types.xml';
+  $handler->display->display_options['displays'] = array(
+    'default' => 'default',
+    'page' => 'page',
+  );
   $translatables['namespace_types'] = array(
     t('Master'),
     t('Namespace types'),
@@ -344,6 +348,10 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['sorts']['tid']['field'] = 'tid';
   $handler->display->display_options['sorts']['tid']['order'] = 'DESC';
   $handler->display->display_options['path'] = 'namespaces.xml';
+  $handler->display->display_options['displays'] = array(
+    'default' => 'default',
+    'page' => 'page',
+  );
   $handler->display->display_options['sitename_title'] = 0;
   $translatables['namespaces'] = array(
     t('Master'),
@@ -757,6 +765,10 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['fields']['nothing_1']['alter']['text'] = 'tags/[name]';
   $handler->display->display_options['fields']['nothing_1']['alter']['strip_tags'] = TRUE;
   $handler->display->display_options['path'] = 'tags.xml';
+  $handler->display->display_options['displays'] = array(
+    'default' => 'default',
+    'page' => 'page',
+  );
   $handler->display->display_options['sitename_title'] = 0;
   $translatables['tags'] = array(
     t('Master'),
