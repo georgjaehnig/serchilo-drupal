@@ -488,11 +488,23 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['fields']['field_tags']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_tags']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_tags']['separator'] = '';
-  /* Sort criterion: Content: Updated date */
-  $handler->display->display_options['sorts']['changed']['id'] = 'changed';
-  $handler->display->display_options['sorts']['changed']['table'] = 'node';
-  $handler->display->display_options['sorts']['changed']['field'] = 'changed';
-  $handler->display->display_options['sorts']['changed']['order'] = 'DESC';
+  /* Sort criterion: Content: Weight (field_weight) */
+  $handler->display->display_options['sorts']['field_weight_value']['id'] = 'field_weight_value';
+  $handler->display->display_options['sorts']['field_weight_value']['table'] = 'field_data_field_weight';
+  $handler->display->display_options['sorts']['field_weight_value']['field'] = 'field_weight_value';
+  $handler->display->display_options['sorts']['field_weight_value']['order'] = 'DESC';
+  /* Sort criterion: Content: Keyword (field_keyword) */
+  $handler->display->display_options['sorts']['field_keyword_value']['id'] = 'field_keyword_value';
+  $handler->display->display_options['sorts']['field_keyword_value']['table'] = 'field_data_field_keyword';
+  $handler->display->display_options['sorts']['field_keyword_value']['field'] = 'field_keyword_value';
+  /* Sort criterion: Content: Argument count (field_argument_count) */
+  $handler->display->display_options['sorts']['field_argument_count_value']['id'] = 'field_argument_count_value';
+  $handler->display->display_options['sorts']['field_argument_count_value']['table'] = 'field_data_field_argument_count';
+  $handler->display->display_options['sorts']['field_argument_count_value']['field'] = 'field_argument_count_value';
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -662,6 +674,12 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['fields']['field_description']['id'] = 'field_description';
   $handler->display->display_options['fields']['field_description']['table'] = 'field_data_field_description';
   $handler->display->display_options['fields']['field_description']['field'] = 'field_description';
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Updated date */
+  $handler->display->display_options['sorts']['changed']['id'] = 'changed';
+  $handler->display->display_options['sorts']['changed']['table'] = 'node';
+  $handler->display->display_options['sorts']['changed']['field'] = 'changed';
+  $handler->display->display_options['sorts']['changed']['order'] = 'DESC';
   $handler->display->display_options['path'] = 'shortcuts.xml';
   $handler->display->display_options['displays'] = array(
     'default' => 'default',
