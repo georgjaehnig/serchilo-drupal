@@ -23,6 +23,10 @@ function serchilo_drush_command() {
     ),
   );
 
+  $items['calculate-shortcut-weights'] = array(
+    'aliases' => array('csw'), 
+  );
+
   return $items;
 }
 
@@ -56,4 +60,15 @@ function drush_serchilo_import($file = NULL) {
 function drush_serchilo_export($file) {
 
   serchilo_export_to_json_gz_file($file);
+}
+
+/**
+ * Calculate shortcut weights.
+ *
+ * @return void
+ */
+function drush_serchilo_calculate_shortcut_weights() {
+  
+  module_load_include('inc', 'serchilo', 'serchilo.weights');
+  serchilo_calculate_shortcut_weights();
 }
