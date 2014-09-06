@@ -15,23 +15,23 @@
  */
 function serchilo_shortcut_to_db_fields($node) {
 
-  $tags = array_map(function ($tag) { return $tag['name']; }, $node->field_tags[LANGUAGE_NONE] ?: array() );
-  
-  $fields = array(
-    'nid'            => $node->nid,
-    'title'          => $node->title,
-    'keyword'        => drupal_array_get_nested_value($node->field_keyword,        array(LANGUAGE_NONE, 0, 'value')),
-    'argument_names' => drupal_array_get_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value')),
-    'argument_count' => drupal_array_get_nested_value($node->field_argument_count, array(LANGUAGE_NONE, 0, 'value')),
-    'url'            => drupal_array_get_nested_value($node->field_url,            array(LANGUAGE_NONE, 0, 'value')),
-    'input_encoding' => drupal_array_get_nested_value($node->field_input_encoding, array(LANGUAGE_NONE, 0, 'value')),
-    'weight'         => drupal_array_get_nested_value($node->field_weight,         array(LANGUAGE_NONE, 0, 'value')),
-    'invisible'      => drupal_array_get_nested_value($node->field_invisible,      array(LANGUAGE_NONE, 0, 'value')),
-    'set_referrer'   => drupal_array_get_nested_value($node->field_set_referrer,   array(LANGUAGE_NONE, 0, 'value')),
-    'namespace_id'   => drupal_array_get_nested_value($node->field_namespace,      array(LANGUAGE_NONE, 0, 'tid'  )),
-    'namespace_name' => drupal_array_get_nested_value($node->field_namespace,      array(LANGUAGE_NONE, 0, 'name' )),
-    'tags'           => join(',', $tags),
-  );
+  $fields = array();
+
+  $fields['nid']            = $node->nid;
+  $fields['title']          = $node->title;
+  $fields['keyword']        = $node->field_keyword        [LANGUAGE_NONE][0]['value'];
+  $fields['argument_names'] = $node->field_argument_names [LANGUAGE_NONE][0]['value'];
+  $fields['argument_count'] = $node->field_argument_count [LANGUAGE_NONE][0]['value'];
+  $fields['url']            = $node->field_url            [LANGUAGE_NONE][0]['value'];
+  $fields['input_encoding'] = $node->field_input_encoding [LANGUAGE_NONE][0]['value'];
+  $fields['weight']         = $node->field_weight         [LANGUAGE_NONE][0]['value'];
+  $fields['invisible']      = $node->field_invisible      [LANGUAGE_NONE][0]['value'];
+  $fields['set_referrer']   = $node->field_set_referrer   [LANGUAGE_NONE][0]['value'];
+  $fields['namespace_id']   = $node->field_namespace      [LANGUAGE_NONE][0]['tid'];
+  $fields['namespace_name'] = $node->field_namespace      [LANGUAGE_NONE][0]['name'];
+
+  $tags                     = array_map(function ($tag) { return $tag['name']; }, $node->field_tags[LANGUAGE_NONE] ?: array() );
+  $fields['tags']           = join(',', $tags);
 
   return $fields;
 }
