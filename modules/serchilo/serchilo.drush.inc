@@ -59,6 +59,7 @@ function drush_serchilo_import($file = NULL) {
  */
 function drush_serchilo_export($file) {
 
+  module_load_include('inc', 'serchilo', 'serchilo.export');
   serchilo_export_to_json_gz_file($file);
 }
 
