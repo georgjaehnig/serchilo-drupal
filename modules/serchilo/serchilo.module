@@ -226,7 +226,11 @@ function serchilo_node_access($node, $op, $account) {
  * Implements hook_cron().
  */
 function serchilo_cron() {
+
   serchilo_export();
+
+  module_load_include('inc', 'serchilo', 'serchilo.weights');
+  serchilo_calculate_shortcut_weights();
 }
 
 
