@@ -32,6 +32,8 @@ function serchilo_drush_command() {
  * @param string $file
  *   The path to the file to import,
  *   based from DRUPAL_ROOT.
+ *
+ * @return void
  */
 function drush_serchilo_import($file = NULL) {
 
@@ -41,6 +43,16 @@ function drush_serchilo_import($file = NULL) {
   }
 }
 
+
+/**
+ * Export shortcuts to file.
+ *
+ * @param string $file
+ *   The path to the file to export to,
+ *   based from DRUPAL_ROOT.
+ *
+ * @return void
+ */
 function drush_serchilo_export($file) {
 
   serchilo_export_to_json_gz_file($file);
