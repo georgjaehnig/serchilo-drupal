@@ -796,8 +796,6 @@ function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = T
   $url = serchilo_replace_url_variables($shortcut['url'], $variables );
   $url = serchilo_replace_url_arguments($url, $arguments, $shortcut['input_encoding']);
 
-  //serchilo_log_call($shortcut, $arguments);
-  
   // Debugging: Only output URL.
   if (!$redirect) {
     return $url;
