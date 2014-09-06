@@ -379,7 +379,10 @@ function serchilo_revision_publish($node) {
  * Implements hook_node_view().
  */
 function serchilo_node_view($node, $view_mode, $langcode) {
-  $node->content['shortcut_call_form'] = drupal_get_form('serchilo_shortcut_call_form', $node);
+
+  if ('shortcut' == $node->type) {
+    $node->content['shortcut_call_form'] = drupal_get_form('serchilo_shortcut_call_form', $node);
+  }
 }
 
 
