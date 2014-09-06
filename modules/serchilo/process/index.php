@@ -142,6 +142,12 @@ function serchilo_populate_environment(&$env) {
     $env['user_name'] = serchilo_get_user_name_from_path($env['path_elements_offset']);
     $env['namespace_ids'] = serchilo_get_namespace_ids_from_user($env['user_name']);
 
+    if (!empty($env['extra_namespace_name'])) {
+      if ($env['extra_namespace_id'] = serchilo_get_namespace_id($env['extra_namespace_name'])) {
+        $env['namespace_ids'][] = $env['extra_namespace_id'];
+      }
+    }
+
     // Get namespace_names from namespace_ids.
     $env['language_namespace_name'] = serchilo_get_values_from_table('taxonomy_term_data', 'tid', $env['namespace_ids']['1'], 'name')[0];
     $env['country_namespace_name']  = serchilo_get_values_from_table('taxonomy_term_data', 'tid', $env['namespace_ids']['2'], 'name')[0];
