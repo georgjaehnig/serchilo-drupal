@@ -27,8 +27,6 @@ function serchilo_export_to_json_gz_file($file_without_suffix) {
   $export = serchilo_export_shortcuts_and_namespaces();
   $export_json = drupal_json_encode($export);
 
-//sites/default/files/export/serchilo
-
   file_put_contents($file_without_suffix . '.json', $export_json);
   system('gzip -f ' . $file_without_suffix . '.json');
 }
