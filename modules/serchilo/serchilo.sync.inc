@@ -28,10 +28,16 @@ function serchilo_shortcut_to_db_fields($node) {
   $fields['invisible']      = $node->field_invisible      [LANGUAGE_NONE][0]['value'];
   $fields['set_referrer']   = $node->field_set_referrer   [LANGUAGE_NONE][0]['value'];
   $fields['namespace_id']   = $node->field_namespace      [LANGUAGE_NONE][0]['tid'];
-  $fields['namespace_name'] = $node->field_namespace      [LANGUAGE_NONE][0]['name'];
 
-  $tags                     = array_map(function ($tag) { return $tag['name']; }, $node->field_tags[LANGUAGE_NONE] ?: array() );
-  $fields['tags']           = join(',', $tags);
+  // Assign taxonomy term names only if they exists, i.e.: already have been loaded.
+  if (!empty($node->field_namespace[LANGUAGE_NONE][0]['name'])) {
+    $fields['namespace_name'] = $node->field_namespace[LANGUAGE_NONE][0]['name'];
+  }
+
+  if (!empty($node->field_tags[LANGUAGE_NONE][0]['name'])) {
+    $tags           = array_map(function ($tag) { return $tag['name']; }, $node->field_tags[LANGUAGE_NONE] ?: array() );
+    $fields['tags'] = join(',', $tags);
+  }
 
   return $fields;
 }
@@ -62,6 +68,8 @@ function serchilo_insert_shortcut_row($node) {
 
 function serchilo_update_shortcut_row($node) {
   $fields = serchilo_shortcut_to_db_fields($node);
+  print_r($fields);
+  return;
   $num_updated = db_update('serchilo_shortcut') 
     ->fields($fields)
     ->condition('nid', $node->nid )
