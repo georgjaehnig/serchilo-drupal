@@ -41,6 +41,8 @@ function serchilo_drush_command() {
  */
 function drush_serchilo_import($file = NULL) {
 
+  module_load_include('inc', 'serchilo', 'serchilo.import');
+
   $msg = serchilo_import($file, TRUE);
   if (is_string($msg)) {
     echo $msg . "\n"; 
