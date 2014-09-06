@@ -141,6 +141,12 @@ function serchilo_schema() {
         'unsigned' => TRUE,
         'not null' => TRUE,
       ),
+      'namespace_id' => array(
+        'description' => 'The namespace term id.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
       'called' => array(
         'description' => 'The UNIX timestamp when the call happened.',
         'type' => 'int',
