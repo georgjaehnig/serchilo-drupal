@@ -837,8 +837,8 @@ function serchilo_log_shortcut_call($shortcut) {
     
 INSERT INTO 
   serchilo_shortcut_log
-  (nid, called)
-  VALUES (:nid, :called);
+  (shortcut_id, called)
+  VALUES (:shortcut_id, :called);
 
   ";
 
@@ -846,8 +846,8 @@ INSERT INTO
     $mysqli, 
     $sql,
     array(
-      'nid'    => $shortcut['nid'],
-      'called' => time(),
+      'shortcut_id' => $shortcut['nid'],
+      'called'      => time(),
     )
   );
 

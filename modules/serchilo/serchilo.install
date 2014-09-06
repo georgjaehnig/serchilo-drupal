@@ -135,8 +135,8 @@ function serchilo_schema() {
         'unsigned' => TRUE,
         'not null' => TRUE,
       ),
-      'nid' => array(
-        'description' => 'The node id.',
+      'shortcut_id' => array(
+        'description' => 'The shortcut node id.',
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => TRUE,
