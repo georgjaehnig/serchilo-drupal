@@ -34,13 +34,6 @@ function serchilo_features_user_default_permissions() {
     'module' => 'comment',
   );
 
-  // Exported permission: 'access connections tab'.
-  $permissions['access connections tab'] = array(
-    'name' => 'access connections tab',
-    'roles' => array(),
-    'module' => 'connector',
-  );
-
   // Exported permission: 'access content'.
   $permissions['access content'] = array(
     'name' => 'access content',
@@ -56,20 +49,6 @@ function serchilo_features_user_default_permissions() {
     'name' => 'access content overview',
     'roles' => array(),
     'module' => 'node',
-  );
-
-  // Exported permission: 'access own authorizations'.
-  $permissions['access own authorizations'] = array(
-    'name' => 'access own authorizations',
-    'roles' => array(),
-    'module' => 'oauth_common',
-  );
-
-  // Exported permission: 'access own consumers'.
-  $permissions['access own consumers'] = array(
-    'name' => 'access own consumers',
-    'roles' => array(),
-    'module' => 'oauth_common',
   );
 
   // Exported permission: 'access private fields'.
@@ -126,13 +105,6 @@ function serchilo_features_user_default_permissions() {
     'name' => 'administer comments',
     'roles' => array(),
     'module' => 'comment',
-  );
-
-  // Exported permission: 'administer consumers'.
-  $permissions['administer consumers'] = array(
-    'name' => 'administer consumers',
-    'roles' => array(),
-    'module' => 'oauth_common',
   );
 
   // Exported permission: 'administer content types'.
@@ -210,20 +182,6 @@ function serchilo_features_user_default_permissions() {
     'name' => 'administer nodes',
     'roles' => array(),
     'module' => 'node',
-  );
-
-  // Exported permission: 'administer oauth'.
-  $permissions['administer oauth'] = array(
-    'name' => 'administer oauth',
-    'roles' => array(),
-    'module' => 'oauth_common',
-  );
-
-  // Exported permission: 'administer oauth connector'.
-  $permissions['administer oauth connector'] = array(
-    'name' => 'administer oauth connector',
-    'roles' => array(),
-    'module' => 'oauthconnector',
   );
 
   // Exported permission: 'administer pathauto'.
@@ -344,15 +302,6 @@ function serchilo_features_user_default_permissions() {
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'clone',
-  );
-
-  // Exported permission: 'connect with oauthconnector_facebook'.
-  $permissions['connect with oauthconnector_facebook'] = array(
-    'name' => 'connect with oauthconnector_facebook',
-    'roles' => array(
-      'anonymous user' => 'anonymous user',
-    ),
-    'module' => 'connector',
   );
 
   // Exported permission: 'create field_argument_count'.
@@ -941,20 +890,6 @@ function serchilo_features_user_default_permissions() {
     'module' => 'pathauto',
   );
 
-  // Exported permission: 'oauth authorize any consumers'.
-  $permissions['oauth authorize any consumers'] = array(
-    'name' => 'oauth authorize any consumers',
-    'roles' => array(),
-    'module' => 'oauth_common',
-  );
-
-  // Exported permission: 'oauth register any consumers'.
-  $permissions['oauth register any consumers'] = array(
-    'name' => 'oauth register any consumers',
-    'roles' => array(),
-    'module' => 'oauth_common',
-  );
-
   // Exported permission: 'post comments'.
   $permissions['post comments'] = array(
     'name' => 'post comments',
@@ -1022,13 +957,6 @@ function serchilo_features_user_default_permissions() {
     'name' => 'switch users',
     'roles' => array(),
     'module' => 'devel',
-  );
-
-  // Exported permission: 'sync local profile with connections'.
-  $permissions['sync local profile with connections'] = array(
-    'name' => 'sync local profile with connections',
-    'roles' => array(),
-    'module' => 'connector',
   );
 
   // Exported permission: 'translate interface'.
