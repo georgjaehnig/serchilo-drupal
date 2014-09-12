@@ -104,6 +104,9 @@ function serchilo_menu_alter(&$items) {
   // Rename user edit tab.
   $items['user/%user/edit']['title'] = 'My account';
 
+  // Add delete tab to nodes.
+  $items['node/%node/delete']['context'] = MENU_CONTEXT_INLINE | MENU_CONTEXT_PAGE;
+
   // Make shortcut clone link a tab.
   $items['node/%node/clone/%clone_token']['type'] = MENU_LOCAL_TASK;
 
