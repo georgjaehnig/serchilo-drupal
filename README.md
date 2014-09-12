@@ -86,12 +86,12 @@ To `drupal/.htaccess`, add:
 RewriteCond %{QUERY_STRING} (^|&)query=
 RewriteCond %{QUERY_STRING} !(^|&)status=not_found
 RewriteCond %{REQUEST_URI} ^\/(n|u)\/.*
-RewriteRule ^(n|u)/(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=console&call_type=$1 [L,QSA]
+RewriteRule ^.*$ profiles/serchilo_profile/modules/serchilo/process/?page_type=console&call_type=%1 [L,QSA]
 
 # Non-console call
-RewriteCond %{REQUEST_URI} ^\/(ajax|opensearch-suggestions|api|url)\/(n|u)\/.*
 RewriteCond %{QUERY_STRING} (^|&)(query|term)=
-RewriteRule ^(ajax|opensearch-suggestions|api|url)/(n|u)/(.*)$ profiles/serchilo_profile/modules/serchilo/process/?page_type=$1&call_type=$2 [L,QSA]
+RewriteCond %{REQUEST_URI} ^\/(ajax|opensearch-suggestions|api|url)\/(n|u)\/.*
+RewriteRule ^.*$ profiles/serchilo_profile/modules/serchilo/process/?page_type=%1&call_type=%2 [L,QSA]
 ```
 
 That's it. You should now be able to see Serchilo in your browser at `http://l.serchilo/`.
