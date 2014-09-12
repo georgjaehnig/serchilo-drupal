@@ -11,7 +11,7 @@ function serchilo_form_console_namespaces($form, &$form_state, $namespace_path_o
       drupal_goto( SERCHILO_NAMESPACES_PATH_AFFIX . '/' . $namespace_path . '/edit', array(), 301);
   }
 
-  $namespace_ids = drupal_static('namespace_ids');
+  $namespace_ids = drupal_static('serchilo_namespace_ids');
   // Drop "o" namespace, which is always first.
   array_shift($namespace_ids);
 
