@@ -50,7 +50,7 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['fields']['tid']['field'] = 'tid';
   $handler->display->display_options['fields']['tid']['relationship'] = 'reverse_field_namespace_type_taxonomy_term';
   $handler->display->display_options['fields']['tid']['group_type'] = 'count_distinct';
-  $handler->display->display_options['fields']['tid']['label'] = 'Count';
+  $handler->display->display_options['fields']['tid']['label'] = 'Namespaces';
   /* Filter criterion: Taxonomy vocabulary: Machine name */
   $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
   $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
@@ -127,11 +127,12 @@ function serchilo_features_views_default_views() {
     t('last »'),
     t('count'),
     t('Name'),
-    t('Count'),
+    t('Namespaces'),
     t('.'),
     t(','),
     t('Page'),
     t('Feed'),
+    t('Count'),
     t('Empty'),
     t('URL'),
     t('namespace-types/[name]'),
@@ -590,6 +591,12 @@ function serchilo_features_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['path'] = 'shortcuts';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Shortcuts';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'main-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
 
   /* Display: Feed */
   $handler = $view->new_display('feed', 'Feed', 'feed_1');
