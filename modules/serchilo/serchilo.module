@@ -713,10 +713,11 @@ function serchilo_form_user_register_form_validate($form, &$form_state) {
   // (Names will be namespaces, dots are used to separate namespaces. And for 
   // dashes I forgot the reason. :-/ )
   if (
+    (strpos($name, ' ') !== false) ||
     (strpos($name, '.') !== false) ||
     (strpos($name, '-') !== false) 
   ) {
-    form_set_error('name', t('The username must not contain "." or "-".'));
+    form_set_error('name', t('The username must not contain ".", "-" or spaces.'));
   }
 
   // Disallow user names that collide with existing paths.
