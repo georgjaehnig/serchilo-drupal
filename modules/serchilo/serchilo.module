@@ -696,10 +696,10 @@ function serchilo_form_user_register_form_alter(&$form, &$form_state, $form_id) 
  */
 function serchilo_form_user_register_form_validate($form, &$form_state) {
 
-  # lowercase username
+  // Lowercase the username.
   $form_state['values']['name'] = strtolower($form_state['values']['name']);
   
-  # Extract the submitted name
+  // Extract the submitted name.
   $name = $form_state['values']['name'];
 
   // Make sure length is >=4.
