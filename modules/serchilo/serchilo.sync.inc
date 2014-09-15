@@ -68,8 +68,6 @@ function serchilo_insert_shortcut_row($node) {
 
 function serchilo_update_shortcut_row($node) {
   $fields = serchilo_shortcut_to_db_fields($node);
-  print_r($fields);
-  return;
   $num_updated = db_update('serchilo_shortcut') 
     ->fields($fields)
     ->condition('nid', $node->nid )
