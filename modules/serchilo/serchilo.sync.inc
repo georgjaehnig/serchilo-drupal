@@ -84,6 +84,6 @@ function serchilo_delete_shortcut_row($node) {
     ->execute();
   // TODO
   // raise error when $num_deleted != 1
-  dpm($num_deleted);
+  return $num_deleted;
 }
 
