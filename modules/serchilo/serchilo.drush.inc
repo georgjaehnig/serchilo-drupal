@@ -34,7 +34,7 @@ function serchilo_drush_command() {
 }
 
 /**
- * Import shortcuts from file.
+ * Import Serchilo data from file.
  *
  * @param string $file
  *   The path to the file to import,
@@ -54,7 +54,7 @@ function drush_serchilo_import($file = NULL) {
 
 
 /**
- * Export shortcuts to file.
+ * Export Serchilo data to file.
  *
  * @param string $file
  *   The path to the file to export to,
