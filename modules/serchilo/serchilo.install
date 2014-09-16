@@ -9,7 +9,7 @@ function serchilo_install(){
 
   serchilo_set_spamicide(); 
 
-  module_load_include('module', 'serchilo', 'serchilo.import');
+  module_load_include('inc', 'serchilo', 'serchilo.import');
   $import_file = drupal_get_path('module', 'serchilo') . '/json/serchilo.json';
   serchilo_import($import_file, TRUE);
 
