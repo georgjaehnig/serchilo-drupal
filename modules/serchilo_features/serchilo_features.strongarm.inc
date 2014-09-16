@@ -359,10 +359,10 @@ function serchilo_features_strongarm() {
           'weight' => '0',
         ),
         'metatags' => array(
-          'weight' => '15',
+          'weight' => '16',
         ),
         'path' => array(
-          'weight' => '14',
+          'weight' => '15',
         ),
       ),
       'display' => array(),

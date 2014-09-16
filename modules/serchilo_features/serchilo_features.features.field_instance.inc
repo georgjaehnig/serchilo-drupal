@@ -421,7 +421,7 @@ function serchilo_features_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 13,
+      'weight' => 14,
     ),
   );
 
@@ -504,7 +504,7 @@ function serchilo_features_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -547,7 +547,7 @@ function serchilo_features_field_default_field_instances() {
         'content_taxonomy_opt_groups' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -590,7 +590,7 @@ function serchilo_features_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 11,
+      'weight' => 12,
     ),
   );
 
@@ -671,7 +671,47 @@ function serchilo_features_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 7,
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-shortcut-field_post_parameters'
+  $field_instances['node-shortcut-field_post_parameters'] = array(
+    'bundle' => 'shortcut',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'A string of key=value pairs separated by "&", to be sent with POST method. May contain placeholders as the URL.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 14,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_post_parameters',
+    'label' => 'POST parameters',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 6,
     ),
   );
 
@@ -714,7 +754,7 @@ function serchilo_features_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -755,7 +795,7 @@ function serchilo_features_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -798,7 +838,7 @@ function serchilo_features_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => 16,
+      'weight' => 17,
     ),
   );
 
@@ -888,7 +928,7 @@ function serchilo_features_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
@@ -1071,6 +1111,7 @@ function serchilo_features_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('A change will result in saving only a draft, needed to be moderated by an editor.');
+  t('A string of key=value pairs separated by "&", to be sent with POST method. May contain placeholders as the URL.');
   t('Allows regular automatic testing if the shortcut URL is still valid.');
   t('Argument count');
   t('Argument names');
@@ -1098,6 +1139,7 @@ function serchilo_features_field_default_field_instances() {
   t('Language namespace');
   t('Namespace');
   t('Namespace type');
+  t('POST parameters');
   t('Separate tags with comma. Add any useful tags for the shortcut to be easily found in listings and autocomplete. Tags do not influence the availability of a shortcut.');
   t('Set referrer');
   t('Tags');
