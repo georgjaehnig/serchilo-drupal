@@ -82,6 +82,11 @@ function serchilo_schema() {
         'type' => 'text',
         'not null' => FALSE,
       ),
+      'post_parameters' => array(
+        'description' => 'A string of key=value pairs separated by "&", to be sent with POST method. May contain placeholders as the URL.',
+        'type' => 'text',
+        'not null' => FALSE,
+      ),
       'weight' => array(
         'description' => 'The weight. Used for ordering in autocomplete.',
         'type' => 'float',

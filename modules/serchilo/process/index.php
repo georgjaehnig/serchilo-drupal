@@ -799,6 +799,21 @@ function serchilo_get_user_name_from_path($path_elements_offset = 0) {
  */
 function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = TRUE) {
   
+  if (!empty($shortcut['post_parameters'])) {
+    $post_parameters_str = serchilo_replace_url_variables($shortcut['post_parameters'], $variables );
+    $post_parameters_str = serchilo_replace_url_arguments($post_parameters_str, $arguments, $shortcut['input_encoding']);
+    $post_parameters = array();
+    foreach (explode('&', $post_parameters_str) as $post_parameter) {
+      $keyValue = explode('=', $post_parameter, 2);
+      if (count($keyValue) == 2) {
+        $post_parameters[$keyValue[0]] = $keyValue[1];
+      }
+      else {
+        $post_parameters[$keyValue[0]] = 1;
+      }
+    }
+  }
+
   $url = serchilo_replace_url_variables($shortcut['url'], $variables );
   $url = serchilo_replace_url_arguments($url, $arguments, $shortcut['input_encoding']);
 
@@ -807,7 +822,14 @@ function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = T
     return $url;
   }
 
-  if (empty($shortcut['set_referrer'])) {
+  if (isset($post_parameters)) {
+    // Redirect via HTML form
+    // for shortcuts with POST parameters
+    serchilo_log_shortcut_call($shortcut);
+    serchilo_redirect_via_form($url, $post_parameters);
+    exit();
+  }
+  elseif (empty($shortcut['set_referrer'])) {
     // Classic redirect.
     serchilo_log_shortcut_call($shortcut);
     header('Location: ' . $url);
@@ -881,6 +903,22 @@ INSERT INTO
  */
 function serchilo_redirect_via_html($url) {
   require_once('tpl/serchilo-redirect.tpl.php'); 
+}
+
+/**
+ * Output a HTML file with form
+ * and the POST parameters as hidden fields
+ * to redirect to the given URL.
+ *
+ * @param string $url
+ *   The URL to redirect to.
+ * @param array $post_parameters
+ *   The POST parameters as a key/value array.
+ *   
+ * @return void
+ */
+function serchilo_redirect_via_form($url, $post_parameters) {
+  require_once('tpl/serchilo-redirect-form.tpl.php'); 
 }
 
 function serchilo_output_json($output) {

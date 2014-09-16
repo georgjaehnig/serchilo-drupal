@@ -373,8 +373,10 @@ function serchilo_node_presave($node) {
 
   if ($node->type == 'shortcut') {
     // derive and set url metadata
-    $url = drupal_array_get_nested_value($node->field_url, array(LANGUAGE_NONE, 0, 'value'));
-    $argument_names = serchilo_get_argument_names($url);
+    $argument_names = serchilo_get_argument_names(
+      drupal_array_get_nested_value($node->field_url,             array(LANGUAGE_NONE, 0, 'value')),
+      drupal_array_get_nested_value($node->field_post_parameters, array(LANGUAGE_NONE, 0, 'value'))
+    );
     drupal_array_set_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value'), join(', ', $argument_names));
     drupal_array_set_nested_value($node->field_argument_count, array(LANGUAGE_NONE, 0, 'value'), count($argument_names));
 
@@ -868,17 +870,12 @@ function serchilo_options_list_country_namespace() {
 
 // SHORTCUT HELPERS
 
-function serchilo_get_argument_names($url) {
+function serchilo_get_argument_names($url, $post_parameters) {
 
-  // parse url for arguments
-  preg_match_all(
-    // ? makes ungreedy
-    '/\{s:(.+?)\}/',
-    $url,
-    $matches,
-    PREG_PATTERN_ORDER
+  $argument_names = array_merge(
+    serchilo_get_argument_names_from_string($post_parameters),
+    serchilo_get_argument_names_from_string($url)
   );
-  $argument_names = $matches[1];
 
   // treat arguments with same name as only one argument
   $argument_names = array_unique($argument_names);
@@ -887,6 +884,19 @@ function serchilo_get_argument_names($url) {
   $argument_names = array_values($argument_names);
 
   return $argument_names;
+}
+
+function serchilo_get_argument_names_from_string($str) {
+
+  preg_match_all(
+    // ? makes ungreedy
+    '/\{s:(.+?)\}/',
+    $str,
+    $matches,
+    PREG_PATTERN_ORDER
+  );
+
+  return $matches[1];
 }
 
 /**
