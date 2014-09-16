@@ -142,34 +142,6 @@ function serchilo_node_presave($node) {
 }
 
 /**
- * Implements hook_theme().
- */
-function serchilo_theme() {
-  return array(
-    'serchilo-console' => array(
-      'template' => 'serchilo-console', 
-      'variables' => array('query' => null), 
-      'path' => drupal_get_path('module', 'serchilo') . '/templates',
-    ),
-    'serchilo-opensearch' => array(
-      'template' => 'serchilo-opensearch', 
-      'variables' => array('content' => null), 
-      'path' => drupal_get_path('module', 'serchilo') . '/templates',
-    ),
-    /*
-    'serchilo-redirect' => array(
-      'template' => 'serchilo-redirect', 
-      'variables' => array('content' => null), 
-    ),
-    'serchilo_definition_list' => array(
-      'variables' => array('items' => array(), 'title' => NULL, 'attributes' => array()),
-      'file' => 'serchilo.theme.inc',
-    ),
-     */
-  );
-}
-
-/**
  * Implements hook_watchdog().
  */
 function serchilo_watchdog($log_entry) {
@@ -239,6 +211,34 @@ function serchilo_cron() {
 
 
 // THEME HOOKS 
+
+/**
+ * Implements hook_theme().
+ */
+function serchilo_theme() {
+  return array(
+    'serchilo-console' => array(
+      'template' => 'serchilo-console', 
+      'variables' => array('query' => null), 
+      'path' => drupal_get_path('module', 'serchilo') . '/templates',
+    ),
+    'serchilo-opensearch' => array(
+      'template' => 'serchilo-opensearch', 
+      'variables' => array('content' => null), 
+      'path' => drupal_get_path('module', 'serchilo') . '/templates',
+    ),
+    /*
+    'serchilo-redirect' => array(
+      'template' => 'serchilo-redirect', 
+      'variables' => array('content' => null), 
+    ),
+    'serchilo_definition_list' => array(
+      'variables' => array('items' => array(), 'title' => NULL, 'attributes' => array()),
+      'file' => 'serchilo.theme.inc',
+    ),
+     */
+  );
+}
 
 /**
  * Implements hook_menu_local_tasks_alter().
