@@ -121,27 +121,6 @@ function serchilo_menu_alter(&$items) {
 }
 
 /**
- * Implements hook_node_presave().
- */
-function serchilo_node_presave($node) {
-
-  if ($node->type == 'shortcut') {
-    // derive and set url metadata
-    $url = drupal_array_get_nested_value($node->field_url, array(LANGUAGE_NONE, 0, 'value'));
-    $argument_names = serchilo_get_argument_names($url);
-    drupal_array_set_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value'), join(', ', $argument_names));
-    drupal_array_set_nested_value($node->field_argument_count, array(LANGUAGE_NONE, 0, 'value'), count($argument_names));
-
-    // revoke moderation flag
-    // if non-sensible edit
-    $is_sensible_edit = serchilo_is_sensible_edit($node);
-    if (!$is_sensible_edit) {
-      $node->revision_operation = REVISIONING_NEW_REVISION_NO_MODERATION;
-    }
-  }
-}
-
-/**
  * Implements hook_watchdog().
  */
 function serchilo_watchdog($log_entry) {
@@ -163,37 +142,6 @@ function serchilo_watchdog($log_entry) {
     ;
     //drupal_mail('serchilo', 'error', $site_mail, LANGUAGE_NONE, $params);
     variable_set('serchilo_last_watchdog_mail', time());
-  }
-}
-
-/**
- * Implements hook_node_access().
- */
-function serchilo_node_access($node, $op, $account) {
-
-  if (node_type_get_type($node)->type == 'shortcut') {
-    if ($op == 'update') {
-
-      // Allow if a site namespace.
-      
-      if (strlen($node->field_namespace[LANGUAGE_NONE][0]['taxonomy_term']->name) < 4) {
-        return NODE_ACCESS_ALLOW;
-      }
-
-      // Allow if a user namespace and owning user is logged in.
-
-      if (
-        (user_is_logged_in()) &&
-        ($node->field_namespace[LANGUAGE_NONE][0]['taxonomy_term']->name == $account->name) &&
-        TRUE
-      ) {
-        return NODE_ACCESS_ALLOW;
-      }
-
-      // Deny in all other cases.
-
-      return NODE_ACCESS_DENY;
-    }
   }
 }
 
@@ -419,12 +367,64 @@ function serchilo_node_delete($node) {
 }
 
 /**
+ * Implements hook_node_presave().
+ */
+function serchilo_node_presave($node) {
+
+  if ($node->type == 'shortcut') {
+    // derive and set url metadata
+    $url = drupal_array_get_nested_value($node->field_url, array(LANGUAGE_NONE, 0, 'value'));
+    $argument_names = serchilo_get_argument_names($url);
+    drupal_array_set_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value'), join(', ', $argument_names));
+    drupal_array_set_nested_value($node->field_argument_count, array(LANGUAGE_NONE, 0, 'value'), count($argument_names));
+
+    // revoke moderation flag
+    // if non-sensible edit
+    $is_sensible_edit = serchilo_is_sensible_edit($node);
+    if (!$is_sensible_edit) {
+      $node->revision_operation = REVISIONING_NEW_REVISION_NO_MODERATION;
+    }
+  }
+}
+
+/**
  * Implements hook_revision_publish().
  */
 function serchilo_revision_publish($node) {
   if ($node->type == 'shortcut') {
     module_load_include('inc', 'serchilo', 'serchilo.sync');
     serchilo_insert_or_update_shortcut_row($node);
+  }
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function serchilo_node_access($node, $op, $account) {
+
+  if (node_type_get_type($node)->type == 'shortcut') {
+    if ($op == 'update') {
+
+      // Allow if a site namespace.
+      
+      if (strlen($node->field_namespace[LANGUAGE_NONE][0]['taxonomy_term']->name) < 4) {
+        return NODE_ACCESS_ALLOW;
+      }
+
+      // Allow if a user namespace and owning user is logged in.
+
+      if (
+        (user_is_logged_in()) &&
+        ($node->field_namespace[LANGUAGE_NONE][0]['taxonomy_term']->name == $account->name) &&
+        TRUE
+      ) {
+        return NODE_ACCESS_ALLOW;
+      }
+
+      // Deny in all other cases.
+
+      return NODE_ACCESS_DENY;
+    }
   }
 }
 
