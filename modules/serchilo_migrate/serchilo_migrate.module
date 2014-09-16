@@ -1,0 +1,35 @@
+<?PHP
+
+/**
+ * Implements hook_flush_caches().
+ */
+function serchilo_migrate_flush_caches() {
+  serchilo_migrate_register_migrations();
+}
+
+
+function serchilo_migrate_register_migrations() {
+
+  $common_arguments = array(
+    'source_version' => 7,
+    'group_name' => 'serchilo',
+    'source_connection' => 'legacy',
+  );
+
+  $arguments = $common_arguments + array(
+    'machine_name' => 'SerchiloUser',
+    'description' => t('Migration of users from old Drupal-Serchilo'),
+  );
+
+  Migration::registerMigration('SerchiloUserMigration', $arguments['machine_name'], $arguments);
+
+
+  $namespace_term_arguments = $common_arguments + array(
+    'machine_name' => 'SerchiloNamespaceTerm',
+    'description' => t('Import Serchilo namespace term references into new Serchilo'),
+    'source_vocabulary' => 'namespaces', 
+    'destination_vocabulary' => 'namespaces',
+  );
+
+  Migration::registerMigration('SerchiloNamespaceTermMigration', $namespace_term_arguments['machine_name'], $namespace_term_arguments);
+}

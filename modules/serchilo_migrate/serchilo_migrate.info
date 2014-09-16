@@ -1,0 +1,10 @@
+name = Serchilo Migrate
+description = Migrate old Serchilo data
+package = Migration
+core = 7.x
+
+dependencies[] = migrate
+dependencies[] = migrate_d2d
+
+files[] = user.inc
+files[] = taxonomy.inc
