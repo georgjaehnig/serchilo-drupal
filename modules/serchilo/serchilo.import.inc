@@ -41,6 +41,10 @@ function serchilo_import_namespaces($rows, $verbose = FALSE) {
       echo '.';
     }
   }
+
+  if ($verbose) {
+    echo "\n";
+  }
 }
 
 function serchilo_import_shortcuts($rows, $verbose = FALSE) {
@@ -97,6 +101,10 @@ function serchilo_import_shortcuts($rows, $verbose = FALSE) {
     if ($verbose) {
       echo '.';
     }
+  }
+
+  if ($verbose) {
+    echo "\n";
   }
 }
 
