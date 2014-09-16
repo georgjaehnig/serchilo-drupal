@@ -238,6 +238,56 @@ function serchilo_cron() {
 }
 
 
+// THEME HOOKS 
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function serchilo_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+
+  // For 'shortcuts' view:
+  if ('shortcuts' == $root_path) {
+
+    $data['tabs'][0]['output'][] = array(
+      '#theme' => 'menu_local_task',
+      '#active' => TRUE,
+      '#link' => array(
+        'title' => t('List'),
+        'href' => 'shortcuts',
+        'access' => TRUE,
+        'localized_options' => array(),
+      ),
+    );
+
+    $data['tabs'][0]['output'][] = array(
+      '#theme' => 'menu_local_task',
+      '#link' => array(
+        'title' => t('Create new shortcut'),
+        'href' => 'node/add/shortcut',
+        'access' => TRUE,
+        'localized_options' => array(),
+      ),
+    );
+
+    $data['tabs'][0]['output'][] = array(
+      '#theme' => 'menu_local_task',
+      '#link' => array(
+        'title' => t('Create new shortcut in my namespace'),
+        'href' => 'node/add/shortcut',
+        'access' => 'user_is_logged_in',
+        'localized_options' => array(
+          'query' => array(
+            'user' => TRUE, 
+          ),
+        ),
+      ),
+    );
+
+    $data['tabs'][0]['count'] = (user_is_logged_in() ? 3 : 2);
+  }
+}
+
+
 // BLOCK HOOKS
 
 /**
