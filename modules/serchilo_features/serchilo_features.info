@@ -424,6 +424,7 @@ features[variable][] = site_default_country
 features[variable][] = spamicide_administration_mode
 features[variable][] = spamicide_description
 features[variable][] = spamicide_dir
+features[variable][] = spamicide_log_attempts
 features[variable][] = theme_bootstrap_serchilo_settings
 features[variable][] = theme_default
 features[variable][] = user_register
