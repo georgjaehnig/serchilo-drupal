@@ -25,6 +25,11 @@ function serchilo_drush_command() {
     ),
   );
 
+  $items['calculate-shortcut-calls'] = array(
+    'description' => 'Calculate shortcut calls.',
+    'aliases' => array('csc'), 
+  );
+
   $items['calculate-shortcut-weights'] = array(
     'description' => 'Calculate shortcut weights.',
     'aliases' => array('csw'), 
@@ -77,4 +82,15 @@ function drush_serchilo_calculate_shortcut_weights() {
   
   module_load_include('inc', 'serchilo', 'serchilo.weights');
   serchilo_calculate_shortcut_weights();
+}
+
+/**
+ * Calculate shortcut calls.
+ *
+ * @return void
+ */
+function drush_serchilo_calculate_shortcut_calls() {
+
+  module_load_include('inc', 'serchilo', 'serchilo.weights');
+  serchilo_calculate_shortcut_calls();
 }
