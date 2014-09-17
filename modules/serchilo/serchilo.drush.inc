@@ -7,32 +7,34 @@ function serchilo_drush_command() {
 
   $items = array();
 
-  $items['import-serchilo-data'] = array(
+  $items['serchilo-import-data'] = array(
     'description' => 'Import Serchilo data from file.',
     'callback' => 'drush_serchilo_import',
-    'aliases' => array('isd'), 
+    'aliases' => array('sid'), 
     'arguments' => array(
       'file' => 'Full path to the Serchilo JSON file with shortcuts. ',
     ),
   );
 
-  $items['export-serchilo-data'] = array(
+  $items['serchilo-export-data'] = array(
     'description' => 'Export Serchilo data to file.',
     'callback' => 'drush_serchilo_export',
-    'aliases' => array('esd'), 
+    'aliases' => array('sed'), 
     'arguments' => array(
       'file' => 'Full path to the destination file. ',
     ),
   );
 
-  $items['calculate-shortcut-calls'] = array(
+  $items['serchilo-calculate-shortcut-calls'] = array(
     'description' => 'Calculate shortcut calls.',
-    'aliases' => array('csc'), 
+    'callback' => 'drush_serchilo_calculate_shortcut_calls',
+    'aliases' => array('scsc'), 
   );
 
-  $items['calculate-shortcut-weights'] = array(
+  $items['serchilo-calculate-shortcut-weights'] = array(
+    'callback' => 'drush_serchilo_calculate_shortcut_weights',
     'description' => 'Calculate shortcut weights.',
-    'aliases' => array('csw'), 
+    'aliases' => array('scsw'), 
   );
 
   return $items;
