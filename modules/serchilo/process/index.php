@@ -839,7 +839,7 @@ function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = T
     // Redirect via HTML page
     // for shortcuts which need a referrer.
     serchilo_log_shortcut_call($shortcut);
-    serchilo_redirect_via_html($url);
+    serchilo_redirect_via_meta($url);
     exit();
   }
 }
@@ -901,7 +901,7 @@ INSERT INTO
  *
  * @return void
  */
-function serchilo_redirect_via_html($url) {
+function serchilo_redirect_via_meta($url) {
   require_once('tpl/serchilo-redirect.tpl.php'); 
 }
 
