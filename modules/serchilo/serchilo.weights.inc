@@ -1,5 +1,10 @@
 <?PHP
 
+/**
+ * Calculate shortcut weights.
+ *
+ * @return void
+ */
 function serchilo_calculate_shortcut_weights() {
 
   $after = time() - (7*24*60*60); # within last week
