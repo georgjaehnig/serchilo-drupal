@@ -154,6 +154,7 @@ function serchilo_cron() {
   serchilo_export();
 
   module_load_include('inc', 'serchilo', 'serchilo.weights');
+  serchilo_calculate_shortcut_calls();
   serchilo_calculate_shortcut_weights();
 }
 
