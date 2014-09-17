@@ -379,6 +379,98 @@ function serchilo_features_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-shortcut-field_calls_last_30_days'
+  $field_instances['node-shortcut-field_calls_last_30_days'] = array(
+    'bundle' => 'shortcut',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 16,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_calls_last_30_days',
+    'label' => 'Calls last 30 days',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 19,
+    ),
+  );
+
+  // Exported field_instance: 'node-shortcut-field_calls_total'
+  $field_instances['node-shortcut-field_calls_total'] = array(
+    'bundle' => 'shortcut',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 15,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_calls_total',
+    'label' => 'Calls total',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 18,
+    ),
+  );
+
   // Exported field_instance: 'node-shortcut-field_command_id'
   $field_instances['node-shortcut-field_command_id'] = array(
     'bundle' => 'shortcut',
@@ -1118,6 +1210,8 @@ function serchilo_features_field_default_field_instances() {
   t('Arguments');
   t('Body');
   t('Calculated automatically from usage statistics. Can be used to improve the order of the listed shortcuts in the shortcut view or autocomplete.');
+  t('Calls last 30 days');
+  t('Calls total');
   t('Command ID');
   t('Comment');
   t('Content that the target page must contain.');
