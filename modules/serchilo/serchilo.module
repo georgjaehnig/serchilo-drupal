@@ -237,6 +237,40 @@ function serchilo_menu_local_tasks_alter(&$data, $router_item, $root_path) {
   }
 }
 
+/**
+ * Implements hook_views_pre_render().
+ */
+function serchilo_views_pre_render(&$view) {
+
+  // Only for Serchilo views.
+  if (in_array($view->name, array('shortcuts', 'namespaces', 'namespace-types', 'tags'))) {
+
+    // Wrap filters into a collapsible panel.
+
+    // Start opened when already some filters set.
+    $default_open = count(drupal_get_query_parameters()) > 0;
+
+    // TODO: Put this into a template.
+    $view->exposed_widgets = '
+
+   <div class="panel panel-default">
+      <div class="panel-heading" onclick="(function($){ $(\'#collapseFilter\').collapse(\'toggle\'); }(jQuery)) ">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFilter">
+            Filter
+          </a>
+        </h4>
+      </div>
+      <div id="collapseFilter" class="panel-collapse collapse ' . ($default_open ? 'in' : '' ) .  '">
+        <div class="panel-body">
+  ' . $view->exposed_widgets . '
+        </div>
+      </div>
+    </div>
+      ';
+  }
+}
+
 
 // BLOCK HOOKS
 
