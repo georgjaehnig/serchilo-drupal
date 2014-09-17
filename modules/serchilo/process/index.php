@@ -902,7 +902,7 @@ INSERT INTO
  * @return void
  */
 function serchilo_redirect_via_meta($url) {
-  require_once('tpl/serchilo-redirect.tpl.php'); 
+  require_once('tpl/serchilo-redirect-meta.tpl.php'); 
 }
 
 /**
