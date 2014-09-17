@@ -321,8 +321,8 @@ function serchilo_get_shortcut($env) {
     if ($shortcut) {
       $output['url']['template'] = $shortcut['url'];
       $variables = serchilo_get_url_variables($env);
-      $output['url']['replaced_variables'] = serchilo_replace_url_variables($shortcut['url'],  $variables);
-      $output['url']['final'] = serchilo_replace_url_arguments(
+      $output['url']['replaced_variables'] = serchilo_replace_variables($shortcut['url'],  $variables);
+      $output['url']['final'] = serchilo_replace_arguments(
         $output['url']['replaced_variables'],
         $env['arguments'], 
         $shortcut['input_encoding']
@@ -338,8 +338,8 @@ function serchilo_get_shortcut($env) {
       if ($shortcut) {
         $output['url']['template'] = $shortcut['url'];
         $variables = serchilo_get_url_variables($env);
-        $output['url']['replaced_variables'] = serchilo_replace_url_variables($shortcut['url'],  $variables);
-        $output['url']['final'] = serchilo_replace_url_arguments(
+        $output['url']['replaced_variables'] = serchilo_replace_variables($shortcut['url'],  $variables);
+        $output['url']['final'] = serchilo_replace_arguments(
           $output['url']['replaced_variables'],
           $env['arguments'], 
           $shortcut['input_encoding']
@@ -355,7 +355,7 @@ function serchilo_get_shortcut($env) {
     if ($shortcut) {
       $output['url']['template'] = $shortcut['url'];
       $variables = serchilo_get_url_variables($env);
-      $output['url']['replaced_variables'] = serchilo_replace_url_variables($shortcut['url'],  $variables);
+      $output['url']['replaced_variables'] = serchilo_replace_variables($shortcut['url'],  $variables);
       $output['status'] = 'found';
     }
   }
@@ -800,8 +800,8 @@ function serchilo_get_user_name_from_path($path_elements_offset = 0) {
 function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = TRUE) {
   
   if (!empty($shortcut['post_parameters'])) {
-    $post_parameters_str = serchilo_replace_url_variables($shortcut['post_parameters'], $variables );
-    $post_parameters_str = serchilo_replace_url_arguments($post_parameters_str, $arguments, $shortcut['input_encoding']);
+    $post_parameters_str = serchilo_replace_variables($shortcut['post_parameters'], $variables );
+    $post_parameters_str = serchilo_replace_arguments($post_parameters_str, $arguments, $shortcut['input_encoding']);
     $post_parameters = array();
     foreach (explode('&', $post_parameters_str) as $post_parameter) {
       $keyValue = explode('=', $post_parameter, 2);
@@ -814,8 +814,8 @@ function serchilo_call_shortcut($shortcut, $arguments, $variables, $redirect = T
     }
   }
 
-  $url = serchilo_replace_url_variables($shortcut['url'], $variables );
-  $url = serchilo_replace_url_arguments($url, $arguments, $shortcut['input_encoding']);
+  $url = serchilo_replace_variables($shortcut['url'], $variables );
+  $url = serchilo_replace_arguments($url, $arguments, $shortcut['input_encoding']);
 
   // Debugging: Only output URL.
   if (!$redirect) {
@@ -931,51 +931,49 @@ function serchilo_output_json($output) {
 // URL
 
 /**
- * Replace the placeholders of the URL
- * with variables.
+ * Replace the placeholders in the given string with variables.
  *
- * @param string $url
- *   The URL with placeholders.
+ * @param string $str
+ *   The string with placeholders.
  * @param array $variables
- *   The variables to replace in the $url.
+ *   The variables to replace in the $str.
  *   
  * @return string $url
  *   The replaced URL. 
  */
-function serchilo_replace_url_variables($url, $variables ) {
+function serchilo_replace_variables($str, $variables ) {
 
   foreach ($variables as $key=>$value) {
-    $url = str_replace(
+    $str = str_replace(
       '{' . $key . '}',
       $value,
-      $url
+      $str
     );
   }
 
-  return $url;
+  return $str;
 }
 
 /**
- * Replace the placeholders of the URL
- * with arguments.
+ * Replace the placeholders in the given string with arguments.
  *
- * @param string $url
+ * @param string $str
  *   The URL with placeholders.
  * @param array $arguments
- *   The arguments to replace in the $url.
+ *   The arguments to replace in the $str.
  * @param string $input_encoding
  *   The encoding into which the arguments
  *   shall be converted when being replaced.
  *   
- * @return string $url
+ * @return string $str
  *   The replaced URL. 
  */
-function serchilo_replace_url_arguments($url, $arguments, $input_encoding = 'utf-8') {
+function serchilo_replace_arguments($str, $arguments, $input_encoding = 'utf-8') {
 
   foreach ($arguments as $argument) {
     preg_match(
       '/\{s:(.+?)\}/',
-      $url,
+      $str,
       $matches
     );
     if (!count($matches)) {
@@ -999,14 +997,14 @@ function serchilo_replace_url_arguments($url, $arguments, $input_encoding = 'utf
         break;
     }
 
-    $url = str_replace(
+    $str = str_replace(
       $matches[0],
       $argument,
-      $url 
+      $str 
     );
   }
 
-  return $url;
+  return $str;
 }
 
 /**
