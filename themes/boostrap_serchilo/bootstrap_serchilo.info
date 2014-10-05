@@ -24,8 +24,7 @@ regions[page_bottom]    = 'Page bottom'
 ;; Stylesheets
 ;;;;;;;;;;;;;;;;;;;;;
 
-;stylesheets[all][] = bootstrap/dist/css/bootstrap.min.css
-stylesheets[all][] = bootswatch/cosmo/bootstrap.min.css
+stylesheets[all][] = bootstrap/dist/css/bootstrap.min.css
 stylesheets[all][] = css/style.css
 
 
