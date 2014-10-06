@@ -203,6 +203,20 @@ function serchilo_theme() {
  */
 function serchilo_menu_local_tasks_alter(&$data, $router_item, $root_path) {
 
+  // For node view:
+  // Insert 'Clone to my' tab
+  if ('node/%' == $root_path) {
+    foreach($data['tabs'][0]['output'] as $index=>$tab) {
+      if ('clone_node_check' == $tab['#link']['page_callback']) {
+        break;
+      }
+    }
+    $tab['#link']['title'] = t('Clone to my');
+    $tab['#link']['localized_options']['query']['user'] = TRUE;
+    array_splice($data['tabs'][0]['output'], $index+1, 0, array($tab) );
+  
+  }
+
   // For 'shortcuts' view:
   // Insert 'Add shortcut' tabs
   if ('shortcuts' == $root_path) {
