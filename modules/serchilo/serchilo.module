@@ -168,6 +168,7 @@ function serchilo_static_content_dirs() {
   );
 }
 
+
 // THEME HOOKS 
 
 /**
