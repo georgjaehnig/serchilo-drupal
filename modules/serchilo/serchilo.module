@@ -469,25 +469,30 @@ function serchilo_node_access($node, $op, $account) {
   if (node_type_get_type($node)->type == 'shortcut') {
     if ($op == 'update') {
 
-      // Allow if a site namespace.
-      
-      if (strlen($node->field_namespace[LANGUAGE_NONE][0]['taxonomy_term']->name) < 4) {
-        return NODE_ACCESS_ALLOW;
+      // Only if this is a actual node page,
+      // not if a field collection page.
+      if (isset($node->field_namespace[LANGUAGE_NONE][0]['taxonomy_term'])) {
+
+        // Allow if a site namespace.
+        
+        if (strlen($node->field_namespace[LANGUAGE_NONE][0]['taxonomy_term']->name) < 4) {
+          return NODE_ACCESS_ALLOW;
+        }
+
+        // Allow if a user namespace and owning user is logged in.
+
+        if (
+          (user_is_logged_in()) &&
+          ($node->field_namespace[LANGUAGE_NONE][0]['taxonomy_term']->name == $account->name) &&
+          TRUE
+        ) {
+          return NODE_ACCESS_ALLOW;
+        }
+
+        // Deny in all other cases.
+
+        return NODE_ACCESS_DENY;
       }
-
-      // Allow if a user namespace and owning user is logged in.
-
-      if (
-        (user_is_logged_in()) &&
-        ($node->field_namespace[LANGUAGE_NONE][0]['taxonomy_term']->name == $account->name) &&
-        TRUE
-      ) {
-        return NODE_ACCESS_ALLOW;
-      }
-
-      // Deny in all other cases.
-
-      return NODE_ACCESS_DENY;
     }
   }
 }
