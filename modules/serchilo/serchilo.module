@@ -158,6 +158,15 @@ function serchilo_cron() {
   serchilo_calculate_shortcut_weights();
 }
 
+/**
+ * Implements hook_static_content_dirs().
+ */
+function serchilo_static_content_dirs() {
+  $dir = drupal_get_path('module', 'serchilo') . '/static_content';
+  return array(
+    $dir => array()
+  );
+}
 
 // THEME HOOKS 
 
