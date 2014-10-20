@@ -1,3 +1,7 @@
 [submodule "themes/boostrap_serchilo/bootstrap"]
 	path = themes/boostrap_serchilo/bootstrap
 	url = https://github.com/twbs/bootstrap.git
+[submodule "modules/static_content"]
+	path = modules/static_content
+	url = http://git.drupal.org/sandbox/jorges/2344535.git
+	branch = 7.x-1.x
