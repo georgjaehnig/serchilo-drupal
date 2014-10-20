@@ -35,6 +35,7 @@ dependencies[] = pathauto
 dependencies[] = revisioning
 dependencies[] = revisioning_ux
 dependencies[] = spamicide
+dependencies[] = static_content
 dependencies[] = strongarm
 dependencies[] = system
 dependencies[] = taxonomy
