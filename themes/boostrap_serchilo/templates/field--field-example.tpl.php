@@ -10,11 +10,11 @@
     <!-- TODO: make this a proper link -->
       <dt><a href="#" class="btn btn-default">
       <?php
-        print current($item['entity']['field_collection_item'])['field_example_arguments'][0]['#markup'];
+        print render(current($item['entity']['field_collection_item'])['field_example_arguments'][0]);
       ?></a></dt>
       <dd>
       <?php
-        print current($item['entity']['field_collection_item'])['field_example_description'][0]['#markup'];
+        print render(current($item['entity']['field_collection_item'])['field_example_description'][0]);
       ?>
       </dd>
     <?php endforeach ?>
