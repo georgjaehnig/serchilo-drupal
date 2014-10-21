@@ -186,16 +186,6 @@ function serchilo_theme() {
       'variables' => array('content' => null), 
       'path' => drupal_get_path('module', 'serchilo') . '/templates',
     ),
-    /*
-    'serchilo-redirect' => array(
-      'template' => 'serchilo-redirect', 
-      'variables' => array('content' => null), 
-    ),
-    'serchilo_definition_list' => array(
-      'variables' => array('items' => array(), 'title' => NULL, 'attributes' => array()),
-      'file' => 'serchilo.theme.inc',
-    ),
-     */
   );
 }
 
