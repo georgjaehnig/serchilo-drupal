@@ -10,10 +10,5 @@
     </form>
     &nbsp;
   </div>
-
-  <div id="help">
-    Enter one of the available <a href="<?php echo $shortcuts_of_current_namespaces_url ?>">shortcuts</a>.
-    Or watch a <a href="http://www.youtube.com/watch?v=lNx4CFM-P2M" target="_blank">screencast video</a> to learn more.
-  </div>
 </div>
 
