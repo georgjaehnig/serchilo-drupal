@@ -345,6 +345,16 @@ function serchilo_block_namespaces() {
     return;
   }
 
+  $title = array(
+    '#type' => 'link',
+    '#title' => 'Namespaces:',
+    '#href' => url('help/namespaces'),
+    '#attributes' => array(
+      'class' => array(
+      ),
+    ),
+  );
+
   // Create links for all namespaces.
   $namespace_links = array();
   foreach ($namespaces as $namespace) {
@@ -390,6 +400,7 @@ function serchilo_block_namespaces() {
   }
  
   return array_merge(
+    array($title),
     $namespace_links,
     array($edit_link)
   );
