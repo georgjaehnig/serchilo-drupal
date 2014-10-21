@@ -377,7 +377,11 @@ function serchilo_block_namespaces() {
       '#title' => 'change',
       '#href' => $link_path,
       '#attributes' => array(
-        'class' => array('tab'),
+        'class' => array(
+          'btn', 
+          'btn-sm', 
+          'btn-default'
+        ),
       ),
     );
   }
