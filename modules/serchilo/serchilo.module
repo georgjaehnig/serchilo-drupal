@@ -196,7 +196,7 @@ function serchilo_theme($existing, $type, $theme, $path) {
 
 
 /**
- * Return the render array for an shortcut example query link.
+ * Return the render array for a shortcut example query link.
  *
  * @param array $variables
  *   Theme variables, with keys:
