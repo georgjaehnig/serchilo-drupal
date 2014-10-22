@@ -287,7 +287,17 @@ function serchilo_features_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_field_collection_item__field_example';
   $strongarm->value = array(
-    'view_modes' => array(),
+    'view_modes' => array(
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
     'extra_fields' => array(
       'form' => array(),
       'display' => array(),
@@ -1218,7 +1228,7 @@ function serchilo_features_strongarm() {
     'favicon_path' => '',
     'favicon_upload' => '',
     'general__active_tab' => 'edit-theme-settings',
-    'bootstrap__active_tab' => 'edit-advanced',
+    'bootstrap__active_tab' => 'edit-components',
     'bootstrap_breadcrumb' => '1',
     'bootstrap_breadcrumb_home' => 0,
     'bootstrap_breadcrumb_title' => 1,
@@ -1276,7 +1286,7 @@ function serchilo_features_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'theme_default';
-  $strongarm->value = 'bootstrap_serchilo';
+  $strongarm->value = 'theme_ffit';
   $export['theme_default'] = $strongarm;
 
   $strongarm = new stdClass();
