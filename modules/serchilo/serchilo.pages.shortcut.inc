@@ -20,7 +20,10 @@ function serchilo_page_shortcut_changed($shortcut_id) {
       array(
         ':title' => $shortcut->title,
         ':keyword' =>  'g',
-        '!query_link' => serchilo_shortcut_example_link($shortcut, $arguments),
+        '!query_link' => serchilo_shortcut_example_link(array(
+          'shortcut' => $shortcut, 
+          'arguments' => $arguments
+        )),
       )
     ), 
     'warning'
@@ -32,16 +35,21 @@ function serchilo_page_shortcut_changed($shortcut_id) {
 /**
  * Return the render array for an shortcut example query link.
  *
- * @param object $shortcut
- *  The shortcut node.
- * @param array $arguments
- *  The arguments for the query.
- * @param bool $with_namespace
- *  True when the link text shall contain the namespace name.
+ * @param array $variables
+ *   Theme variables, with keys:
+ *     - shortcut
+ *       The shortcut node object.
+ *     - arguments
+ *       The arguments array for the query.
+ *     - with_namespace
+ *       True when the link text shall contain the namespace name.
  *
  * @return void
  */
-function serchilo_shortcut_example_link($shortcut, $arguments, $with_namespace = FALSE) {
+function serchilo_shortcut_example_link($variables) {
+
+  $shortcut = $variables['shortcut'];
+  $arguments = $variables['arguments'];
 
   if (is_array($arguments)) {
     $arguments_str = join(', ', $arguments); 
@@ -60,7 +68,7 @@ function serchilo_shortcut_example_link($shortcut, $arguments, $with_namespace =
 
   $text = $query;
 
-  if ($with_namespace) {
+  if (!empty($variables['with_namespace'])) {
     $text = $namespace_name .  '.' .  $text;
   }
 
