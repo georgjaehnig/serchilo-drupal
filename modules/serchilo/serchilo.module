@@ -195,6 +195,50 @@ function serchilo_theme($existing, $type, $theme, $path) {
 }
 
 
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function serchilo_field_formatter_info() {
+  return array(
+    'serchilo_shortcut_example_link_formatter' => array(
+      'label' => t('Shortcut example link'),
+      'field types' => array('text'), 
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function serchilo_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+
+
+  $type = drupal_array_get_nested_value($instance, array('display', 'default', 'type'));
+
+  switch ($type) {
+  case 'serchilo_shortcut_example_link_formatter':
+    //dpm($entity_type, 'entity_type');
+    dpm($entity, 'entity');
+    dpm($field, 'field');
+    dpm($instance, 'instance');
+    dpm($items, 'items');
+    //dpm($display, 'display');
+    //$element[0]['#markup'] = '';
+    $element[0] = theme(
+      'serchilo_shortcut_example_link',
+      array(
+        'shortcut' => $entity->hostEntity(),
+        'arguments' => $items[0]['safe_value']
+      )
+    );
+    break; 
+  }
+  return $element;
+}
+
+
 /**
  * Return the render array for a shortcut example query link.
  *
