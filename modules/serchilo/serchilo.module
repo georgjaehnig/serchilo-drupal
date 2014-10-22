@@ -219,13 +219,6 @@ function serchilo_field_formatter_view($entity_type, $entity, $field, $instance,
 
   switch ($type) {
   case 'serchilo_shortcut_example_link_formatter':
-    //dpm($entity_type, 'entity_type');
-    dpm($entity, 'entity');
-    dpm($field, 'field');
-    dpm($instance, 'instance');
-    dpm($items, 'items');
-    //dpm($display, 'display');
-    //$element[0]['#markup'] = '';
     $element[0] = theme(
       'serchilo_shortcut_example_link',
       array(
