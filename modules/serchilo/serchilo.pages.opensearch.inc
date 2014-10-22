@@ -52,7 +52,7 @@ function serchilo_page_opensearch($pathElement1, $pathElement2) {
 
   drupal_add_http_header('Content-Type', 'text/xml');
   echo theme(
-    'serchilo-opensearch', 
+    'serchilo_opensearch', 
     array(
       'content' => $content,
     )

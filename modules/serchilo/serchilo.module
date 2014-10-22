@@ -177,12 +177,12 @@ function serchilo_static_content_dirs() {
 function serchilo_theme($existing, $type, $theme, $path) {
 
   $themes = array(
-    'serchilo-console' => array(
+    'serchilo_console' => array(
       'template' => 'serchilo-console', 
       'variables' => array('query' => null), 
       'path' => drupal_get_path('module', 'serchilo') . '/templates',
     ),
-    'serchilo-opensearch' => array(
+    'serchilo_opensearch' => array(
       'template' => 'serchilo-opensearch', 
       'variables' => array('content' => null), 
       'path' => drupal_get_path('module', 'serchilo') . '/templates',

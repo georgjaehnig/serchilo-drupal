@@ -187,7 +187,7 @@ function serchilo_page_console() {
   $content['console'] = array(
     '#type' => 'markup',
     '#markup' => theme(
-      'serchilo-console', 
+      'serchilo_console', 
       array(
         'query' => (string) $query,
         'default_keyword' => (string) $default_keyword,
