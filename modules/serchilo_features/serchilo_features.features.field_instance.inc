@@ -84,8 +84,8 @@ function serchilo_features_field_default_field_instances() {
     'description' => 'Example arguments to call this shortcut. Separate multiple arguments with comma.',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'module' => 'text',
+        'label' => 'hidden',
+        'module' => 'serchilo',
         'settings' => array(),
         'type' => 'serchilo_shortcut_example_link_formatter',
         'weight' => 0,
@@ -118,7 +118,7 @@ function serchilo_features_field_default_field_instances() {
     'description' => 'What happens when calling this shortcut?',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
