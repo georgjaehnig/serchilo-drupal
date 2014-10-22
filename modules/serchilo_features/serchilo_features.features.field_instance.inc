@@ -87,7 +87,7 @@ function serchilo_features_field_default_field_instances() {
         'label' => 'above',
         'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'serchilo_shortcut_example_link_formatter',
         'weight' => 0,
       ),
     ),
