@@ -217,6 +217,9 @@ function theme_serchilo_shortcut_example_link($variables) {
   if (is_array($arguments)) {
     $arguments_str = join(', ', $arguments); 
   }
+  elseif (is_string($arguments)) {
+    $arguments_str = $arguments; 
+  }
 
   
   $namespace_name = taxonomy_term_load($shortcut->field_namespace[LANGUAGE_NONE][0]['tid'])->name;
