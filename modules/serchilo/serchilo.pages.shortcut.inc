@@ -20,10 +20,13 @@ function serchilo_page_shortcut_changed($shortcut_id) {
       array(
         ':title' => $shortcut->title,
         ':keyword' =>  'g',
-        '!query_link' => serchilo_shortcut_example_link(array(
-          'shortcut' => $shortcut, 
-          'arguments' => $arguments
-        )),
+        '!query_link' => theme(
+          'serchilo_shortcut_example_link', 
+          array(
+            'shortcut' => $shortcut, 
+            'arguments' => $arguments
+          )
+        ),
       )
     ), 
     'warning'
@@ -32,62 +35,3 @@ function serchilo_page_shortcut_changed($shortcut_id) {
   drupal_goto('node/' . $shortcut->nid );
 }
 
-/**
- * Return the render array for an shortcut example query link.
- *
- * @param array $variables
- *   Theme variables, with keys:
- *     - shortcut
- *       The shortcut node object.
- *     - arguments
- *       The arguments array for the query.
- *     - with_namespace
- *       True when the link text shall contain the namespace name.
- *
- * @return void
- */
-function serchilo_shortcut_example_link($variables) {
-
-  $shortcut = $variables['shortcut'];
-  $arguments = $variables['arguments'];
-
-  if (is_array($arguments)) {
-    $arguments_str = join(', ', $arguments); 
-  }
-
-  
-  $namespace_name = taxonomy_term_load($shortcut->field_namespace[LANGUAGE_NONE][0]['tid'])->name;
-  
-  $query = 
-    $shortcut->field_keyword[LANGUAGE_NONE][0]['value'] . 
-    ' ' . 
-    $arguments_str;
-
-  // useful when arguments are empty
-  $query = trim($query);
-
-  $text = $query;
-
-  if (!empty($variables['with_namespace'])) {
-    $text = $namespace_name .  '.' .  $text;
-  }
-
-  // The query gets always the namespace name prefixed.
-  $query = $namespace_name .  '.' .  $query;
-
-  $link = l(
-    $text,
-    '',
-    array(
-      'attributes' => array(
-        'rel' => 'nofollow',
-        'class' => array('query'),
-      ),
-      'query' => array(
-        'query' => $query,
-      ), 
-    )
-  );
-
-  return $link;
-}
