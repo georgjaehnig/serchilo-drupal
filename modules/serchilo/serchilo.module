@@ -359,6 +359,8 @@ function theme_serchilo_shortcut_example_link($variables) {
 }
 
 
+// VIEWS HOOKS
+
 /**
  * Implements hook_views_pre_render().
  */
