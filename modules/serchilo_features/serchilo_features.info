@@ -314,6 +314,7 @@ features[variable][] = comment_preview_shortcut
 features[variable][] = comment_shortcut
 features[variable][] = comment_subject_field_page
 features[variable][] = comment_subject_field_shortcut
+features[variable][] = comment_talk_shortcut
 features[variable][] = date_default_timezone
 features[variable][] = diff_context_lines_leading
 features[variable][] = diff_context_lines_trailing
