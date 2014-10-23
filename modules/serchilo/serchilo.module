@@ -194,8 +194,6 @@ function serchilo_theme($existing, $type, $theme, $path) {
   return $themes;
 }
 
-
-
 /**
  * Implements hook_field_formatter_info().
  */
