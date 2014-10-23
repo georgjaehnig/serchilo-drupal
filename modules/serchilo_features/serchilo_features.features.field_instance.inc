@@ -942,7 +942,7 @@ function serchilo_features_field_default_field_instances() {
     'description' => 'The URL can contain placeholders of the form {s:foo}. A change will result in saving only a draft, needed to be moderated by an editor.',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
