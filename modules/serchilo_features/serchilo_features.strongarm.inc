@@ -1263,7 +1263,7 @@ function serchilo_features_strongarm() {
   $strongarm->value = array(
     'toggle_logo' => 1,
     'toggle_name' => 1,
-    'toggle_slogan' => 1,
+    'toggle_slogan' => 0,
     'toggle_node_user_picture' => 1,
     'toggle_comment_user_picture' => 1,
     'toggle_comment_user_verification' => 1,
