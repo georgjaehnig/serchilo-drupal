@@ -411,6 +411,12 @@ function serchilo_block_info() {
     'region' => 'header',
   );
 
+  $blocks['licenses'] = array(
+    'info' => 'Licenses',
+    'status' => 1,
+    'region' => 'footer',
+  );
+
   return $blocks;
 }
 
@@ -425,6 +431,10 @@ function serchilo_block_view($delta='') {
     case 'namespaces':
       $block['subject'] = NULL;
       $block['content'] = serchilo_block_namespaces();
+      break;
+    case 'licenses':
+      $block['subject'] = NULL;
+      $block['content'] = serchilo_block_licenses();
       break;
   }
 
@@ -502,6 +512,24 @@ function serchilo_block_namespaces() {
     $namespace_links,
     array($edit_link)
   );
+}
+
+/**
+ * Display licenses.
+ */
+function serchilo_block_licenses() {
+
+  $dir = drupal_get_path('module', 'serchilo');
+
+  // TODO: Solve this with theme('image'..);
+  return '
+    <a href="https://github.com/georgjaehnig/serchilo-drupal">
+    <img src="/' . $dir . '/svg/agpl-v3.svg" width="72" height="30" />
+    </a>
+    <a href="/export">
+    <img src="/' . $dir . '/svg/cc-by-sa.svg" width="80" height="15" />
+    </a>
+    ';
 }
 
 
