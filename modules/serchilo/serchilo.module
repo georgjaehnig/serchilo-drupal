@@ -208,7 +208,6 @@ function serchilo_field_formatter_info() {
   );
 }
 
-
 /**
  * Implements hook_field_formatter_view().
  */
@@ -230,7 +229,6 @@ function serchilo_field_formatter_view($entity_type, $entity, $field, $instance,
   }
   return $element;
 }
-
 
 /**
  * Return the render array for a shortcut example query link.
