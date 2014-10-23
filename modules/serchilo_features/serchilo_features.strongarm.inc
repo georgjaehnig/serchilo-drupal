@@ -1282,7 +1282,7 @@ function serchilo_features_strongarm() {
     'bootstrap_breadcrumb_home' => 0,
     'bootstrap_breadcrumb_title' => 1,
     'bootstrap_navbar_position' => 'static-top',
-    'bootstrap_navbar_inverse' => 0,
+    'bootstrap_navbar_inverse' => 1,
     'bootstrap_region_well-navigation' => '',
     'bootstrap_region_well-header' => '',
     'bootstrap_region_well-highlighted' => '',
