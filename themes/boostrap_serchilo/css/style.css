@@ -106,3 +106,9 @@ html, body {
 	min-height: 80%;
 	padding-bottom: 40px;
 }
+
+/* Do not truncate in Shortcut example */
+.dl-horizontal dt 
+{ 
+  white-space: normal; 
+}
