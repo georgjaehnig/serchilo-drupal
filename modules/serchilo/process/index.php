@@ -415,6 +415,8 @@ function serchilo_find_shortcut($keyword, $argument_count, $namespace_ids) {
     AND
     namespace_id IN (" . join(',', $namespace_ids) .  ")
     ORDER BY
+    # Highest argument_count first
+    argument_count DESC,
     " . 
     join(',', array_map(function($v) { return "namespace_id = " . (int) $v . " DESC";  }, array_reverse($namespace_ids))) 
     . "
