@@ -17,3 +17,19 @@ function bootstrap_serchilo_preprocess_block(&$vars) {
     break;
   }
 }
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bootstrap_serchilo_preprocess_button(&$vars) {
+  
+  switch ($vars['element']['#type']) {
+
+  case 'submit':
+
+    // Make Go button a primary button.
+    $vars['element']['#attributes']['class'][] = 'btn-primary';
+
+    break; 
+  }
+}
+
