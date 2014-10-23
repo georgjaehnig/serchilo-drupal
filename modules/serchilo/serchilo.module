@@ -5,6 +5,57 @@ require_once('serchilo.constants.inc');
 // HOOKS 
 
 /**
+ * Implements hook_watchdog().
+ */
+function serchilo_watchdog($log_entry) {
+
+  $last_watchdog_mail = (int) variable_get('serchilo_last_watchdog_mail');
+  $site_mail          =       variable_get('site_mail');
+
+  // Mail all PHP errors to $site_mail.
+  if (
+    ('php' == $log_entry['type']) &&
+    //(strpos($log_entry['variables']['%file'],'custom/serchilo') !== false) &&
+    ( $last_watchdog_mail < time() - SERCHILO_WATCHDOG_MAIL_INTERVAL ) &&
+    TRUE
+  ) {
+    $params['subject'] = 'Error on new Serchilo';
+    $params['body'] = 
+      'log_entry: ' . var_export($log_entry, TRUE) .
+      ''
+    ;
+    //drupal_mail('serchilo', 'error', $site_mail, LANGUAGE_NONE, $params);
+    variable_set('serchilo_last_watchdog_mail', time());
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function serchilo_cron() {
+
+  module_load_include('inc', 'serchilo', 'serchilo.export');
+  serchilo_export();
+
+  module_load_include('inc', 'serchilo', 'serchilo.weights');
+  serchilo_calculate_shortcut_calls();
+  serchilo_calculate_shortcut_weights();
+}
+
+/**
+ * Implements hook_static_content_dirs().
+ */
+function serchilo_static_content_dirs() {
+  $dir = drupal_get_path('module', 'serchilo') . '/static_content';
+  return array(
+    $dir => array()
+  );
+}
+
+
+// MENU HOOKS
+
+/**
  * Implements hook_menu().
  */
 function serchilo_menu() {
@@ -121,51 +172,67 @@ function serchilo_menu_alter(&$items) {
 }
 
 /**
- * Implements hook_watchdog().
+ * Implements hook_menu_local_tasks_alter().
  */
-function serchilo_watchdog($log_entry) {
+function serchilo_menu_local_tasks_alter(&$data, $router_item, $root_path) {
 
-  $last_watchdog_mail = (int) variable_get('serchilo_last_watchdog_mail');
-  $site_mail          =       variable_get('site_mail');
-
-  // Mail all PHP errors to $site_mail.
-  if (
-    ('php' == $log_entry['type']) &&
-    //(strpos($log_entry['variables']['%file'],'custom/serchilo') !== false) &&
-    ( $last_watchdog_mail < time() - SERCHILO_WATCHDOG_MAIL_INTERVAL ) &&
-    TRUE
-  ) {
-    $params['subject'] = 'Error on new Serchilo';
-    $params['body'] = 
-      'log_entry: ' . var_export($log_entry, TRUE) .
-      ''
-    ;
-    //drupal_mail('serchilo', 'error', $site_mail, LANGUAGE_NONE, $params);
-    variable_set('serchilo_last_watchdog_mail', time());
+  // For node view:
+  // Insert 'Clone to my' tab
+  if ('node/%' == $root_path) {
+    foreach($data['tabs'][0]['output'] as $index=>$tab) {
+      if ('clone_node_check' == $tab['#link']['page_callback']) {
+        break;
+      }
+    }
+    $tab['#link']['title'] = t('Clone to my');
+    $tab['#link']['localized_options']['query']['user'] = TRUE;
+    array_splice($data['tabs'][0]['output'], $index+1, 0, array($tab) );
+  
   }
-}
 
-/**
- * Implements hook_cron().
- */
-function serchilo_cron() {
+  // For 'shortcuts' view:
+  // Insert 'Add shortcut' tabs
+  if ('shortcuts' == $root_path) {
 
-  module_load_include('inc', 'serchilo', 'serchilo.export');
-  serchilo_export();
+    // Add some tabs.
 
-  module_load_include('inc', 'serchilo', 'serchilo.weights');
-  serchilo_calculate_shortcut_calls();
-  serchilo_calculate_shortcut_weights();
-}
+    $data['tabs'][0]['output'][] = array(
+      '#theme' => 'menu_local_task',
+      '#active' => TRUE,
+      '#link' => array(
+        'title' => t('List'),
+        'href' => 'shortcuts',
+        'access' => TRUE,
+        'localized_options' => array(),
+      ),
+    );
 
-/**
- * Implements hook_static_content_dirs().
- */
-function serchilo_static_content_dirs() {
-  $dir = drupal_get_path('module', 'serchilo') . '/static_content';
-  return array(
-    $dir => array()
-  );
+    $data['tabs'][0]['output'][] = array(
+      '#theme' => 'menu_local_task',
+      '#link' => array(
+        'title' => t('Create new shortcut'),
+        'href' => 'node/add/shortcut',
+        'access' => TRUE,
+        'localized_options' => array(),
+      ),
+    );
+
+    $data['tabs'][0]['output'][] = array(
+      '#theme' => 'menu_local_task',
+      '#link' => array(
+        'title' => t('Create new shortcut in my namespace'),
+        'href' => 'node/add/shortcut',
+        'access' => 'user_is_logged_in',
+        'localized_options' => array(
+          'query' => array(
+            'user' => TRUE, 
+          ),
+        ),
+      ),
+    );
+
+    $data['tabs'][0]['count'] = (user_is_logged_in() ? 3 : 2);
+  }
 }
 
 
@@ -291,70 +358,6 @@ function theme_serchilo_shortcut_example_link($variables) {
   return $link;
 }
 
-
-/**
- * Implements hook_menu_local_tasks_alter().
- */
-function serchilo_menu_local_tasks_alter(&$data, $router_item, $root_path) {
-
-  // For node view:
-  // Insert 'Clone to my' tab
-  if ('node/%' == $root_path) {
-    foreach($data['tabs'][0]['output'] as $index=>$tab) {
-      if ('clone_node_check' == $tab['#link']['page_callback']) {
-        break;
-      }
-    }
-    $tab['#link']['title'] = t('Clone to my');
-    $tab['#link']['localized_options']['query']['user'] = TRUE;
-    array_splice($data['tabs'][0]['output'], $index+1, 0, array($tab) );
-  
-  }
-
-  // For 'shortcuts' view:
-  // Insert 'Add shortcut' tabs
-  if ('shortcuts' == $root_path) {
-
-    // Add some tabs.
-
-    $data['tabs'][0]['output'][] = array(
-      '#theme' => 'menu_local_task',
-      '#active' => TRUE,
-      '#link' => array(
-        'title' => t('List'),
-        'href' => 'shortcuts',
-        'access' => TRUE,
-        'localized_options' => array(),
-      ),
-    );
-
-    $data['tabs'][0]['output'][] = array(
-      '#theme' => 'menu_local_task',
-      '#link' => array(
-        'title' => t('Create new shortcut'),
-        'href' => 'node/add/shortcut',
-        'access' => TRUE,
-        'localized_options' => array(),
-      ),
-    );
-
-    $data['tabs'][0]['output'][] = array(
-      '#theme' => 'menu_local_task',
-      '#link' => array(
-        'title' => t('Create new shortcut in my namespace'),
-        'href' => 'node/add/shortcut',
-        'access' => 'user_is_logged_in',
-        'localized_options' => array(
-          'query' => array(
-            'user' => TRUE, 
-          ),
-        ),
-      ),
-    );
-
-    $data['tabs'][0]['count'] = (user_is_logged_in() ? 3 : 2);
-  }
-}
 
 /**
  * Implements hook_views_pre_render().
