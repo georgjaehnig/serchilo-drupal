@@ -7,15 +7,15 @@
     <dl class="dl-horizontal">
 
     <?php foreach ($items as $delta => $item): ?>
-    <!-- TODO: make this a proper link -->
-      <dt><a href="#" class="btn btn-default">
-      <?php
-        print render(current($item['entity']['field_collection_item'])['field_example_arguments'][0]);
-      ?></a></dt>
+      <dt>
+        <?php
+          print render(current($item['entity']['field_collection_item'])['field_example_arguments'][0]);
+        ?>
+      </dt>
       <dd>
-      <?php
-        print render(current($item['entity']['field_collection_item'])['field_example_description'][0]);
-      ?>
+        <?php
+          print render(current($item['entity']['field_collection_item'])['field_example_description'][0]);
+        ?>
       </dd>
     <?php endforeach ?>
 
