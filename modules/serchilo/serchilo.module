@@ -583,11 +583,16 @@ function serchilo_node_presave($node) {
     drupal_array_set_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value'), join(', ', $argument_names));
     drupal_array_set_nested_value($node->field_argument_count, array(LANGUAGE_NONE, 0, 'value'), count($argument_names));
 
-    // revoke moderation flag
-    // if non-sensible edit
-    $is_sensible_edit = serchilo_is_sensible_edit($node);
-    if (!$is_sensible_edit) {
-      $node->revision_operation = REVISIONING_NEW_REVISION_NO_MODERATION;
+    // Only if this is a edit
+    // where a new revision has to be set
+    // (i.e. not an automatic edit by weights update cron function)
+    if ($node->revision_operation > REVISIONING_NO_REVISION) {
+      // revoke moderation flag
+      // if non-sensible edit
+      $is_sensible_edit = serchilo_is_sensible_edit($node);
+      if (!$is_sensible_edit) {
+        $node->revision_operation = REVISIONING_NEW_REVISION_NO_MODERATION;
+      }
     }
   }
 }

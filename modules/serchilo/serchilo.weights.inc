@@ -13,6 +13,7 @@ function serchilo_calculate_shortcut_calls() {
     // Only if shortcut still exists
     if ($shortcut = node_load($shortcut_call->shortcut_id)) {
       $shortcut->field_calls_last_30_days[LANGUAGE_NONE][0]['value'] = $shortcut_call->count;
+      $shortcut->revision_operation = REVISIONING_NO_REVISION;
       node_save($shortcut);
     }
   }
@@ -23,6 +24,7 @@ function serchilo_calculate_shortcut_calls() {
     // Only if shortcut still exists
     if ($shortcut = node_load($shortcut_call->shortcut_id)) {
       $shortcut->field_calls_total[LANGUAGE_NONE][0]['value'] = $shortcut_call->count;
+      $shortcut->revision_operation = REVISIONING_NO_REVISION;
       node_save($shortcut);
     }
   }
@@ -121,6 +123,7 @@ function serchilo_calculate_shortcut_weights() {
         $shortcut->field_weight[LANGUAGE_NONE][0]['value'] = 
           $shortcut_call->count / $calls_last_30_days[0]->count;
 
+        $shortcut->revision_operation = REVISIONING_NO_REVISION;
         node_save($shortcut);
       }
     }
