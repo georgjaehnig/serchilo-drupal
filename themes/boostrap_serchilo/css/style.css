@@ -136,3 +136,8 @@ html, body {
 .node-shortcut .field-collection-container {
   margin-top: 2em;
 }
+
+/* field_description */
+.node-shortcut .field-name-field-description {
+  margin-top: 1em;
+}
