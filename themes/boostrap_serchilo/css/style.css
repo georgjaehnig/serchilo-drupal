@@ -113,6 +113,7 @@ html, body {
   white-space: normal; 
 }
 
+/* Set field-label width to dl-horizontal width. */
 .node-shortcut .field-label {
   width: 180px;
 }
