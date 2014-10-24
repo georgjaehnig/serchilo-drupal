@@ -94,6 +94,9 @@ td.views-field-field-namespace a,
   margin-bottom: 1em;
 }
 
+.views-field-field-tags ul {
+  padding: 0;
+}
 .views-field-field-tags li {
   list-style: none;
   display: inline;
