@@ -99,6 +99,7 @@
     <?php
       print render($content['field_namespace']);
       print render($content['field_tags']);
+      print render($content['field_description']);
     ?>
   </div>
   <div class="content"<?php print $content_attributes; ?>>
