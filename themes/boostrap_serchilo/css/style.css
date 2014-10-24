@@ -117,3 +117,8 @@ html, body {
 .node-shortcut .field-label {
   width: 180px;
 }
+
+/* Margin for examples */
+.node-shortcut .field-collection-container {
+  margin-top: 2em;
+}
