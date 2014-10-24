@@ -112,3 +112,7 @@ html, body {
 { 
   white-space: normal; 
 }
+
+.node-shortcut .field-label {
+  width: 180px;
+}
