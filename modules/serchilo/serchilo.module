@@ -737,6 +737,8 @@ function serchilo_shortcut_call_form($form, $form_state, $node) {
     '#value' => t('Go'),
   );
 
+  $form['#attached']['js'][] = drupal_get_path('module', 'serchilo') . '/js/shortcut-call-form.js';
+
   return $form;
 }
 
