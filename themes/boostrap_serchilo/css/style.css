@@ -144,5 +144,5 @@ html, body {
 /* Site name */
 .navbar>.container .navbar-brand
 {
-  margin-left: 0;
+  margin-left: -0.4em;
 }
