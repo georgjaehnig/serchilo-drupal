@@ -491,6 +491,7 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
   $handler->display->display_options['fields']['field_tags']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_tags']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_tags']['multi_type'] = 'ul';
   $handler->display->display_options['fields']['field_tags']['separator'] = '';
   /* Sort criterion: Content: Weight (field_weight) */
   $handler->display->display_options['sorts']['field_weight_value']['id'] = 'field_weight_value';

@@ -90,6 +90,10 @@ td.views-field-field-namespace a,
   margin-bottom: 1em;
 }
 
+.views-field-field-tags li {
+  list-style: none;
+  display: inline;
+}
 /* Spamicide */
 
 #user-register-form .edit-city-wrapper,
