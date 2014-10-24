@@ -14,6 +14,11 @@ function serchilo_calculate_shortcut_calls() {
     if ($shortcut = node_load($shortcut_call->shortcut_id)) {
       $shortcut->field_calls_last_30_days[LANGUAGE_NONE][0]['value'] = $shortcut_call->count;
       $shortcut->revision_operation = REVISIONING_NO_REVISION;
+      // Due to still unfixed bug in Talk module
+      // https://www.drupal.org/node/1937182
+      // https://www.drupal.org/node/1983166
+      // make sure comments remain open.
+      $shortcut->comment = COMMENT_NODE_OPEN;
       node_save($shortcut);
     }
   }
@@ -25,6 +30,8 @@ function serchilo_calculate_shortcut_calls() {
     if ($shortcut = node_load($shortcut_call->shortcut_id)) {
       $shortcut->field_calls_total[LANGUAGE_NONE][0]['value'] = $shortcut_call->count;
       $shortcut->revision_operation = REVISIONING_NO_REVISION;
+      // Make sure comments remain open.
+      $shortcut->comment = COMMENT_NODE_OPEN;
       node_save($shortcut);
     }
   }
@@ -124,6 +131,8 @@ function serchilo_calculate_shortcut_weights() {
           $shortcut_call->count / $calls_last_30_days[0]->count;
 
         $shortcut->revision_operation = REVISIONING_NO_REVISION;
+        // Make sure comments remain open.
+        $shortcut->comment = COMMENT_NODE_OPEN;
         node_save($shortcut);
       }
     }
