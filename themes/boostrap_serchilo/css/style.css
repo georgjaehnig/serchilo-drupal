@@ -94,6 +94,7 @@ td.views-field-field-namespace a,
   margin-bottom: 1em;
 }
 
+/* Tags in Shortcuts view */
 .views-field-field-tags ul {
   padding: 0;
 }
@@ -101,6 +102,8 @@ td.views-field-field-namespace a,
   list-style: none;
   display: inline;
 }
+
+
 /* Spamicide */
 
 #user-register-form .edit-city-wrapper,
