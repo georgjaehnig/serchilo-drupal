@@ -10,6 +10,27 @@
 function serchilo_features_menu_default_menu_links() {
   $menu_links = array();
 
+  // Exported menu link: main-menu_api:help/api
+  $menu_links['main-menu_api:help/api'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'help/api',
+    'router_path' => 'help/api',
+    'link_title' => 'API',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'main-menu_api:help/api',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -43,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_help:help',
+  );
   // Exported menu link: main-menu_browse:browse
   $menu_links['main-menu_browse:browse'] = array(
     'menu_name' => 'main-menu',
@@ -21,6 +42,110 @@ function serchilo_features_menu_default_menu_links() {
         'title' => '',
       ),
       'identifier' => 'main-menu_browse:browse',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 1,
+    'expanded' => 1,
+    'weight' => 0,
+    'customized' => 1,
+  );
+  // Exported menu link: main-menu_browser-integration:help/integration
+  $menu_links['main-menu_browser-integration:help/integration'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'help/integration',
+    'router_path' => 'help/integration',
+    'link_title' => 'Browser integration',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'main-menu_browser-integration:help/integration',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -46,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_help:help',
+  );
+  // Exported menu link: main-menu_default-keyword:help/default-keyword
+  $menu_links['main-menu_default-keyword:help/default-keyword'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'help/default-keyword',
+    'router_path' => 'help/default-keyword',
+    'link_title' => 'Default keyword',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'main-menu_default-keyword:help/default-keyword',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -47,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_help:help',
+  );
+  // Exported menu link: main-menu_differences-to-old-serchilo:help/differences
+  $menu_links['main-menu_differences-to-old-serchilo:help/differences'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'help/differences',
+    'router_path' => 'help/differences',
+    'link_title' => 'Differences to old Serchilo',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'main-menu_differences-to-old-serchilo:help/differences',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_help:help',
+  );
+  // Exported menu link: main-menu_getting-started:help/start
+  $menu_links['main-menu_getting-started:help/start'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'help/start',
+    'router_path' => 'help/start',
+    'link_title' => 'Getting started',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'main-menu_getting-started:help/start',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_help:help',
+  );
+  // Exported menu link: main-menu_help:help
+  $menu_links['main-menu_help:help'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'help',
+    'router_path' => 'help',
+    'link_title' => 'Help',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'main-menu_help:help',
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -51,6 +176,27 @@ function serchilo_features_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_browse:browse',
   );
+  // Exported menu link: main-menu_namespaces:help/namespaces
+  $menu_links['main-menu_namespaces:help/namespaces'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'help/namespaces',
+    'router_path' => 'help/namespaces',
+    'link_title' => 'Namespaces',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'main-menu_namespaces:help/namespaces',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -48,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_help:help',
+  );
   // Exported menu link: main-menu_namespaces:namespaces
   $menu_links['main-menu_namespaces:namespaces'] = array(
     'menu_name' => 'main-menu',
@@ -72,6 +218,48 @@ function serchilo_features_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_browse:browse',
   );
+  // Exported menu link: main-menu_privacy-policy:help/privacy
+  $menu_links['main-menu_privacy-policy:help/privacy'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'help/privacy',
+    'router_path' => 'help/privacy',
+    'link_title' => 'Privacy policy',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'main-menu_privacy-policy:help/privacy',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -42,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_help:help',
+  );
+  // Exported menu link: main-menu_shortcut-urls:help/url
+  $menu_links['main-menu_shortcut-urls:help/url'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'help/url',
+    'router_path' => 'help/url',
+    'link_title' => 'Shortcut URLs',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'main-menu_shortcut-urls:help/url',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -45,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_help:help',
+  );
   // Exported menu link: main-menu_shortcuts:shortcuts
   $menu_links['main-menu_shortcuts:shortcuts'] = array(
     'menu_name' => 'main-menu',
@@ -89,6 +277,27 @@ function serchilo_features_menu_default_menu_links() {
     'weight' => -50,
     'customized' => 1,
     'parent_identifier' => 'main-menu_browse:browse',
+  );
+  // Exported menu link: main-menu_support-chat:help/chat
+  $menu_links['main-menu_support-chat:help/chat'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'help/chat',
+    'router_path' => 'help/chat',
+    'link_title' => 'Support chat',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'main-menu_support-chat:help/chat',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -44,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_help:help',
   );
   // Exported menu link: main-menu_tags:tags
   $menu_links['main-menu_tags:tags'] = array(
@@ -188,13 +397,22 @@ function serchilo_features_menu_default_menu_links() {
   );
   // Translatables
   // Included for use with string extractors like potx.
+  t('API');
   t('Browse');
+  t('Browser integration');
+  t('Default keyword');
+  t('Differences to old Serchilo');
+  t('Getting started');
+  t('Help');
   t('Log out');
   t('Login');
   t('Namespace types');
   t('Namespaces');
+  t('Privacy policy');
   t('Register');
+  t('Shortcut URLs');
   t('Shortcuts');
+  t('Support chat');
   t('Tags');
   t('User account');
 
