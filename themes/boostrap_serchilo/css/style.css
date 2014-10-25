@@ -146,3 +146,9 @@ html, body {
 {
   margin-left: -0.4em;
 }
+
+/* Hide "More information about text formats" */
+fieldset.filter-wrapper
+{
+  display: none;
+}
