@@ -1,0 +1,266 @@
+<!--
+title = Namespaces
+-->
+<p>Every shortcut belongs to exactly one namespace. Namespaces allow the same keyword to be used for different shortcuts – according to the user's language, location or personal setup. For instance, while all other users use the keyword "g" for Google, you might use it for something else – with your user namespace.</p>
+
+<p>You recognize namespaces <a class="namespace" >as they are wrapped in a red box</a> containing a link to a list of shortcuts in the given namespace. There are these types of namespaces:</p>
+
+<table class="table table-bordered">
+<thead>
+<tr>
+<th>Namespace type</th>
+<th>Example namespaces</th>
+<th>Naming convention</th>
+<th>Contains</th>
+<th>Example shortcuts</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>
+language
+</td>
+<td>
+<a class="namespace" href="/shortcuts?namespace=de">de</a>
+<a class="namespace" href="/shortcuts?namespace=en">en</a>
+</td>
+<td>
+2 chars, by <a href="http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a>
+</td>
+<td>
+shortcuts related to a particular language
+</td>
+<td>
+<a href="/command/194">English-German dictionary</a>
+</td>
+</tr>
+<tr>
+<td>
+country
+</td>
+<td>
+<a class="namespace" href="/shortcuts?namespace=deu">deu</a>
+<a class="namespace" href="/shortcuts?namespace=usa">usa</a>
+</td>
+<td>
+3 chars, by <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">ISO 3166-1 alpha-3</a>
+</td>
+<td>
+shortcuts related to a particular country
+</td>
+<td>
+<a href="/command/194">Deutsche Bahn Fahrplanauskunft</a>
+</td>
+</tr>
+<tr>
+<td>
+user
+</td>
+<td>
+<a class="namespace" href="/shortcuts?namespace=jorges">jorges</a>
+</td>
+<td>
+>=4 chars, by the user's name
+</td>
+<td>
+shortcuts the user has defined
+</td>
+<td>
+<a href="/command/2647">DB-Auskunft von Zuhause</a>
+</td>
+</tr>
+<tr>
+<td>
+planet
+</td>
+<td>
+<a class="namespace" href="/shortcuts?namespace=o">o</a>
+</td>
+<td>
+the shape of the planet
+</td>
+<td>
+shortcuts unrelated to a language or country
+</td>
+<td>
+<a href="/command/1">Google Web Search</a>
+</td>
+</tr>
+<tr>
+<td>
+mobile
+</td>
+<td>
+<a class="namespace" href="/shortcuts?namespace=m">m</a>
+</td>
+<td>
+m for mobile
+</td>
+<td>
+shortcuts for mobile-optimized sites 
+</td>
+<td>
+<a href="/command/314">Wikipedia, mobile</a>
+</td>
+</tr>
+</tbody>
+</table>
+
+<p>Get a <a href="/namespaces">full list of namespaces here</a>.</p>
+
+<h3 id="uniqueness">Uniqueness in a namespace</h3>
+
+<p>In a namespace, there can be only one shortcut with the same keyword and the same number of arguments: So in <a class="namespace" href="/shortcuts?namespace=o">o</a>, there is only one shortcut "g" with one argument, the <a href="/command/1">Google Web Search</a>.</p>
+
+<h3  id="using">Using namespaces</h3>
+
+<table class="table table-bordered">
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>without a user account</th>
+<th>with a user account</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>
+Example URLs
+</th>
+<td>
+<a href="/n/de.deu.jorges">[site:url]n/de.deu.jorges</a><br/>
+<a href="/n/de.deu.en.usa.fra">[site:url]n/de.deu.en.usa.fra</a><br/>
+(notice the <strong>n</strong>)
+</td>
+<td>
+<a href="/u/jorges">[site:url]u/jorges</a><br/>
+(notice the <strong>u</strong>)
+</td>
+</tr>
+<tr>
+<th>
+URL scheme
+</th>
+<td>
+[site:url]<strong>n</strong>/[any namespaces separated with dots]<br/><br/> The first namespace must be a language and the second a country namespace.
+</td>
+<td>
+[site:url]<strong>u</strong>/[any username]
+</td>
+</tr>
+<tr>
+<th>
+Used namespaces and their priority, given the example URL
+</th>
+<td>
+<div style="float:left;">
+<ol>
+<li><a class="namespace" href="/shortcuts?namespace=jorges">jorges</a></li>
+<li><a class="namespace" href="/shortcuts?namespace=deu">deu</a></li>
+<li><a class="namespace" href="/shortcuts?namespace=de">de</a></li>
+<li><a class="namespace" href="/shortcuts?namespace=o">o</a></li>
+</ol>
+</div>
+<div style="float:left;">
+<ol>
+<li><a class="namespace" href="/shortcuts?namespace=fra">fra</a></li>
+<li><a class="namespace" href="/shortcuts?namespace=usa">usa</a></li>
+<li><a class="namespace" href="/shortcuts?namespace=en">en</a></li>
+<li><a class="namespace" href="/shortcuts?namespace=deu">deu</a></li>
+<li><a class="namespace" href="/shortcuts?namespace=de">de</a></li>
+<li><a class="namespace" href="/shortcuts?namespace=o">o</a></li>
+</ol>
+</div>
+</td>
+<td>
+Based on the personal setup of user "jorges", found in "My account" -> "My namespaces".
+</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Namespace priority</h3>
+
+<p>The order of the namespaces sets their priority.</p>
+
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>example namespace setting</th>
+<td><a href="/n/de.deu.fr">[site:url]n/de.deu.fr</a></td>
+</tr>
+<tr>
+<th>example query</th>
+<td><a class="query" href="/n/de.deu.fr?query=en%20tree">en tree</a></td>
+</tr>
+<tr>
+<th>example result</th>
+<td>call the <a href="/command/4818">English-French dictionary</a></td>
+</tr>
+<tr>
+<th>explanation</th>
+<td><a class="namespace" href="/shortcuts?namespace=fr">fr</a> has a higher priority than <a class="namespace" href="/shortcuts?namespace=de">de</a>, because it appears more on the right side. So the shortcut with the keyword <a class="keyword" href="/shortcuts?keyword=en">en</a> from <a class="namespace" href="/shortcuts?namespace=fr">fr</a> is used.</td>
+</tr>
+</tbody>
+</table>
+
+
+<h3 id="force">Forcing a namespace</h3>
+
+<p>You can force to use a certain namespace by prefixing the query with "[namespace].".</p>
+
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>example namespace setting</th>
+<td><a href="/n/de.deu.fr">[site:url]n/de.deu.fr</a></td>
+</tr>
+<tr>
+<th>example query</th>
+<td><a class="query" href="/n/de.deu.fr?query=de.en%20tree">de.en tree</a></td>
+</tr>
+<tr>
+<th>example result</th>
+<td>call the <a href="/command/194">English-German dictionary</a></td>
+</tr>
+<tr>
+<th>explanation</th>
+<td><p>Although <a class="namespace" href="/shortcuts?namespace=fr">fr</a> has a higher priority than <a class="namespace" href="/shortcuts?namespace=de">de</a>, prefixing the query with "de." forced to use the shortcut from <a class="namespace" href="/shortcuts?namespace=de">de</a>.</p>
+
+<p>The forced namespace can be any namespace.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>Default language and default country namespace</h3>
+
+<p>Calling the homepage URL without any namespaces will add a default language and a default country namespace.
+
+<table class="table table-bordered">
+<thead>
+<tr>
+<th>Namespace type</th>
+<th>default namespace picked by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+language
+</td>
+<td>
+preferred browser language
+</td>
+</tr>
+<tr>
+<td>
+country
+</td>
+<td>
+user's IP address
+</td>
+</tr>
+</table>

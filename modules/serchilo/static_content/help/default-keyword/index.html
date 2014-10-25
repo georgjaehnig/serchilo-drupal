@@ -1,0 +1,44 @@
+<!--
+title = Default keyword
+-->
+
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>example default keyword</th>
+<td>g</td>
+</tr>
+<tr>
+<th>example query 1</th>
+<td><a class="query" href="/?query=berlin&default_keyword=g">berlin</a></td>
+</tr>
+<tr>
+<th>example result 1</th>
+<td>No command recognized, redirect to Google</td>
+</tr>
+<tr>
+<th>example query 2</th>
+<td><a class="query" href="/?query=w%20berlin&default_keyword=g">w berlin</a></td>
+</tr>
+<tr>
+<th>example result 2</th>
+<td>Wikipedia recognized, redirect to Wikipedia</td>
+</tr>
+</table>
+
+<p>Setting up a default keyword will make all your [site:name] queries work. If a query is not recognized as a [site:name] command, the default keyword will be used.</p>
+
+<h3>Setting up a default keyword</h3>
+
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>without a user account</th>
+<td>Call [site:name] with <strong>default_keyword=[keyword]</strong>,<br/>
+ e.g. <a href="/?default_keyword=g">[site:url]?default_keyword=g</a></td>
+</tr>
+<tr>
+<th>with a user account</th>
+<td>Log in and go to <a href="/user">My account</a> -> <em>Default keyword</em></td>
+</tr>
+</table>

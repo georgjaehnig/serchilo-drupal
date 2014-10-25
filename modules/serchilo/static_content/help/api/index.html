@@ -1,0 +1,50 @@
+<!--
+title = API
+-->
+
+<p>[site:name] also provides an <a href="http://en.wikipedia.org/wiki/Application_programming_interface">API</A>. When calling a command, instead of getting redirected to the command's target URL, you also can let [site:name] only output the URL and some detailed information. This allows you to do you own things with the URL (for instance, piping it to wget on your console or programming your own [site:name] client.)</p>
+
+<p>And instead of passing the search arguments to [site:name], you can also pass only they keyword with the argument count and receive the URL template. This allows you to program your own query parser and to use [site:name] with maximum privacy.</p>
+
+<h3>Overview</h3>
+
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>
+<strong>Examples</strong>
+</th>
+<th>
+Receiving URL only as plain text
+</th>
+<th>
+Receiving URL and details in JSON format
+</th>
+</tr>
+<tr>
+<th>
+Calling with query
+</th>
+<td>
+<a href="[site:url]url/n/de.deu?query=g%20berlin">[site:url]<strong>url</strong>/n/de.deu?query=g%20berlin</a>
+</td>
+<td>
+<a href="[site:url]api/n/de.deu?query=g%20berlin">[site:url]<strong>api</strong>/n/de.deu?query=g%20berlin</a>
+</td>
+</tr>
+<tr>
+<th>
+Calling with keyword and argument_count
+</th>
+<td>
+<a href="[site:url]url/n/de.deu?keyword=g&argument_count=1">[site:url]<strong>url</strong>/n/de.deu?keyword=g&argument_count=1</a>
+</td>
+<td>
+<a href="[site:url]api/n/de.deu?keyword=g&argument_count=1">[site:url]<strong>api</strong>/n/de.deu?keyword=g&argument_count=1</a>
+</td>
+</tr>
+</tbody>
+</table>
+
+<p>Calling with <strong>keyword</strong> and <strong>argument_count</strong>, you don't need to give your search data to [site:name]. You could instead implement your own query parser and replace the placeholders yourself after receiving the URL from [site:name]. Read more about <a href="/help/url">URL placeholders</a>.</p>
+

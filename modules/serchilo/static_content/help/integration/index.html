@@ -1,0 +1,63 @@
+<!--
+title = Browser integration
+-->
+
+<p>It is easy to integrate FindFind.it directly into your browser or device. Many browser allow you to define a template URL which will be called when you enter a query.
+
+<h3 id="quickjump">Integration by browser</h3>
+
+<p><center>
+<div class="clearfix">
+<div style="float: left;">
+<a  href="/help/integration/firefox"><img style="border:0" src="/[static-content:current-dir]/firefox-50x50.png"><br/>
+Firefox</a>
+</div>
+
+<div style="float: left; padding-left: 5em;">
+<a  href="/help/integration/firefox/mobile"><img style="border:0" src="/[static-content:current-dir]/firefox-50x50.png"><br/>
+Firefox<br/>for Android</a>
+</div>
+
+<div style="float: left; padding-left: 5em;">
+<a border="0" href="/help/integration/chrome"><img style="border:0" src="/[static-content:current-dir]/chrome-50x50.png"><br/>
+Chrome</a>
+</div>
+<div style="float: left; padding-left: 5em;">
+<a border="0" href="/app/safari"><img style="border:0" src="/[static-content:current-dir]/safari-50x50.png"><br/>
+Safari</a>
+</div>
+</div>
+</center></p>
+
+<h3 id="template">FindFind.it template URL</h3>
+
+<p>If your particular browser is not covered, read here about the basics.</p>
+
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>examples</th>
+<td>
+[site:url]n/de.deu?query=%s<br/>
+[site:url]u/jorges?query=%s<br/>
+[site:url]n/de.deu?query=%s&default_keyword=g
+</td>
+</tr>
+<tr>
+<th>templates</th>
+<td>
+[Homepage URL]?query=%s<br/>
+[Homepage URL]?query=%s&default_keyword=[keyword]
+</td>
+</tr>
+</table>
+
+<p>The template URL consists of the homepage URL plus the query parameter. It defines which namespaces you want to use. If you haven't yet, you might want to <a href="/help/namespaces#using">read more about using namespaces</a>.</p>
+
+<p>The <code><strong>%s</strong></code> is the placeholder – it will be replaced with your FindFind.it queries.</p>
+
+<p>You can also add a <a href="/help/default-keyword">default keyword</a>.</p>
+
+
+<p>See detailed instructions for some browsers below. For more browsers, check the old wiki page 
+<a href="http://wiki.serchilo.net/Serchilo:Browser_Integration">Serchilo:Browser Integration</a>.</p>
