@@ -1143,6 +1143,8 @@ function serchilo_get_argument_names_from_string($str) {
  */
 function serchilo_is_sensible_edit($node)
 {
+  global $user;
+
   // Default is TRUE.
   $is_sensible_edit = TRUE;
 
