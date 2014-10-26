@@ -586,7 +586,10 @@ function serchilo_node_presave($node) {
     // Only if this is a edit
     // where a new revision has to be set
     // (i.e. not an automatic edit by weights update cron function)
-    if ($node->revision_operation > REVISIONING_NO_REVISION) {
+    if (
+      (empty($node->revision_operation)) ||
+      ($node->revision_operation > REVISIONING_NO_REVISION)
+    ) {
       // revoke moderation flag
       // if non-sensible edit
       $is_sensible_edit = serchilo_is_sensible_edit($node);
