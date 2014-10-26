@@ -9,12 +9,24 @@
     <?php foreach ($items as $delta => $item): ?>
       <dt>
         <?php
-          print render(current($item['entity']['field_collection_item'])['field_example_arguments'][0]);
+
+// Horrible wrapper code due to Field collection's tpl cascade bug:
+// https://www.drupal.org/node/1137024
+if (isset($item['entity']['field_collection_item'])) {
+  print render(current($item['entity']['field_collection_item'])['field_example_arguments'][0]);
+} elseif (is_string($item)) {
+  print $item;
+}
+
         ?>
       </dt>
       <dd>
         <?php
-          print render(current($item['entity']['field_collection_item'])['field_example_description'][0]);
+if (isset($item['entity']['field_collection_item'])) {
+  print render(current($item['entity']['field_collection_item'])['field_example_description'][0]);
+} elseif (is_string($item)) {
+  print $item;
+}
         ?>
       </dd>
     <?php endforeach ?>
