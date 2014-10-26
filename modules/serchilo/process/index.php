@@ -549,6 +549,7 @@ ORDER BY
 
   argument_count, 
 
+      " . join(",", $order_namespace_ids ). ",
   # keyword-keyword matches
   keyword LIKE :keyword_like_both DESC,
 
