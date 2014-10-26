@@ -593,7 +593,9 @@ function serchilo_node_presave($node) {
       // revoke moderation flag
       // if non-sensible edit
       $is_sensible_edit = serchilo_is_sensible_edit($node);
-      if (!$is_sensible_edit) {
+      if ($is_sensible_edit) {
+        $node->revision_operation = REVISIONING_NEW_REVISION_WITH_MODERATION;
+      } else {
         $node->revision_operation = REVISIONING_NEW_REVISION_NO_MODERATION;
       }
     }
