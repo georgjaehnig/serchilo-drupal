@@ -511,9 +511,7 @@ SELECT
       keyword = c.keyword
       AND
       namespace_id IN (" . join(',', $namespace_ids) .  ")
-    ORDER BY
-      " . join(",", $order_namespace_ids ). "
-      LIMIT 1
+    LIMIT 1
   ) AS reachable
 FROM 
   serchilo_shortcut AS c
@@ -549,6 +547,7 @@ ORDER BY
 
   argument_count, 
 
+      " . join(",", $order_namespace_ids ). ",
   # keyword-keyword matches
   keyword LIKE :keyword_like_both DESC,
 
