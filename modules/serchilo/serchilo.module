@@ -1144,7 +1144,7 @@ function serchilo_is_sensible_edit($node)
   // TODO:
   // better use node_type_get_type() ?
   if ($node->type == 'shortcut') {
-    if (empty($node->is_new)) {
+    if (!empty($node->nid)) {
       $is_sensible_edit = (
         (
           // change in keyword
