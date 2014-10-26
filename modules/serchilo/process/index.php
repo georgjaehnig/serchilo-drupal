@@ -586,7 +586,7 @@ LIMIT " . (int) $limit . ";
   $mysqli->set_charset("utf8");
   $result = $mysqli->query($sql);
   if (!$result) {
-    return; 
+    return array(); 
   }
   $shortcuts = $result->fetch_all(MYSQLI_ASSOC);
 
