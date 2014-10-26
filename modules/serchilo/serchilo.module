@@ -1141,8 +1141,8 @@ function serchilo_get_argument_names_from_string($str) {
  * @return 
  *   TRUE if edit is sensible.
  */
-function serchilo_is_sensible_edit($node)
-{
+function serchilo_is_sensible_edit($node) {
+
   global $user;
 
   // Default is TRUE.
