@@ -788,7 +788,8 @@ function serchilo_shortcut_call_form_submit($form, &$form_state) {
         $form_state['values']['node']->field_keyword[LANGUAGE_NONE][0]['value'] .
         ' ' .
         // Add submitted arguments
-        join(',', $form_state['values']['arguments'])
+        join(',', drupal_array_get_nested_value($form_state, array('values','arguments')) ?: array())
+        
       ) 
     ) 
   );
