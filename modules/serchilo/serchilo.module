@@ -1152,8 +1152,8 @@ function serchilo_is_sensible_edit($node) {
   // better use node_type_get_type() ?
   if ($node->type == 'shortcut') {
 
-    // If this is logged in and the shortcut is saved to the current user's namespace it is not sensible, 
-    // since user can do anything in their own namespaces.
+    // If the user is logged in and the shortcut is saved to the current user's namespace,
+    // it is not sensible, since users can do anything in their own namespaces.
     if (
       (user_is_logged_in()) &&
       ($user->name == drupal_array_get_nested_value($node->field_namespace, array(LANGUAGE_NONE, 0, 'value')))
