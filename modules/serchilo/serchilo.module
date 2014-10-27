@@ -1201,6 +1201,13 @@ function serchilo_is_sensible_edit($node) {
         return $is_sensible_edit;
       }
 
+      // Allow adding a shortcut to any site namespace 
+      // if the keyword is new to any namespace.
+      if (serchilo_keyword_is_new($node)) {
+        $is_sensible_edit = FALSE;
+        return $is_sensible_edit;
+      }
+
       // Every other new shortcut is sensible.
       $is_sensible_edit = TRUE;
     }
@@ -1231,13 +1238,49 @@ function serchilo_keyword_is_new_in_planet_namespace($node) {
     ->entityCondition('bundle', 'shortcut')
     ->fieldCondition('field_keyword',        'value',  $node->field_keyword[LANGUAGE_NONE][0]['value'])
     ->fieldCondition('field_namespace',      'tid',    $node->field_namespace[LANGUAGE_NONE][0]['tid'])
-    ->propertyCondition('status', NODE_PUBLISHED)
     ->execute();
 
   if (count($result) == 0) {
     return TRUE;
   }
   
+  return FALSE;
+}
+
+/**
+ * Check if the keyword of the given shortcut
+ * is new in site namespaces
+ * (but may be used in user namespaces).
+ *
+ * @param $node
+ *   Node of type shortcut.
+ * @return 
+ *   TRUE if the keyword is not used in site namespaces.
+ */
+function serchilo_keyword_is_new($node) {
+
+  // Check first is we want to add to a site namespace (=not a user namespace) at all.
+  $namespace_type_id = drupal_array_get_nested_value(
+    $node->field_namespace, 
+    array(LANGUAGE_NONE, 0, 'field_namespace_type', LANGUAGE_NONE, 0, 'tid')
+  );
+  $namespace_type = taxonomy_term_load($namespace_type_id);
+  if ('user' == $namespace_type->name) {
+    return FALSE;
+  }
+
+  // Check if there is already a shortcut 
+  $efq = new EntityFieldQuery;
+  $result = $efq
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'shortcut')
+    ->fieldCondition('field_keyword', 'value',  $node->field_keyword[LANGUAGE_NONE][0]['value'])
+    ->execute();
+
+  if (count($result) == 0) {
+    return TRUE;
+  }
+
   return FALSE;
 }
 
