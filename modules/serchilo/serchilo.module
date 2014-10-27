@@ -1187,12 +1187,51 @@ function serchilo_is_sensible_edit($node) {
     }
     else {
       // every new shortcut is sensible
+      // Allow adding a shortcut to SERCHILO_PLANET_NAMESPACE 
+      // if the keyword is new in SERCHILO_PLANET_NAMESPACE.
+      if (serchilo_keyword_is_new_in_planet_namespace($node)) {
+        $is_sensible_edit = FALSE;
+        return $is_sensible_edit;
+      }
+
       $is_sensible_edit = TRUE;
     }
   }
   return $is_sensible_edit;
 }
 
+/**
+ * Check if the keyword of the given shortcut
+ * is new in SERCHILO_PLANET_NAMESPACE
+ * (but may be used in another namespace).
+ *
+ * @param $node
+ *   Node of type shortcut.
+ * @return 
+ *   TRUE if the keyword is not used in SERCHILO_PLANET_NAMESPACE.
+ */
+function serchilo_keyword_is_new_in_planet_namespace($node) {
+
+  // Check first is we want to add to SERCHILO_PLANET_NAMESPACE at all.
+  if (SERCHILO_PLANET_NAMESPACE != drupal_array_get_nested_value($node->field_namespace, array(LANGUAGE_NONE, 0, 'name'))) {
+    return FALSE;
+  }
+  // Check if there is already a shortcut 
+  $efq = new EntityFieldQuery;
+  $result = $efq
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'shortcut')
+    ->fieldCondition('field_keyword',        'value',  $node->field_keyword[LANGUAGE_NONE][0]['value'])
+    ->fieldCondition('field_namespace',      'tid',    $node->field_namespace[LANGUAGE_NONE][0]['tid'])
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->execute();
+
+  if (count($result) == 0) {
+    return TRUE;
+  }
+  
+  return FALSE;
+}
 
 // PHP HELPERS
 
