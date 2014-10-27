@@ -1185,8 +1185,10 @@ function serchilo_is_sensible_edit($node) {
         ) 
       );
     }
+
+    // New shortcuts:
     else {
-      // every new shortcut is sensible
+
       // Allow adding a shortcut to SERCHILO_PLANET_NAMESPACE 
       // if the keyword is new in SERCHILO_PLANET_NAMESPACE.
       if (serchilo_keyword_is_new_in_planet_namespace($node)) {
@@ -1194,6 +1196,7 @@ function serchilo_is_sensible_edit($node) {
         return $is_sensible_edit;
       }
 
+      // Every other new shortcut is sensible.
       $is_sensible_edit = TRUE;
     }
   }
