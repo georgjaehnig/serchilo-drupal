@@ -952,6 +952,11 @@ function serchilo_form_validate_namespace($element, &$form_state) {
  */
 function serchilo_node_validate($node, $form, &$form_state) {
 
+  // Don't continue if there are already errors.
+  if (form_get_errors()) {
+    return; 
+  }
+
   if ($node->type == 'shortcut') {
 
     // Check if another shortcut with the same
