@@ -32,6 +32,10 @@ function bootstrap_serchilo_preprocess_button(&$vars) {
     // Make Go button a primary button.
     $vars['element']['#attributes']['class'][] = 'btn-primary';
     break; 
+  case 'edit-reset':
+    // Make Reset button a warning button.
+    $vars['element']['#attributes']['class'][] = 'btn-warning';
+    break; 
   }
 }
 
