@@ -540,7 +540,7 @@ function serchilo_block_licenses() {
  */
 function serchilo_node_insert($node) {
   if ($node->type == 'shortcut') {
-    if (!$node->revision_moderation) {
+    if (empty($node->revision_moderation)) {
       module_load_include('inc', 'serchilo', 'serchilo.sync');
       serchilo_insert_shortcut_row($node);
     }
@@ -552,7 +552,7 @@ function serchilo_node_insert($node) {
  */
 function serchilo_node_update($node) {
   if ($node->type == 'shortcut') {
-    if (!$node->revision_moderation) {
+    if (empty($node->revision_moderation)) {
       module_load_include('inc', 'serchilo', 'serchilo.sync');
       serchilo_insert_or_update_shortcut_row($node);
     }
