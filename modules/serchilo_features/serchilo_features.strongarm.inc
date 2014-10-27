@@ -14,7 +14,7 @@ function serchilo_features_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'additional_settings__active_tab_shortcut';
-  $strongarm->value = 'edit-comment';
+  $strongarm->value = 'edit-submission';
   $export['additional_settings__active_tab_shortcut'] = $strongarm;
 
   $strongarm = new stdClass();
