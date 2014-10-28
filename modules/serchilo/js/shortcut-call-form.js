@@ -1,6 +1,17 @@
 
 jQuery(document).ready(function($) {
 
+  serchilo_set_input_widths($);
+
+  var that = $;
+  jQuery(window).resize(function(that) {
+    serchilo_set_input_widths($);
+  });
+
+});
+
+function serchilo_set_input_widths($) {
+
   // Set widths of text inputs.
 
   // Get current widths.
@@ -17,5 +28,4 @@ jQuery(document).ready(function($) {
   $('#serchilo-shortcut-call-form input.form-text').each(function() {
     $(this).outerWidth(argument_width_single);
   });
-
-});
+}
