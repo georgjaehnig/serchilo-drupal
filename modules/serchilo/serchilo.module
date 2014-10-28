@@ -671,7 +671,12 @@ function serchilo_node_access($node, $op, $account) {
 function serchilo_node_view($node, $view_mode, $langcode) {
 
   if ('shortcut' == $node->type) {
-    $node->content['shortcut_call_form'] = drupal_get_form('serchilo_shortcut_call_form', $node);
+    if ($node->is_pending) {
+      drupal_set_message('This shortcut revision has not yet been approved, so it cannot be called.', 'warning');
+    }
+    else {
+      $node->content['shortcut_call_form'] = drupal_get_form('serchilo_shortcut_call_form', $node);
+    }
   }
 }
 
