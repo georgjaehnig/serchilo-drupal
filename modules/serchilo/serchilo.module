@@ -1307,6 +1307,7 @@ function serchilo_keyword_is_new($node) {
   return FALSE;
 }
 
+
 // PHP HELPERS
 
 function serchilo_array_value($array, $key, $default_value = null) {
