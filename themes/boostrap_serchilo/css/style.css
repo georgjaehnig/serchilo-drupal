@@ -153,3 +153,8 @@ fieldset.filter-wrapper
 {
   display: none;
 }
+/* Views display count */
+.view-header
+{
+  margin: 1em 0;
+}
