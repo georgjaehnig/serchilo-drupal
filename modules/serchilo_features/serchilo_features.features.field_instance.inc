@@ -489,7 +489,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Examples show how the command can be used. Add various examples to cover as many use cases as possible.',
+    'description' => 'Examples show how the shortcut can be used. Add various examples to cover as many use cases as possible.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -618,7 +618,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'A change will result in saving only a draft, needed to be moderated by an editor.',
+    'description' => 'Every shortcut is called with a keyword. See Help → "Getting started" for more info. ',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -658,7 +658,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'The shortcut will be available only to users using this namespace. A change will result in saving only a draft, needed to be moderated by an editor.',
+    'description' => 'The shortcut will be available only to users using this namespace. See Help → "Namespaces" for more info. ',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -823,7 +823,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Allows regular automatic testing if the shortcut URL is still valid.',
+    'description' => 'Allows regular automatic testing to check if the shortcut URL is still valid.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -866,7 +866,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'The URL can contain placeholders of the form {s:foo}. A change will result in saving only a draft, needed to be moderated by an editor.',
+    'description' => 'The URL can contain placeholders like {s:argument_name}. See Help → "Shortcut URLs" for more info. ',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -1129,9 +1129,8 @@ function serchilo_features_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('A change will result in saving only a draft, needed to be moderated by an editor.');
   t('A string of key=value pairs separated by "&", to be sent with POST method. May contain placeholders as the URL.');
-  t('Allows regular automatic testing if the shortcut URL is still valid.');
+  t('Allows regular automatic testing to check if the shortcut URL is still valid.');
   t('Argument count');
   t('Argument names');
   t('Arguments');
@@ -1146,9 +1145,10 @@ function serchilo_features_field_default_field_instances() {
   t('Default keyword');
   t('Description');
   t('Ensures backwards compatibility to the old (Drupal) Serchilo (launched 2013). Requests calling command/[command_id] can be redirected to the current Shortcut node page.');
+  t('Every shortcut is called with a keyword. See Help → "Getting started" for more info. ');
   t('Example arguments to call this shortcut. Separate multiple arguments with comma.');
   t('Examples');
-  t('Examples show how the command can be used. Add various examples to cover as many use cases as possible.');
+  t('Examples show how the shortcut can be used. Add various examples to cover as many use cases as possible.');
   t('Expected content');
   t('If true, the last test succeeded. If false, it failed.');
   t('If true, the redirect will be done through a HTML page displayed by Serchilo. Thus, the target site will get Serchilo as a referrer site. Useful for affiliate links that require a correct referrer.');
@@ -1166,7 +1166,7 @@ function serchilo_features_field_default_field_instances() {
   t('Test');
   t('Test arguments to call this shortcut. Separate multiple arguments with comma.');
   t('Test passed');
-  t('The URL can contain placeholders of the form {s:foo}. A change will result in saving only a draft, needed to be moderated by an editor.');
+  t('The URL can contain placeholders like {s:argument_name}. See Help → "Shortcut URLs" for more info. ');
   t('The argument count is extracted automatically from the URL.');
   t('The argument names are extracted automatically from the URL.');
   t('The arguments from the query will be encoded in the URL with the encoding provided here.');
@@ -1179,7 +1179,7 @@ function serchilo_features_field_default_field_instances() {
       <li>o (planet namespace)</li>
     </ol>   
     So it will be first checked, if a query matches a command in your user namespace, then in one of your custom namespaces ..., and at least in the planet namespace.');
-  t('The shortcut will be available only to users using this namespace. A change will result in saving only a draft, needed to be moderated by an editor.');
+  t('The shortcut will be available only to users using this namespace. See Help → "Namespaces" for more info. ');
   t('URL');
   t('Weight');
   t('What happens when calling this shortcut?');
