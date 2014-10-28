@@ -575,13 +575,8 @@ function serchilo_node_delete($node) {
 function serchilo_node_submit($node, $form, &$form_state) {
 
   if ($node->type == 'shortcut') {
-    // derive and set url metadata
-    $argument_names = serchilo_get_argument_names(
-      drupal_array_get_nested_value($node->field_url,             array(LANGUAGE_NONE, 0, 'value')),
-      drupal_array_get_nested_value($node->field_post_parameters, array(LANGUAGE_NONE, 0, 'value'))
-    );
-    drupal_array_set_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value'), join(', ', $argument_names));
-    drupal_array_set_nested_value($node->field_argument_count, array(LANGUAGE_NONE, 0, 'value'), count($argument_names));
+
+    serchilo_set_shortcut_arguments_data($node);
 
     // Only if this is a edit
     // where a new revision has to be set
@@ -600,6 +595,28 @@ function serchilo_node_submit($node, $form, &$form_state) {
       }
     }
   }
+}
+
+/**
+ * Set the shortcut's argument data, parsed from the url,
+ * i.e.
+ * - the argument_names
+ * - the argument count
+ *
+ * @param object &$node
+ *   The shortcut node as a reference
+ *
+ * @return void
+ */
+function serchilo_set_shortcut_arguments_data(&$node) {
+
+  // derive and set url metadata
+  $argument_names = serchilo_get_argument_names(
+    drupal_array_get_nested_value($node->field_url,             array(LANGUAGE_NONE, 0, 'value')),
+    drupal_array_get_nested_value($node->field_post_parameters, array(LANGUAGE_NONE, 0, 'value'))
+  );
+  drupal_array_set_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value'), join(', ', $argument_names));
+  drupal_array_set_nested_value($node->field_argument_count, array(LANGUAGE_NONE, 0, 'value'), count($argument_names));
 }
 
 /**
@@ -961,6 +978,8 @@ function serchilo_node_validate($node, $form, &$form_state) {
 
     // Check if another shortcut with the same
     // keyword, argument_count and namespace exists.
+
+    serchilo_set_shortcut_arguments_data($node);
 
     $efq = new EntityFieldQuery;
 
