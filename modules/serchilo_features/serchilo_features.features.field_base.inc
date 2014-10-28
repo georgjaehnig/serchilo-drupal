@@ -98,7 +98,7 @@ function serchilo_features_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_calls_last_30_days',
     'field_permissions' => array(
-      'type' => 0,
+      'type' => 2,
     ),
     'foreign keys' => array(),
     'indexes' => array(),
@@ -117,7 +117,7 @@ function serchilo_features_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_calls_total',
     'field_permissions' => array(
-      'type' => 0,
+      'type' => 2,
     ),
     'foreign keys' => array(),
     'indexes' => array(),
