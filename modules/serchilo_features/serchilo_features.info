@@ -36,7 +36,6 @@ dependencies[] = path
 dependencies[] = pathauto
 dependencies[] = revisioning
 dependencies[] = revisioning_ux
-dependencies[] = serchilo
 dependencies[] = spamicide
 dependencies[] = static_content
 dependencies[] = strongarm
