@@ -71,6 +71,9 @@ chmod 777 sites/default/settings.php
 drush dl bootstrap
 drush pm-enable bootstrap_serchilo -y
 
+# Download Clone module manually because of its Namespace inconsistency
+drush dl node_clone -y
+
 # First Enable Serchilo features module
 drush pm-enable serchilo_features -y
 
