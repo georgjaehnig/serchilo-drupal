@@ -318,6 +318,20 @@ function serchilo_features_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: 'create field_calls_last_30_days'.
+  $permissions['create field_calls_last_30_days'] = array(
+    'name' => 'create field_calls_last_30_days',
+    'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'create field_calls_total'.
+  $permissions['create field_calls_total'] = array(
+    'name' => 'create field_calls_total',
+    'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'create field_command_id'.
   $permissions['create field_command_id'] = array(
     'name' => 'create field_command_id',
@@ -521,6 +535,20 @@ function serchilo_features_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: 'edit field_calls_last_30_days'.
+  $permissions['edit field_calls_last_30_days'] = array(
+    'name' => 'edit field_calls_last_30_days',
+    'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'edit field_calls_total'.
+  $permissions['edit field_calls_total'] = array(
+    'name' => 'edit field_calls_total',
+    'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'edit field_command_id'.
   $permissions['edit field_command_id'] = array(
     'name' => 'edit field_command_id',
@@ -665,6 +693,20 @@ function serchilo_features_user_default_permissions() {
   // Exported permission: 'edit own field_argument_names'.
   $permissions['edit own field_argument_names'] = array(
     'name' => 'edit own field_argument_names',
+    'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'edit own field_calls_last_30_days'.
+  $permissions['edit own field_calls_last_30_days'] = array(
+    'name' => 'edit own field_calls_last_30_days',
+    'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'edit own field_calls_total'.
+  $permissions['edit own field_calls_total'] = array(
+    'name' => 'edit own field_calls_total',
     'roles' => array(),
     'module' => 'field_permissions',
   );
@@ -955,6 +997,20 @@ function serchilo_features_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: 'view field_calls_last_30_days'.
+  $permissions['view field_calls_last_30_days'] = array(
+    'name' => 'view field_calls_last_30_days',
+    'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'view field_calls_total'.
+  $permissions['view field_calls_total'] = array(
+    'name' => 'view field_calls_total',
+    'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'view field_command_id'.
   $permissions['view field_command_id'] = array(
     'name' => 'view field_command_id',
@@ -1087,6 +1143,20 @@ function serchilo_features_user_default_permissions() {
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'view own field_calls_last_30_days'.
+  $permissions['view own field_calls_last_30_days'] = array(
+    'name' => 'view own field_calls_last_30_days',
+    'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'view own field_calls_total'.
+  $permissions['view own field_calls_total'] = array(
+    'name' => 'view own field_calls_total',
+    'roles' => array(),
     'module' => 'field_permissions',
   );
 
