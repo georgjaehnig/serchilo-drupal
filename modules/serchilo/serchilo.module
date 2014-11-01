@@ -414,6 +414,7 @@ function serchilo_views_is_filter_used($filters) {
   return FALSE; 
 }
 
+
 // BLOCK HOOKS
 
 /**
