@@ -459,3 +459,5 @@ features[views_view][] = namespace_types
 features[views_view][] = namespaces
 features[views_view][] = shortcuts
 features[views_view][] = tags
+features_exclude[dependencies][serchilo] = serchilo
+no autodetect = 1
