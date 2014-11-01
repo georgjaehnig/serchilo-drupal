@@ -135,6 +135,13 @@ function serchilo_features_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: 'administer fieldgroups'.
+  $permissions['administer fieldgroups'] = array(
+    'name' => 'administer fieldgroups',
+    'roles' => array(),
+    'module' => 'field_group',
+  );
+
   // Exported permission: 'administer filters'.
   $permissions['administer filters'] = array(
     'name' => 'administer filters',
