@@ -25,7 +25,6 @@ dependencies[] = libraries
 dependencies[] = list
 dependencies[] = locale
 dependencies[] = menu
-dependencies[] = menu_trail_by_path
 dependencies[] = metatag
 dependencies[] = metatag_views
 dependencies[] = module_filter
