@@ -301,7 +301,6 @@ function serchilo_field_formatter_info() {
  */
 function serchilo_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
 
-
   $type = drupal_array_get_nested_value($instance, array('display', 'default', 'type'));
 
   switch ($type) {
