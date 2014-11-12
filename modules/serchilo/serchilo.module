@@ -43,18 +43,38 @@ function serchilo_static_content_dirs() {
 // CRON
 
 /**
- * Implements hook_cron().
+ * Implements hook_cronapi().
  */
-function serchilo_cron() {
+function serchilo_cronapi($op, $job = NULL) {
 
-  module_load_include('inc', 'serchilo', 'serchilo.export');
-  serchilo_export();
+  $items = array();
 
-  module_load_include('inc', 'serchilo', 'serchilo.weights');
-  serchilo_calculate_shortcut_calls();
-  serchilo_calculate_shortcut_weights();
+  $items['serchilo_export'] = array(
+    'description' => 'Exports shortcuts and namespaces to the files directory.',
+    'callback' => 'serchilo_export',
+    // Every morning at 5:00 am.
+    'rule' => '0 5 * * *', 
+    'file' => 'serchilo.export.inc'
+  );
+
+  $items['serchilo_calculate_shortcut_calls'] = array(
+    'description' => 'Calculate shortcut calls. Set the corresponding node fields.',
+    'callback' => 'serchilo_calculate_shortcut_calls',
+    // Every Monday at 4:00 am.
+    'rule' => '0 4 * * 1', 
+    'file' => 'serchilo.weights.inc'
+  );
+
+  $items['serchilo_calculate_shortcut_weights'] = array(
+    'description' => 'Calculate shortcut weights.',
+    'callback' => 'serchilo_calculate_shortcut_weights',
+    // Every Monday at 4:30 am.
+    'rule' => '30 4 * * 1', 
+    'file' => 'serchilo.weights.inc'
+  );
+
+  return $items;
 }
-
 
 // MENU HOOKS
 
