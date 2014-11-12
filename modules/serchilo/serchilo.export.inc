@@ -137,12 +137,11 @@ function serchilo_export_namespaces() {
     ->execute();
 
   $namespace_ids = array_keys(array_shift($result));
-  $terms = taxonomy_term_load_multiple($namespace_ids);
-
   $exported_namespaces = array();
 
-  foreach ($terms as $term) {
+  foreach ($namespace_ids as $namespace_id) {
 
+    $term = taxonomy_term_load($namespace_id);
     $wterm = entity_metadata_wrapper('taxonomy_term', $term);
 
     $exported_namespace['tid']        = $wterm->tid->value();
