@@ -156,6 +156,13 @@ function serchilo_features_user_default_permissions() {
     'module' => 'filter',
   );
 
+  // Exported permission: 'administer honeypot'.
+  $permissions['administer honeypot'] = array(
+    'name' => 'administer honeypot',
+    'roles' => array(),
+    'module' => 'honeypot',
+  );
+
   // Exported permission: 'administer languages'.
   $permissions['administer languages'] = array(
     'name' => 'administer languages',
@@ -266,6 +273,13 @@ function serchilo_features_user_default_permissions() {
     'name' => 'block IP addresses',
     'roles' => array(),
     'module' => 'system',
+  );
+
+  // Exported permission: 'bypass honeypot protection'.
+  $permissions['bypass honeypot protection'] = array(
+    'name' => 'bypass honeypot protection',
+    'roles' => array(),
+    'module' => 'honeypot',
   );
 
   // Exported permission: 'bypass node access'.
