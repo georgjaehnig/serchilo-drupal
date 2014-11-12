@@ -149,3 +149,7 @@ fieldset.filter-wrapper
 {
   margin: 1em 0;
 }
+/* Alert, Query */
+.alert .query {
+  display: block;
+}

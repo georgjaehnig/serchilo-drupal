@@ -178,22 +178,42 @@ function serchilo_process_query_console($env) {
 
   // Try again with default keyword.
   $env['default_keyword'] = serchilo_get_default_keyword($env['user_name'] ?: NULL);
-  $env['query'] = $env['default_keyword'] . ' ' . $env['query'];
-  $env = serchilo_parse_query($env['query']) + $env;
+
+  // Set environment again.
+  $env2 = array();
+  $env2['query'] = $env['default_keyword'] . ' ' . $env['query'];
+  $env2 = serchilo_parse_query($env2['query']) + $env;
 
   // Find shortcut and call it.
-  $shortcut = serchilo_find_shortcut($env['keyword'], count($env['arguments']), $env['namespace_ids']);
+  $shortcut = serchilo_find_shortcut($env2['keyword'], count($env2['arguments']), $env2['namespace_ids']);
   if ($shortcut) {
-    $variables = serchilo_get_url_variables($env);
-    serchilo_call_shortcut($shortcut, $env['arguments'], $variables);
+    $variables = serchilo_get_url_variables($env2);
+    serchilo_call_shortcut($shortcut, $env2['arguments'], $variables);
   }
 
   // If all failed:
+
+  // Get shortcut suggestions.
+  $suggested_shortcuts = serchilo_search_shortcuts($env['keyword'], $env['arguments'], $env['query'], $env['namespace_ids'], $env['extra_namespace_name'] );
+
+  // Limit to 5 suggestions.
+  $suggested_shortcuts = array_slice($suggested_shortcuts, 0, 5);
+
+  // Take only the ID.
+  $suggested_shortcut_ids = array_map(function($shortcut){ return $shortcut['nid']; }, $suggested_shortcuts);
+
+  // Build the query parameter.
+  $url = $_SERVER['REQUEST_URI'] . '&' . http_build_query(
+    array(
+      'status' => 'not_found', 
+      'arguments' => $env['arguments'],
+      'nids' => $suggested_shortcut_ids
+    )
+  );
+
   // Redirect to Serchilo website.
-  $url = $_SERVER['REQUEST_URI'] . '&status=not_found';
   header('Location: ' . $url );
   exit();
-
 }
 
 /**

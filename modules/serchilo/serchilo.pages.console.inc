@@ -146,13 +146,32 @@ function serchilo_page_console() {
   $autocomplete = true; 
   $content = array();
 
-  # call with a query?
-
   $query = serchilo_array_value($_GET, 'query');
   $status = serchilo_array_value($_GET, 'status');
+  $suggested_shortcut_ids = serchilo_array_value($_GET, 'nids');
+  $arguments = serchilo_array_value($_GET, 'arguments');
 
   if ($status == 'not_found') {
-    drupal_set_message('No matching shortcut found.', 'error');
+    $message = t('No matching shortcut found.');
+    if (!empty($suggested_shortcut_ids)) {
+      $message .= ' ';
+      $message .= t('Did you mean:');
+
+      $suggested_shortcut_links = array();
+      foreach($suggested_shortcut_ids as $suggested_shortcut_id) {
+        $suggested_shortcut_links[] = theme(
+          'serchilo_shortcut_example_link',
+          array(
+            'shortcut' => node_load($suggested_shortcut_id),
+            'arguments' => $arguments,
+            'with_namespace' => TRUE,
+          )
+        );
+      }
+      $suggested_shortcut_links = array_unique($suggested_shortcut_links);
+      $message .= join('', $suggested_shortcut_links);
+    }
+    drupal_set_message($message, 'error');
   }
 
   $autocomplete_url = base_path() . SERCHILO_AUTOCOMPLETE_PATH_AFFIX . '/' . join('/', arg());
