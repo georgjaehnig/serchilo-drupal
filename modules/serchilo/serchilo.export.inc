@@ -74,8 +74,7 @@ function serchilo_export_shortcuts() {
   $result = $efq
     ->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'shortcut')
-    // TODO: only published revisions!
-    //->range(0,10)
+    ->propertyCondition('status', NODE_PUBLISHED)
     ->execute();
 
   $nids = array_keys(array_shift($result));
