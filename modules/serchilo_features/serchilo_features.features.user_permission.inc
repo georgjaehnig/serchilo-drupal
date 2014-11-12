@@ -114,6 +114,13 @@ function serchilo_features_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'administer elysia_cron'.
+  $permissions['administer elysia_cron'] = array(
+    'name' => 'administer elysia_cron',
+    'roles' => array(),
+    'module' => 'elysia_cron',
+  );
+
   // Exported permission: 'administer features'.
   $permissions['administer features'] = array(
     'name' => 'administer features',
