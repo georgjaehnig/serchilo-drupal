@@ -79,11 +79,11 @@ function serchilo_export_shortcuts() {
 
   $nids = array_keys(array_shift($result));
 
-  $nodes = node_load_multiple($nids);
-
   $exported_shortcuts = array();
 
-  foreach ($nodes as $node) {
+  foreach ($nids as $nid) {
+
+    $node = node_load($nid);
 
     $namespace = taxonomy_term_load($node->field_namespace[LANGUAGE_NONE][0]['tid']);
 
