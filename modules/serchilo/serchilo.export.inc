@@ -89,13 +89,13 @@ function serchilo_export_shortcuts() {
 
     $exported_shortcut['id']             = $node->nid;
     $exported_shortcut['title']          = $node->title;
-    $exported_shortcut['description']    = $node->field_description[0]['value'];
-    $exported_shortcut['url']            = $node->field_url[LANGUAGE_NONE][0]['value'];
-    $exported_shortcut['keyword']        = $node->field_keyword[LANGUAGE_NONE][0]['value'];
-    $exported_shortcut['argument_names'] = $node->field_argument_names[LANGUAGE_NONE][0]['value'];
-    $exported_shortcut['set_referrer']   = $node->field_set_referrer[LANGUAGE_NONE][0]['value'];
-    $exported_shortcut['invisible']      = $node->field_invisible[LANGUAGE_NONE][0]['value'];
-    $exported_shortcut['input_encoding'] = $node->field_input_encoding[LANGUAGE_NONE][0]['value'];
+    $exported_shortcut['description']    = (string) drupal_array_get_nested_value($node->field_description,    array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['url']            = (string) drupal_array_get_nested_value($node->field_url,            array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['keyword']        = (string) drupal_array_get_nested_value($node->field_keyword,        array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['argument_names'] = (string) drupal_array_get_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['set_referrer']   = (string) drupal_array_get_nested_value($node->field_set_referrer,   array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['invisible']      = (string) drupal_array_get_nested_value($node->field_invisible,      array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['input_encoding'] = (string) drupal_array_get_nested_value($node->field_input_encoding, array(LANGUAGE_NONE, 0, 'value'));
 
     $wnode = entity_metadata_wrapper('node', $node);
 
