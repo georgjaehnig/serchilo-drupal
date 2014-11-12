@@ -111,6 +111,8 @@ function serchilo_populate_environment(&$env) {
     break;
   }
 
+  $env['query'] = trim($env['query']);
+
   switch ($env['call_type']) {
 
   case SERCHILO_NAMESPACES_PATH_AFFIX:
