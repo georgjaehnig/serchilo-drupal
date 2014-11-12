@@ -75,8 +75,6 @@ function serchilo_import_shortcuts($rows, $verbose = FALSE) {
     $shortcut->title = $row['title'];
     drupal_array_set_nested_value($shortcut->field_keyword,        array( LANGUAGE_NONE, 0, 'value'), $row['keyword']);
     drupal_array_set_nested_value($shortcut->field_description,    array( LANGUAGE_NONE, 0, 'value'), $row['description']);
-    drupal_array_set_nested_value($shortcut->field_argument_names, array( LANGUAGE_NONE, 0, 'value'), $row['argument_names']);
-    drupal_array_set_nested_value($shortcut->field_argument_count, array( LANGUAGE_NONE, 0, 'value'), count(explode(',', $row['argument_names'])));
     drupal_array_set_nested_value($shortcut->field_url,            array( LANGUAGE_NONE, 0, 'value'), $row['url']);
     drupal_array_set_nested_value($shortcut->field_weight,         array( LANGUAGE_NONE, 0, 'value'), $row['weight']);
     drupal_array_set_nested_value($shortcut->field_invisible,      array( LANGUAGE_NONE, 0, 'value'), $row['invisible']);
@@ -84,6 +82,10 @@ function serchilo_import_shortcuts($rows, $verbose = FALSE) {
     drupal_array_set_nested_value($shortcut->field_command_id,     array( LANGUAGE_NONE, 0, 'value'), $row['id']);
     drupal_array_set_nested_value($shortcut->field_input_encoding, array( LANGUAGE_NONE, 0, 'value'), $row['input_encoding']);
     drupal_array_set_nested_value($shortcut->field_namespace,      array( LANGUAGE_NONE, 0 ), (array) $namespace);
+
+    // Set argument names & count from URL.
+    serchilo_set_shortcut_arguments_data($shortcut);
+
     for ($i=0; $i<count($row['tags']); $i++) {
       #print_r( $row['tags'][$i]);
       $tag = serchilo_taxonomy_ensure_term($row['tags'][$i], 'tags');
