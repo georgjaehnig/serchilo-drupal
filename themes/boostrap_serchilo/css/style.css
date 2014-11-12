@@ -103,15 +103,6 @@ td.views-field-field-namespace a,
   display: inline;
 }
 
-
-/* Spamicide */
-
-#user-register-form .edit-city-wrapper,
-#shortcut-node-form .edit-city-wrapper 
-{
-  display: none;
-}
-
 /* Footer */
 html, body {
 	height: 100%;

@@ -7,8 +7,6 @@ function serchilo_install(){
 
   module_load_include('module', 'taxonomy', 'taxonomy');
 
-  serchilo_set_spamicide(); 
-
   module_load_include('inc', 'serchilo', 'serchilo.import');
   $import_file = drupal_get_path('module', 'serchilo') . '/json/serchilo.json';
   serchilo_import($import_file, TRUE);
@@ -208,32 +206,5 @@ function serchilo_set_default_user_settings() {
     $account->field_country_namespace[LANGUAGE_NONE][0]['tid'] = $default_country_namespace->tid;
     user_save($account);
   }
-}
-
-
-/**
- * Setup forms to be protected with Spamicide.
- *
- * @return void
- */
-function serchilo_set_spamicide() {
-
-  // Rename form_field to "city".
-  db_update('spamicide')
-    ->condition('form_id', 'user_register_form')
-    ->fields(array(
-      'form_field' => 'city',
-      'enabled' => 1,
-    ))
-    ->execute();
-
-  // Insert spamicide for shortcut_node_form.
-  db_insert('spamicide')
-    ->fields(array(
-      'form_id' => 'shortcut_node_form',
-      'form_field' => 'city',
-      'enabled' => 1,
-    ))
-    ->execute();
 }
 

@@ -1096,34 +1096,6 @@ function serchilo_features_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'spamicide_administration_mode';
-  $strongarm->value = 0;
-  $export['spamicide_administration_mode'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'spamicide_description';
-  $strongarm->value = 'Do not enter anything here.';
-  $export['spamicide_description'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'spamicide_dir';
-  $strongarm->value = 'spamicide';
-  $export['spamicide_dir'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'spamicide_log_attempts';
-  $strongarm->value = 1;
-  $export['spamicide_log_attempts'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'talk_addcmnt_teaser';
   $strongarm->value = 0;
   $export['talk_addcmnt_teaser'] = $strongarm;
