@@ -14,6 +14,7 @@ function serchilo_drush_command() {
     'arguments' => array(
       'file' => 'Full path to the Serchilo JSON file with shortcuts. ',
     ),
+    'required-arguments' => TRUE,
   );
 
   $items['serchilo-export-data'] = array(
@@ -23,6 +24,7 @@ function serchilo_drush_command() {
     'arguments' => array(
       'file' => 'Full path to the destination file. ',
     ),
+    'required-arguments' => TRUE,
   );
 
   $items['serchilo-calculate-shortcut-calls'] = array(
