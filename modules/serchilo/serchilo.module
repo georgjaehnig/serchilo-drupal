@@ -30,6 +30,19 @@ function serchilo_watchdog($log_entry) {
 }
 
 /**
+ * Implements hook_static_content_dirs().
+ */
+function serchilo_static_content_dirs() {
+  $dir = drupal_get_path('module', 'serchilo') . '/static_content';
+  return array(
+    $dir => array()
+  );
+}
+
+
+// CRON
+
+/**
  * Implements hook_cron().
  */
 function serchilo_cron() {
@@ -40,16 +53,6 @@ function serchilo_cron() {
   module_load_include('inc', 'serchilo', 'serchilo.weights');
   serchilo_calculate_shortcut_calls();
   serchilo_calculate_shortcut_weights();
-}
-
-/**
- * Implements hook_static_content_dirs().
- */
-function serchilo_static_content_dirs() {
-  $dir = drupal_get_path('module', 'serchilo') . '/static_content';
-  return array(
-    $dir => array()
-  );
 }
 
 
