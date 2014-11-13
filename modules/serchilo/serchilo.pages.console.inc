@@ -152,7 +152,13 @@ function serchilo_page_console() {
   $arguments = serchilo_array_value($_GET, 'arguments');
 
   if ($status == 'not_found') {
-    $message = t('No matching shortcut found.');
+    $message = t(
+      'None of the available !shortcuts_link matched your query.',
+      array(
+        '!shortcuts_link' => l(t('shortcuts'), 'shortcuts')
+      )
+    );
+
     if (!empty($suggested_shortcut_ids)) {
       $message .= ' ';
       $message .= t('Did you mean:');
