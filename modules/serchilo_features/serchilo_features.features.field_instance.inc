@@ -334,7 +334,7 @@ function serchilo_features_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_calls_last_30_days',
-    'label' => 'Calls last 30 days',
+    'label' => 'Calls in the last 30 days',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -1135,7 +1135,7 @@ function serchilo_features_field_default_field_instances() {
   t('Argument names');
   t('Arguments');
   t('Calculated automatically from usage statistics. Can be used to improve the order of the listed shortcuts in the shortcut view or autocomplete.');
-  t('Calls last 30 days');
+  t('Calls in the last 30 days');
   t('Calls total');
   t('Command ID');
   t('Comment');
