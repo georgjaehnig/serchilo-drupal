@@ -178,6 +178,18 @@ function serchilo_page_console() {
         $suggested_shortcut_links[$suggested_shortcut_link['#title']] = $suggested_shortcut_link;
       }
       $message .= drupal_render($suggested_shortcut_links);
+    } else {
+      $message .= ' ';
+      $message .= t('Common shortcuts for search engines:');
+      foreach(array('g', 'b', 'y') as $keyword) {
+        $suggested_shortcut_links[] = theme(
+          'serchilo_shortcut_example_link',
+          array(
+            'query' => $keyword . ' ' . $query,
+          )
+        );
+      }
+      $message .= drupal_render($suggested_shortcut_links);
     }
     drupal_set_message($message, 'error');
   }
