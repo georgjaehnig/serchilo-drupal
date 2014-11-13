@@ -96,6 +96,9 @@ RewriteCond %{QUERY_STRING} (^|&)(query|term|keyword)=
 RewriteCond %{REQUEST_URI} ^\/(ajax|opensearch-suggestions|api|url)\/(n|u)\/.*
 RewriteRule ^.*$ profiles/serchilo_profile/modules/serchilo/process/?page_type=%1&call_type=%2 [L,QSA]
 
+# Send out Safari extension
+AddType application/octet-stream .safariextz
+
 # Apache Log settings
 # Do not log command queries.
 RewriteCond %{QUERY_STRING} query=
