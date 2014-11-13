@@ -364,10 +364,11 @@ function theme_serchilo_shortcut_example_link($variables) {
   // The query gets always the namespace name prefixed.
   $query = $namespace_name .  '.' .  $query;
 
-  $link = l(
-    $text,
-    '',
-    array(
+  $link = array(
+    '#type' => 'link',
+    '#title' => $text,
+    '#href' => '',
+    '#options' => array(
       'attributes' => array(
         'rel' => 'nofollow',
         'class' => array('query'),
@@ -375,7 +376,7 @@ function theme_serchilo_shortcut_example_link($variables) {
       'query' => array(
         'query' => $query,
       ), 
-    )
+    ),
   );
 
   return $link;
