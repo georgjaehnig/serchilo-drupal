@@ -92,7 +92,7 @@ RewriteCond %{REQUEST_URI} ^\/(n|u)\/.*
 RewriteRule ^.*$ profiles/serchilo_profile/modules/serchilo/process/?page_type=console&call_type=%1 [L,QSA]
 
 # Non-console call
-RewriteCond %{QUERY_STRING} (^|&)(query|term)=
+RewriteCond %{QUERY_STRING} (^|&)(query|term|keyword)=
 RewriteCond %{REQUEST_URI} ^\/(ajax|opensearch-suggestions|api|url)\/(n|u)\/.*
 RewriteRule ^.*$ profiles/serchilo_profile/modules/serchilo/process/?page_type=%1&call_type=%2 [L,QSA]
 ```
