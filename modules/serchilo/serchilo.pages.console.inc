@@ -165,7 +165,7 @@ function serchilo_page_console() {
 
       $suggested_shortcut_links = array();
       foreach($suggested_shortcut_ids as $suggested_shortcut_id) {
-        $suggested_shortcut_links[] = theme(
+        $suggested_shortcut_link = theme(
           'serchilo_shortcut_example_link',
           array(
             'shortcut' => node_load($suggested_shortcut_id),
@@ -173,9 +173,11 @@ function serchilo_page_console() {
             'with_namespace' => TRUE,
           )
         );
+        // Collect by keys containing the query
+        // to deduplicate.
+        $suggested_shortcut_links[$suggested_shortcut_link['#title']] = $suggested_shortcut_link;
       }
-      $suggested_shortcut_links = array_unique($suggested_shortcut_links);
-      $message .= join('', $suggested_shortcut_links);
+      $message .= drupal_render($suggested_shortcut_links);
     }
     drupal_set_message($message, 'error');
   }
