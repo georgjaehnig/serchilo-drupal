@@ -194,7 +194,7 @@ function serchilo_process_query_console($env) {
   // If all failed:
 
   // Get shortcut suggestions.
-  $suggested_shortcuts = serchilo_search_shortcuts($env['keyword'], $env['arguments'], $env['query'], $env['namespace_ids'], $env['extra_namespace_name'] );
+  $suggested_shortcuts = serchilo_search_shortcuts($env['keyword'], $env['arguments'], $env['query'], $env['namespace_ids'], $env['extra_namespace_name']);
 
   // Limit to 5 suggestions.
   $suggested_shortcuts = array_slice($suggested_shortcuts, 0, 5);
