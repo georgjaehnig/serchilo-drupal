@@ -1033,11 +1033,11 @@ function serchilo_node_validate($node, $form, &$form_state) {
     $efq = $efq
       ->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', 'shortcut')
-      // Exclude the current shortcut.
       ->fieldCondition('field_keyword',        'value',  $node->field_keyword[LANGUAGE_NONE][0]['value'])
       ->fieldCondition('field_argument_count', 'value',  $node->field_argument_count[LANGUAGE_NONE][0]['value'])
       ->fieldCondition('field_namespace',      'tid',    $node->field_namespace[LANGUAGE_NONE][0]['tid']);
 
+    // Exclude the current shortcut.
     if (!empty($node->nid)) {
       $efq->propertyCondition('nid', $node->nid, '!=');
     }
