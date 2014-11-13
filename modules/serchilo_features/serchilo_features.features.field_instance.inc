@@ -309,7 +309,11 @@ function serchilo_features_field_default_field_instances() {
   // Exported field_instance: 'node-shortcut-field_calls_last_30_days'
   $field_instances['node-shortcut-field_calls_last_30_days'] = array(
     'bundle' => 'shortcut',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -355,7 +359,11 @@ function serchilo_features_field_default_field_instances() {
   // Exported field_instance: 'node-shortcut-field_calls_total'
   $field_instances['node-shortcut-field_calls_total'] = array(
     'bundle' => 'shortcut',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
