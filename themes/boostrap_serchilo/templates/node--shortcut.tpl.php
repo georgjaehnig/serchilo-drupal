@@ -110,6 +110,8 @@
       print render($content['shortcut_call_form']);
       print render($content['field_example']);
       print render($content['field_url']);
+      print render($content['field_calls_total']);
+      print render($content['field_calls_last_30_days']);
     ?>
   </div>
   <?php print render($content['links']); ?>
