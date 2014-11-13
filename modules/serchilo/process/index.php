@@ -562,16 +562,22 @@ WHERE
   GROUP BY nid
 
 ORDER BY
-  reachable DESC,
+
+  # keyword-keyword matches
+  keyword LIKE :keyword_like_both DESC,
 
   keyword = :keyword DESC,
   keyword LIKE :keyword_like_right DESC,
 
+  reachable DESC,
+
+  # Short namespaces first, to get site namespaces first
+  # TODO: Save namespace type as well and order by it directly
+  LENGTH(namespace_name),
+
   argument_count, 
 
       " . join(",", $order_namespace_ids ). ",
-  # keyword-keyword matches
-  keyword LIKE :keyword_like_both DESC,
 
   title = :keyword DESC,
   title LIKE :keyword_like_right DESC,
@@ -582,7 +588,10 @@ ORDER BY
   title LIKE :query_like_both DESC,
 
   keyword,
-  title
+  title,
+
+  # Short keywords first
+  LENGTH(keyword)
 
 LIMIT " . (int) $limit . ";
 
