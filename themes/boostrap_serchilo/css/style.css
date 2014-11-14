@@ -153,3 +153,7 @@ fieldset.filter-wrapper
 .alert .query {
   display: block;
 }
+/* Field Group */
+.field-group-accordion-wrapper {
+  margin-bottom: 1em;
+}
