@@ -338,6 +338,7 @@ function serchilo_field_formatter_view($entity_type, $entity, $field, $instance,
  */
 function theme_serchilo_shortcut_example_link($variables) {
 
+  $arguments_str = '';
   if (!empty($variables['arguments'])) {
     if (is_array($variables['arguments'])) {
       $arguments_str = join(', ', $variables['arguments']); 
