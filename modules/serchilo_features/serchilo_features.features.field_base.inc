@@ -849,7 +849,7 @@ function serchilo_features_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_test_passed',
     'field_permissions' => array(
-      'type' => 0,
+      'type' => 2,
     ),
     'foreign keys' => array(),
     'indexes' => array(

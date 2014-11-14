@@ -454,6 +454,15 @@ function serchilo_features_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: 'create field_test_passed'.
+  $permissions['create field_test_passed'] = array(
+    'name' => 'create field_test_passed',
+    'roles' => array(
+      'moderator' => 'moderator',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'create field_url'.
   $permissions['create field_url'] = array(
     'name' => 'create field_url',
@@ -671,6 +680,15 @@ function serchilo_features_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: 'edit field_test_passed'.
+  $permissions['edit field_test_passed'] = array(
+    'name' => 'edit field_test_passed',
+    'roles' => array(
+      'moderator' => 'moderator',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'edit field_url'.
   $permissions['edit field_url'] = array(
     'name' => 'edit field_url',
@@ -829,6 +847,15 @@ function serchilo_features_user_default_permissions() {
     'roles' => array(
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'edit own field_test_passed'.
+  $permissions['edit own field_test_passed'] = array(
+    'name' => 'edit own field_test_passed',
+    'roles' => array(
+      'moderator' => 'moderator',
     ),
     'module' => 'field_permissions',
   );
@@ -1133,6 +1160,15 @@ function serchilo_features_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: 'view field_test_passed'.
+  $permissions['view field_test_passed'] = array(
+    'name' => 'view field_test_passed',
+    'roles' => array(
+      'moderator' => 'moderator',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'view field_url'.
   $permissions['view field_url'] = array(
     'name' => 'view field_url',
@@ -1278,6 +1314,15 @@ function serchilo_features_user_default_permissions() {
     'roles' => array(
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'view own field_test_passed'.
+  $permissions['view own field_test_passed'] = array(
+    'name' => 'view own field_test_passed',
+    'roles' => array(
+      'moderator' => 'moderator',
     ),
     'module' => 'field_permissions',
   );
