@@ -500,7 +500,9 @@ function serchilo_features_user_default_permissions() {
   // Exported permission: 'delete any shortcut content'.
   $permissions['delete any shortcut content'] = array(
     'name' => 'delete any shortcut content',
-    'roles' => array(),
+    'roles' => array(
+      'moderator' => 'moderator',
+    ),
     'module' => 'node',
   );
 
