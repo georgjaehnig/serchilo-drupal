@@ -745,6 +745,7 @@ function serchilo_get_namespace_ids_from_user($user_name) {
   $language_namespace_id = serchilo_get_values_from_table('field_data_field_language_namespace', 'entity_id', $user_id, 'field_language_namespace_tid')[0];
   $country_namespace_id  = serchilo_get_values_from_table('field_data_field_country_namespace', 'entity_id', $user_id, 'field_country_namespace_tid')[0];
   $custom_namespace_ids  = serchilo_get_values_from_table('field_data_field_custom_namespaces', 'entity_id', $user_id, 'field_custom_namespaces_tid');
+  $user_namespace_id     = serchilo_get_values_from_table('taxonomy_term_data', 'name', $user_name, 'tid')[0];
 
   $namespace_ids = array_merge(
     array(
@@ -752,7 +753,10 @@ function serchilo_get_namespace_ids_from_user($user_name) {
       $language_namespace_id, 
       $country_namespace_id
     ),
-    $custom_namespace_ids
+    $custom_namespace_ids,
+    array(
+      $user_namespace_id,
+    )
   );
 
   return $namespace_ids;
