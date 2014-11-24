@@ -185,7 +185,7 @@ function serchilo_process_query_console($env) {
   // Set environment again.
   $env2 = array();
   $env2['query'] = $env['default_keyword'] . ' ' . $env['query'];
-  $env2 = serchilo_parse_query($env2['query']) + $env;
+  $env2 += serchilo_parse_query($env2['query']) + $env;
 
   // Find shortcut and call it.
   $shortcut = serchilo_find_shortcut($env2['keyword'], count($env2['arguments']), $env2['namespace_ids']);
