@@ -356,7 +356,11 @@ function serchilo_get_shortcut($env) {
       $output['status'] = 'found';
     } else {
       // Try again with default keyword.
-      $env['default_keyword'] = serchilo_get_default_keyword($env['user_name'] ?: NULL);
+      if (!empty($env['user_name'])) {
+        $env['default_keyword'] = serchilo_get_default_keyword($env['user_name']);
+      } else {
+        $env['default_keyword'] = '';
+      }
       $env['query'] = $env['default_keyword'] . ' ' . $env['query'];
       $env = serchilo_parse_query($env['query']) + $env;
 
