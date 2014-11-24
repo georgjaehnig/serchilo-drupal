@@ -127,13 +127,13 @@ function serchilo_populate_environment(&$env) {
     // Parse the query and set keyword, arguments and extra_namespace_name.
     $env += serchilo_parse_query($env['query']);
 
+    if (!empty($env['extra_namespace_name'])) {
+      $env['namespace_names'][] = $env['extra_namespace_name'];
+    }
     // Get namespace_ids from namespace_names.
     $env['namespace_ids'] = array_map(
       'serchilo_get_namespace_id', 
-      array_merge(
-        $env['namespace_names'], 
-        array($env['extra_namespace_name'])
-      )
+      $env['namespace_names']
     );
 
     break;
