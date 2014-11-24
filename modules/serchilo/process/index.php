@@ -1,5 +1,7 @@
 <?PHP
 
+$execution_time_start = microtime(TRUE);
+
 require_once('../serchilo.constants.inc');
 
 serchilo_connect_db();
@@ -912,12 +914,14 @@ INSERT INTO
   (
     shortcut_id, 
     namespace_id, 
-    called
+    called,
+    execution_time
   )
   VALUES (
     :shortcut_id, 
     :namespace_id, 
-    :called
+    :called,
+    :execution_time
   );
 
   ";
@@ -926,9 +930,10 @@ INSERT INTO
     $mysqli, 
     $sql,
     array(
-      'shortcut_id'  => $shortcut['nid'],
-      'namespace_id' => $shortcut['namespace_id'],
-      'called'       => time(),
+      'shortcut_id'    => $shortcut['nid'],
+      'namespace_id'   => $shortcut['namespace_id'],
+      'called'         => time(),
+      'execution_time' => serchilo_get_execution_time(),
     )
   );
 
@@ -1170,3 +1175,15 @@ function serchilo_get_default_keyword($user_name = NULL) {
   return NULL;
 }
 
+
+// Execution time
+
+function serchilo_get_execution_time() {
+
+  global $execution_time_start;
+
+  $execution_time_end = microtime(TRUE);
+  $execution_time = $execution_time_end - $execution_time_start;
+
+  return $execution_time;
+}

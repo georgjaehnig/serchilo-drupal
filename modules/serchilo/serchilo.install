@@ -157,6 +157,12 @@ function serchilo_schema() {
         'unsigned' => TRUE,
         'not null' => TRUE,
       ),
+      'execution_time' => array(
+        'description' => 'The execution time of a shortcut call.',
+        'type' => 'float',
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+      ),
     ),
     'primary key' => array('id'),
   );
