@@ -132,10 +132,7 @@ function serchilo_populate_environment(&$env) {
       $env['namespace_names'][] = $env['extra_namespace_name'];
     }
     // Get namespace_ids from namespace_names.
-    $env['namespace_ids'] = array_map(
-      'serchilo_get_namespace_id', 
-      $env['namespace_names']
-    );
+    $env['namespace_ids'] = array_map('serchilo_get_namespace_id', $env['namespace_names']);
 
     break;
 
