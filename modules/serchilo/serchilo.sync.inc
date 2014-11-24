@@ -30,15 +30,14 @@ function serchilo_shortcut_to_db_fields($node) {
   $fields['set_referrer']    = drupal_array_get_nested_value($node->field_set_referrer,    array(LANGUAGE_NONE, 0, 'value'));
   $fields['namespace_id']    = drupal_array_get_nested_value($node->field_namespace,       array(LANGUAGE_NONE, 0, 'tid'));
 
-  // Assign taxonomy term names only if they exists, i.e.: already have been loaded.
-  if (!empty($node->field_namespace[LANGUAGE_NONE][0]['name'])) {
-    $fields['namespace_name'] = $node->field_namespace[LANGUAGE_NONE][0]['name'];
-  }
+  $wnode = entity_metadata_wrapper('node', $node);
+  $fields['namespace_name'] = $wnode->field_namespace->value()->name;
 
-  if (!empty($node->field_tags[LANGUAGE_NONE][0]['name'])) {
-    $tags           = array_map(function ($tag) { return $tag['name']; }, $node->field_tags[LANGUAGE_NONE] ?: array() );
-    $fields['tags'] = join(',', $tags);
+  $tags = array();
+  foreach ($wnode->field_tags->value() as $wtag) {
+    $tags[] = $wtag->name;
   }
+  $fields['tags'] = join(',', $tags);
 
   return $fields;
 }
