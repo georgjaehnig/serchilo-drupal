@@ -389,7 +389,8 @@ function serchilo_get_shortcut($env) {
   if (empty($output['url'])) {
     $output['status'] = 'not_found';
   }
-  else {
+
+  if (!empty($output['url'])) {
     $output['input_encoding'] = $shortcut['input_encoding'];
   }
 
