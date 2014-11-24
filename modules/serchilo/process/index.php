@@ -174,6 +174,7 @@ function serchilo_process_query_console($env) {
   // Find shortcut and call it.
   $shortcut = serchilo_find_shortcut($env['keyword'], count($env['arguments']), $env['namespace_ids']);
   if ($shortcut) {
+    $env = serchilo_extract_keyword_and_arguments($env['query'], $shortcut['argument_count']) + $env;
     $variables = serchilo_get_url_variables($env);
     serchilo_call_shortcut($shortcut, $env['arguments'], $variables);
   }
@@ -189,6 +190,7 @@ function serchilo_process_query_console($env) {
   // Find shortcut and call it.
   $shortcut = serchilo_find_shortcut($env2['keyword'], count($env2['arguments']), $env2['namespace_ids']);
   if ($shortcut) {
+    $env2 = serchilo_extract_keyword_and_arguments($env2['query'], $shortcut['argument_count']) + $env2;
     $variables = serchilo_get_url_variables($env2);
     serchilo_call_shortcut($shortcut, $env2['arguments'], $variables);
   }
@@ -639,9 +641,9 @@ LIMIT " . (int) $limit . ";
  *   - arguments
  *   - extra_namespace_name
  */
-function serchilo_parse_query($query) {
+function serchilo_parse_query($query, $max_arguments = -1) {
 
-  $env = serchilo_extract_keyword_and_arguments($query);
+  $env = serchilo_extract_keyword_and_arguments($query, $max_arguments);
   $env = serchilo_get_extra_namespace_from_keyword($env['keyword']) + $env;
   
   // Lowercase the keyword.
@@ -1017,7 +1019,7 @@ function serchilo_replace_variables($str, $variables ) {
  * @return string $str
  *   The replaced URL. 
  */
-function serchilo_replace_arguments($str, $arguments, $input_encoding = 'utf-8') {
+function serchilo_replace_arguments($str, $arguments, $argument_count, $input_encoding = 'utf-8') {
 
   foreach ($arguments as $argument) {
     preg_match(
