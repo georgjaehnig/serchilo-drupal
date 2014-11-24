@@ -879,6 +879,17 @@ function serchilo_shortcut_call_form_submit($form, &$form_state) {
 // Shortcut node (edit) form
 
 /**
+ * Implements hook_clone_node_alter().
+ */
+function serchilo_clone_node_alter(&$node, $context) {
+
+  // Set stats fields to 0.
+  $node->field_calls_last_30_days[LANGUAGE_NONE][0]['value'] = 0;
+  $node->field_calls_total       [LANGUAGE_NONE][0]['value'] = 0;
+  $node->field_weight            [LANGUAGE_NONE][0]['value'] = 0;
+}
+
+/**
  * Implements hook_form_alter().
  */
 function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) {
