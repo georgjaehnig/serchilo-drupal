@@ -376,6 +376,7 @@ function serchilo_get_output($env) {
         $shortcut['input_encoding']
       );
       $output['status'] = 'found';
+      $output['namespace'] = $shortcut['namespace_name'];
     } else {
       // Try again with default keyword.
       if (!empty($env['user_name'])) {
@@ -397,6 +398,7 @@ function serchilo_get_output($env) {
           $shortcut['input_encoding']
         );
         $output['status'] = 'found_with_default_keyword';
+        $output['namespace'] = $shortcut['namespace_name'];
       }
     }
   }
@@ -407,6 +409,7 @@ function serchilo_get_output($env) {
       $variables = serchilo_get_url_variables($env);
       $output['url']['replaced_variables'] = serchilo_replace_variables($shortcut['url'],  $variables);
       $output['status'] = 'found';
+      $output['namespace'] = $shortcut['namespace_name'];
     }
   }
 
