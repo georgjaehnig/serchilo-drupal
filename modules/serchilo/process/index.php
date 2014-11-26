@@ -379,6 +379,7 @@ function serchilo_get_output($env) {
       $output['status']['default_keyword_used'] = FALSE;
       $output['status']['found'] = TRUE;
       $output['namespace']['name'] = $shortcut['namespace_name'];
+      $output['url']['post_parameters'] = serchilo_get_post_parameters($shortcut, $env['arguments'], $variables);
       $output['#shortcut'] = $shortcut;
 
     } else {
@@ -406,6 +407,7 @@ function serchilo_get_output($env) {
         );
         $output['status']['found'] = TRUE;
         $output['namespace']['name'] = $shortcut['namespace_name'];
+        $output['url']['post_parameters'] = serchilo_get_post_parameters($shortcut, $env['arguments'], $variables);
         $output['#shortcut'] = $shortcut;
       }
     }
@@ -444,6 +446,41 @@ function serchilo_get_output($env) {
   //$output['namespaces'] = $env['namespace_names'];
 
   return $output;
+}
+
+/**
+ * Return the post parameters of a shortcut
+ *   and replace them with the query arguments and variables.
+ *
+ * @param array $shortcut
+ *   The shortcut to call.
+ * @param array $arguments
+ *   The arguments from the query.
+ * @param array $variables
+ *   The variables.
+ *   
+ * @return array $post_parameters
+ *   The post parameters.
+ *   Empty array if none present.
+ */
+function serchilo_get_post_parameters($shortcut, $arguments, $variables) {
+
+  if (empty($shortcut['post_parameters'])) {
+    return array(); 
+  }
+  $post_parameters_str = serchilo_replace_variables($shortcut['post_parameters'], $variables );
+  $post_parameters_str = serchilo_replace_arguments($post_parameters_str, $arguments, $shortcut['input_encoding']);
+  $post_parameters = array();
+  foreach (explode('&', $post_parameters_str) as $post_parameter) {
+    $keyValue = explode('=', $post_parameter, 2);
+    if (count($keyValue) == 2) {
+      $post_parameters[$keyValue[0]] = $keyValue[1];
+    }
+    else {
+      $post_parameters[$keyValue[0]] = 1;
+    }
+  }
+  return $post_parameters; 
 }
 
 /**
