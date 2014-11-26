@@ -384,16 +384,16 @@ function serchilo_get_output($env) {
         $env['arguments'], 
         $shortcut['input_encoding']
       );
-      $output['status']['default_keyword_used'] = FALSE;
       $output['status']['found'] = TRUE;
       $output['namespace']['name'] = $shortcut['namespace_name'];
       $output['url']['post_parameters'] = serchilo_get_post_parameters($shortcut, $env['arguments'], $variables);
       $output['#shortcut'] = $shortcut;
 
+      $output['status']['default_keyword_used'] = FALSE;
+
     } else {
 
       // Try via default_keyword.
-      $output['status']['default_keyword_used'] = TRUE;
       $env['default_keyword'] = serchilo_get_default_keyword($env['user_name'] ?: NULL);
       $env['query'] = $env['default_keyword'] . ' ' . $env['query'];
       $env = serchilo_parse_query($env['query']) + $env;
@@ -418,6 +418,7 @@ function serchilo_get_output($env) {
         $output['url']['post_parameters'] = serchilo_get_post_parameters($shortcut, $env['arguments'], $variables);
         $output['#shortcut'] = $shortcut;
       }
+      $output['status']['default_keyword_used'] = TRUE;
     }
   }
 
