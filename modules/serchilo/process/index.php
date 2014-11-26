@@ -102,6 +102,9 @@ function serchilo_populate_environment(&$env) {
     $env['path_elements_offset'] = 0;
     break;
   case SERCHILO_OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
+    $env['query'] = $_GET['query'];
+    $env['path_elements_offset'] = 1;
+    break;
   case SERCHILO_API_PATH_AFFIX:
   case SERCHILO_URL_PATH_AFFIX:
     $env['query'] = $_GET['query'];
