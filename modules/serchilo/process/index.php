@@ -950,11 +950,11 @@ INSERT INTO
     $mysqli, 
     $sql,
     array(
-      'shortcut_id'    => $shortcut['nid'],
-      'namespace_id'   => $shortcut['namespace_id'],
+      'shortcut_id'          => $shortcut['nid'],
+      'namespace_id'         => $shortcut['namespace_id'],
       'default_keyword_used' => $default_keyword_used,
-      'called'         => time(),
-      'execution_time' => serchilo_get_execution_time(),
+      'called'               => time(),
+      'execution_time'       => serchilo_get_execution_time(),
     )
   );
 
