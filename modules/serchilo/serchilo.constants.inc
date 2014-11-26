@@ -16,6 +16,7 @@ define('SERCHILO_OPENSEARCH_SUGGESTIONS_PATH_AFFIX', 'opensearch-suggestions');
 define('SERCHILO_URL_PATH_AFFIX', 'url');
 define('SERCHILO_API_PATH_AFFIX', 'api');
 
+// TODO: Delete obsolete:
 define('SERCHILO_METATAG_INSTANCE_CONSOLE', 'serchilo_console');
 define('SERCHILO_METATAG_INSTANCE_CONSOLE_NAMESPACES', 'serchilo_console:namespaces');
 define('SERCHILO_METATAG_INSTANCE_CONSOLE_USER', 'serchilo_console:user');
