@@ -417,7 +417,7 @@ function serchilo_get_output($env) {
   }
 
   if (!empty($output['url'])) {
-    $output['input_encoding'] = $shortcut['input_encoding'];
+    $output['url']['input_encoding'] = $shortcut['input_encoding'];
   }
 
   if (!empty($env['user_name'])) {
