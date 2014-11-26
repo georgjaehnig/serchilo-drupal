@@ -124,7 +124,7 @@ function serchilo_populate_environment(&$env) {
       $env += serchilo_parse_query($env['query']);
     } else {
       $env['keyword']        = $_GET['keyword'];
-      $env['argument_count'] = (isset($_GET['argument_count']) ? $_GET['argument_count'] : 0);
+      $env['argument_count'] = serchilo_array_value($_GET, 'argument_count', 0);
     }
     $env['path_elements_offset'] = 1;
     break;
