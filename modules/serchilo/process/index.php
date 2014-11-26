@@ -646,7 +646,6 @@ LIMIT " . (int) $limit . ";
  */
 function serchilo_parse_query($query, $max_arguments = -1) {
 
-  // Remember query.
   $parsed['query'] = $query;
 
   $parsed = serchilo_extract_keyword_and_arguments($query, $max_arguments);
