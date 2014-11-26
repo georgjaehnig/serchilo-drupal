@@ -192,29 +192,31 @@ function serchilo_handle_query_from_request($param_name = 'query') {
  */
 function serchilo_process_query_console($env) {
 
-  // Find shortcut and call it.
-  $shortcut = serchilo_find_shortcut($env['keyword'], count($env['arguments']), $env['namespace_ids']);
-  if ($shortcut) {
-    $env = serchilo_extract_keyword_and_arguments($env['query'], $shortcut['argument_count']) + $env;
-    $variables = serchilo_get_url_variables($env);
-    serchilo_call_shortcut($shortcut, $env['arguments'], $variables);
-  }
+  $output = serchilo_get_output($env);
 
-  // Try again with default keyword.
-  $env['default_keyword'] = serchilo_get_default_keyword($env['user_name'] ?: NULL);
+  if ($output['status']['found']) {
 
-  // Set environment again.
-  $env2 = array();
-  $env2['query'] = $env['default_keyword'] . ' ' . $env['query'];
-  $env2 += serchilo_parse_query($env2['query']) + $env;
-
-  // Find shortcut and call it.
-  $shortcut = serchilo_find_shortcut($env2['keyword'], count($env2['arguments']), $env2['namespace_ids']);
-  if ($shortcut) {
-    $env2 = serchilo_extract_keyword_and_arguments($env2['query'], $shortcut['argument_count']) + $env2;
-    $variables = serchilo_get_url_variables($env2);
-    serchilo_call_shortcut($shortcut, $env2['arguments'], $variables);
-  }
+    if (!empty($output['url']['post_parameters'])) {
+      // Redirect via HTML form
+      // for shortcuts with POST parameters
+      serchilo_log_shortcut_call($output['#shortcut']);
+      serchilo_redirect_via_form($output['url']['final'], $output['url']['post_parameters']);
+      exit();
+    }
+    elseif (empty($output['#shortcut']['set_referrer'])) {
+      // Classic redirect.
+      serchilo_log_shortcut_call($output['#shortcut']);
+      header('Location: ' . $output['url']['final']);
+      exit();
+    }
+    else {
+      // Redirect via HTML page
+      // for shortcuts which need a referrer.
+      serchilo_log_shortcut_call($output['#shortcut']);
+      serchilo_redirect_via_meta($output['url']['final']);
+      exit();
+    }
+  } 
 
   // If all failed:
 
