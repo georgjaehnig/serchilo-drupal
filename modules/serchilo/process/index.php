@@ -325,6 +325,7 @@ function serchilo_process_opensearch_suggestions($env) {
 function serchilo_process_query_api($env) {
 
   $output = serchilo_get_output($env);
+  unset($output['#shortcut']);
   serchilo_output_json($output);
 }
 
@@ -378,6 +379,8 @@ function serchilo_get_output($env) {
       $output['status']['default_keyword_used'] = FALSE;
       $output['status']['found'] = TRUE;
       $output['namespace']['name'] = $shortcut['namespace_name'];
+      $output['#shortcut'] = $shortcut;
+
     } else {
 
       // Try via default_keyword.
@@ -403,6 +406,7 @@ function serchilo_get_output($env) {
         );
         $output['status']['found'] = TRUE;
         $output['namespace']['name'] = $shortcut['namespace_name'];
+        $output['#shortcut'] = $shortcut;
       }
     }
   }
@@ -417,6 +421,7 @@ function serchilo_get_output($env) {
       $output['url']['replaced_variables'] = serchilo_replace_variables($shortcut['url'],  $variables);
       $output['status']['found'] = TRUE;
       $output['namespace']['name'] = $shortcut['namespace_name'];
+      $output['#shortcut'] = $shortcut;
     }
   }
 
