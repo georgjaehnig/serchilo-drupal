@@ -301,7 +301,7 @@ function serchilo_process_opensearch_suggestions($env) {
  */
 function serchilo_process_query_api($env) {
 
-  $output = serchilo_get_shortcut($env);
+  $output = serchilo_get_output($env);
   serchilo_output_json($output);
 }
 
@@ -313,7 +313,7 @@ function serchilo_process_query_api($env) {
  */
 function serchilo_process_query_url($env) {
 
-  $output = serchilo_get_shortcut($env);
+  $output = serchilo_get_output($env);
 
   header('Content-Type: text/plain');
   if (!empty($output['url']['final'])) {
@@ -328,7 +328,7 @@ function serchilo_process_query_url($env) {
 // Process helpers
 
 /**
- * Get a shortcut given the environment.
+ * Get the output given the environment.
  *
  * @param array $env
  *   The environment, holding all relevant data of the request.
@@ -337,7 +337,7 @@ function serchilo_process_query_url($env) {
  *   Array holding all data of the found shortcut,
  *   ready to output as JSON
  */
-function serchilo_get_shortcut($env) {
+function serchilo_get_output($env) {
 
   if (!empty($env['query'])) {
 
