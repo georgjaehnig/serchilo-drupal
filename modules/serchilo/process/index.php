@@ -99,29 +99,17 @@ function serchilo_populate_environment(&$env) {
 
   switch ($env['page_type']) {
   case SERCHILO_CONSOLE:
-    // TODO: refactor query handling.
-    $env['query'] = $_GET['query'];
-    $env['query'] = trim($env['query']);
     $env['path_elements_offset'] = 0;
-    // Parse the query and set keyword, arguments and extra_namespace_name.
-    $env += serchilo_parse_query($env['query']);
+    $env = serchilo_handle_query_from_request() + $env;
     break;
   case SERCHILO_OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
-    // TODO: refactor query handling.
-    $env['query'] = $_GET['query'];
-    $env['query'] = trim($env['query']);
     $env['path_elements_offset'] = 1;
-    // Parse the query and set keyword, arguments and extra_namespace_name.
-    $env += serchilo_parse_query($env['query']);
+    $env = serchilo_handle_query_from_request() + $env;
     break;
   case SERCHILO_API_PATH_AFFIX:
   case SERCHILO_URL_PATH_AFFIX:
     if (isset($_GET['query'])) {
-      // TODO: refactor query handling.
-      $env['query'] = $_GET['query'];
-      $env['query'] = trim($env['query']);
-      // Parse the query and set keyword, arguments and extra_namespace_name.
-      $env += serchilo_parse_query($env['query']);
+      $env = serchilo_handle_query_from_request() + $env;
     } else {
       $env['keyword']        = $_GET['keyword'];
       $env['argument_count'] = serchilo_array_value($_GET, 'argument_count', 0);
@@ -130,10 +118,7 @@ function serchilo_populate_environment(&$env) {
     break;
   case SERCHILO_AUTOCOMPLETE_PATH_AFFIX:
     $env['path_elements_offset'] = 1;
-    // TODO: refactor query handling.
-    $env['query'] = $_GET['term'];
-    $env['query'] = trim($env['query']);
-    $env += serchilo_parse_query($env['query']);
+    $env = serchilo_handle_query_from_request('term') + $env;
     break;
   }
 
@@ -172,6 +157,28 @@ function serchilo_populate_environment(&$env) {
 
     break;
   }
+}
+
+/**
+ * Get and handle the query from the request URL
+ *
+ * @param string $param_name
+ *   (optional) The param name in the request URL.
+ *   Defaults to 'query'.
+ *
+ * @return array $env
+ *   The return array with environment data from the query.
+ */
+function serchilo_handle_query_from_request($param_name = 'query') {
+
+  $env = array();
+  $env['query'] = $_GET[$param_name];
+  $env['query'] = trim($env['query']);
+
+  // Parse the query and set keyword, arguments and extra_namespace_name.
+  $env += serchilo_parse_query($env['query']);
+
+  return $env;
 }
 
 
