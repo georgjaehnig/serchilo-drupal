@@ -98,12 +98,20 @@ function serchilo_populate_environment(&$env) {
 
   switch ($env['page_type']) {
   case SERCHILO_CONSOLE:
+    // TODO: refactor query handling.
     $env['query'] = $_GET['query'];
+    $env['query'] = trim($env['query']);
     $env['path_elements_offset'] = 0;
+    // Parse the query and set keyword, arguments and extra_namespace_name.
+    $env += serchilo_parse_query($env['query']);
     break;
   case SERCHILO_OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
+    // TODO: refactor query handling.
     $env['query'] = $_GET['query'];
+    $env['query'] = trim($env['query']);
     $env['path_elements_offset'] = 1;
+    // Parse the query and set keyword, arguments and extra_namespace_name.
+    $env += serchilo_parse_query($env['query']);
     break;
   case SERCHILO_API_PATH_AFFIX:
   case SERCHILO_URL_PATH_AFFIX:
@@ -120,12 +128,13 @@ function serchilo_populate_environment(&$env) {
     $env['path_elements_offset'] = 1;
     break;
   case SERCHILO_AUTOCOMPLETE_PATH_AFFIX:
-    $env['query'] = $_GET['term'];
     $env['path_elements_offset'] = 1;
+    // TODO: refactor query handling.
+    $env['query'] = $_GET['term'];
+    $env['query'] = trim($env['query']);
+    $env += serchilo_parse_query($env['query']);
     break;
   }
-
-  $env['query'] = trim($env['query']);
 
   switch ($env['call_type']) {
 
@@ -149,9 +158,6 @@ function serchilo_populate_environment(&$env) {
     break;
 
   case SERCHILO_USER_PATH_AFFIX:
-
-    // Parse the query and set keyword, arguments and extra_namespace_name.
-    $env += serchilo_parse_query($env['query']);
 
     $env['user_name'] = serchilo_get_user_name_from_path($env['path_elements_offset']);
     $env['namespace_ids'] = serchilo_get_namespace_ids_from_user($env['user_name']);
