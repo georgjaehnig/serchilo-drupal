@@ -380,9 +380,8 @@ function serchilo_get_output($env) {
     } else {
       $output['status']['default_keyword_used'] = TRUE;
       
-      // TODO: get namespace_id from default_keyword
+      // Build query again with default keyword.
       $env['default_keyword'] = serchilo_get_default_keyword($env['user_name'] ?: NULL);
-
       $env['query'] = $env['default_keyword'] . ' ' . $env['query'];
       $env = serchilo_parse_query($env['query']) + $env;
 
