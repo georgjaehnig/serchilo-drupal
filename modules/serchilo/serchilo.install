@@ -156,7 +156,6 @@ function serchilo_schema() {
         'type' => 'int',
         'size' => 'tiny',
         'not null' => TRUE,
-        'default' => 0,
       ),
       'called' => array(
         'description' => 'The UNIX timestamp when the call happened.',
