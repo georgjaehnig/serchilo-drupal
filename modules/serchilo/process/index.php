@@ -397,7 +397,8 @@ function serchilo_get_output($env) {
           $env['arguments'], 
           $shortcut['input_encoding']
         );
-        $output['status'] = 'found_with_default_keyword';
+        $output['status'] = 'found';
+        $output['default_keyword_used'] = TRUE;
         $output['namespace'] = $shortcut['namespace_name'];
       }
     }
