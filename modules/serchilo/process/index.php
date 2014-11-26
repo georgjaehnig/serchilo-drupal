@@ -376,20 +376,10 @@ function serchilo_get_output($env) {
 
     // Try via query.
     $shortcut = serchilo_find_shortcut($env['keyword'], count($env['arguments']), $env['namespace_ids']);
-    if ($shortcut) {
-      $output['url']['template'] = $shortcut['url'];
-      $variables = serchilo_get_url_variables($env);
-      $output['url']['replaced_variables'] = serchilo_replace_variables($shortcut['url'],  $variables);
-      $output['url']['final'] = serchilo_replace_arguments(
-        $output['url']['replaced_variables'],
-        $env['arguments'], 
-        $shortcut['input_encoding']
-      );
-      $output['status']['found'] = TRUE;
-      $output['namespace']['name'] = $shortcut['namespace_name'];
-      $output['url']['post_parameters'] = serchilo_get_post_parameters($shortcut, $env['arguments'], $variables);
-      $output['#shortcut'] = $shortcut;
 
+    if ($shortcut) {
+
+      $output = serchilo_shortcut_to_output($shortcut, $env);
       $output['status']['default_keyword_used'] = FALSE;
 
     } else {
@@ -406,18 +396,7 @@ function serchilo_get_output($env) {
 
       $shortcut = serchilo_find_shortcut($env['keyword'], count($env['arguments']), $env['namespace_ids']);
       if ($shortcut) {
-        $output['url']['template'] = $shortcut['url'];
-        $variables = serchilo_get_url_variables($env);
-        $output['url']['replaced_variables'] = serchilo_replace_variables($shortcut['url'],  $variables);
-        $output['url']['final'] = serchilo_replace_arguments(
-          $output['url']['replaced_variables'],
-          $env['arguments'], 
-          $shortcut['input_encoding']
-        );
-        $output['status']['found'] = TRUE;
-        $output['namespace']['name'] = $shortcut['namespace_name'];
-        $output['url']['post_parameters'] = serchilo_get_post_parameters($shortcut, $env['arguments'], $variables);
-        $output['#shortcut'] = $shortcut;
+        $output = serchilo_shortcut_to_output($shortcut, $env);
       }
       $output['status']['default_keyword_used'] = TRUE;
     }
@@ -428,13 +407,9 @@ function serchilo_get_output($env) {
     // Try via keyword and argument_count.
     $shortcut = serchilo_find_shortcut($env['keyword'], $env['argument_count'], $env['namespace_ids']);
     if ($shortcut) {
-      $output['url']['template'] = $shortcut['url'];
-      $variables = serchilo_get_url_variables($env);
-      $output['url']['replaced_variables'] = serchilo_replace_variables($shortcut['url'],  $variables);
-      $output['status']['found'] = TRUE;
-      $output['namespace']['name'] = $shortcut['namespace_name'];
-      $output['#shortcut'] = $shortcut;
+      $output = serchilo_shortcut_to_output($shortcut, $env);
     }
+    $output['status']['default_keyword_used'] = FALSE;
   }
 
   if (empty($output['url'])) {
@@ -454,6 +429,38 @@ function serchilo_get_output($env) {
   // Not set when calling via u/
   // .. so left out for now, maybe not needed.
   //$output['namespaces'] = $env['namespace_names'];
+
+  return $output;
+}
+
+/**
+ * Convert the found shortcut to an output array.
+ *
+ * @param array $shortcut
+ *   The shortcut to call.
+ * @param array $env
+ *   The environment.
+ *   
+ * @return array $output
+ *   The output.
+ */
+function serchilo_shortcut_to_output($shortcut, $env) {
+
+  $output = array();
+  $output['url']['template'] = $shortcut['url'];
+  $variables = serchilo_get_url_variables($env);
+  $output['url']['replaced_variables'] = serchilo_replace_variables($shortcut['url'],  $variables);
+  if (!empty($env['arguments'])) {
+    $output['url']['final'] = serchilo_replace_arguments(
+      $output['url']['replaced_variables'],
+      $env['arguments'], 
+      $shortcut['input_encoding']
+    );
+  }
+  $output['status']['found'] = TRUE;
+  $output['namespace']['name'] = $shortcut['namespace_name'];
+  $output['url']['post_parameters'] = serchilo_get_post_parameters($shortcut, $env['arguments'], $variables);
+  $output['#shortcut'] = $shortcut;
 
   return $output;
 }
