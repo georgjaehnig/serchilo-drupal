@@ -146,10 +146,8 @@ function serchilo_populate_environment(&$env) {
     $env['user_name'] = serchilo_get_user_name_from_path($env['path_elements_offset']);
     $env['namespace_ids'] = serchilo_get_namespace_ids_from_user($env['user_name']);
 
-    if (!empty($env['extra_namespace_name'])) {
-      if ($env['extra_namespace_id'] = serchilo_get_namespace_id($env['extra_namespace_name'])) {
-        $env['namespace_ids'][] = $env['extra_namespace_id'];
-      }
+    if ($env['extra_namespace_id'] = serchilo_get_namespace_id($env['extra_namespace_name'])) {
+      $env['namespace_ids'][] = $env['extra_namespace_id'];
     }
 
     // Get namespace_names from namespace_ids.
@@ -755,6 +753,9 @@ function serchilo_extract_keyword_and_arguments($query, $max_arguments = -1) {
  */
 function serchilo_get_namespace_id($namespace_name) {
 
+  if (empty($namespace_name)) {
+    return 0; 
+  }
   global $mysqli;
 
   $sql = "
