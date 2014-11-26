@@ -364,6 +364,7 @@ function serchilo_get_output($env) {
 
   if (!empty($env['query'])) {
 
+    // Try via query.
     $shortcut = serchilo_find_shortcut($env['keyword'], count($env['arguments']), $env['namespace_ids']);
     if ($shortcut) {
       $output['url']['template'] = $shortcut['url'];
@@ -378,6 +379,8 @@ function serchilo_get_output($env) {
       $output['status']['found'] = TRUE;
       $output['namespace']['name'] = $shortcut['namespace_name'];
     } else {
+
+      // Try via default_keyword.
       $output['status']['default_keyword_used'] = TRUE;
       
       // Build query again with default keyword.
@@ -405,7 +408,10 @@ function serchilo_get_output($env) {
       }
     }
   }
+
   else {
+
+    // Try via keyword and argument_count.
     $shortcut = serchilo_find_shortcut($env['keyword'], $env['argument_count'], $env['namespace_ids']);
     if ($shortcut) {
       $output['url']['template'] = $shortcut['url'];
