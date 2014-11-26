@@ -646,13 +646,16 @@ LIMIT " . (int) $limit . ";
  */
 function serchilo_parse_query($query, $max_arguments = -1) {
 
-  $env = serchilo_extract_keyword_and_arguments($query, $max_arguments);
-  $env = serchilo_get_extra_namespace_from_keyword($env['keyword']) + $env;
+  // Remember query.
+  $parsed['query'] = $query;
+
+  $parsed = serchilo_extract_keyword_and_arguments($query, $max_arguments);
+  $parsed = serchilo_get_extra_namespace_from_keyword($parsed['keyword']) + $parsed;
   
   // Lowercase the keyword.
-  $env['keyword'] = strtolower($env['keyword']);
+  $parsed['keyword'] = strtolower($parsed['keyword']);
 
-  return $env;
+  return $parsed;
 }
 
 /**
