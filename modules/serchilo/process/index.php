@@ -146,9 +146,6 @@ function serchilo_populate_environment(&$env) {
     $env['language_namespace_name'] = $env['namespace_names'][1];
     $env['country_namespace_name']  = $env['namespace_names'][2];
 
-    // Parse the query and set keyword, arguments and extra_namespace_name.
-    $env += serchilo_parse_query($env['query']);
-
     // Add extra_namespace to namespace_names.
     if (!empty($env['extra_namespace_name'])) {
       $env['namespace_names'][] = $env['extra_namespace_name'];
