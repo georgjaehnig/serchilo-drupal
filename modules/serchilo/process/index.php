@@ -386,6 +386,11 @@ function serchilo_get_output($env) {
       $env['query'] = $env['default_keyword'] . ' ' . $env['query'];
       $env = serchilo_parse_query($env['query']) + $env;
 
+      // Add extra namespace from default keyword if present.
+      if (!empty($env['extra_namespace_name'])) {
+        $env['namespace_ids'][] = serchilo_get_namespace_id($env['extra_namespace_name']);
+      }
+
       $shortcut = serchilo_find_shortcut($env['keyword'], count($env['arguments']), $env['namespace_ids']);
       if ($shortcut) {
         $output['url']['template'] = $shortcut['url'];
