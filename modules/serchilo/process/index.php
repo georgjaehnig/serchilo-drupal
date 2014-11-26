@@ -146,6 +146,7 @@ function serchilo_populate_environment(&$env) {
     $env['user_name'] = serchilo_get_user_name_from_path($env['path_elements_offset']);
     $env['namespace_ids'] = serchilo_get_namespace_ids_from_user($env['user_name']);
 
+    // Yes, one '=' is correct.
     if ($env['extra_namespace_id'] = serchilo_get_namespace_id($env['extra_namespace_name'])) {
       $env['namespace_ids'][] = $env['extra_namespace_id'];
     }
