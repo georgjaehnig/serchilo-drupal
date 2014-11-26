@@ -168,7 +168,7 @@ function serchilo_schema() {
         'description' => 'The execution time of a shortcut call.',
         'type' => 'float',
         'unsigned' => TRUE,
-        'not null' => FALSE,
+        'not null' => TRUE,
       ),
     ),
     'primary key' => array('id'),
