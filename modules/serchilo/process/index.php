@@ -218,7 +218,7 @@ function serchilo_process_query_console($env) {
     }
   } 
 
-  // If all failed:
+  // If no shortcut found:
 
   // Get shortcut suggestions.
   $suggested_shortcuts = serchilo_search_shortcuts($env['keyword'], $env['arguments'], $env['query'], $env['namespace_ids'], $env['extra_namespace_name']);
