@@ -196,7 +196,8 @@ function serchilo_process_query_console($env) {
 
   if ($output['status']['found']) {
 
-    serchilo_log_shortcut_call($output['#shortcut']);
+    serchilo_log_shortcut_call($output['#shortcut'], $output['status']['default_keyword_used']);
+
     if (!empty($output['url']['post_parameters'])) {
       // Redirect via HTML form
       // for shortcuts with POST parameters
@@ -920,7 +921,7 @@ function serchilo_get_user_name_from_path($path_elements_offset = 0) {
  *
  * @return void
  */
-function serchilo_log_shortcut_call($shortcut) {
+function serchilo_log_shortcut_call($shortcut, $default_keyword_used = FALSE) {
 
   global $mysqli;
 
@@ -931,12 +932,14 @@ INSERT INTO
   (
     shortcut_id, 
     namespace_id, 
+    default_keyword_used,
     called,
     execution_time
   )
   VALUES (
     :shortcut_id, 
     :namespace_id, 
+    :default_keyword_used,
     :called,
     :execution_time
   );
@@ -949,6 +952,7 @@ INSERT INTO
     array(
       'shortcut_id'    => $shortcut['nid'],
       'namespace_id'   => $shortcut['namespace_id'],
+      'default_keyword_used' => $default_keyword_used,
       'called'         => time(),
       'execution_time' => serchilo_get_execution_time(),
     )
