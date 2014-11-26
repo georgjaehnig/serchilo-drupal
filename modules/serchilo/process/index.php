@@ -379,13 +379,10 @@ function serchilo_get_output($env) {
       $output['namespace']['name'] = $shortcut['namespace_name'];
     } else {
       $output['status']['default_keyword_used'] = TRUE;
-      // Try again with default keyword.
-      if (!empty($env['user_name'])) {
-        $env['default_keyword'] = serchilo_get_default_keyword($env['user_name']);
-      } else {
-        // TODO: If default keyword is empty, rather return here.
-        $env['default_keyword'] = '';
-      }
+      
+      // TODO: get namespace_id from default_keyword
+      $env['default_keyword'] = serchilo_get_default_keyword($env['user_name'] ?: NULL);
+
       $env['query'] = $env['default_keyword'] . ' ' . $env['query'];
       $env = serchilo_parse_query($env['query']) + $env;
 
