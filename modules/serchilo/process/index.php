@@ -196,23 +196,21 @@ function serchilo_process_query_console($env) {
 
   if ($output['status']['found']) {
 
+    serchilo_log_shortcut_call($output['#shortcut']);
     if (!empty($output['url']['post_parameters'])) {
       // Redirect via HTML form
       // for shortcuts with POST parameters
-      serchilo_log_shortcut_call($output['#shortcut']);
       serchilo_redirect_via_form($output['url']['final'], $output['url']['post_parameters']);
       exit();
     }
     elseif (empty($output['#shortcut']['set_referrer'])) {
       // Classic redirect.
-      serchilo_log_shortcut_call($output['#shortcut']);
       header('Location: ' . $output['url']['final']);
       exit();
     }
     else {
       // Redirect via HTML page
       // for shortcuts which need a referrer.
-      serchilo_log_shortcut_call($output['#shortcut']);
       serchilo_redirect_via_meta($output['url']['final']);
       exit();
     }
