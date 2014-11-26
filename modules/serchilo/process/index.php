@@ -3,6 +3,7 @@
 $execution_time_start = microtime(TRUE);
 
 require_once('../serchilo.constants.inc');
+require_once('../serchilo.overall.inc');
 
 serchilo_connect_db();
 

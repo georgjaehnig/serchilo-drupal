@@ -1,6 +1,7 @@
 <?php
 
 require_once('serchilo.constants.inc');
+require_once('serchilo.overall.inc');
 
 // HOOKS 
 
@@ -1374,16 +1375,6 @@ function serchilo_keyword_is_new($node) {
   }
 
   return FALSE;
-}
-
-
-// PHP HELPERS
-
-function serchilo_array_value($array, $key, $default_value = null) {
-  if (isset($array[$key])) {
-    return $array[$key];
-  }
-  return $default_value;
 }
 
 
