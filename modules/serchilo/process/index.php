@@ -382,6 +382,7 @@ function serchilo_get_output($env) {
       if (!empty($env['user_name'])) {
         $env['default_keyword'] = serchilo_get_default_keyword($env['user_name']);
       } else {
+        // TODO: If default keyword is empty, rather return here.
         $env['default_keyword'] = '';
       }
       $env['query'] = $env['default_keyword'] . ' ' . $env['query'];
