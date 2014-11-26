@@ -460,6 +460,8 @@ function serchilo_shortcut_to_output($shortcut, $env) {
   $output['status']['found'] = TRUE;
   $output['namespace']['name'] = $shortcut['namespace_name'];
   $output['url']['post_parameters'] = serchilo_get_post_parameters($shortcut, $env['arguments'], $variables);
+  $output['shortcut']['id'] = $shortcut['nid'];
+
   $output['#shortcut'] = $shortcut;
 
   return $output;
