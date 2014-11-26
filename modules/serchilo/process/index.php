@@ -107,7 +107,16 @@ function serchilo_populate_environment(&$env) {
     break;
   case SERCHILO_API_PATH_AFFIX:
   case SERCHILO_URL_PATH_AFFIX:
-    $env['query'] = $_GET['query'];
+    if (isset($_GET['query'])) {
+      // TODO: refactor query handling.
+      $env['query'] = $_GET['query'];
+      $env['query'] = trim($env['query']);
+      // Parse the query and set keyword, arguments and extra_namespace_name.
+      $env += serchilo_parse_query($env['query']);
+    } else {
+      $env['keyword']        = $_GET['keyword'];
+      $env['argument_count'] = (isset($_GET['argument_count']) ? $_GET['argument_count'] : 0);
+    }
     $env['path_elements_offset'] = 1;
     break;
   case SERCHILO_AUTOCOMPLETE_PATH_AFFIX:
@@ -380,8 +389,6 @@ function serchilo_get_output($env) {
     }
   }
   else {
-    $env['keyword']        = $_GET['keyword'];
-    $env['argument_count'] = $_GET['argument_count'];
     $shortcut = serchilo_find_shortcut($env['keyword'], $env['argument_count'], $env['namespace_ids']);
     if ($shortcut) {
       $output['url']['template'] = $shortcut['url'];
