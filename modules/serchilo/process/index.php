@@ -326,6 +326,9 @@ function serchilo_process_opensearch_suggestions($env) {
 function serchilo_process_query_api($env) {
 
   $output = serchilo_get_output($env);
+  if ($output['status']['found']) {
+    serchilo_log_shortcut_call($output['#shortcut'], $env['page_type'], $output['status']['default_keyword_used']);
+  }
   unset($output['#shortcut']);
   serchilo_output_json($output);
 }
@@ -339,6 +342,10 @@ function serchilo_process_query_api($env) {
 function serchilo_process_query_url($env) {
 
   $output = serchilo_get_output($env);
+
+  if ($output['status']['found']) {
+    serchilo_log_shortcut_call($output['#shortcut'], $env['page_type'], $output['status']['default_keyword_used']);
+  }
 
   header('Content-Type: text/plain');
   if (!empty($output['url']['final'])) {
