@@ -112,9 +112,9 @@ function serchilo_populate_environment(&$env) {
       $env = serchilo_handle_query_from_request() + $env;
     } else {
       $env['keyword']        = trim(serchilo_array_value($_GET, 'keyword'));
-      $env = serchilo_get_extra_namespace_from_keyword($env['keyword']) + $env;
       $env['argument_count'] = serchilo_array_value($_GET, 'argument_count', 0);
       $env['arguments'] = array();
+      $env = serchilo_get_extra_namespace_from_keyword($env['keyword']) + $env;
     }
     $env['path_elements_offset'] = 1;
     break;
