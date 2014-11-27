@@ -50,8 +50,8 @@ function serchilo_features_field_group_info() {
     'weight' => '22',
     'children' => array(
       0 => 'field_input_encoding',
-      1 => 'field_test',
-      2 => 'field_post_parameters',
+      1 => 'field_post_parameters',
+      2 => 'field_test',
     ),
     'format_type' => 'accordion-item',
     'format_settings' => array(
