@@ -39,7 +39,33 @@ function serchilo_drush_command() {
     'aliases' => array('scsw'), 
   );
 
+  $items['serchilo-approve-shortcuts'] = array(
+    'callback' => 'drush_serchilo_approve_shortcuts',
+    'aliases' => array('sas'), 
+  );
+
   return $items;
+}
+
+function drush_serchilo_approve_shortcuts() {
+  
+  $efq = new EntityFieldQuery;
+
+  $result = $efq
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'shortcut')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    #->range(0,100)
+    ->execute();
+
+  $nids = array_keys(array_shift($result));
+
+  foreach ($nids as $nid) {
+    $node = node_load($nid);
+    $node->field_approved[LANGUAGE_NONE][0]['value'] = 1;
+    field_attach_update('node', $node);
+    echo $nid;
+  }
 }
 
 /**
