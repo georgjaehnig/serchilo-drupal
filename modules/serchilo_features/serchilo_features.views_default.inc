@@ -420,6 +420,7 @@ function serchilo_features_views_default_views() {
     'title' => 'title',
     'field_namespace' => 'field_namespace',
     'field_tags' => 'field_tags',
+    'field_approved' => 'field_approved',
   );
   $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
@@ -452,6 +453,13 @@ function serchilo_features_views_default_views() {
       'empty_column' => 0,
     ),
     'field_tags' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_approved' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -599,6 +607,52 @@ function serchilo_features_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Keyword */
+  $handler->display->display_options['fields']['field_keyword']['id'] = 'field_keyword';
+  $handler->display->display_options['fields']['field_keyword']['table'] = 'field_data_field_keyword';
+  $handler->display->display_options['fields']['field_keyword']['field'] = 'field_keyword';
+  $handler->display->display_options['fields']['field_keyword']['element_label_colon'] = FALSE;
+  /* Field: Content: Argument names */
+  $handler->display->display_options['fields']['field_argument_names']['id'] = 'field_argument_names';
+  $handler->display->display_options['fields']['field_argument_names']['table'] = 'field_data_field_argument_names';
+  $handler->display->display_options['fields']['field_argument_names']['field'] = 'field_argument_names';
+  $handler->display->display_options['fields']['field_argument_names']['label'] = 'Arguments';
+  $handler->display->display_options['fields']['field_argument_names']['element_label_colon'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Namespace */
+  $handler->display->display_options['fields']['field_namespace']['id'] = 'field_namespace';
+  $handler->display->display_options['fields']['field_namespace']['table'] = 'field_data_field_namespace';
+  $handler->display->display_options['fields']['field_namespace']['field'] = 'field_namespace';
+  $handler->display->display_options['fields']['field_namespace']['element_label_colon'] = FALSE;
+  /* Field: Content: Tags */
+  $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
+  $handler->display->display_options['fields']['field_tags']['table'] = 'field_data_field_tags';
+  $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
+  $handler->display->display_options['fields']['field_tags']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_tags']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_tags']['multi_type'] = 'ul';
+  $handler->display->display_options['fields']['field_tags']['separator'] = '';
+  /* Field: Content: Approved */
+  $handler->display->display_options['fields']['field_approved']['id'] = 'field_approved';
+  $handler->display->display_options['fields']['field_approved']['table'] = 'field_data_field_approved';
+  $handler->display->display_options['fields']['field_approved']['field'] = 'field_approved';
+  $handler->display->display_options['fields']['field_approved']['label'] = '✔';
+  $handler->display->display_options['fields']['field_approved']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_approved']['alter']['text'] = '<div title="✔ = Approved, ✖ = pending moderation">[field_approved]</div>';
+  $handler->display->display_options['fields']['field_approved']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_approved']['type'] = 'boolean_yes_no';
+  $handler->display->display_options['fields']['field_approved']['settings'] = array(
+    'format' => 'custom',
+    'custom_on' => '✔',
+    'custom_off' => '✖',
+    'reverse' => 0,
+  );
   $handler->display->display_options['path'] = 'shortcuts';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Shortcuts';
@@ -727,6 +781,8 @@ function serchilo_features_views_default_views() {
     t('<div title="✔ = Approved, ✖ = pending moderation">[status]</div>'),
     t('URL'),
     t('Page'),
+    t('✔'),
+    t('<div title="✔ = Approved, ✖ = pending moderation">[field_approved]</div>'),
     t('Feed'),
     t('Path'),
     t('Empty'),
