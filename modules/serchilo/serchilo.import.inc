@@ -71,7 +71,6 @@ function serchilo_import_shortcuts($rows, $verbose = FALSE) {
 
     $shortcut->comment = COMMENT_NODE_OPEN;
     $shortcut->status = NODE_PUBLISHED;
-    $shortcut->revision_moderation = FALSE;
     $shortcut->title = $row['title'];
     drupal_array_set_nested_value($shortcut->field_keyword,        array( LANGUAGE_NONE, 0, 'value'), $row['keyword']);
     drupal_array_set_nested_value($shortcut->field_description,    array( LANGUAGE_NONE, 0, 'value'), $row['description']);

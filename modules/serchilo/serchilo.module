@@ -40,6 +40,18 @@ function serchilo_static_content_dirs() {
   );
 }
 
+/**
+ * Implements hook_permission().
+ */
+function serchilo_permission() {
+
+  $items = array();
+  $items['approve shortcut content'] = array(
+    'title' => t('Approve shortcuts'),
+  );
+  return $items;
+}
+
 
 // CRON
 
@@ -591,7 +603,7 @@ function serchilo_block_licenses() {
  */
 function serchilo_node_insert($node) {
   if ($node->type == 'shortcut') {
-    if (empty($node->revision_moderation)) {
+    if (!empty($node->field_approved[LANGUAGE_NONE][0]['value'])) {
       module_load_include('inc', 'serchilo', 'serchilo.sync');
       serchilo_insert_shortcut_row($node);
     }
@@ -603,7 +615,7 @@ function serchilo_node_insert($node) {
  */
 function serchilo_node_update($node) {
   if ($node->type == 'shortcut') {
-    if (empty($node->revision_moderation)) {
+    if (!empty($node->field_approved[LANGUAGE_NONE][0]['value'])) {
       module_load_include('inc', 'serchilo', 'serchilo.sync');
       serchilo_insert_or_update_shortcut_row($node);
     }
@@ -628,23 +640,8 @@ function serchilo_node_submit($node, $form, &$form_state) {
   if ($node->type == 'shortcut') {
 
     serchilo_set_shortcut_arguments_data($node);
-
-    // Only if this is a edit
-    // where a new revision has to be set
-    // (i.e. not an automatic edit by weights update cron function)
-    if (
-      (empty($node->revision_operation)) ||
-      ($node->revision_operation > REVISIONING_NO_REVISION)
-    ) {
-      // revoke moderation flag
-      // if non-sensible edit
-      $is_sensible_edit = serchilo_is_sensible_edit($node);
-      if ($is_sensible_edit) {
-        $node->revision_operation = REVISIONING_NEW_REVISION_WITH_MODERATION;
-      } else {
-        $node->revision_operation = REVISIONING_NEW_REVISION_NO_MODERATION;
-      }
-    }
+    $is_sensible_edit = serchilo_is_sensible_edit($node);
+    $node->field_approved[LANGUAGE_NONE][0]['value'] = (int) !$is_sensible_edit;
   }
 }
 
@@ -670,15 +667,6 @@ function serchilo_set_shortcut_arguments_data(&$node) {
   drupal_array_set_nested_value($node->field_argument_count, array(LANGUAGE_NONE, 0, 'value'), count($argument_names));
 }
 
-/**
- * Implements hook_revision_publish().
- */
-function serchilo_revision_publish($node) {
-  if ($node->type == 'shortcut') {
-    module_load_include('inc', 'serchilo', 'serchilo.sync');
-    serchilo_insert_or_update_shortcut_row($node);
-  }
-}
 
 /**
  * Implements hook_node_access().
@@ -722,7 +710,8 @@ function serchilo_node_access($node, $op, $account) {
 function serchilo_node_view($node, $view_mode, $langcode) {
 
   if ('shortcut' == $node->type) {
-    if ($node->is_pending) {
+
+    if (empty($node->field_approved[LANGUAGE_NONE][0]['value'])) {
       drupal_set_message('This shortcut revision has not yet been approved, so it cannot be called.', 'warning');
     }
     else {
@@ -1249,6 +1238,11 @@ function serchilo_is_sensible_edit($node) {
   // than a wrong FALSE in this context.
   if ($node->type != 'shortcut') {
     return TRUE;
+  }
+
+  // Allow users with approve permission to do anything.
+  if (user_access('approve shortcut content')) {
+    return FALSE;
   }
 
   // Default is TRUE.

@@ -268,6 +268,15 @@ function serchilo_features_user_default_permissions() {
     'module' => 'views',
   );
 
+  // Exported permission: 'approve shortcut content'.
+  $permissions['approve shortcut content'] = array(
+    'name' => 'approve shortcut content',
+    'roles' => array(
+      'moderator' => 'moderator',
+    ),
+    'module' => 'serchilo',
+  );
+
   // Exported permission: 'block IP addresses'.
   $permissions['block IP addresses'] = array(
     'name' => 'block IP addresses',
@@ -323,6 +332,15 @@ function serchilo_features_user_default_permissions() {
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'clone',
+  );
+
+  // Exported permission: 'create field_approved'.
+  $permissions['create field_approved'] = array(
+    'name' => 'create field_approved',
+    'roles' => array(
+      'moderator' => 'moderator',
+    ),
+    'module' => 'field_permissions',
   );
 
   // Exported permission: 'create field_argument_count'.
@@ -553,6 +571,15 @@ function serchilo_features_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'edit field_approved'.
+  $permissions['edit field_approved'] = array(
+    'name' => 'edit field_approved',
+    'roles' => array(
+      'moderator' => 'moderator',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'edit field_argument_count'.
   $permissions['edit field_argument_count'] = array(
     'name' => 'edit field_argument_count',
@@ -724,6 +751,15 @@ function serchilo_features_user_default_permissions() {
     'module' => 'comment',
   );
 
+  // Exported permission: 'edit own field_approved'.
+  $permissions['edit own field_approved'] = array(
+    'name' => 'edit own field_approved',
+    'roles' => array(
+      'moderator' => 'moderator',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'edit own field_argument_count'.
   $permissions['edit own field_argument_count'] = array(
     'name' => 'edit own field_argument_count',
@@ -888,16 +924,6 @@ function serchilo_features_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'edit revisions'.
-  $permissions['edit revisions'] = array(
-    'name' => 'edit revisions',
-    'roles' => array(
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'revisioning',
-  );
-
   // Exported permission: 'edit terms in namespace_types'.
   $permissions['edit terms in namespace_types'] = array(
     'name' => 'edit terms in namespace_types',
@@ -957,27 +983,6 @@ function serchilo_features_user_default_permissions() {
     'module' => 'comment',
   );
 
-  // Exported permission: 'publish revisions'.
-  $permissions['publish revisions'] = array(
-    'name' => 'publish revisions',
-    'roles' => array(),
-    'module' => 'revisioning',
-  );
-
-  // Exported permission: 'publish revisions of any shortcut content'.
-  $permissions['publish revisions of any shortcut content'] = array(
-    'name' => 'publish revisions of any shortcut content',
-    'roles' => array(),
-    'module' => 'revisioning',
-  );
-
-  // Exported permission: 'publish revisions of own shortcut content'.
-  $permissions['publish revisions of own shortcut content'] = array(
-    'name' => 'publish revisions of own shortcut content',
-    'roles' => array(),
-    'module' => 'revisioning',
-  );
-
   // Exported permission: 'rename features'.
   $permissions['rename features'] = array(
     'name' => 'rename features',
@@ -1023,11 +1028,13 @@ function serchilo_features_user_default_permissions() {
     'module' => 'locale',
   );
 
-  // Exported permission: 'unpublish current revision'.
-  $permissions['unpublish current revision'] = array(
-    'name' => 'unpublish current revision',
-    'roles' => array(),
-    'module' => 'revisioning',
+  // Exported permission: 'view field_approved'.
+  $permissions['view field_approved'] = array(
+    'name' => 'view field_approved',
+    'roles' => array(
+      'moderator' => 'moderator',
+    ),
+    'module' => 'field_permissions',
   );
 
   // Exported permission: 'view field_argument_count'.
@@ -1185,6 +1192,15 @@ function serchilo_features_user_default_permissions() {
   $permissions['view field_weight'] = array(
     'name' => 'view field_weight',
     'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'view own field_approved'.
+  $permissions['view own field_approved'] = array(
+    'name' => 'view own field_approved',
+    'roles' => array(
+      'moderator' => 'moderator',
+    ),
     'module' => 'field_permissions',
   );
 
@@ -1355,13 +1371,6 @@ function serchilo_features_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'view revision status messages'.
-  $permissions['view revision status messages'] = array(
-    'name' => 'view revision status messages',
-    'roles' => array(),
-    'module' => 'revisioning',
-  );
-
   // Exported permission: 'view revisions'.
   $permissions['view revisions'] = array(
     'name' => 'view revisions',
@@ -1370,20 +1379,6 @@ function serchilo_features_user_default_permissions() {
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'node',
-  );
-
-  // Exported permission: 'view revisions of any shortcut content'.
-  $permissions['view revisions of any shortcut content'] = array(
-    'name' => 'view revisions of any shortcut content',
-    'roles' => array(),
-    'module' => 'revisioning',
-  );
-
-  // Exported permission: 'view revisions of own shortcut content'.
-  $permissions['view revisions of own shortcut content'] = array(
-    'name' => 'view revisions of own shortcut content',
-    'roles' => array(),
-    'module' => 'revisioning',
   );
 
   // Exported permission: 'view the administration theme'.
