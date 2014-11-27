@@ -626,13 +626,16 @@ SELECT
     FROM 
       serchilo_shortcut AS csub
     WHERE 
-      csub.nid = c.nid
-      AND
       argument_count = c.argument_count
       AND
       keyword = c.keyword
       AND
       namespace_id IN (" . join(',', $namespace_ids) .  ")
+    ORDER BY
+      # Rightmost namespaces first
+      " . 
+      join(',', array_map(function($v) { return "namespace_id = " . (int) $v . " DESC";  }, array_reverse($namespace_ids))) 
+      . "
     LIMIT 1
   ) AS reachable
 FROM 
@@ -668,8 +671,6 @@ ORDER BY
 
   keyword = :keyword DESC,
   keyword LIKE :keyword_like_right DESC,
-
-  reachable DESC,
 
   # Short namespaces first, to get site namespaces first
   # TODO: Save namespace type as well and order by it directly
