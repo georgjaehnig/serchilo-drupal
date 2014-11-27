@@ -1243,68 +1243,72 @@ function serchilo_is_sensible_edit($node) {
 
   global $user;
 
+  // Should only be called for shortcuts anyway.
+  // But better return TRUE in error case
+  // because a wrong TRUE probably causes less harm
+  // than a wrong FALSE in this context.
+  if ($node->type != 'shortcut') {
+    return TRUE;
+  }
+
   // Default is TRUE.
   $is_sensible_edit = TRUE;
 
-  // TODO:
-  // better use node_type_get_type() ?
-  if ($node->type == 'shortcut') {
+  // If the user is logged in and the shortcut is saved to the current user's namespace,
+  // it is not sensible, since users can do anything in their own namespaces.
+  if (
+    (user_is_logged_in()) &&
+    ($user->name == drupal_array_get_nested_value($node->field_namespace, array(LANGUAGE_NONE, 0, 'name')))
+  ) {
+    $is_sensible_edit = FALSE; 
+    return $is_sensible_edit;
+  }
 
-    // If the user is logged in and the shortcut is saved to the current user's namespace,
-    // it is not sensible, since users can do anything in their own namespaces.
-    if (
-      (user_is_logged_in()) &&
-      ($user->name == drupal_array_get_nested_value($node->field_namespace, array(LANGUAGE_NONE, 0, 'name')))
-    ) {
-      $is_sensible_edit = FALSE; 
+  // Non-new shortcuts:
+  if (!empty($node->nid)) {
+    $original_node = node_load($node->nid);
+    $is_sensible_edit = (
+      (
+        // change in keyword
+        drupal_array_get_nested_value($original_node->field_keyword, array(LANGUAGE_NONE, 0, 'value')) 
+        != drupal_array_get_nested_value($node->field_keyword, array(LANGUAGE_NONE, 0, 'value'))
+      ) 
+      ||
+      (
+        // change in url
+        drupal_array_get_nested_value($original_node->field_url, array(LANGUAGE_NONE, 0, 'value')) 
+        != drupal_array_get_nested_value($node->field_url, array(LANGUAGE_NONE, 0, 'value'))
+      ) 
+      ||
+      (
+        // change in namespace
+        drupal_array_get_nested_value($original_node->field_namespace, array(LANGUAGE_NONE, 0, 'tid')) 
+        != drupal_array_get_nested_value($node->field_namespace, array(LANGUAGE_NONE, 0, 'tid'))
+      ) 
+    );
+  }
+
+  // New shortcuts:
+  else {
+
+    // Allow adding a shortcut to SERCHILO_PLANET_NAMESPACE 
+    // if the keyword is new in SERCHILO_PLANET_NAMESPACE.
+    if (serchilo_keyword_is_new_in_planet_namespace($node)) {
+      $is_sensible_edit = FALSE;
       return $is_sensible_edit;
     }
 
-    // Non-new shortcuts:
-    if (!empty($node->nid)) {
-      $original_node = node_load($node->nid);
-      $is_sensible_edit = (
-        (
-          // change in keyword
-          drupal_array_get_nested_value($original_node->field_keyword, array(LANGUAGE_NONE, 0, 'value')) 
-          != drupal_array_get_nested_value($node->field_keyword, array(LANGUAGE_NONE, 0, 'value'))
-        ) 
-        ||
-        (
-          // change in url
-          drupal_array_get_nested_value($original_node->field_url, array(LANGUAGE_NONE, 0, 'value')) 
-          != drupal_array_get_nested_value($node->field_url, array(LANGUAGE_NONE, 0, 'value'))
-        ) 
-        ||
-        (
-          // change in namespace
-          drupal_array_get_nested_value($original_node->field_namespace, array(LANGUAGE_NONE, 0, 'tid')) 
-          != drupal_array_get_nested_value($node->field_namespace, array(LANGUAGE_NONE, 0, 'tid'))
-        ) 
-      );
+    // Allow adding a shortcut to any site namespace 
+    // if the keyword is new to any namespace.
+    if (serchilo_keyword_is_new($node)) {
+      $is_sensible_edit = FALSE;
+      return $is_sensible_edit;
     }
 
-    // New shortcuts:
-    else {
-
-      // Allow adding a shortcut to SERCHILO_PLANET_NAMESPACE 
-      // if the keyword is new in SERCHILO_PLANET_NAMESPACE.
-      if (serchilo_keyword_is_new_in_planet_namespace($node)) {
-        $is_sensible_edit = FALSE;
-        return $is_sensible_edit;
-      }
-
-      // Allow adding a shortcut to any site namespace 
-      // if the keyword is new to any namespace.
-      if (serchilo_keyword_is_new($node)) {
-        $is_sensible_edit = FALSE;
-        return $is_sensible_edit;
-      }
-
-      // Every other new shortcut is sensible.
-      $is_sensible_edit = TRUE;
-    }
+    // Every other new shortcut is sensible.
+    $is_sensible_edit = TRUE;
   }
+
   return $is_sensible_edit;
 }
 
