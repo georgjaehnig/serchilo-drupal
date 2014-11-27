@@ -707,7 +707,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'A string of key=value pairs separated by "&", to be sent with POST method. May contain placeholders as the URL.',
+    'description' => 'A string of key=value pairs separated by ampersands, to be sent with POST method. May contain placeholders as the URL.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1137,7 +1137,7 @@ function serchilo_features_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('A string of key=value pairs separated by "&", to be sent with POST method. May contain placeholders as the URL.');
+  t('A string of key=value pairs separated by ampersands, to be sent with POST method. May contain placeholders as the URL.');
   t('Allows regular automatic testing to check if the shortcut URL is still valid.');
   t('Argument count');
   t('Argument names');
