@@ -52,6 +52,25 @@ function serchilo_permission() {
   return $items;
 }
 
+/**
+ * Implements hook_entity_diff_alter().
+ */
+function serchilo_entity_diff_alter(&$entity_diffs, $context) { 
+
+  if ($context['entity_type'] = 'node') {
+    if ($context['bundle'] = 'shortcut') {
+
+      // Remove hidden fields from diff.
+      unset($entity_diffs['field_calls_last_30_days']);
+      unset($entity_diffs['field_calls_total']);
+      unset($entity_diffs['field_weight']);
+
+      // TODO: Better display of field_approved.
+    }
+  }
+
+}
+
 
 // CRON
 
