@@ -67,26 +67,20 @@ function serchilo_entity_diff_alter(&$entity_diffs, $context) {
       unset($entity_diffs['field_calls_last_30_days']);
       unset($entity_diffs['field_calls_total']);
       unset($entity_diffs['field_weight']);
-      $entity_diffs['field_example']['#old'] = join("\n", serchilo_render_field_collection_revision(
-        $context['old_entity']->field_example, 
-        array('field_example_arguments','field_example_description'),
-        '[field_example_arguments] → [field_example_description]'
-      ));
-      $entity_diffs['field_example']['#new'] = join("\n", serchilo_render_field_collection_revision(
-        $context['new_entity']->field_example, 
-        array('field_example_arguments','field_example_description'),
-        '[field_example_arguments] → [field_example_description]'
-      ));
-      $entity_diffs['field_test']['#old'] = join("\n", serchilo_render_field_collection_revision(
-        $context['old_entity']->field_test, 
-        array('field_test_arguments','field_test_expected_content'),
-        '[field_test_arguments] → [field_test_expected_content]'
-      ));
-      $entity_diffs['field_test']['#new'] = join("\n", serchilo_render_field_collection_revision(
-        $context['new_entity']->field_test, 
-        array('field_test_arguments','field_test_expected_content'),
-        '[field_test_arguments] → [field_test_expected_content]'
-      ));
+      foreach (array('old', 'new') as $old_new) {
+        $entity_diffs['field_example']['#'.$old_new] = join("\n", serchilo_render_field_collection_revision(
+          $context[$old_new.'_entity']->field_example, 
+          array('field_example_arguments','field_example_description'),
+          '[field_example_arguments] → [field_example_description]'
+        ));
+      }
+      foreach (array('old', 'new') as $old_new) {
+        $entity_diffs['field_test']['#'.$old_new] = join("\n", serchilo_render_field_collection_revision(
+          $context[$old_new.'_entity']->field_test, 
+          array('field_test_arguments','field_test_expected_content'),
+          '[field_test_arguments] → [field_test_expected_content]'
+        ));
+      }
 
       $mapping_approved = array(
         0 => '✖ (' . t('pending moderation') . ')',
