@@ -206,7 +206,6 @@ function serchilo_menu() {
     SERCHILO_NAMESPACES_PATH_AFFIX => array(
       'page callback' => 'serchilo_page_dispatch_namespaces',
       'page arguments' => array(SERCHILO_CONSOLE, 1),
-      #'page callback' => 'serchilo_page_console_namespace',
       'access callback' => true,
       'type' => MENU_CALLBACK,
       'file' => 'serchilo.pages.console.inc',
@@ -214,8 +213,6 @@ function serchilo_menu() {
     SERCHILO_USER_PATH_AFFIX . '/%' => array(
       'page callback' => 'serchilo_page_dispatch_user',
       'page arguments' => array(SERCHILO_CONSOLE, 1),
-      #'page callback' => 'serchilo_page_console_user',
-      #'page arguments' => array(1),
       'access callback' => true,
       'type' => MENU_CALLBACK,
       'file' => 'serchilo.pages.console.inc',
