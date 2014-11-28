@@ -63,6 +63,33 @@ function serchilo_entity_diff_alter(&$entity_diffs, $context) {
   if ($context['entity_type'] = 'node') {
     if ($context['bundle'] = 'shortcut') {
 
+      $order = array(
+        'title',
+        'field_keyword',
+        'field_url',
+        'field_namespace',
+        'field_description',
+        'field_example',
+        'field_tags',
+        'field_input_encoding',
+        'field_post_parameters',
+        'field_test',
+        'field_set_referrer',
+        'field_invisible',
+        'field_weight',
+        'field_command_id',
+        'field_argument_names',
+        'field_argument_count',
+        'field_calls_total',
+        'field_calls_last_30_days',
+        'field_approved',
+      );
+      foreach($order as $index=>&$field_name) {
+        if (!empty($entity_diffs[$field_name])) {
+          $entity_diffs[$field_name]['#weight'] = $index; 
+        }
+      }
+
       // Remove hidden fields from diff.
       unset($entity_diffs['field_calls_last_30_days']);
       unset($entity_diffs['field_calls_total']);
