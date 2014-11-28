@@ -52,6 +52,9 @@ function serchilo_permission() {
   return $items;
 }
 
+
+// DIFF
+
 /**
  * Implements hook_entity_diff_alter().
  */
