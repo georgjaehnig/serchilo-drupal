@@ -55,6 +55,12 @@ function serchilo_page_shortcut_approve($shortcut_id) {
  * @see serchilo_shortcut_approve_confirm_submit()
  */
 function serchilo_shortcut_approve_confirm($form, &$form_state, $node) {
+
+  if (drupal_array_get_nested_value($node->field_approved, array(LANGUAGE_NONE, 0, 'value')) == 1) {
+    $form[]['#markup'] = t('Current shortcut revision is already approved.');
+    return $form;
+  }
+
   $form['#node'] = $node;
   // Always provide entity id in the same form key as in the entity edit form.
   $form['nid'] = array('#type' => 'value', '#value' => $node->nid);
