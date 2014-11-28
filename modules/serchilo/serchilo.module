@@ -113,8 +113,10 @@ function serchilo_entity_diff_alter(&$entity_diffs, $context) {
         0 => '✖ (' . t('pending moderation') . ')',
         1 => '✔ (' . t('approved') . ')',
       );
-      $entity_diffs['field_approved']['#old'] = $mapping_approved[$entity_diffs['field_approved']['#old']];
-      $entity_diffs['field_approved']['#new'] = $mapping_approved[$entity_diffs['field_approved']['#new']];
+      if (!empty($entity_diffs['field_approved'])) {
+        $entity_diffs['field_approved']['#old'] = $mapping_approved[(int) $entity_diffs['field_approved']['#old']];
+        $entity_diffs['field_approved']['#new'] = $mapping_approved[(int) $entity_diffs['field_approved']['#new']];
+      }
 
       // TODO: Better display of field_approved.
     }
@@ -138,6 +140,10 @@ function serchilo_entity_diff_alter(&$entity_diffs, $context) {
  *   The rendered items.
  */
 function serchilo_render_field_collection_revision($field_collection, $field_collection_field_names, $template) {
+
+  if (empty($field_collection)) {
+    return array(); 
+  }
 
   $rendered_items = array();
   foreach ($field_collection[LANGUAGE_NONE] as $item) {
