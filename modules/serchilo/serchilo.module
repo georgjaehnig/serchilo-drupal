@@ -490,7 +490,7 @@ function serchilo_field_formatter_view($entity_type, $entity, $field, $instance,
       'serchilo_shortcut_example_link',
       array(
         'shortcut' => $entity->hostEntity(),
-        'arguments' => ((count($items) > 0) ? $items[0]['safe_value'] : '')
+        'arguments' => ((count($items) > 0) ? $items[0]['value'] : '')
       )
     );
     break; 
