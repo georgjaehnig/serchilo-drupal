@@ -49,8 +49,11 @@ function serchilo_features_metatag_export_default() {
       'generator' => array(
         'value' => 'Drupal 7 (http://drupal.org)',
       ),
-      'image_src' => array(
+      'rights' => array(
         'value' => '',
+      ),
+      'image_src' => array(
+        'value' => '[site:url]/profiles/serchilo_profile/themes/boostrap_serchilo/logo.png',
       ),
       'canonical' => array(
         'value' => '[current-page:url:absolute]',
@@ -71,7 +74,7 @@ function serchilo_features_metatag_export_default() {
         'value' => '',
         'period' => '',
       ),
-      'rights' => array(
+      'content-language' => array(
         'value' => '',
       ),
     ),

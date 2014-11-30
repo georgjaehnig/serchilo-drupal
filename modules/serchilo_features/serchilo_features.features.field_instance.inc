@@ -10,6 +10,39 @@
 function serchilo_features_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'comment-comment_node_forum-comment_body'
+  $field_instances['comment-comment_node_forum-comment_body'] = array(
+    'bundle' => 'comment_node_forum',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'comment',
+    'field_name' => 'comment_body',
+    'label' => 'Comment',
+    'required' => TRUE,
+    'settings' => array(
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 0,
+    ),
+  );
+
   // Exported field_instance: 'comment-comment_node_shortcut-comment_body'
   $field_instances['comment-comment_node_shortcut-comment_body'] = array(
     'bundle' => 'comment_node_shortcut',
@@ -213,6 +246,84 @@ function serchilo_features_field_default_field_instances() {
       ),
       'type' => 'options_onoff',
       'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'node-forum-field_body'
+  $field_instances['node-forum-field_body'] = array(
+    'bundle' => 'forum',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_body',
+    'label' => 'Body',
+    'required' => 1,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 41,
+    ),
+  );
+
+  // Exported field_instance: 'node-forum-taxonomy_forums'
+  $field_instances['node-forum-taxonomy_forums'] = array(
+    'bundle' => 'forum',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 10,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'taxonomy_forums',
+    'label' => 'Forums',
+    'required' => TRUE,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'options',
+      'settings' => array(
+        'content_taxonomy_opt_groups' => FALSE,
+      ),
+      'type' => 'options_select',
+      'weight' => 31,
     ),
   );
 
@@ -1186,6 +1297,7 @@ function serchilo_features_field_default_field_instances() {
   t('Argument count');
   t('Argument names');
   t('Arguments');
+  t('Body');
   t('Calculated automatically from usage statistics. Can be used to improve the order of the listed shortcuts in the shortcut view or autocomplete.');
   t('Calls in the last 30 days');
   t('Calls total');
@@ -1202,6 +1314,7 @@ function serchilo_features_field_default_field_instances() {
   t('Examples');
   t('Examples show how the shortcut can be used. Add various examples to cover as many use cases as possible.');
   t('Expected content');
+  t('Forums');
   t('If true, the last test succeeded. If false, it failed.');
   t('If true, the redirect will be done through a HTML page displayed by Serchilo. Thus, the target site will get Serchilo as a referrer site. Useful for affiliate links that require a correct referrer.');
   t('If true, the shortcut will not be shown in the shortcut view or in the autocomplete. Useful for outdated shortcuts, only redirecting the the current shortcut page.');
