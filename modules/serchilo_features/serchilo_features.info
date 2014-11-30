@@ -135,7 +135,6 @@ features[menu_links][] = main-menu_namespaces:namespaces
 features[menu_links][] = main-menu_privacy-policy:help/privacy
 features[menu_links][] = main-menu_shortcut-urls:help/url
 features[menu_links][] = main-menu_shortcuts:shortcuts
-features[menu_links][] = main-menu_support-chat:help/chat
 features[menu_links][] = main-menu_tags:tags
 features[menu_links][] = user-menu_log-out:user/logout
 features[menu_links][] = user-menu_login:user/login
