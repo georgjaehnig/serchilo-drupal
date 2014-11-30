@@ -1032,6 +1032,8 @@ function serchilo_features_user_default_permissions() {
   $permissions['view field_approved'] = array(
     'name' => 'view field_approved',
     'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
       'moderator' => 'moderator',
     ),
     'module' => 'field_permissions',
@@ -1199,6 +1201,8 @@ function serchilo_features_user_default_permissions() {
   $permissions['view own field_approved'] = array(
     'name' => 'view own field_approved',
     'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
       'moderator' => 'moderator',
     ),
     'module' => 'field_permissions',
