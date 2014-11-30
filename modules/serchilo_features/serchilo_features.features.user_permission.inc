@@ -156,15 +156,6 @@ function serchilo_features_user_default_permissions() {
     'module' => 'filter',
   );
 
-  // Exported permission: 'administer forums'.
-  $permissions['administer forums'] = array(
-    'name' => 'administer forums',
-    'roles' => array(
-      'moderator' => 'moderator',
-    ),
-    'module' => 'forum',
-  );
-
   // Exported permission: 'administer honeypot'.
   $permissions['administer honeypot'] = array(
     'name' => 'administer honeypot',
@@ -507,16 +498,6 @@ function serchilo_features_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: 'create forum content'.
-  $permissions['create forum content'] = array(
-    'name' => 'create forum content',
-    'roles' => array(
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: 'create shortcut content'.
   $permissions['create shortcut content'] = array(
     'name' => 'create shortcut content',
@@ -534,27 +515,9 @@ function serchilo_features_user_default_permissions() {
     'module' => 'path',
   );
 
-  // Exported permission: 'delete any forum content'.
-  $permissions['delete any forum content'] = array(
-    'name' => 'delete any forum content',
-    'roles' => array(
-      'moderator' => 'moderator',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: 'delete any shortcut content'.
   $permissions['delete any shortcut content'] = array(
     'name' => 'delete any shortcut content',
-    'roles' => array(
-      'moderator' => 'moderator',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: 'delete own forum content'.
-  $permissions['delete own forum content'] = array(
-    'name' => 'delete own forum content',
     'roles' => array(
       'moderator' => 'moderator',
     ),
@@ -577,13 +540,6 @@ function serchilo_features_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'delete terms in forums'.
-  $permissions['delete terms in forums'] = array(
-    'name' => 'delete terms in forums',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
   // Exported permission: 'delete terms in namespace_types'.
   $permissions['delete terms in namespace_types'] = array(
     'name' => 'delete terms in namespace_types',
@@ -603,15 +559,6 @@ function serchilo_features_user_default_permissions() {
     'name' => 'delete terms in tags',
     'roles' => array(),
     'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'edit any forum content'.
-  $permissions['edit any forum content'] = array(
-    'name' => 'edit any forum content',
-    'roles' => array(
-      'moderator' => 'moderator',
-    ),
-    'module' => 'node',
   );
 
   // Exported permission: 'edit any shortcut content'.
@@ -968,16 +915,6 @@ function serchilo_features_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: 'edit own forum content'.
-  $permissions['edit own forum content'] = array(
-    'name' => 'edit own forum content',
-    'roles' => array(
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: 'edit own shortcut content'.
   $permissions['edit own shortcut content'] = array(
     'name' => 'edit own shortcut content',
@@ -985,13 +922,6 @@ function serchilo_features_user_default_permissions() {
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'node',
-  );
-
-  // Exported permission: 'edit terms in forums'.
-  $permissions['edit terms in forums'] = array(
-    'name' => 'edit terms in forums',
-    'roles' => array(),
-    'module' => 'taxonomy',
   );
 
   // Exported permission: 'edit terms in namespace_types'.
@@ -1102,8 +1032,6 @@ function serchilo_features_user_default_permissions() {
   $permissions['view field_approved'] = array(
     'name' => 'view field_approved',
     'roles' => array(
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
       'moderator' => 'moderator',
     ),
     'module' => 'field_permissions',
@@ -1271,8 +1199,6 @@ function serchilo_features_user_default_permissions() {
   $permissions['view own field_approved'] = array(
     'name' => 'view own field_approved',
     'roles' => array(
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
       'moderator' => 'moderator',
     ),
     'module' => 'field_permissions',

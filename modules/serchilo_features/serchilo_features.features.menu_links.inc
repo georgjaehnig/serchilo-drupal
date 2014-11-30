@@ -27,7 +27,7 @@ function serchilo_features_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -44,
+    'weight' => -43,
     'customized' => 1,
     'parent_identifier' => 'main-menu_help:help',
   );
@@ -111,27 +111,6 @@ function serchilo_features_menu_default_menu_links() {
     'has_children' => 0,
     'expanded' => 0,
     'weight' => -49,
-    'customized' => 1,
-    'parent_identifier' => 'main-menu_help:help',
-  );
-  // Exported menu link: main-menu_forum:forum
-  $menu_links['main-menu_forum:forum'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'forum',
-    'router_path' => 'forum',
-    'link_title' => 'Forum',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-      'identifier' => 'main-menu_forum:forum',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -42,
     'customized' => 1,
     'parent_identifier' => 'main-menu_help:help',
   );
@@ -256,7 +235,7 @@ function serchilo_features_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -43,
+    'weight' => -42,
     'customized' => 1,
     'parent_identifier' => 'main-menu_help:help',
   );
@@ -298,6 +277,27 @@ function serchilo_features_menu_default_menu_links() {
     'weight' => -50,
     'customized' => 1,
     'parent_identifier' => 'main-menu_browse:browse',
+  );
+  // Exported menu link: main-menu_support-chat:help/chat
+  $menu_links['main-menu_support-chat:help/chat'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'help/chat',
+    'router_path' => 'help/chat',
+    'link_title' => 'Support chat',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'main-menu_support-chat:help/chat',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -44,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_help:help',
   );
   // Exported menu link: main-menu_tags:tags
   $menu_links['main-menu_tags:tags'] = array(
@@ -402,7 +402,6 @@ function serchilo_features_menu_default_menu_links() {
   t('Browser integration');
   t('Default keyword');
   t('Differences to old Serchilo');
-  t('Forum');
   t('Getting started');
   t('Help');
   t('Log out');
@@ -413,6 +412,7 @@ function serchilo_features_menu_default_menu_links() {
   t('Register');
   t('Shortcut URLs');
   t('Shortcuts');
+  t('Support chat');
   t('Tags');
   t('User account');
 
