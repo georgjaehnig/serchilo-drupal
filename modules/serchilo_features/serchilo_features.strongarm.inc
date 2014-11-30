@@ -658,7 +658,6 @@ function serchilo_features_strongarm() {
     0 => 'status',
     1 => 'promote',
     2 => 'revision',
-    3 => 'revision_moderation',
   );
   $export['node_options_shortcut'] = $strongarm;
 
