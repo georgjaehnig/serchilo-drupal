@@ -114,6 +114,27 @@ function serchilo_features_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_help:help',
   );
+  // Exported menu link: main-menu_forum:forum
+  $menu_links['main-menu_forum:forum'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'forum',
+    'router_path' => 'forum',
+    'link_title' => 'Forum',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'main-menu_forum:forum',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -42,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_help:help',
+  );
   // Exported menu link: main-menu_getting-started:help/start
   $menu_links['main-menu_getting-started:help/start'] = array(
     'menu_name' => 'main-menu',
@@ -381,6 +402,7 @@ function serchilo_features_menu_default_menu_links() {
   t('Browser integration');
   t('Default keyword');
   t('Differences to old Serchilo');
+  t('Forum');
   t('Getting started');
   t('Help');
   t('Log out');
