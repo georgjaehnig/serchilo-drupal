@@ -156,7 +156,7 @@ function serchilo_features_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'diff_default_state_node';
-  $strongarm->value = 'raw_plain';
+  $strongarm->value = 'raw';
   $export['diff_default_state_node'] = $strongarm;
 
   $strongarm = new stdClass();
