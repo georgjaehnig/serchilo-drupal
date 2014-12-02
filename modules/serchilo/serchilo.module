@@ -897,8 +897,6 @@ function serchilo_node_view_alter(&$build) {
 // Shortcut call form
 
 /**
- * Implements hook_FORM_ID_form().
- *
  * Builds a form for calling a shortcut.
  *
  * @param array $form
