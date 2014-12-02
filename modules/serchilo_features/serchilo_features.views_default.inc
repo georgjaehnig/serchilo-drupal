@@ -299,8 +299,6 @@ function serchilo_features_views_default_views() {
 
   /* Display: Feed */
   $handler = $view->new_display('feed', 'Feed', 'feed_1');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Serchilo: Namespaces';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '20';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -363,7 +361,6 @@ function serchilo_features_views_default_views() {
     'default' => 'default',
     'page' => 'page',
   );
-  $handler->display->display_options['sitename_title'] = 0;
   $translatables['namespaces'] = array(
     t('Master'),
     t('Namespaces'),
@@ -388,7 +385,6 @@ function serchilo_features_views_default_views() {
     t('Shortcuts'),
     t('Page'),
     t('Feed'),
-    t('Serchilo: Namespaces'),
     t('[name]'),
     t('[description]'),
     t('URL'),
@@ -815,7 +811,7 @@ function serchilo_features_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Serchilo: Tags';
+  $handler->display->display_options['title'] = 'Tags';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -981,10 +977,9 @@ function serchilo_features_views_default_views() {
     'default' => 'default',
     'page' => 'page',
   );
-  $handler->display->display_options['sitename_title'] = 0;
   $translatables['tags'] = array(
     t('Master'),
-    t('Serchilo: Tags'),
+    t('Tags'),
     t('more'),
     t('Apply'),
     t('Reset'),
