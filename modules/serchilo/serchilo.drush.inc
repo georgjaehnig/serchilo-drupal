@@ -68,7 +68,7 @@ function drush_serchilo_approve_shortcuts() {
     $node = node_load($nid);
     $node->field_approved[LANGUAGE_NONE][0]['value'] = 1;
     field_attach_update('node', $node);
-    echo $nid;
+    echo ".";
   }
 }
 
