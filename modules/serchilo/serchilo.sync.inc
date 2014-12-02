@@ -16,6 +16,8 @@
  * @return void
  */
 function serchilo_insert_or_update_shortcut_row($node) {
+
+  // Check if shortcut already exists in sync table.
   $row_count = db_select('serchilo_shortcut') 
     ->fields('serchilo_shortcut')
     ->condition('nid', $node->nid )
