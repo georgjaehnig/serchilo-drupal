@@ -60,7 +60,6 @@ function drush_serchilo_approve_shortcuts() {
     ->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'shortcut')
     ->propertyCondition('status', NODE_PUBLISHED)
-    #->range(0,100)
     ->execute();
 
   $nids = array_keys(array_shift($result));
