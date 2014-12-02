@@ -845,24 +845,24 @@ function serchilo_node_access($node, $op, $account) {
         
       $namespace = taxonomy_term_load($node->field_namespace[LANGUAGE_NONE][0]['tid']);
 
-        // Allow if a site namespace.
-        if (strlen($namespace->name) < 4) {
-          return NODE_ACCESS_ALLOW;
-        }
+      // Allow if a site namespace.
+      if (strlen($namespace->name) < 4) {
+        return NODE_ACCESS_ALLOW;
+      }
 
-        // Allow if a user namespace and owning user is logged in.
+      // Allow if a user namespace and owning user is logged in.
 
-        if (
-          (user_is_logged_in()) &&
-          ($namespace->name == $account->name) &&
-          TRUE
-        ) {
-          return NODE_ACCESS_ALLOW;
-        }
+      if (
+        (user_is_logged_in()) &&
+        ($namespace->name == $account->name) &&
+        TRUE
+      ) {
+        return NODE_ACCESS_ALLOW;
+      }
 
-        // Deny in all other cases.
+      // Deny in all other cases.
 
-        return NODE_ACCESS_DENY;
+      return NODE_ACCESS_DENY;
     }
   }
 }
