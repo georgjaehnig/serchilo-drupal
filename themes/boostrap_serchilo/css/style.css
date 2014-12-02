@@ -163,3 +163,8 @@ fieldset.filter-wrapper
 body.page-node-revisions.node-type-shortcut div.region-help {
   display: none; 
 }
+
+/* Hide "Standard" "Marked down" switches */
+body.page-node-revisions-view td.diff-links {
+  display: none;
+}
