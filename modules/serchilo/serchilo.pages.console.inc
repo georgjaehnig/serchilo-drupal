@@ -1,5 +1,7 @@
 <?PHP
 
+// Page callbacks
+
 /**
  * Page callback for homepage.
  * Redirect to correct console page:
@@ -38,7 +40,6 @@ function serchilo_page_home() {
     ); 
   }
 }
-
 
 /**
  * Dispatch a request with namespaces.
@@ -270,6 +271,9 @@ function serchilo_page_console() {
   return $content;
 }
 
+
+// Validation
+
 /**
  * Validates if given strings are namespaces
  * and if necessary sets additional namespaces 
@@ -398,6 +402,8 @@ function serchilo_validate_namespace_path($namespace_path_original) {
   return $namespace_path_validated;
 }
 
+
+// Helpers
 
 /**
  * Set the default keyword of a user via drupal_static().
