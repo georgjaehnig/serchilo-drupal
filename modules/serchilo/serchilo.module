@@ -846,7 +846,7 @@ function serchilo_node_access($node, $op, $account) {
       $wnode = entity_metadata_wrapper('node', $node);
 
       // Allow if a site namespace.
-      if (strlen($wnode->field_namespace->name->value()) < 4) {
+      if ('user' != $wnode->field_namespace->field_namespace_type->name->value()) {
         return NODE_ACCESS_ALLOW;
       }
 
