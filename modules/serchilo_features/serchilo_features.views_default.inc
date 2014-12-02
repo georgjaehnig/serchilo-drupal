@@ -588,6 +588,7 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['filters']['field_namespace_tid']['expose']['label'] = 'Namespace';
   $handler->display->display_options['filters']['field_namespace_tid']['expose']['operator'] = 'field_namespace_tid_op';
   $handler->display->display_options['filters']['field_namespace_tid']['expose']['identifier'] = 'namespace';
+  $handler->display->display_options['filters']['field_namespace_tid']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['field_namespace_tid']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
@@ -597,12 +598,14 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['filters']['field_tags_tid']['id'] = 'field_tags_tid';
   $handler->display->display_options['filters']['field_tags_tid']['table'] = 'field_data_field_tags';
   $handler->display->display_options['filters']['field_tags_tid']['field'] = 'field_tags_tid';
+  $handler->display->display_options['filters']['field_tags_tid']['operator'] = 'and';
   $handler->display->display_options['filters']['field_tags_tid']['value'] = '';
   $handler->display->display_options['filters']['field_tags_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_tags_tid']['expose']['operator_id'] = 'field_tags_tid_op';
   $handler->display->display_options['filters']['field_tags_tid']['expose']['label'] = 'Tags';
   $handler->display->display_options['filters']['field_tags_tid']['expose']['operator'] = 'field_tags_tid_op';
   $handler->display->display_options['filters']['field_tags_tid']['expose']['identifier'] = 'tags';
+  $handler->display->display_options['filters']['field_tags_tid']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['field_tags_tid']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
