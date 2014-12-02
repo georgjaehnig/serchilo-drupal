@@ -5,6 +5,8 @@
 * Syncs shortcut nodes with serchilo_shortcut table.
 */
 
+// Helper
+
 /**
  * Retrieve database fields from shortcut node.
  *
@@ -42,6 +44,8 @@ function serchilo_shortcut_to_db_fields($node) {
   return $fields;
 }
 
+
+// Wrapper
 function serchilo_insert_or_update_shortcut_row($node) {
   $row_count = db_select('serchilo_shortcut') 
     ->fields('serchilo_shortcut')
@@ -57,6 +61,8 @@ function serchilo_insert_or_update_shortcut_row($node) {
   }
 }
 
+
+// DB layer
 function serchilo_insert_shortcut_row($node) {
   $fields = serchilo_shortcut_to_db_fields($node);
   $result = db_insert('serchilo_shortcut') 
