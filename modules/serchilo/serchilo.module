@@ -851,7 +851,6 @@ function serchilo_node_access($node, $op, $account) {
       }
 
       // Allow if a user namespace and owning user is logged in.
-
       if (
         (user_is_logged_in()) &&
         ($wnode->field_namespace->name->value() == $account->name) &&
@@ -861,7 +860,6 @@ function serchilo_node_access($node, $op, $account) {
       }
 
       // Deny in all other cases.
-
       return NODE_ACCESS_DENY;
     }
   }
