@@ -24,11 +24,21 @@ function serchilo_insert_or_update_shortcut_row($node) {
     ->execute()
     ->rowCount() 
     ;
+
+  // If it does not exist, insert it.
   if ($row_count == 0) {
-    serchilo_insert_shortcut_row($node); 
+    $nid = serchilo_insert_shortcut_row($node); 
+    if (empty($nid)) {
+      // Return 0 to raise an error.
+      return 0; 
+    } else {
+      return 1; 
+    }
   }
+  // If it does exist, update it.
   else {
-    serchilo_update_shortcut_row($node); 
+    $num_updated = serchilo_update_shortcut_row($node); 
+    return $num_updated;
   }
 }
 
