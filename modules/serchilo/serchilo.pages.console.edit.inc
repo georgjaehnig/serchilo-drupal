@@ -1,5 +1,19 @@
 <?PHP
 
+/**
+ * Builds a form for changing the current namespaces.
+ *
+ * @param array $form
+ * @param array $form_state
+ *   Standard form hook arguments.
+ *
+ * @param string $namespace_path_original
+ *   The current namespace path, i.e.
+ *   a string with namespace names separated by a dot.
+ *
+ * @return array $form
+ *   The built form.
+ */
 function serchilo_form_console_namespaces($form, &$form_state, $namespace_path_original) {
 
   module_load_include('inc', 'serchilo', 'serchilo.pages.console');
@@ -37,6 +51,15 @@ function serchilo_form_console_namespaces($form, &$form_state, $namespace_path_o
   return $form;
 }
 
+/**
+ * Submits the form for changing the current namespaces.
+ *
+ * @param array $form
+ * @param array $form_state
+ *   Standard form hook arguments.
+ *
+ * @return void
+ */
 function serchilo_form_console_namespaces_submit($form, $form_state) {
   
   // Start with language and country namespaces.

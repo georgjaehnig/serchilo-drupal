@@ -1,5 +1,15 @@
 <?PHP
 
+/**
+ * Import Serchilo data from a file.
+ *
+ * @param string $file
+ *   The file name to import from.
+ * @param bool $verbose
+ *   (optional) TRUE if shall run in verbose mode.
+ *
+ * @return void
+ */
 function serchilo_import($file = NULL, $verbose = FALSE) {
 
   if ($verbose) {
@@ -21,6 +31,16 @@ function serchilo_import($file = NULL, $verbose = FALSE) {
   serchilo_import_shortcuts( $data['shortcuts'],  $verbose);
 }
 
+/**
+ * Import Serchilo data from a file.
+ *
+ * @param array $rows
+ *   Array of namespaces, as exported.
+ * @param bool $verbose
+ *   (optional) TRUE if shall run in verbose mode.
+ *
+ * @return void
+ */
 function serchilo_import_namespaces($rows, $verbose = FALSE) {
 
   if ($verbose) {
@@ -47,6 +67,16 @@ function serchilo_import_namespaces($rows, $verbose = FALSE) {
   }
 }
 
+/**
+ * Import Serchilo data from a file.
+ *
+ * @param array $rows
+ *   Array of shortcuts, as exported.
+ * @param bool $verbose
+ *   (optional) TRUE if shall run in verbose mode.
+ *
+ * @return void
+ */
 function serchilo_import_shortcuts($rows, $verbose = FALSE) {
 
   //for debug: try to import only 1

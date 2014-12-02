@@ -47,6 +47,11 @@ function serchilo_drush_command() {
   return $items;
 }
 
+/**
+ * Approve all shortcuts.
+ *
+ * @return void
+ */
 function drush_serchilo_approve_shortcuts() {
   
   $efq = new EntityFieldQuery;

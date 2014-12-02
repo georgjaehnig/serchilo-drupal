@@ -39,7 +39,22 @@ function serchilo_page_home() {
   }
 }
 
+
+/**
+ * Dispatch a request with namespaces.
+ *
+ * @param string $page_type
+ *   Can currently be
+ *   - 'console': a console call
+ * @param string $namespace_path_original
+ *   The current namespace path, i.e.
+ *   a string with namespace names separated by a dot.
+ *   
+ * @return array 
+ *   Render array to display the content.
+ */
 function serchilo_page_dispatch_namespaces($page_type, $namespace_path_original) {
+
   $namespace_path = serchilo_validate_namespace_path($namespace_path_original);
   # redirect if path changed
   if ($namespace_path != $namespace_path_original) {
@@ -80,6 +95,19 @@ function serchilo_page_dispatch_namespaces($page_type, $namespace_path_original)
   return serchilo_page_dispatch($page_type);
 }
 
+/**
+ * Dispatch a request with a user name.
+ *
+ * @param string $page_type
+ *   Can be
+ *   - 'console': a console call
+ *   - 'opensearch': a call for an Opensearch definition
+ * @param string $path_affix
+ *   The path affix denoting the user name.
+ *   
+ * @return array 
+ *   Render array to display the content.
+ */
 function serchilo_page_dispatch_user($page_type, $path_affix) {
   $account = user_load_by_name($path_affix);
   if (!$account) {
