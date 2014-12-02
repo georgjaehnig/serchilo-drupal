@@ -547,6 +547,7 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['filters']['field_keyword_value']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
+    3 => 0,
   );
   /* Filter criterion: Content: Title */
   $handler->display->display_options['filters']['title']['id'] = 'title';
@@ -592,6 +593,7 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['filters']['field_namespace_tid']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
+    3 => 0,
   );
   $handler->display->display_options['filters']['field_namespace_tid']['vocabulary'] = 'namespaces';
   /* Filter criterion: Content: Tags (field_tags) */
@@ -609,6 +611,7 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['filters']['field_tags_tid']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
+    3 => 0,
   );
   $handler->display->display_options['filters']['field_tags_tid']['vocabulary'] = 'tags';
 
