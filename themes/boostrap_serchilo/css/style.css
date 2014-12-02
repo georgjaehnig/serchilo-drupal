@@ -168,3 +168,9 @@ body.page-node-revisions.node-type-shortcut div.region-help {
 body.page-node-revisions-view td.diff-links {
   display: none;
 }
+
+/* Hide "Show row weights" */
+#edit-field-example .tabledrag-toggle-weight-wrapper,
+#edit-field-test .tabledrag-toggle-weight-wrapper {
+  display: none;
+}
