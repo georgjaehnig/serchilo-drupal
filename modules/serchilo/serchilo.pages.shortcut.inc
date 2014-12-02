@@ -35,19 +35,6 @@ function serchilo_page_shortcut_changed($shortcut_id) {
   drupal_goto('node/' . $shortcut->nid );
 }
 
-/**
- * Redirect to the shortcut node page
- * with a message that they keyword of the shortcut changed.
- *
- * @param int $shorcut_id
- *  The shortcut id.
- *
- * @return void
- */
-function serchilo_page_shortcut_approve($shortcut_id) {
-  return "sfsfsd";
-}
-
 
 /**
  * Form constructor for the shortcut approval confirmation form.
