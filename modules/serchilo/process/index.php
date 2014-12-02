@@ -843,6 +843,17 @@ function serchilo_get_namespace_id($namespace_name) {
   return $row['tid'];
 }
 
+/**
+ * Get the user's namespaces as IDs, i.e.
+ *   - planet namespace
+ *   - language namespace
+ *   - country namespace
+ *   - custom namespaces
+ *   - user namespace.
+ *
+ * @return array $namespace_ids
+ *   The Namespace IDs.
+ */
 function serchilo_get_namespace_ids_from_user($user_name) {
 
   $user_id = serchilo_get_values_from_table('users', 'name', $user_name, 'uid', TRUE)[0];
@@ -1019,6 +1030,13 @@ function serchilo_redirect_via_form($url, $post_parameters) {
   require_once('tpl/serchilo-redirect-form.tpl.php'); 
 }
 
+
+/**
+ * Output data as JSON and exit.
+ *
+ * @return mixed $output
+ *   The data to output.
+ */
 function serchilo_output_json($output) {
   header('Content-Type: application/json');
   echo json_encode($output, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT);
@@ -1227,6 +1245,13 @@ function serchilo_get_default_keyword($user_name = NULL) {
 
 // Execution time
 
+/**
+ * Get the execution time until now.
+ *
+ * @return float $execution_time
+ *   The execution time in seconds,
+ *   after decimal point in microseconds.
+ */
 function serchilo_get_execution_time() {
 
   global $execution_time_start;
