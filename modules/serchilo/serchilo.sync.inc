@@ -108,7 +108,6 @@ function serchilo_update_shortcut_row($node) {
     ->execute();
   // TODO
   // raise error when $num_updated != 1
-  //dpm($num_updated);
   return $num_updated;
 }
 
