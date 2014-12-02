@@ -5,47 +5,6 @@
 * Syncs shortcut nodes with serchilo_shortcut table.
 */
 
-// Helper
-
-/**
- * Convert a shortcut node to an array of database fields.
- *
- * @param object $node
- *   Shortcut node to convert.
- *
- * @return array $fields
- *   Array of database fields for the sync database table.
- */
-function serchilo_shortcut_to_db_fields($node) {
-
-  $fields = array();
-
-  $fields['nid']             = $node->nid;
-  $fields['title']           = $node->title;
-  $fields['keyword']         = drupal_array_get_nested_value($node->field_keyword,         array(LANGUAGE_NONE, 0, 'value'));
-  $fields['argument_names']  = drupal_array_get_nested_value($node->field_argument_names,  array(LANGUAGE_NONE, 0, 'value'));
-  $fields['argument_count']  = drupal_array_get_nested_value($node->field_argument_count,  array(LANGUAGE_NONE, 0, 'value'));
-  $fields['url']             = drupal_array_get_nested_value($node->field_url,             array(LANGUAGE_NONE, 0, 'value'));
-  $fields['post_parameters'] = drupal_array_get_nested_value($node->field_post_parameters, array(LANGUAGE_NONE, 0, 'value'));
-  $fields['input_encoding']  = drupal_array_get_nested_value($node->field_input_encoding,  array(LANGUAGE_NONE, 0, 'value'));
-  $fields['weight']          = drupal_array_get_nested_value($node->field_weight,          array(LANGUAGE_NONE, 0, 'value'));
-  $fields['invisible']       = drupal_array_get_nested_value($node->field_invisible,       array(LANGUAGE_NONE, 0, 'value'));
-  $fields['set_referrer']    = drupal_array_get_nested_value($node->field_set_referrer,    array(LANGUAGE_NONE, 0, 'value'));
-  $fields['namespace_id']    = drupal_array_get_nested_value($node->field_namespace,       array(LANGUAGE_NONE, 0, 'tid'));
-
-  $wnode = entity_metadata_wrapper('node', $node);
-  $fields['namespace_name'] = $wnode->field_namespace->value()->name;
-
-  $tags = array();
-  foreach ($wnode->field_tags->value() as $wtag) {
-    $tags[] = $wtag->name;
-  }
-  $fields['tags'] = join(',', $tags);
-
-  return $fields;
-}
-
-
 // Wrapper
 
 /**
@@ -128,4 +87,46 @@ function serchilo_delete_shortcut_row($node) {
   // raise error when $num_deleted != 1
   return $num_deleted;
 }
+
+
+// Helper
+
+/**
+ * Convert a shortcut node to an array of database fields.
+ *
+ * @param object $node
+ *   Shortcut node to convert.
+ *
+ * @return array $fields
+ *   Array of database fields for the sync database table.
+ */
+function serchilo_shortcut_to_db_fields($node) {
+
+  $fields = array();
+
+  $fields['nid']             = $node->nid;
+  $fields['title']           = $node->title;
+  $fields['keyword']         = drupal_array_get_nested_value($node->field_keyword,         array(LANGUAGE_NONE, 0, 'value'));
+  $fields['argument_names']  = drupal_array_get_nested_value($node->field_argument_names,  array(LANGUAGE_NONE, 0, 'value'));
+  $fields['argument_count']  = drupal_array_get_nested_value($node->field_argument_count,  array(LANGUAGE_NONE, 0, 'value'));
+  $fields['url']             = drupal_array_get_nested_value($node->field_url,             array(LANGUAGE_NONE, 0, 'value'));
+  $fields['post_parameters'] = drupal_array_get_nested_value($node->field_post_parameters, array(LANGUAGE_NONE, 0, 'value'));
+  $fields['input_encoding']  = drupal_array_get_nested_value($node->field_input_encoding,  array(LANGUAGE_NONE, 0, 'value'));
+  $fields['weight']          = drupal_array_get_nested_value($node->field_weight,          array(LANGUAGE_NONE, 0, 'value'));
+  $fields['invisible']       = drupal_array_get_nested_value($node->field_invisible,       array(LANGUAGE_NONE, 0, 'value'));
+  $fields['set_referrer']    = drupal_array_get_nested_value($node->field_set_referrer,    array(LANGUAGE_NONE, 0, 'value'));
+  $fields['namespace_id']    = drupal_array_get_nested_value($node->field_namespace,       array(LANGUAGE_NONE, 0, 'tid'));
+
+  $wnode = entity_metadata_wrapper('node', $node);
+  $fields['namespace_name'] = $wnode->field_namespace->value()->name;
+
+  $tags = array();
+  foreach ($wnode->field_tags->value() as $wtag) {
+    $tags[] = $wtag->name;
+  }
+  $fields['tags'] = join(',', $tags);
+
+  return $fields;
+}
+
 
