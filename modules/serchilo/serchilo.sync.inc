@@ -8,12 +8,13 @@
 // Helper
 
 /**
- * Retrieve database fields from shortcut node.
+ * Convert a shortcut node to an array of database fields.
  *
- * @param $node
- *   Node of type shortcut
- * @return
- *   array to pass to fields()
+ * @param object $node
+ *   Shortcut node to convert.
+ *
+ * @return array $fields
+ *   Array of database fields for the sync database table.
  */
 function serchilo_shortcut_to_db_fields($node) {
 
@@ -46,6 +47,15 @@ function serchilo_shortcut_to_db_fields($node) {
 
 
 // Wrapper
+
+/**
+ * Insert or update a shortcut row.
+ *
+ * @param object $node
+ *   Shortcut node to deal with.
+ *
+ * @return void
+ */
 function serchilo_insert_or_update_shortcut_row($node) {
   $row_count = db_select('serchilo_shortcut') 
     ->fields('serchilo_shortcut')
@@ -63,6 +73,15 @@ function serchilo_insert_or_update_shortcut_row($node) {
 
 
 // DB layer
+
+/**
+ * Insert a shortcut row.
+ *
+ * @param object $node
+ *   Shortcut node to deal with.
+ *
+ * @return void
+ */
 function serchilo_insert_shortcut_row($node) {
   $fields = serchilo_shortcut_to_db_fields($node);
   $result = db_insert('serchilo_shortcut') 
@@ -72,6 +91,15 @@ function serchilo_insert_shortcut_row($node) {
   return;
 }
 
+/**
+ * Update a shortcut row.
+ *
+ * @param object $node
+ *   Shortcut node to deal with.
+ *
+ * @return int $num_updated
+ *   Number of updated rows.
+ */
 function serchilo_update_shortcut_row($node) {
   $fields = serchilo_shortcut_to_db_fields($node);
   $num_updated = db_update('serchilo_shortcut') 
@@ -84,6 +112,15 @@ function serchilo_update_shortcut_row($node) {
   return $num_updated;
 }
 
+/**
+ * Delete a shortcut row.
+ *
+ * @param object $node
+ *   Shortcut node to deal with.
+ *
+ * @return int $num_deleted
+ *   Number of deleted rows.
+ */
 function serchilo_delete_shortcut_row($node) {
   $num_deleted = db_delete('serchilo_shortcut') 
     ->condition('nid', $node->nid )
