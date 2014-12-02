@@ -769,6 +769,7 @@ function serchilo_block_licenses() {
  * Implements hook_node_insert().
  */
 function serchilo_node_insert($node) {
+
   if ($node->type == 'shortcut') {
     if (!empty($node->field_approved[LANGUAGE_NONE][0]['value'])) {
       module_load_include('inc', 'serchilo', 'serchilo.sync');
@@ -781,6 +782,7 @@ function serchilo_node_insert($node) {
  * Implements hook_node_update().
  */
 function serchilo_node_update($node) {
+
   if ($node->type == 'shortcut') {
     if (!empty($node->field_approved[LANGUAGE_NONE][0]['value'])) {
       module_load_include('inc', 'serchilo', 'serchilo.sync');
@@ -793,6 +795,7 @@ function serchilo_node_update($node) {
  * Implements hook_node_delete().
  */
 function serchilo_node_delete($node) {
+
   if ($node->type == 'shortcut') {
     module_load_include('inc', 'serchilo', 'serchilo.sync');
     $num_affected = serchilo_delete_shortcut_row($node);
