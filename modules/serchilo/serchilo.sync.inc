@@ -83,6 +83,7 @@ function serchilo_insert_or_update_shortcut_row($node) {
  * @return void
  */
 function serchilo_insert_shortcut_row($node) {
+
   $fields = serchilo_shortcut_to_db_fields($node);
   $result = db_insert('serchilo_shortcut') 
     ->fields($fields)
@@ -101,6 +102,7 @@ function serchilo_insert_shortcut_row($node) {
  *   Number of updated rows.
  */
 function serchilo_update_shortcut_row($node) {
+
   $fields = serchilo_shortcut_to_db_fields($node);
   $num_updated = db_update('serchilo_shortcut') 
     ->fields($fields)
