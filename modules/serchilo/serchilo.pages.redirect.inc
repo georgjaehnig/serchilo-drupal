@@ -29,7 +29,6 @@ function serchilo_redirect_shortcuts($shortcut_id) {
   ); 
 }
 
-
 /**
  * Redirect 
  * - namespace/[name] and
