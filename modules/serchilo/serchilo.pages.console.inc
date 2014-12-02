@@ -136,6 +136,16 @@ function serchilo_page_dispatch_user($page_type, $path_affix) {
   return serchilo_page_dispatch($page_type);
 }
 
+/**
+ * Dispatch a request.
+ *
+ * @param string $page_type
+ *   Can be
+ *   - 'console': a console call
+ *   
+ * @return array 
+ *   Render array to display the content.
+ */
 function serchilo_page_dispatch($page_type) {
   switch ($page_type) {
   case SERCHILO_CONSOLE:
