@@ -795,7 +795,19 @@ function serchilo_node_update($node) {
 function serchilo_node_delete($node) {
   if ($node->type == 'shortcut') {
     module_load_include('inc', 'serchilo', 'serchilo.sync');
-    serchilo_delete_shortcut_row($node);
+    $num_affected = serchilo_delete_shortcut_row($node);
+    if ($num_affected !== 1) {
+      watchdog(
+        'serchilo', 
+        'Wrong number of affected rows in %function: %num_affected rows when processing node %nid',
+        array(
+          '%function'     => __FUNCTION__, 
+          '%num_affected' => $num_affected,
+          '%nid'          => $node->nid,
+        ),
+        WATCHDOG_ERROR
+      );
+    }
   }
 }
 
