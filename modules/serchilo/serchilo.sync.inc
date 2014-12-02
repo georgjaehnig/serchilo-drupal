@@ -39,14 +39,17 @@ function serchilo_insert_or_update_shortcut_row($node) {
  * @param object $node
  *   Shortcut node to deal with.
  *
- * @return void
+ * @return int $nid
+ *   ID of the inserted row.
  */
 function serchilo_insert_shortcut_row($node) {
 
   $fields = serchilo_shortcut_to_db_fields($node);
-  db_insert('serchilo_shortcut') 
+  $nid = db_insert('serchilo_shortcut') 
     ->fields($fields)
     ->execute();
+
+  return $nid;
 }
 
 /**
