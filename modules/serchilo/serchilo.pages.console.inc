@@ -140,18 +140,6 @@ function serchilo_page_dispatch($page_type) {
   switch ($page_type) {
   case SERCHILO_CONSOLE:
     return serchilo_page_console();
-  // TODO:
-  // remove this as namespace validation (and redirection)
-  // shall only happen at console requests. 
-  // Other requests shall be solely handled by the PHP standalone processor.
-  case SERCHILO_AUTOCOMPLETE_PATH_AFFIX:
-    return serchilo_autocomplete();
-  case SERCHILO_OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
-    return serchilo_opensearch_suggestions();
-  case SERCHILO_URL_PATH_AFFIX:
-    return serchilo_url();
-  case SERCHILO_API_PATH_AFFIX:
-    return serchilo_api();
   }
 }
 
