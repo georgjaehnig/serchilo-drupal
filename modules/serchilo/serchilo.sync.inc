@@ -85,11 +85,9 @@ function serchilo_insert_or_update_shortcut_row($node) {
 function serchilo_insert_shortcut_row($node) {
 
   $fields = serchilo_shortcut_to_db_fields($node);
-  $result = db_insert('serchilo_shortcut') 
+  db_insert('serchilo_shortcut') 
     ->fields($fields)
     ->execute();
-  //dpm($result);
-  return;
 }
 
 /**
