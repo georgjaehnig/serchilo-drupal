@@ -129,9 +129,9 @@ html, body {
   width: 180px;
 }
 
-/* Margin for examples */
-.node-shortcut .field-collection-container {
-  margin-top: 2em;
+/* Shortcut call form bottom margin */
+#serchilo-shortcut-call-form {
+	margin-bottom: 2em;
 }
 
 /* field_description */
@@ -164,7 +164,6 @@ fieldset.filter-wrapper
   margin-bottom: 1em;
 }
 
-
 /* Remove: "Revisions allow you to track differences between multiple versions of your content, and revert back to older versions." */
 body.page-node-revisions.node-type-shortcut div.region-help {
   display: none; 
@@ -180,3 +179,4 @@ body.page-node-revisions-view td.diff-links {
 #edit-field-test .tabledrag-toggle-weight-wrapper {
   display: none;
 }
+
