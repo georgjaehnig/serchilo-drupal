@@ -82,6 +82,12 @@ td.views-field-field-namespace a,
   white-space: nowrap;
 }
 
+/* Have some vertical space for tags to avoid them overlapping. */
+.views-field-field-namespace a,
+.views-field-field-tags a {
+	line-height: 2em;
+}
+
 .field.field-name-field-namespace,
 .field.field-name-field-tags,
 .field.field-name-field-namespace *,
