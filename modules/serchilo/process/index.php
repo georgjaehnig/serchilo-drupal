@@ -450,13 +450,15 @@ function serchilo_shortcut_to_output($shortcut, $env) {
   $output['url']['template'] = $shortcut['url'];
   $variables = serchilo_get_url_variables($env);
   $output['url']['replaced_variables'] = serchilo_replace_variables($shortcut['url'],  $variables);
-  if (!empty($env['arguments'])) {
 
-    // Reparse arguments if count does not match.
-    if (count($env['arguments']) > $shortcut['argument_count']) {
-      $env = serchilo_extract_keyword_and_arguments($env['query'], $shortcut['argument_count']) + $env;
-    }
+  // Reparse arguments if count does not match.
+  if (count($env['arguments']) > $shortcut['argument_count']) {
+    $env = serchilo_extract_keyword_and_arguments($env['query'], $shortcut['argument_count']) + $env;
+  }
 
+  // Create final URL if called with query
+  // (and not with keyword/argument_count).
+  if (!empty($env['query'])) {
     $output['url']['final'] = serchilo_replace_arguments(
       $output['url']['replaced_variables'],
       $env['arguments'], 
