@@ -10,39 +10,6 @@
 function serchilo_features_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'comment-comment_node_shortcut-comment_body'
-  $field_instances['comment-comment_node_shortcut-comment_body'] = array(
-    'bundle' => 'comment_node_shortcut',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'comment',
-    'field_name' => 'comment_body',
-    'label' => 'Comment',
-    'required' => TRUE,
-    'settings' => array(
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 0,
-    ),
-  );
-
   // Exported field_instance: 'field_collection_item-field_example-field_example_arguments'
   $field_instances['field_collection_item-field_example-field_example_arguments'] = array(
     'bundle' => 'field_example',
@@ -1190,7 +1157,6 @@ function serchilo_features_field_default_field_instances() {
   t('Calls in the last 30 days');
   t('Calls total');
   t('Command ID');
-  t('Comment');
   t('Content that the target page must contain.');
   t('Country namespace');
   t('Custom namespaces');

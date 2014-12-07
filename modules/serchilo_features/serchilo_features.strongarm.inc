@@ -78,62 +78,6 @@ function serchilo_features_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_anonymous_shortcut';
-  $strongarm->value = '0';
-  $export['comment_anonymous_shortcut'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'comment_default_mode_shortcut';
-  $strongarm->value = 1;
-  $export['comment_default_mode_shortcut'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'comment_default_per_page_shortcut';
-  $strongarm->value = '50';
-  $export['comment_default_per_page_shortcut'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'comment_form_location_shortcut';
-  $strongarm->value = 1;
-  $export['comment_form_location_shortcut'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'comment_preview_shortcut';
-  $strongarm->value = '0';
-  $export['comment_preview_shortcut'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'comment_shortcut';
-  $strongarm->value = '2';
-  $export['comment_shortcut'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'comment_subject_field_shortcut';
-  $strongarm->value = 0;
-  $export['comment_subject_field_shortcut'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'comment_talk_shortcut';
-  $strongarm->value = 1;
-  $export['comment_talk_shortcut'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'date_default_timezone';
   $strongarm->value = 'Europe/Berlin';
   $export['date_default_timezone'] = $strongarm;
@@ -374,13 +318,6 @@ function serchilo_features_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'honeypot_form_comment_node_shortcut_form';
-  $strongarm->value = 1;
-  $export['honeypot_form_comment_node_shortcut_form'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'honeypot_form_shortcut_node_form';
   $strongarm->value = 0;
   $export['honeypot_form_shortcut_node_form'] = $strongarm;
@@ -426,13 +363,6 @@ function serchilo_features_strongarm() {
   $strongarm->name = 'install_task';
   $strongarm->value = 'done';
   $export['install_task'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'ip_anon_period_comment';
-  $strongarm->value = '21600';
-  $export['ip_anon_period_comment'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1133,41 +1063,6 @@ function serchilo_features_strongarm() {
   $strongarm->name = 'site_default_country';
   $strongarm->value = '';
   $export['site_default_country'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'talk_addcmnt_teaser';
-  $strongarm->value = 0;
-  $export['talk_addcmnt_teaser'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'talk_link';
-  $strongarm->value = '';
-  $export['talk_link'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'talk_page';
-  $strongarm->value = 'Talk';
-  $export['talk_page'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'talk_page_no_comments';
-  $strongarm->value = 1;
-  $export['talk_page_no_comments'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'talk_tab';
-  $strongarm->value = 'Talk';
-  $export['talk_tab'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
