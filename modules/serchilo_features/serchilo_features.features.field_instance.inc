@@ -48,7 +48,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'field_example',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Example arguments to call this shortcut. Separate multiple arguments with comma.',
+    'description' => 'Example arguments to call this shortcut. Separate multiple arguments with comma. The keyword will be prepended automatically.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -1198,7 +1198,7 @@ function serchilo_features_field_default_field_instances() {
   t('Description');
   t('Ensures backwards compatibility to the old (Drupal) Serchilo (launched 2013). Requests calling command/[command_id] can be redirected to the current Shortcut node page.');
   t('Every shortcut is called with a keyword. See Help → "Getting started" for more info. ');
-  t('Example arguments to call this shortcut. Separate multiple arguments with comma.');
+  t('Example arguments to call this shortcut. Separate multiple arguments with comma. The keyword will be prepended automatically.');
   t('Examples');
   t('Examples show how the shortcut can be used. Add various examples to cover as many use cases as possible.');
   t('Expected content');
