@@ -916,16 +916,6 @@ function serchilo_node_view($node, $view_mode, $langcode) {
   }
 }
 
-/**
- * Implements hook_node_view_alter().
- */
-function serchilo_node_view_alter(&$build) {
-
-  // Remove comment links like
-  // "Add new comment".
-  $build['links']['comment'] = array();
-}
-
 
 // FORM HOOKS
 

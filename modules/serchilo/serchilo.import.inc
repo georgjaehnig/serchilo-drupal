@@ -99,7 +99,6 @@ function serchilo_import_shortcuts($rows, $verbose = FALSE) {
       }
     }
 
-    $shortcut->comment = COMMENT_NODE_OPEN;
     $shortcut->status = NODE_PUBLISHED;
     $shortcut->uid = 1;
     $shortcut->title = $row['title'];
