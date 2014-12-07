@@ -27,7 +27,7 @@ function serchilo_features_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -43,
+    'weight' => -42,
     'customized' => 1,
     'parent_identifier' => 'main-menu_help:help',
   );
@@ -68,7 +68,7 @@ function serchilo_features_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -46,
+    'weight' => -45,
     'customized' => 1,
     'parent_identifier' => 'main-menu_help:help',
   );
@@ -89,7 +89,7 @@ function serchilo_features_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -47,
+    'weight' => -46,
     'customized' => 1,
     'parent_identifier' => 'main-menu_help:help',
   );
@@ -193,7 +193,7 @@ function serchilo_features_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -48,
+    'weight' => -47,
     'customized' => 1,
     'parent_identifier' => 'main-menu_help:help',
   );
@@ -235,7 +235,7 @@ function serchilo_features_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -42,
+    'weight' => -41,
     'customized' => 1,
     'parent_identifier' => 'main-menu_help:help',
   );
@@ -256,7 +256,7 @@ function serchilo_features_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -45,
+    'weight' => -44,
     'customized' => 1,
     'parent_identifier' => 'main-menu_help:help',
   );
@@ -295,7 +295,7 @@ function serchilo_features_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -44,
+    'weight' => -43,
     'customized' => 1,
     'parent_identifier' => 'main-menu_help:help',
   );
