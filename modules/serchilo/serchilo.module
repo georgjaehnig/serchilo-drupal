@@ -820,7 +820,7 @@ function serchilo_node_delete($node) {
  */
 function serchilo_watchdog_check_number_of_affected_rows($num_affected, $node, $function_name) {
 
-  if ($num_affected !== 1) {
+  if ($num_affected == 0) {
     watchdog(
       'serchilo', 
       'Wrong number of affected rows in %function: %num_affected rows when processing node %nid',
