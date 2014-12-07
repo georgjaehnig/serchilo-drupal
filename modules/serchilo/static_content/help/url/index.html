@@ -14,50 +14,50 @@ title = Shortcut URLs
 
 <h3 id="placeholders">Placeholders</h3>
 <table class="table table-bordered">
-<thead>
-<tr>
-<th>Placeholder type</th>
-<th>Example</th>
-<th>Naming convention</th>
-<th>Will be replaced with</th>
-<th>Available</th>
-</tr>
-</thead>
+  <thead>
+    <tr>
+      <th>Placeholder type</th>
+      <th>Example</th>
+      <th>Naming convention</th>
+      <th>Will be replaced with</th>
+      <th>Available</th>
+    </tr>
+  </thead>
 
-<tbody>
-<tr>
-<td>argument</td>
-<td><code>{s:foobar}</code></td>
-<td>by <a href="http://www.opensearch.org/Specifications/OpenSearch/1.1#Fully_qualified_parameter_names">OpenSearch URL template syntax, Fully qualified parameter names</a></td>
-<td><p>argument from query.</p> 
-<p>If there is more than one argument placeholder, their order in URL also defines the expected order in the shortcut query.</p></td>
-<td>always</td>
-</tr>
+  <tbody>
+    <tr>
+      <td>argument</td>
+      <td><code>{s:foobar}</code></td>
+      <td>by <a href="http://www.opensearch.org/Specifications/OpenSearch/1.1#Fully_qualified_parameter_names">OpenSearch URL template syntax, Fully qualified parameter names</a></td>
+      <td><p>argument from query.</p> 
+        <p>If there is more than one argument placeholder, their order in URL also defines the expected order in the shortcut query.</p></td>
+      <td>always</td>
+    </tr>
 
-<tr>
-<td>language</td>
-<td><code>{language}</code></td>
-<td>by <a href="http://www.opensearch.org/Specifications/OpenSearch/1.1#The_.22language.22_parameter">OpenSearch URL template syntax, "language" parameter</a></td>
-<td>current language namespace</td>
-<td>always</td>
-</tr>
+    <tr>
+      <td>language</td>
+      <td><code>{language}</code></td>
+      <td>by <a href="http://www.opensearch.org/Specifications/OpenSearch/1.1#The_.22language.22_parameter">OpenSearch URL template syntax, "language" parameter</a></td>
+      <td>current language namespace</td>
+      <td>always</td>
+    </tr>
 
-<tr>
-<td>user</td>
-<td><code>{user:id}</code></td>
-<td>by <a href="http://www.opensearch.org/Specifications/OpenSearch/1.1#Fully_qualified_parameter_names">OpenSearch URL template syntax, Fully qualified parameter names</a></td>
-<td>ID of current user</td>
-<td>only when calling via [site:url]u/[username]</td>
-</tr>
+    <tr>
+      <td>user</td>
+      <td><code>{user:id}</code></td>
+      <td>by <a href="http://www.opensearch.org/Specifications/OpenSearch/1.1#Fully_qualified_parameter_names">OpenSearch URL template syntax, Fully qualified parameter names</a></td>
+      <td>ID of current user</td>
+      <td>only when calling via [site:url]u/[username]</td>
+    </tr>
 
-<tr>
-<td>user</td>
-<td><code>{user:name}</code></td>
-<td>by <a href="http://www.opensearch.org/Specifications/OpenSearch/1.1#Fully_qualified_parameter_names">OpenSearch URL template syntax, Fully qualified parameter names</a></td>
-<td>Name of current user</td>
-<td>only when calling via [site:url]u/[username]</td>
-</tr>
-</tbody>
+    <tr>
+      <td>user</td>
+      <td><code>{user:name}</code></td>
+      <td>by <a href="http://www.opensearch.org/Specifications/OpenSearch/1.1#Fully_qualified_parameter_names">OpenSearch URL template syntax, Fully qualified parameter names</a></td>
+      <td>Name of current user</td>
+      <td>only when calling via [site:url]u/[username]</td>
+    </tr>
+  </tbody>
 
 </table>
 
@@ -65,35 +65,35 @@ title = Shortcut URLs
 <p>When adding or editing a shortcut, an input encoding can be selected. It defines, in which way the user arguments shall be encoded before they replace the placeholders <code>{s:foobar}</code>. Defaults to UTF-8.</p>
 
 <table class="table table-bordered">
-<thead>
-<tr>
-<th>Input encoding</th>
-<th>Passed through functions</th>
-<th>Example input</th>
-<th>Example output</th>
-</tr>
-</thead>
+  <thead>
+    <tr>
+      <th>Input encoding</th>
+      <th>Passed through functions</th>
+      <th>Example input</th>
+      <th>Example output</th>
+    </tr>
+  </thead>
 
-<tbody>
-<tr>
-<td>UTF-8</td>
-<td rowspan="2"><a href="http://www.php.net/manual/function.mb-convert-encoding.php">mb_convert_encoding()</a> → <a href="http://www.php.net/manual/function.rawurlencode.php">rawurlencode()</a></td>
-<td rowspan="2">foo ä bar/</td>
-<td>foo%20ä%20bar%2F</td>
-</tr>
+  <tbody>
+    <tr>
+      <td>UTF-8</td>
+      <td rowspan="2"><a href="http://www.php.net/manual/function.mb-convert-encoding.php">mb_convert_encoding()</a> → <a href="http://www.php.net/manual/function.rawurlencode.php">rawurlencode()</a></td>
+      <td rowspan="2">foo ä bar/</td>
+      <td>foo%20ä%20bar%2F</td>
+    </tr>
 
-<tr>
-<td>ISO-8859-1</td>
-<td>foo%20%E4%20bar%2F</td>
-</tr>
+    <tr>
+      <td>ISO-8859-1</td>
+      <td>foo%20%E4%20bar%2F</td>
+    </tr>
 
-<tr>
-<td>none</td>
-<td>–</td>
-<td>http://example.com/</td>
-<td>http://example.com/</td>
-</tr>
+    <tr>
+      <td>none</td>
+      <td>–</td>
+      <td>http://example.com/</td>
+      <td>http://example.com/</td>
+    </tr>
 
-</tbody>
+  </tbody>
 
 </table>
