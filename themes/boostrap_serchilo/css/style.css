@@ -12,14 +12,10 @@
 .left       { float: left !important; }
 .right      { float: right !important; }
 
-.ui-autocomplete { 
-  max-height: 400px; 
-  overflow-y: scroll; 
+.ui-autocomplete {
+  max-height: 400px;
+  overflow-y: scroll;
   overflow-x: hidden;
-}
-
-.ui-autocomplete .ui-widget-content {
-  margin-top: 0.2em;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   font-family: inherit;
@@ -27,7 +23,7 @@
 }
 
 .ui-menu-item .ui-state-focus {
-  background: #0081C2;
+  background: #0081c2;
   color: #fff;
   border-radius: 0;
 }
@@ -40,6 +36,9 @@
 }
 .ui-menu-item .unreachable .keyword {
   color: #aaa;
+}
+.ui-menu-item .unreachable.ui-state-focus .keyword {
+  color: #fff;
 }
 .ui-menu-item .argument-names {
 	color: #444;
