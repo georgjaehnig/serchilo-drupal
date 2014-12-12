@@ -534,10 +534,25 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
   $handler->display->display_options['sorts']['title']['field'] = 'title';
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'shortcut' => 'shortcut',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  $handler->display->display_options['filters']['status']['group'] = 1;
   /* Filter criterion: Content: Keyword (field_keyword) */
   $handler->display->display_options['filters']['field_keyword_value']['id'] = 'field_keyword_value';
   $handler->display->display_options['filters']['field_keyword_value']['table'] = 'field_data_field_keyword';
   $handler->display->display_options['filters']['field_keyword_value']['field'] = 'field_keyword_value';
+  $handler->display->display_options['filters']['field_keyword_value']['group'] = 1;
   $handler->display->display_options['filters']['field_keyword_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_keyword_value']['expose']['operator_id'] = 'keyword_op';
   $handler->display->display_options['filters']['field_keyword_value']['expose']['label'] = 'Keyword';
@@ -554,6 +569,7 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['filters']['title']['table'] = 'node';
   $handler->display->display_options['filters']['title']['field'] = 'title';
   $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['group'] = 1;
   $handler->display->display_options['filters']['title']['exposed'] = TRUE;
   $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['label'] = 'Title';
@@ -569,6 +585,7 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['filters']['field_url_value']['table'] = 'field_data_field_url';
   $handler->display->display_options['filters']['field_url_value']['field'] = 'field_url_value';
   $handler->display->display_options['filters']['field_url_value']['operator'] = 'contains';
+  $handler->display->display_options['filters']['field_url_value']['group'] = 1;
   $handler->display->display_options['filters']['field_url_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_url_value']['expose']['operator_id'] = 'url_op';
   $handler->display->display_options['filters']['field_url_value']['expose']['label'] = 'URL';
@@ -584,6 +601,7 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['filters']['field_namespace_tid']['table'] = 'field_data_field_namespace';
   $handler->display->display_options['filters']['field_namespace_tid']['field'] = 'field_namespace_tid';
   $handler->display->display_options['filters']['field_namespace_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_namespace_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_namespace_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_namespace_tid']['expose']['operator_id'] = 'field_namespace_tid_op';
   $handler->display->display_options['filters']['field_namespace_tid']['expose']['label'] = 'Namespace';
@@ -602,6 +620,7 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['filters']['field_tags_tid']['field'] = 'field_tags_tid';
   $handler->display->display_options['filters']['field_tags_tid']['operator'] = 'and';
   $handler->display->display_options['filters']['field_tags_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_tags_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_tags_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_tags_tid']['expose']['operator_id'] = 'field_tags_tid_op';
   $handler->display->display_options['filters']['field_tags_tid']['expose']['label'] = 'Tags';
