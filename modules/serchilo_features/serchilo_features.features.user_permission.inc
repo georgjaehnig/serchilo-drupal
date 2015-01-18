@@ -24,6 +24,16 @@ function serchilo_features_user_default_permissions() {
     'module' => 'views',
   );
 
+  // Exported permission: 'access comments'.
+  $permissions['access comments'] = array(
+    'name' => 'access comments',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'comment',
+  );
+
   // Exported permission: 'access content'.
   $permissions['access content'] = array(
     'name' => 'access content',
@@ -88,6 +98,13 @@ function serchilo_features_user_default_permissions() {
     'name' => 'administer blocks',
     'roles' => array(),
     'module' => 'block',
+  );
+
+  // Exported permission: 'administer comments'.
+  $permissions['administer comments'] = array(
+    'name' => 'administer comments',
+    'roles' => array(),
+    'module' => 'comment',
   );
 
   // Exported permission: 'administer content types'.
@@ -317,6 +334,13 @@ function serchilo_features_user_default_permissions() {
     'module' => 'clone',
   );
 
+  // Exported permission: 'create discussion content'.
+  $permissions['create discussion content'] = array(
+    'name' => 'create discussion content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
   // Exported permission: 'create field_approved'.
   $permissions['create field_approved'] = array(
     'name' => 'create field_approved',
@@ -498,12 +522,26 @@ function serchilo_features_user_default_permissions() {
     'module' => 'path',
   );
 
+  // Exported permission: 'delete any discussion content'.
+  $permissions['delete any discussion content'] = array(
+    'name' => 'delete any discussion content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
   // Exported permission: 'delete any shortcut content'.
   $permissions['delete any shortcut content'] = array(
     'name' => 'delete any shortcut content',
     'roles' => array(
       'moderator' => 'moderator',
     ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'delete own discussion content'.
+  $permissions['delete own discussion content'] = array(
+    'name' => 'delete own discussion content',
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -542,6 +580,13 @@ function serchilo_features_user_default_permissions() {
     'name' => 'delete terms in tags',
     'roles' => array(),
     'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'edit any discussion content'.
+  $permissions['edit any discussion content'] = array(
+    'name' => 'edit any discussion content',
+    'roles' => array(),
+    'module' => 'node',
   );
 
   // Exported permission: 'edit any shortcut content'.
@@ -723,6 +768,22 @@ function serchilo_features_user_default_permissions() {
     'name' => 'edit meta tags',
     'roles' => array(),
     'module' => 'metatag',
+  );
+
+  // Exported permission: 'edit own comments'.
+  $permissions['edit own comments'] = array(
+    'name' => 'edit own comments',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'comment',
+  );
+
+  // Exported permission: 'edit own discussion content'.
+  $permissions['edit own discussion content'] = array(
+    'name' => 'edit own discussion content',
+    'roles' => array(),
+    'module' => 'node',
   );
 
   // Exported permission: 'edit own field_approved'.
@@ -947,6 +1008,16 @@ function serchilo_features_user_default_permissions() {
     'module' => 'pathauto',
   );
 
+  // Exported permission: 'post comments'.
+  $permissions['post comments'] = array(
+    'name' => 'post comments',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'comment',
+  );
+
   // Exported permission: 'rename features'.
   $permissions['rename features'] = array(
     'name' => 'rename features',
@@ -969,6 +1040,16 @@ function serchilo_features_user_default_permissions() {
     'name' => 'select account cancellation method',
     'roles' => array(),
     'module' => 'user',
+  );
+
+  // Exported permission: 'skip comment approval'.
+  $permissions['skip comment approval'] = array(
+    'name' => 'skip comment approval',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'comment',
   );
 
   // Exported permission: 'switch users'.
