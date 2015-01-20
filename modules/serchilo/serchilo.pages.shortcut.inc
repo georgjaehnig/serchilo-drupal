@@ -84,3 +84,19 @@ function serchilo_shortcut_approve_confirm_submit($form, &$form_state) {
 
   $form_state['redirect'] = 'node/' . $node->nid . '/revisions';
 }
+
+
+// Discussion
+
+/**
+ * Return the Shortcut discussion page.
+ *
+ * @param $node
+ *   Node of type shortcut.
+ * @return array
+ *   Render array containing the page.
+ */
+function serchilo_page_shortcut_discussion($node) {
+
+  return 'foo';
+}

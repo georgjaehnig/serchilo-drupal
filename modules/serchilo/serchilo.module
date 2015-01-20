@@ -346,6 +346,17 @@ function serchilo_menu() {
       'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
       'file' => 'serchilo.pages.shortcut.inc',
     ),
+
+    'node/%node/discussion' => array(
+      'title' => 'Discussion',
+      'page callback' => 'serchilo_page_shortcut_discussion',
+      'page arguments' => array(1),
+      'access callback' => TRUE,
+      'weight' => 11,
+      'type' => MENU_LOCAL_TASK,
+      'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
+      'file' => 'serchilo.pages.shortcut.inc',
+    ),
   );
 
   return $items;
