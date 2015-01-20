@@ -127,17 +127,29 @@ function serchilo_page_shortcut_discussion($shortcut) {
     }
 
     // Depending on the context there may be a better choice than this
-    return theme(
-      'table', array(
-        'header' => $header, 
-        'rows' => $rows,
-        'caption' => t(
-          'Forum discussions about %shortcut_title', 
-          array('%shortcut_title' => $shortcut->title)
-        ),
-      )
+    $output['discussions'] = array(
+      '#theme' => 'table', 
+      '#header' => $header, 
+      '#rows' => $rows,
+      '#caption' => t(
+        'Forum discussions about %shortcut_title', 
+        array('%shortcut_title' => $shortcut->title)
+      ),
     );
   }
 
-  return 'foo';
+  $output['add_discussion'] = array(
+    '#theme' => 'link', 
+    '#text' => t('Add new discussion'),
+    // TODO: Set proper link to new discussion
+    // prefilling affected shortcuts with current shortcut
+    '#path' =>  'forum',
+    '#attributes' =>  array(),
+    '#options' => array(
+      'attributes' => array(),
+      'html' => FALSE,
+    ),
+  );
+
+  return $output;
 }
