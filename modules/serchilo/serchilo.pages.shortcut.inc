@@ -103,7 +103,7 @@ function serchilo_page_shortcut_discussion($shortcut) {
   $efq = $efq
     ->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'discussion')
-    ->fieldCondition('field_shortcuts_affected', 'target_id',  $shortcut->nid+1)
+    ->fieldCondition('field_shortcuts_affected', 'target_id',  $shortcut->nid)
     ;
 
   $result = $efq->execute();
