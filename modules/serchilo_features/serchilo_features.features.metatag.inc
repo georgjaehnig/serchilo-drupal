@@ -132,6 +132,35 @@ function serchilo_features_metatag_export_default() {
     ),
   );
 
+  // Exported Metatag config instance: node:discussion.
+  $config['node:discussion'] = array(
+    'instance' => 'node:discussion',
+    'config' => array(
+      'title' => array(
+        'value' => '[node:title] | Forum | [site:name]',
+      ),
+    ),
+  );
+
+  // Exported Metatag config instance: node:shortcut.
+  $config['node:shortcut'] = array(
+    'instance' => 'node:shortcut',
+    'config' => array(
+      'description' => array(
+        'value' => 'Search [node:title] directly from your browser. [node:field_description]',
+      ),
+      'abstract' => array(
+        'value' => 'Search [node:title] directly from your browser. [node:field_description]',
+      ),
+      'keywords' => array(
+        'value' => '[node:field_tags]',
+      ),
+      'rights' => array(
+        'value' => 'http://creativecommons.org/licenses/by-sa/4.0/',
+      ),
+    ),
+  );
+
   // Exported Metatag config instance: taxonomy_term.
   $config['taxonomy_term'] = array(
     'instance' => 'taxonomy_term',
