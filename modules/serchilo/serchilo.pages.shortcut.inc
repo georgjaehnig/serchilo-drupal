@@ -96,7 +96,48 @@ function serchilo_shortcut_approve_confirm_submit($form, &$form_state) {
  * @return array
  *   Render array containing the page.
  */
-function serchilo_page_shortcut_discussion($node) {
+function serchilo_page_shortcut_discussion($shortcut) {
+
+  $efq = new EntityFieldQuery;
+
+  $efq = $efq
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'discussion')
+    ->fieldCondition('field_shortcuts_affected', 'target_id',  $shortcut->nid+1)
+    ;
+
+  $result = $efq->execute();
+
+  if (!empty($result)) {
+
+    $nids = array_keys($result['node']);
+
+    $header = array('Title', 'Replies');
+    $rows = array();
+
+    foreach ($nids as $nid) {
+      $discussion = node_load($nid);
+      $rows[] = array(
+        l(
+          $discussion->title,
+          'node/' . $discussion->nid
+        ),
+        $discussion->comment_count
+      );
+    }
+
+    // Depending on the context there may be a better choice than this
+    return theme(
+      'table', array(
+        'header' => $header, 
+        'rows' => $rows,
+        'caption' => t(
+          'Forum discussions about %shortcut_title', 
+          array('%shortcut_title' => $shortcut->title)
+        ),
+      )
+    );
+  }
 
   return 'foo';
 }
