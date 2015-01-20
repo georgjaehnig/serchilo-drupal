@@ -27,13 +27,14 @@ function bootstrap_serchilo_preprocess_block(&$vars) {
  */
 function bootstrap_serchilo_preprocess_button(&$vars) {
   
-  switch ($vars['element']['#id']) {
+  switch ($vars['element']['#button_type']) {
   // Make Go button a primary button.
   // Make Apply button a primary button.
-  case 'edit-submit':
-  case 'edit-submit-shortcuts':
+  case 'submit':
     $vars['element']['#attributes']['class'][] = 'btn-primary';
     break; 
+  }
+  switch ($vars['element']['#id']) {
   case 'edit-reset':
     // Make Reset button a warning button.
     $vars['element']['#attributes']['class'][] = 'btn-warning';
