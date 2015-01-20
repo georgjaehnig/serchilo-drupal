@@ -208,6 +208,42 @@ function serchilo_features_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entityreference:base-tables';
+  $strongarm->value = array(
+    'comment' => array(
+      0 => 'comment',
+      1 => 'cid',
+    ),
+    'field_collection_item' => array(
+      0 => 'field_collection_item',
+      1 => 'item_id',
+    ),
+    'node' => array(
+      0 => 'node',
+      1 => 'nid',
+    ),
+    'file' => array(
+      0 => 'file_managed',
+      1 => 'fid',
+    ),
+    'taxonomy_term' => array(
+      0 => 'taxonomy_term_data',
+      1 => 'tid',
+    ),
+    'taxonomy_vocabulary' => array(
+      0 => 'taxonomy_vocabulary',
+      1 => 'vid',
+    ),
+    'user' => array(
+      0 => 'users',
+      1 => 'uid',
+    ),
+  );
+  $export['entityreference:base-tables'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'features_ignored_orphans';
   $strongarm->value = array();
   $export['features_ignored_orphans'] = $strongarm;
@@ -789,6 +825,13 @@ function serchilo_features_strongarm() {
   $strongarm->name = 'pathauto_max_length';
   $strongarm->value = '100';
   $export['pathauto_max_length'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_discussion_pattern';
+  $strongarm->value = 'forum/[node:title]';
+  $export['pathauto_node_discussion_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
