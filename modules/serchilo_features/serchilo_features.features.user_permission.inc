@@ -337,7 +337,10 @@ function serchilo_features_user_default_permissions() {
   // Exported permission: 'create discussion content'.
   $permissions['create discussion content'] = array(
     'name' => 'create discussion content',
-    'roles' => array(),
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'node',
   );
 
@@ -361,6 +364,16 @@ function serchilo_features_user_default_permissions() {
   $permissions['create field_argument_names'] = array(
     'name' => 'create field_argument_names',
     'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'create field_body'.
+  $permissions['create field_body'] = array(
+    'name' => 'create field_body',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'field_permissions',
   );
 
@@ -456,6 +469,16 @@ function serchilo_features_user_default_permissions() {
   $permissions['create field_set_referrer'] = array(
     'name' => 'create field_set_referrer',
     'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'create field_shortcuts_affected'.
+  $permissions['create field_shortcuts_affected'] = array(
+    'name' => 'create field_shortcuts_affected',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'field_permissions',
   );
 
@@ -585,7 +608,10 @@ function serchilo_features_user_default_permissions() {
   // Exported permission: 'edit any discussion content'.
   $permissions['edit any discussion content'] = array(
     'name' => 'edit any discussion content',
-    'roles' => array(),
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'node',
   );
 
@@ -619,6 +645,15 @@ function serchilo_features_user_default_permissions() {
   $permissions['edit field_argument_names'] = array(
     'name' => 'edit field_argument_names',
     'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'edit field_body'.
+  $permissions['edit field_body'] = array(
+    'name' => 'edit field_body',
+    'roles' => array(
+      'moderator' => 'moderator',
+    ),
     'module' => 'field_permissions',
   );
 
@@ -717,6 +752,16 @@ function serchilo_features_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: 'edit field_shortcuts_affected'.
+  $permissions['edit field_shortcuts_affected'] = array(
+    'name' => 'edit field_shortcuts_affected',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'edit field_tags'.
   $permissions['edit field_tags'] = array(
     'name' => 'edit field_tags',
@@ -782,7 +827,10 @@ function serchilo_features_user_default_permissions() {
   // Exported permission: 'edit own discussion content'.
   $permissions['edit own discussion content'] = array(
     'name' => 'edit own discussion content',
-    'roles' => array(),
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'node',
   );
 
@@ -806,6 +854,16 @@ function serchilo_features_user_default_permissions() {
   $permissions['edit own field_argument_names'] = array(
     'name' => 'edit own field_argument_names',
     'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'edit own field_body'.
+  $permissions['edit own field_body'] = array(
+    'name' => 'edit own field_body',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'field_permissions',
   );
 
@@ -901,6 +959,16 @@ function serchilo_features_user_default_permissions() {
   $permissions['edit own field_set_referrer'] = array(
     'name' => 'edit own field_set_referrer',
     'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'edit own field_shortcuts_affected'.
+  $permissions['edit own field_shortcuts_affected'] = array(
+    'name' => 'edit own field_shortcuts_affected',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'field_permissions',
   );
 
@@ -1094,6 +1162,16 @@ function serchilo_features_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: 'view field_body'.
+  $permissions['view field_body'] = array(
+    'name' => 'view field_body',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'view field_calls_last_30_days'.
   $permissions['view field_calls_last_30_days'] = array(
     'name' => 'view field_calls_last_30_days',
@@ -1189,6 +1267,16 @@ function serchilo_features_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: 'view field_shortcuts_affected'.
+  $permissions['view field_shortcuts_affected'] = array(
+    'name' => 'view field_shortcuts_affected',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'view field_tags'.
   $permissions['view field_tags'] = array(
     'name' => 'view field_tags',
@@ -1256,6 +1344,16 @@ function serchilo_features_user_default_permissions() {
   // Exported permission: 'view own field_argument_names'.
   $permissions['view own field_argument_names'] = array(
     'name' => 'view own field_argument_names',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'view own field_body'.
+  $permissions['view own field_body'] = array(
+    'name' => 'view own field_body',
     'roles' => array(
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
@@ -1355,6 +1453,16 @@ function serchilo_features_user_default_permissions() {
   $permissions['view own field_set_referrer'] = array(
     'name' => 'view own field_set_referrer',
     'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'view own field_shortcuts_affected'.
+  $permissions['view own field_shortcuts_affected'] = array(
+    'name' => 'view own field_shortcuts_affected',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'field_permissions',
   );
 
