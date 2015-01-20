@@ -351,7 +351,8 @@ function serchilo_menu() {
       'title' => 'Discussion',
       'page callback' => 'serchilo_page_shortcut_discussion',
       'page arguments' => array(1),
-      'access callback' => TRUE,
+      'access callback' => 'serchilo_shortcut_discussion_access',
+      'access arguments' => array(1),
       'weight' => 11,
       'type' => MENU_LOCAL_TASK,
       'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
@@ -465,10 +466,31 @@ function serchilo_menu_local_tasks_alter(&$data, $router_item, $root_path) {
  */
 function serchilo_shortcut_approve_access($node) {
 
+  if ($node->type != 'shortcut') {
+    return FALSE; 
+  }
   if (!user_access('approve shortcut content')) {
     return FALSE; 
   }
   if (!empty($node->field_approved[LANGUAGE_NONE][0]['value'])) {
+    return FALSE; 
+  }
+  return TRUE; 
+}
+
+/**
+ * Access callback for node/%node/discussion.
+ *
+ * @param object $node
+ *   The shortcut node.
+ *
+ * @return bool
+ *   TRUE if access is given.
+ *   FALSE if access is not given.
+ */
+function serchilo_shortcut_discussion_access($node) {
+
+  if ($node->type != 'shortcut') {
     return FALSE; 
   }
   return TRUE; 
