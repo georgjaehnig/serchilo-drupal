@@ -22,7 +22,7 @@ function serchilo_set_input_widths($) {
     var submit_width  = $('#edit-submit').outerWidth();
 
     // Calculate with for single text input.
-    var argument_width_total  = form_width - keyword_width - submit_width - 20;
+    var argument_width_total  = form_width - keyword_width - submit_width - 50;
     var argument_count        = $('#serchilo-shortcut-call-form input.form-text').length;
     var argument_width_single = Math.round(argument_width_total / argument_count) - 5;
 
