@@ -143,11 +143,14 @@ function serchilo_page_shortcut_discussion($shortcut) {
     '#text' => t('Add new discussion'),
     // TODO: Set proper link to new discussion
     // prefilling affected shortcuts with current shortcut
-    '#path' =>  'forum',
+    '#path' =>  'node/add/discussion',
     '#attributes' =>  array(),
     '#options' => array(
       'attributes' => array(),
       'html' => FALSE,
+      'query' => array(
+        'shortcut_affected' => $shortcut->nid, 
+      )
     ),
   );
 
