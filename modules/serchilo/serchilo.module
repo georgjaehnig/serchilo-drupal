@@ -392,20 +392,6 @@ function serchilo_menu_alter(&$items) {
  */
 function serchilo_menu_local_tasks_alter(&$data, $router_item, $root_path) {
 
-  // For node view:
-  // Insert 'Clone to my' tab
-  if ('node/%' == $root_path) {
-    foreach($data['tabs'][0]['output'] as $index=>$tab) {
-      if ('clone_node_check' == $tab['#link']['page_callback']) {
-        break;
-      }
-    }
-    $tab['#link']['title'] = t('Clone to my');
-    $tab['#link']['localized_options']['query']['user'] = TRUE;
-    array_splice($data['tabs'][0]['output'], $index+1, 0, array($tab) );
-  
-  }
-
   // For 'shortcuts' view:
   // Insert 'Add shortcut' tabs
   if ('shortcuts' == $root_path) {
@@ -433,21 +419,7 @@ function serchilo_menu_local_tasks_alter(&$data, $router_item, $root_path) {
       ),
     );
 
-    $data['tabs'][0]['output'][] = array(
-      '#theme' => 'menu_local_task',
-      '#link' => array(
-        'title' => t('Create new shortcut in my namespace'),
-        'href' => 'node/add/shortcut',
-        'access' => 'user_is_logged_in',
-        'localized_options' => array(
-          'query' => array(
-            'user' => TRUE, 
-          ),
-        ),
-      ),
-    );
-
-    $data['tabs'][0]['count'] = (user_is_logged_in() ? 3 : 2);
+    $data['tabs'][0]['count'] = 2;
   }
 }
 
@@ -1129,11 +1101,18 @@ function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) 
 
   // If creating a new Shortcut:
   if (empty($form['nid']['#value'])) {
-    if (isset($_GET['user'])) {
-      if (user_is_logged_in()) {
-        // Preset namespace with user name.
-        $form['field_namespace'][LANGUAGE_NONE]['#default_value'] = $user->name;
-      }
+    if (user_is_logged_in()) {
+      // Add link to set user namespace.
+      $form['field_namespace']['#attached']['js'][] = array(
+        'data' => 'jQuery(document).ready(function () { 
+          var link = jQuery("<a>Set my user namespace</a>");
+          link.click(function() {
+            jQuery("#edit-field-namespace-und").val("' . $user->name .  '");
+          });
+          jQuery(".form-item-field-namespace-und").append(link);
+        });', 
+        'type' => 'inline',
+      );
     }
     if (!empty($_GET['namespace'])) {
       $form['field_namespace'][LANGUAGE_NONE]['#default_value'] = $_GET['namespace'];
