@@ -57,6 +57,7 @@ function serchilo_features_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'clone_omitted';
   $strongarm->value = array(
+    'discussion' => 'discussion',
     'shortcut' => 0,
   );
   $export['clone_omitted'] = $strongarm;
