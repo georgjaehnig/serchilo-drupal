@@ -779,7 +779,7 @@ function serchilo_block_namespaces() {
   $add_to_browser = array(
     '#type' => 'markup', 
     '#markup' => '
-      <a href="javascript:window.external.AddSearchProvider( \'http://\' + location.host + \'/opensearch\' + location.pathname + location.search);">Add to browser</a>
+      <button class="btn btn-sm btn-default" onclick="window.external.AddSearchProvider( \'http://\' + location.host + \'/opensearch\' + location.pathname + location.search);">Add to browser</button>
     ');
 
   return array_merge(
