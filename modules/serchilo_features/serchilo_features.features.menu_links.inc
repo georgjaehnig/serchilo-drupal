@@ -48,7 +48,7 @@ function serchilo_features_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 1,
     'expanded' => 1,
-    'weight' => 0,
+    'weight' => -50,
     'customized' => 1,
   );
   // Exported menu link: main-menu_browser-integration:help/integration
@@ -152,9 +152,8 @@ function serchilo_features_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -42,
+    'weight' => -48,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_help:help',
   );
   // Exported menu link: main-menu_getting-started:help/start
   $menu_links['main-menu_getting-started:help/start'] = array(
@@ -194,7 +193,7 @@ function serchilo_features_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 1,
     'expanded' => 1,
-    'weight' => 0,
+    'weight' => -49,
     'customized' => 1,
   );
   // Exported menu link: main-menu_namespace-types:namespace-types
