@@ -443,8 +443,29 @@ function serchilo_features_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'honeypot_form_comment_node_discussion_form';
+  $strongarm->value = 1;
+  $export['honeypot_form_comment_node_discussion_form'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'honeypot_form_comment_node_shortcut_form';
+  $strongarm->value = 1;
+  $export['honeypot_form_comment_node_shortcut_form'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'honeypot_form_discussion_node_form';
+  $strongarm->value = 1;
+  $export['honeypot_form_discussion_node_form'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'honeypot_form_shortcut_node_form';
-  $strongarm->value = 0;
+  $strongarm->value = 1;
   $export['honeypot_form_shortcut_node_form'] = $strongarm;
 
   $strongarm = new stdClass();
