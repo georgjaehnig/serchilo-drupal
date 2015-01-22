@@ -361,6 +361,28 @@ function serchilo_features_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_browse:browse',
   );
+  // Exported menu link: user-menu_edit:user/1/edit
+  $menu_links['user-menu_edit:user/1/edit'] = array(
+    'menu_name' => 'user-menu',
+    'link_path' => 'user/1/edit',
+    'router_path' => 'user/%/edit',
+    'link_title' => 'Edit',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'alter' => TRUE,
+      'identifier' => 'user-menu_edit:user/1/edit',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+    'parent_identifier' => 'user-menu_my-account:user',
+  );
   // Exported menu link: user-menu_log-out:user/logout
   $menu_links['user-menu_log-out:user/logout'] = array(
     'menu_name' => 'user-menu',
@@ -446,6 +468,7 @@ function serchilo_features_menu_default_menu_links() {
   t('Browser integration');
   t('Default keyword');
   t('Differences to old Serchilo');
+  t('Edit');
   t('Editing');
   t('Forum');
   t('Getting started');
