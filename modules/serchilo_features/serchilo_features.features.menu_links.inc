@@ -361,33 +361,6 @@ function serchilo_features_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_browse:browse',
   );
-  // Exported menu link: user-menu_edit:user/1/edit
-  $menu_links['user-menu_edit:user/1/edit'] = array(
-    'menu_name' => 'user-menu',
-    'link_path' => 'user/1/edit',
-    'router_path' => 'user/%/edit',
-    'link_title' => 'Edit',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-      'menu_token_link_path' => 'user/[current-user:uid]/edit',
-      'menu_token_data' => array(),
-      'menu_token_options' => array(
-        'clear' => 0,
-      ),
-      'alter' => TRUE,
-      'identifier' => 'user-menu_edit:user/1/edit',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -50,
-    'customized' => 1,
-    'parent_identifier' => 'user-menu_my-account:user',
-  );
   // Exported menu link: user-menu_log-out:user/logout
   $menu_links['user-menu_log-out:user/logout'] = array(
     'menu_name' => 'user-menu',
@@ -424,33 +397,6 @@ function serchilo_features_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -50,
     'customized' => 1,
-  );
-  // Exported menu link: user-menu_my-shortcuts:user/1/shortcuts
-  $menu_links['user-menu_my-shortcuts:user/1/shortcuts'] = array(
-    'menu_name' => 'user-menu',
-    'link_path' => 'user/1/shortcuts',
-    'router_path' => 'user/%/shortcuts',
-    'link_title' => 'My shortcuts',
-    'options' => array(
-      'menu_token_link_path' => 'user/[current-user:uid]/shortcuts',
-      'menu_token_data' => array(),
-      'menu_token_options' => array(
-        'clear' => 0,
-      ),
-      'attributes' => array(
-        'title' => '',
-      ),
-      'alter' => TRUE,
-      'identifier' => 'user-menu_my-shortcuts:user/1/shortcuts',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -49,
-    'customized' => 1,
-    'parent_identifier' => 'user-menu_my-account:user',
   );
   // Exported menu link: user-menu_register:user/register
   $menu_links['user-menu_register:user/register'] = array(
@@ -500,14 +446,12 @@ function serchilo_features_menu_default_menu_links() {
   t('Browser integration');
   t('Default keyword');
   t('Differences to old Serchilo');
-  t('Edit');
   t('Editing');
   t('Forum');
   t('Getting started');
   t('Help');
   t('Log out');
   t('Login');
-  t('My shortcuts');
   t('Namespace types');
   t('Namespaces');
   t('Privacy policy');
