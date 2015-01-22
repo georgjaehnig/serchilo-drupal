@@ -387,6 +387,7 @@ features[variable][] = honeypot_form_discussion_node_form
 features[variable][] = honeypot_form_shortcut_node_form
 features[variable][] = honeypot_form_user_pass
 features[variable][] = honeypot_form_user_register_form
+features[variable][] = honeypot_log
 features[variable][] = honeypot_protect_all_forms
 features[variable][] = honeypot_time_limit
 features[variable][] = install_profile
