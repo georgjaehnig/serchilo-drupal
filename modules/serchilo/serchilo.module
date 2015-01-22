@@ -676,6 +676,15 @@ function serchilo_block_info() {
     'region' => 'footer',
   );
 
+  $blocks['add_to_browser'] = array(
+    'info' => 'Add to my browser',
+    'status' => 1,
+    'region' => 'footer',
+    // Show only on n/* and u/* pages.
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => "n/*\nu/*"
+  );
+
   return $blocks;
 }
 
@@ -694,6 +703,10 @@ function serchilo_block_view($delta='') {
     case 'licenses':
       $block['subject'] = NULL;
       $block['content'] = serchilo_block_licenses();
+      break;
+    case 'add_to_browser':
+      $block['subject'] = NULL;
+      $block['content'] = serchilo_block_add_to_browser();
       break;
   }
 
@@ -766,17 +779,10 @@ function serchilo_block_namespaces() {
     $edit_link = array();
   }
  
-  $add_to_browser = array(
-    '#type' => 'markup', 
-    '#markup' => '
-      <button class="btn btn-sm btn-default" onclick="window.external.AddSearchProvider( \'http://\' + location.host + \'/opensearch\' + location.pathname + location.search);">Add to browser</button>
-    ');
-
   return array_merge(
     array($title),
     $namespace_links,
-    array($edit_link),
-    array($add_to_browser)
+    array($edit_link)
   );
 }
 
@@ -795,6 +801,16 @@ function serchilo_block_licenses() {
     <a href="/export">
     <img src="/' . $dir . '/svg/cc-by-sa.svg" width="80" height="15" />
     </a>
+    ';
+}
+
+/**
+ * Display licenses.
+ */
+function serchilo_block_add_to_browser() {
+
+  return '
+      <button class="btn btn-sm btn-default" onclick="window.external.AddSearchProvider( \'http://\' + location.host + \'/opensearch\' + location.pathname + location.search);">Add to my browser</button>
     ';
 }
 
