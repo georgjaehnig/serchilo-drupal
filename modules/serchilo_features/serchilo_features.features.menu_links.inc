@@ -361,6 +361,33 @@ function serchilo_features_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_browse:browse',
   );
+  // Exported menu link: user-menu_edit:user/1/edit
+  $menu_links['user-menu_edit:user/1/edit'] = array(
+    'menu_name' => 'user-menu',
+    'link_path' => 'user/1/edit',
+    'router_path' => 'user/%/edit',
+    'link_title' => 'Edit',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'menu_token_link_path' => 'user/[current-user:uid]/edit',
+      'menu_token_data' => array(),
+      'menu_token_options' => array(
+        'clear' => 0,
+      ),
+      'alter' => TRUE,
+      'identifier' => 'user-menu_edit:user/1/edit',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+    'parent_identifier' => 'user-menu_my-account:user',
+  );
   // Exported menu link: user-menu_log-out:user/logout
   $menu_links['user-menu_log-out:user/logout'] = array(
     'menu_name' => 'user-menu',
@@ -398,6 +425,33 @@ function serchilo_features_menu_default_menu_links() {
     'weight' => -50,
     'customized' => 1,
   );
+  // Exported menu link: user-menu_my-shortcuts:menutoken/54c0f2887263b
+  $menu_links['user-menu_my-shortcuts:menutoken/54c0f2887263b'] = array(
+    'menu_name' => 'user-menu',
+    'link_path' => 'menutoken/54c0f2887263b',
+    'router_path' => 'menutoken/%',
+    'link_title' => 'My shortcuts',
+    'options' => array(
+      'menu_token_link_path' => 'user/[current-user:uid]/shortcuts',
+      'menu_token_data' => array(),
+      'menu_token_options' => array(
+        'clear' => 0,
+      ),
+      'attributes' => array(
+        'title' => '',
+      ),
+      'alter' => TRUE,
+      'identifier' => 'user-menu_my-shortcuts:menutoken/54c0f2887263b',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+    'parent_identifier' => 'user-menu_my-account:user',
+  );
   // Exported menu link: user-menu_register:user/register
   $menu_links['user-menu_register:user/register'] = array(
     'menu_name' => 'user-menu',
@@ -427,12 +481,15 @@ function serchilo_features_menu_default_menu_links() {
     'options' => array(
       'alter' => TRUE,
       'identifier' => 'user-menu_user-account:user',
+      'attributes' => array(
+        'title' => '',
+      ),
     ),
     'module' => 'system',
     'hidden' => 0,
     'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
+    'has_children' => 1,
+    'expanded' => 1,
     'weight' => -48,
     'customized' => 1,
   );
@@ -443,12 +500,14 @@ function serchilo_features_menu_default_menu_links() {
   t('Browser integration');
   t('Default keyword');
   t('Differences to old Serchilo');
+  t('Edit');
   t('Editing');
   t('Forum');
   t('Getting started');
   t('Help');
   t('Log out');
   t('Login');
+  t('My shortcuts');
   t('Namespace types');
   t('Namespaces');
   t('Privacy policy');

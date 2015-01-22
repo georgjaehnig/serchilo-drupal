@@ -660,6 +660,7 @@ function serchilo_features_strongarm() {
   $strongarm->name = 'menu_expanded';
   $strongarm->value = array(
     0 => 'main-menu',
+    1 => 'user-menu',
   );
   $export['menu_expanded'] = $strongarm;
 
@@ -710,6 +711,21 @@ function serchilo_features_strongarm() {
   $strongarm->name = 'menu_parent_shortcut';
   $strongarm->value = 'main-menu:0';
   $export['menu_parent_shortcut'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_token_entities';
+  $strongarm->value = array(
+    'user' => 'user',
+    'comment' => 0,
+    'field_collection_item' => 0,
+    'node' => 0,
+    'file' => 0,
+    'taxonomy_term' => 0,
+    'taxonomy_vocabulary' => 0,
+  );
+  $export['menu_token_entities'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
