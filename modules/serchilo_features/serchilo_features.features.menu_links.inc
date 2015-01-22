@@ -418,17 +418,17 @@ function serchilo_features_menu_default_menu_links() {
     'weight' => -49,
     'customized' => 1,
   );
-  // Exported menu link: user-menu_test:help/api
-  $menu_links['user-menu_test:help/api'] = array(
+  // Exported menu link: user-menu_test2:help/start
+  $menu_links['user-menu_test2:help/start'] = array(
     'menu_name' => 'user-menu',
-    'link_path' => 'help/api',
-    'router_path' => 'help/api',
-    'link_title' => 'Test',
+    'link_path' => 'help/start',
+    'router_path' => 'help/start',
+    'link_title' => 'Test2',
     'options' => array(
       'attributes' => array(
         'title' => '',
       ),
-      'identifier' => 'user-menu_test:help/api',
+      'identifier' => 'user-menu_test2:help/start',
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -481,7 +481,7 @@ function serchilo_features_menu_default_menu_links() {
   t('Shortcuts');
   t('Support chat');
   t('Tags');
-  t('Test');
+  t('Test2');
   t('User account');
 
 
