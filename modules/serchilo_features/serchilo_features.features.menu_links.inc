@@ -435,8 +435,9 @@ function serchilo_features_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => 0,
+    'weight' => -50,
     'customized' => 1,
+    'parent_identifier' => 'user-menu_my-account:user',
   );
   // Exported menu link: user-menu_user-account:user
   $menu_links['user-menu_user-account:user'] = array(
@@ -454,7 +455,7 @@ function serchilo_features_menu_default_menu_links() {
     'module' => 'system',
     'hidden' => 0,
     'external' => 0,
-    'has_children' => 0,
+    'has_children' => 1,
     'expanded' => 1,
     'weight' => -48,
     'customized' => 1,
