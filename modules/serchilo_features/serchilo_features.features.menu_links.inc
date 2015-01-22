@@ -425,11 +425,11 @@ function serchilo_features_menu_default_menu_links() {
     'weight' => -50,
     'customized' => 1,
   );
-  // Exported menu link: user-menu_my-shortcuts:menutoken/54c0f2887263b
-  $menu_links['user-menu_my-shortcuts:menutoken/54c0f2887263b'] = array(
+  // Exported menu link: user-menu_my-shortcuts:user/1/shortcuts
+  $menu_links['user-menu_my-shortcuts:user/1/shortcuts'] = array(
     'menu_name' => 'user-menu',
-    'link_path' => 'menutoken/54c0f2887263b',
-    'router_path' => 'menutoken/%',
+    'link_path' => 'user/1/shortcuts',
+    'router_path' => 'user/%/shortcuts',
     'link_title' => 'My shortcuts',
     'options' => array(
       'menu_token_link_path' => 'user/[current-user:uid]/shortcuts',
@@ -441,7 +441,7 @@ function serchilo_features_menu_default_menu_links() {
         'title' => '',
       ),
       'alter' => TRUE,
-      'identifier' => 'user-menu_my-shortcuts:menutoken/54c0f2887263b',
+      'identifier' => 'user-menu_my-shortcuts:user/1/shortcuts',
     ),
     'module' => 'menu',
     'hidden' => 0,
