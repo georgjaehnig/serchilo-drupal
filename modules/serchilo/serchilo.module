@@ -1763,6 +1763,7 @@ function serchilo_taxonomy_ensure_term($term_name, $vocabulary_name, $term = arr
       'name' => $term_name,
       'vid' => (int) $vocabulary->vid,
       'format' => 'plain_text',
+      'vocabulary_machine_name' => $vocabulary_name,
     ) + $term;
     $term = (object) $term;
     taxonomy_term_save($term);
