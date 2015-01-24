@@ -372,7 +372,7 @@ function serchilo_menu_alter(&$items) {
   $items['user/%user/edit']['title'] = 'My account';
 
   // Redirect user page to u/[username]
-  $items['user']['page callback'] = 'serchilo_user_page';
+  $items['user/%user']['page callback'] = 'serchilo_user_view_page';
 
   // Add delete tab to nodes.
   $items['node/%node/delete']['context'] = MENU_CONTEXT_INLINE | MENU_CONTEXT_PAGE;
@@ -393,7 +393,7 @@ function serchilo_menu_alter(&$items) {
 /**
  * Replace user_page().
  */
-function serchilo_user_page() {
+function serchilo_user_view_page() {
 
   global $user;
 
@@ -404,7 +404,7 @@ function serchilo_user_page() {
     return;
   }
 
-  return user_page();
+  return user_view_page();
 }
 
 /**
