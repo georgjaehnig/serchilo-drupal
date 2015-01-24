@@ -112,6 +112,9 @@ function serchilo_import_shortcuts($rows, $verbose = FALSE) {
     drupal_array_set_nested_value($shortcut->field_input_encoding, array( LANGUAGE_NONE, 0, 'value'), $row['input_encoding']);
     drupal_array_set_nested_value($shortcut->field_namespace,      array( LANGUAGE_NONE, 0 ), (array) $namespace);
 
+    // Set all shortcuts to approved.
+    drupal_array_set_nested_value($shortcut->field_approved, array( LANGUAGE_NONE, 0, 'value'), 1);
+
     // Set argument names & count from URL.
     serchilo_set_shortcut_arguments_data($shortcut);
 
