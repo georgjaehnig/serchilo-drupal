@@ -234,39 +234,15 @@ function serchilo_page_console() {
   drupal_add_library('system', 'ui.autocomplete');
   
 
-  $default_keyword = drupal_static('serchilo_default_keyword' );
-  $namespace_names = drupal_static('serchilo_namespace_names');
-
-  /*
-  $shortcuts_of_current_namespaces_url = url(
-    'shortcuts',
-    array(
-      'query' => array(
-        'namespace' => join(',', $namespace_names),
-      ) 
-    )
-  );
-   */
-  $shortcuts_of_current_namespaces_url = url('shortcuts');
-
   $content['console'] = array(
     '#type' => 'markup',
     '#markup' => theme(
       'serchilo_console', 
       array(
         'query' => (string) $query,
-        'default_keyword' => (string) $default_keyword,
-        'shortcuts_of_current_namespaces_url' => $shortcuts_of_current_namespaces_url,
       )
     ),
   );
-
-  /*
-  # add id
-  foreach ($content as $key=>$value) {
-    $content[$key]['#attributes']['id'] = $key;
-  }
-   */
 
   return $content;
 }
