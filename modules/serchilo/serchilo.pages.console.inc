@@ -384,10 +384,14 @@ function serchilo_namespace_names_to_namespaces($namespace_names) {
  */
 function serchilo_validate_namespace_path($namespace_path_original) {
 
-  $namespace_names = explode(
-    SERCHILO_NAMESPACE_PATH_SEPARATOR,
-    $namespace_path_original
-  );
+  if ($namespace_path_original != '') {
+    $namespace_names = explode(
+      SERCHILO_NAMESPACE_PATH_SEPARATOR,
+      $namespace_path_original
+    );
+  } else {
+    $namespace_names = array();
+  }
 
   $namespaces = serchilo_validate_and_set_namespaces($namespace_names);
 
