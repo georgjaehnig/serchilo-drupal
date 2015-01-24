@@ -116,6 +116,12 @@ td.views-field-field-namespace a,
   margin-bottom: 1em;
 }
 
+/* Collapsing Exposed Filters Widgets */
+.views-exposed-widget.collapsible label {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 /* Tags in Shortcuts view */
 .views-field-field-tags ul {
   padding: 0;
