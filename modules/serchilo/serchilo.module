@@ -371,6 +371,9 @@ function serchilo_menu_alter(&$items) {
   // Rename user edit tab.
   $items['user/%user/edit']['title'] = 'My account';
 
+  // Redirect user page to u/[username]
+  $items['user']['page callback'] = 'serchilo_user_page';
+
   // Add delete tab to nodes.
   $items['node/%node/delete']['context'] = MENU_CONTEXT_INLINE | MENU_CONTEXT_PAGE;
 
@@ -385,6 +388,23 @@ function serchilo_menu_alter(&$items) {
   $items['taxonomy/term/%taxonomy_term']['page callback'] = 'serchilo_redirect_taxonomy';
   $items['taxonomy/term/%taxonomy_term']['file'] = 'serchilo.pages.redirect.inc';
   $items['taxonomy/term/%taxonomy_term']['module'] = 'serchilo';
+}
+
+/**
+ * Replace user_page().
+ */
+function serchilo_user_page() {
+
+  global $user;
+
+  if (
+    (user_is_logged_in())
+  ) {
+    drupal_goto('u/' . $user->name); 
+    return;
+  }
+
+  return user_page();
 }
 
 /**
