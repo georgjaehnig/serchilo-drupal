@@ -718,7 +718,8 @@ function serchilo_block_view($delta='') {
  */
 function serchilo_block_namespaces() {
 
-  $namespaces = drupal_static('serchilo_namespaces');
+  $namespaces      = drupal_static('serchilo_namespaces');
+  $namespace_names = drupal_static('serchilo_namespace_names');
 
   // Get out if no namespaces are set.
   if (count($namespaces) == 0) {
@@ -779,10 +780,29 @@ function serchilo_block_namespaces() {
     $edit_link = array();
   }
  
+  $list_shortcuts_link = array(
+    '#type' => 'link',
+    '#title' => 'List shortcuts',
+    '#href' => 'shortcuts',
+    '#options' => array(
+      'query' => array(
+        'namespace' => join(',', $namespace_names), 
+      ),
+    ),
+    '#attributes' => array(
+      'class' => array(
+        'btn', 
+        'btn-sm', 
+        'btn-default'
+      ),
+    ),
+  );
+
   return array_merge(
     array($title),
     $namespace_links,
-    array($edit_link)
+    array($edit_link),
+    array($list_shortcuts_link)
   );
 }
 
