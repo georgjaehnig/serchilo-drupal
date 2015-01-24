@@ -44,6 +44,12 @@ function serchilo_features_views_default_views() {
       'empty_column' => 0,
     ),
   );
+  /* Footer: Global: Unfiltered text */
+  $handler->display->display_options['footer']['area_text_custom']['id'] = 'area_text_custom';
+  $handler->display->display_options['footer']['area_text_custom']['table'] = 'views';
+  $handler->display->display_options['footer']['area_text_custom']['field'] = 'area_text_custom';
+  $handler->display->display_options['footer']['area_text_custom']['empty'] = TRUE;
+  $handler->display->display_options['footer']['area_text_custom']['content'] = '<a href="/node/add/discussion">Add new discussion</a>';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -94,6 +100,7 @@ function serchilo_features_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('<a href="/node/add/discussion">Add new discussion</a>'),
     t('Title'),
     t('Replies'),
     t('.'),
