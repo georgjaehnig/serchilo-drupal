@@ -319,27 +319,6 @@ function serchilo_features_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_browse:browse',
   );
-  // Exported menu link: main-menu_support-chat:help/chat
-  $menu_links['main-menu_support-chat:help/chat'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'help/chat',
-    'router_path' => 'help/chat',
-    'link_title' => 'Support chat',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-      'identifier' => 'main-menu_support-chat:help/chat',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -43,
-    'customized' => 1,
-    'parent_identifier' => 'main-menu_help:help',
-  );
   // Exported menu link: main-menu_tags:tags
   $menu_links['main-menu_tags:tags'] = array(
     'menu_name' => 'main-menu',
@@ -514,7 +493,6 @@ function serchilo_features_menu_default_menu_links() {
   t('Register');
   t('Shortcut URLs');
   t('Shortcuts');
-  t('Support chat');
   t('Tags');
   t('User account');
 
