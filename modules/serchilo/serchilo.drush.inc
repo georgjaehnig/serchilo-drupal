@@ -44,7 +44,52 @@ function serchilo_drush_command() {
     'aliases' => array('sas'), 
   );
 
+  $items['serchilo-set-shortcut-owners'] = array(
+    'callback' => 'drush_serchilo_set_shortcut_owners',
+    'aliases' => array('ssso'), 
+  );
+
   return $items;
+}
+
+/**
+ * Set
+ * - owners of user shortcuts to the users of the namespace.
+ * - owners of user shortcuts to admin.
+ *
+ * @return void
+ */
+function drush_serchilo_set_shortcut_owners() {
+  
+  $efq = new EntityFieldQuery;
+
+  $result = $efq
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'shortcut')
+    ->execute();
+
+  $nids = array_keys(array_shift($result));
+
+  foreach ($nids as $nid) {
+    $shortcut = node_load($nid);
+    $wshortcut = entity_metadata_wrapper('node', $shortcut);
+    echo '.';
+    if ($wshortcut->field_namespace->field_namespace_type->name->value() == 'user') {
+      $account = user_load_by_name($wshortcut->field_namespace->name->value());
+      if (!$account) {
+        echo "\n" . 'Problem loading user: ' .  $wshortcut->field_namespace->value() . "\n";
+        echo "\t" . $shortcut->nid . ' ' .  $shortcut->title . "\n";
+        continue;
+      }
+      $wshortcut->author->set($account->uid);
+      $wshortcut->save();
+    } 
+    else {
+      // Set to admin.
+      //$wshortcut->author->set(1);
+      //$wshortcut->save();
+    }
+  }
 }
 
 /**
