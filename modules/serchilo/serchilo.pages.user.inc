@@ -15,11 +15,10 @@ function serchilo_page_user_edit() {
   return MENU_ACCESS_DENIED;
 }
 
-
 /**
  * Replace user_page().
  */
-function serchilo_user_view_page() {
+function serchilo_page_user_view() {
 
   global $user;
 

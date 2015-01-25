@@ -370,7 +370,7 @@ function serchilo_menu_alter(&$items) {
   $items['user/%user/edit']['title'] = 'My account';
 
   // Redirect user page to u/[username]
-  $items['user/%user']['page callback'] = 'serchilo_user_view_page';
+  $items['user/%user']['page callback'] = 'serchilo_page_user_view';
   $items['user/%user']['file'] = 'serchilo.pages.user.inc';
   $items['user/%user']['module'] = 'serchilo';
 
