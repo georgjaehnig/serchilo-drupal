@@ -1374,7 +1374,6 @@ function serchilo_node_submit($node, $form, &$form_state) {
 }
 
 
-
 // Discussion node (edit) form
 
 /**
@@ -1387,6 +1386,7 @@ function serchilo_form_discussion_node_form_alter(&$form, &$form_state, $form_id
     $form['field_shortcuts_affected'][LANGUAGE_NONE][0]['target_id']['#default_value'] = "$shortcut->title ($shortcut->nid)";
   }
 }
+
 
 // User register form
 
