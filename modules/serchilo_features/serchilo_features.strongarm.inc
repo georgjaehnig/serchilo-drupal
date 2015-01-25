@@ -493,7 +493,7 @@ function serchilo_features_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'honeypot_protect_all_forms';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['honeypot_protect_all_forms'] = $strongarm;
 
   $strongarm = new stdClass();
