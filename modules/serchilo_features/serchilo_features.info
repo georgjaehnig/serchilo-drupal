@@ -140,6 +140,7 @@ features[menu_links][] = main-menu_privacy-policy:help/privacy
 features[menu_links][] = main-menu_shortcut-urls:help/url
 features[menu_links][] = main-menu_shortcuts:shortcuts
 features[menu_links][] = main-menu_tags:tags
+features[menu_links][] = user-menu_edit:user/edit
 features[menu_links][] = user-menu_log-out:user/logout
 features[menu_links][] = user-menu_login:user/login
 features[menu_links][] = user-menu_register:user/register
