@@ -295,6 +295,13 @@ function serchilo_menu() {
       'file' => 'serchilo.pages.opensearch.inc',
     ),
 
+    'user/edit' => array(
+      'page callback' => 'serchilo_page_user_edit',
+      'access callback' => TRUE,
+      'type' => MENU_CALLBACK,
+      'file' => 'serchilo.pages.user.inc',
+    ),
+
     // Change console namespaces
 
     SERCHILO_NAMESPACES_PATH_AFFIX . '/%/edit' => array(
@@ -397,6 +404,7 @@ function serchilo_user_view_page() {
 
   return user_view_page();
 }
+
 
 /**
  * Implements hook_menu_local_tasks_alter().
