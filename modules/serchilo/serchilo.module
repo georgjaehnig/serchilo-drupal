@@ -1561,16 +1561,6 @@ function serchilo_is_sensible_edit($node) {
   // Default is TRUE.
   $is_sensible_edit = TRUE;
 
-  // If the user is logged in and the shortcut is saved to the current user's namespace,
-  // it is not sensible, since users can do anything in their own namespaces.
-  if (
-    (user_is_logged_in()) &&
-    ($user->name == drupal_array_get_nested_value($node->field_namespace, array(LANGUAGE_NONE, 0, 'name')))
-  ) {
-    $is_sensible_edit = FALSE; 
-    return $is_sensible_edit;
-  }
-
   // Non-new shortcuts:
   if (!empty($node->nid)) {
     $original_node = node_load($node->nid);
@@ -1614,6 +1604,16 @@ function serchilo_is_sensible_edit($node) {
 
     // Every other new shortcut is sensible.
     $is_sensible_edit = TRUE;
+  }
+
+  // If the user is logged in and the shortcut is saved to the current user's namespace,
+  // it is not sensible, since users can do anything in their own namespaces.
+  if (
+    (user_is_logged_in()) &&
+    ($user->name == drupal_array_get_nested_value($node->field_namespace, array(LANGUAGE_NONE, 0, 'name')))
+  ) {
+    $is_sensible_edit = FALSE; 
+    return $is_sensible_edit;
   }
 
   return $is_sensible_edit;
