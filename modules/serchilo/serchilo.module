@@ -880,6 +880,9 @@ function serchilo_node_insert($node) {
       serchilo_watchdog_check_number_of_affected_rows($num_affected, $node, __FUNCTION__);
     }
   }
+  if (module_exists('boost')) {
+    boost_flush_caches();
+  }
 }
 
 /**
@@ -899,6 +902,9 @@ function serchilo_node_update($node) {
       }
     }
   }
+  if (module_exists('boost')) {
+    boost_flush_caches();
+  }
 }
 
 /**
@@ -910,6 +916,9 @@ function serchilo_node_delete($node) {
     module_load_include('inc', 'serchilo', 'serchilo.sync');
     $num_affected = serchilo_delete_shortcut_row($node);
     serchilo_watchdog_check_number_of_affected_rows($num_affected, $node, __FUNCTION__);
+  }
+  if (module_exists('boost')) {
+    boost_flush_caches();
   }
 }
 
