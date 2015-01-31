@@ -101,6 +101,7 @@ function serchilo_import_shortcuts($rows, $verbose = FALSE) {
 
     $shortcut->status = NODE_PUBLISHED;
     $shortcut->uid = 1;
+    $shortcut->language = LANGUAGE_NONE;
     $shortcut->title = $row['title'];
     drupal_array_set_nested_value($shortcut->field_keyword,        array( LANGUAGE_NONE, 0, 'value'), $row['keyword']);
     drupal_array_set_nested_value($shortcut->field_description,    array( LANGUAGE_NONE, 0, 'value'), $row['description']);

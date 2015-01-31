@@ -841,6 +841,19 @@ function serchilo_block_add_to_browser() {
 // NODE HOOKS
 
 /**
+ * Implements hook_node_presave().
+ */
+function serchilo_node_presave($node) {
+
+  if ($node->type == 'shortcut') {
+
+    // Make sure language is undefined.
+    // (Weirdly, there seems to be no option to set this in the Frontend.)
+    $node->language = LANGUAGE_NONE;
+  }
+}
+
+/**
  * Implements hook_node_insert().
  */
 function serchilo_node_insert($node) {
