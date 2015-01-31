@@ -850,6 +850,21 @@ function serchilo_node_presave($node) {
     // Make sure language is undefined.
     // (Weirdly, there seems to be no option to set this in the Frontend.)
     $node->language = LANGUAGE_NONE;
+
+    $wnode = entity_metadata_wrapper('node', $node);
+
+    // If a user shortcut:
+    // Set its user as the owner.
+    if ($wnode->field_namespace->field_namespace_type->name->value() == 'user') {
+      $user_name = $wnode->field_namespace->name->value();
+      $account = user_load_by_name($user_name);
+      $node->uid = $account->uid;
+    }
+    // If a site shortcut:
+    // Set admin as the owner.
+    else {
+      $node->uid = 1;
+    }
   }
 }
 
