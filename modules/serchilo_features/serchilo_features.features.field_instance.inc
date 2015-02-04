@@ -1222,7 +1222,9 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'The namespaces will have the following priority (first = highest):
+    'description' => '<p>Separate by comma.</p>
+
+The namespaces will have the following priority (first = highest):
     <ol>
       <li>Your user namespace</li>
       <li>Custom namespaces</li>
@@ -1329,6 +1331,17 @@ function serchilo_features_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('<p>Separate by comma.</p>
+
+The namespaces will have the following priority (first = highest):
+    <ol>
+      <li>Your user namespace</li>
+      <li>Custom namespaces</li>
+      <li>Country namespace</li>
+      <li>Language namespace</li>
+      <li>o (planet namespace)</li>
+    </ol>   
+    So it will be first checked, if a query matches a command in your user namespace, then in one of your custom namespaces ..., and at least in the planet namespace.');
   t('A string of key=value pairs separated by ampersands, to be sent with POST method. May contain placeholders as the URL.');
   t('Allows regular automatic testing to check if the shortcut URL is still valid.');
   t('Approved');
@@ -1373,15 +1386,6 @@ function serchilo_features_field_default_field_instances() {
   t('The argument count is extracted automatically from the URL.');
   t('The argument names are extracted automatically from the URL.');
   t('The arguments from the query will be encoded in the URL with the encoding provided here.');
-  t('The namespaces will have the following priority (first = highest):
-    <ol>
-      <li>Your user namespace</li>
-      <li>Custom namespaces</li>
-      <li>Country namespace</li>
-      <li>Language namespace</li>
-      <li>o (planet namespace)</li>
-    </ol>   
-    So it will be first checked, if a query matches a command in your user namespace, then in one of your custom namespaces ..., and at least in the planet namespace.');
   t('The shortcut will be available only to users using this namespace. See Help → "Namespaces" for more info. ');
   t('URL');
   t('Weight');
