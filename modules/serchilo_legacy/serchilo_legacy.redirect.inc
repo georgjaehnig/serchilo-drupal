@@ -33,7 +33,7 @@ function serchilo_legacy_redirect_commands($command_id, $path_element) {
   if (!empty($result)) {
     $shortcut_id = array_keys($result['node'])[0];
     drupal_goto(
-      'node/' . $shortcut_id . '/' . $path_element,
+      'shortcuts/' . $shortcut_id . '/' . $path_element,
       array(
         'query' => drupal_get_query_parameters(),
       )
