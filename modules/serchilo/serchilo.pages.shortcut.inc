@@ -16,19 +16,20 @@ function serchilo_page_shortcut_changed($shortcut_id) {
   $shortcut = node_load($shortcut_id);
   $arguments = (drupal_array_get_nested_value($_GET, array('arguments')) ?: array());
 
+  $query_link = theme(
+    'serchilo_shortcut_example_link', 
+    array(
+      'shortcut' => $shortcut, 
+      'arguments' => $arguments
+    )
+  );
   drupal_set_message(
     t(
       ':title changed its keyword to :keyword. Continue with !query_link.',
       array(
         ':title' => $shortcut->title,
         ':keyword' =>  'g',
-        '!query_link' => theme(
-          'serchilo_shortcut_example_link', 
-          array(
-            'shortcut' => $shortcut, 
-            'arguments' => $arguments
-          )
-        ),
+        '!query_link' => render($query_link),
       )
     ), 
     'warning'
