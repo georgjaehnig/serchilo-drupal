@@ -201,9 +201,17 @@ function serchilo_page_console() {
         );
         // Collect by keys containing the query
         // to deduplicate.
-        $suggested_shortcut_links[$suggested_shortcut_link['#title']] = $suggested_shortcut_link;
+        $suggested_shortcut_links[$suggested_shortcut_link['#title']]['data'] = render($suggested_shortcut_link);
       }
-      $message .= drupal_render($suggested_shortcut_links);
+
+      $item_list = theme_item_list(array(
+        'items' => $suggested_shortcut_links,
+       // 'items' => $items,
+        'title' => '',
+        'type' => 'ul',
+        'attributes' => array(''),
+      ));
+      $message .=  $item_list;
     } else {
       $message .= ' ';
       $message .= t('Common shortcuts for search engines:');
