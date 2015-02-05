@@ -1313,11 +1313,12 @@ function serchilo_form_validate_namespace($element, &$form_state) {
   }
 
   global $user;
-
   $namespace_name = drupal_array_get_nested_value($form_state['values'], array_slice($element['#parents'], 0, 2));
+  $namespace = current(taxonomy_get_term_by_name($namespace_name, 'namespaces'));
+  $wnamespace = entity_metadata_wrapper('taxonomy_term', $namespace);
 
   // If this is a user namespace.
-  if (strlen($namespace_name) >= 4) {
+  if ($wnamespace->field_namespace_type->name->value() == 'user') {
     if (user_is_logged_in()) {
       if ($namespace_name != $user->name) {
         form_error( $element, t('Namespace must be a site namespace or your user namespace.'));
