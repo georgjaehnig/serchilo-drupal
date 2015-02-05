@@ -206,7 +206,6 @@ function serchilo_page_console() {
 
       $item_list = theme_item_list(array(
         'items' => $suggested_shortcut_links,
-       // 'items' => $items,
         'title' => '',
         'type' => 'ul',
         'attributes' => array(''),
