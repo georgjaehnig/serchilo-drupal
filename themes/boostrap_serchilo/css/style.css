@@ -177,10 +177,6 @@ fieldset.filter-wrapper
 {
   margin: 1em 0;
 }
-/* Alert, Query */
-.alert .query {
-  display: block;
-}
 /* Field Group */
 .field-group-accordion-wrapper {
   margin-bottom: 1em;
