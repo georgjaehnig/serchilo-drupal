@@ -141,8 +141,6 @@ function serchilo_page_shortcut_discussion($shortcut) {
   $output['add_discussion'] = array(
     '#theme' => 'link', 
     '#text' => t('Add new discussion'),
-    // TODO: Set proper link to new discussion
-    // prefilling affected shortcuts with current shortcut
     '#path' =>  'node/add/discussion',
     '#attributes' =>  array(),
     '#options' => array(
