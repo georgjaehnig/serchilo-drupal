@@ -80,8 +80,6 @@ function serchilo_update_shortcut_row($node) {
     ->fields($fields)
     ->condition('nid', $node->nid )
     ->execute();
-  // TODO
-  // raise error when $num_updated != 1
   return $num_updated;
 }
 
@@ -98,8 +96,6 @@ function serchilo_delete_shortcut_row($node) {
   $num_deleted = db_delete('serchilo_shortcut') 
     ->condition('nid', $node->nid )
     ->execute();
-  // TODO
-  // raise error when $num_deleted != 1
   return $num_deleted;
 }
 
