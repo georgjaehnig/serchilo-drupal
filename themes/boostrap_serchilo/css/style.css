@@ -215,3 +215,7 @@ body.page-node-revisions-view td.diff-links {
 #comments h2 {
 	font-size: 1.5em;
 }
+
+#block-serchilo-add-to-browser {
+  float: right;
+}
