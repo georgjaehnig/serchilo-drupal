@@ -680,7 +680,7 @@ function serchilo_block_info() {
   );
 
   $blocks['add_to_browser'] = array(
-    'info' => 'Add to my browser',
+    'info' => 'Add to browser',
     'status' => 1,
     'region' => 'footer',
     // Show only on n/* and u/* pages.
@@ -833,7 +833,7 @@ function serchilo_block_licenses() {
 function serchilo_block_add_to_browser() {
 
   return '
-      <button class="btn btn-sm btn-default" onclick="window.external.AddSearchProvider( \'http://\' + location.host + \'/opensearch\' + location.pathname + location.search);">Add to my browser</button>
+      <button class="btn btn-sm btn-default" onclick="window.external.AddSearchProvider( \'http://\' + location.host + \'/opensearch\' + location.pathname + location.search);">Add to browser</button>
     ';
 }
 
