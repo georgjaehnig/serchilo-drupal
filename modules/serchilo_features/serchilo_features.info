@@ -673,7 +673,6 @@ features[variable][] = save_continue_page
 features[variable][] = save_continue_shortcut
 features[variable][] = site_default_country
 features[variable][] = theme_bootstrap_serchilo_settings
-features[variable][] = theme_default
 features[variable][] = user_register
 features[views_view][] = forum
 features[views_view][] = namespace_types
