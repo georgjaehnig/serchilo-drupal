@@ -100,6 +100,7 @@ function serchilo_import_shortcuts($rows, $verbose = FALSE) {
     }
 
     $shortcut->status = NODE_PUBLISHED;
+    $shortcut->comment = 0;
     $shortcut->uid = 1;
     $shortcut->language = LANGUAGE_NONE;
     $shortcut->title = $row['title'];
