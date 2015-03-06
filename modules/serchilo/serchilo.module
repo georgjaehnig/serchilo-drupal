@@ -857,8 +857,13 @@ function serchilo_node_presave($node) {
     // Set its user as the owner.
     if ($wnode->field_namespace->field_namespace_type->name->value() == 'user') {
       $user_name = $wnode->field_namespace->name->value();
-      $account = user_load_by_name($user_name);
-      $node->uid = $account->uid;
+      // If found an account
+      if ($account = user_load_by_name($user_name)) {
+        $node->uid = $account->uid;
+      }
+      else {
+        $node->uid = 1;
+      }
     }
     // If a site shortcut:
     // Set admin as the owner.
