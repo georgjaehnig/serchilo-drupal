@@ -72,13 +72,6 @@ function serchilo_features_user_default_permissions() {
     'module' => 'system',
   );
 
-  // Exported permission: 'access toolbar'.
-  $permissions['access toolbar'] = array(
-    'name' => 'access toolbar',
-    'roles' => array(),
-    'module' => 'toolbar',
-  );
-
   // Exported permission: 'access user profiles'.
   $permissions['access user profiles'] = array(
     'name' => 'access user profiles',
@@ -154,13 +147,6 @@ function serchilo_features_user_default_permissions() {
     'name' => 'administer filters',
     'roles' => array(),
     'module' => 'filter',
-  );
-
-  // Exported permission: 'administer honeypot'.
-  $permissions['administer honeypot'] = array(
-    'name' => 'administer honeypot',
-    'roles' => array(),
-    'module' => 'honeypot',
   );
 
   // Exported permission: 'administer languages'.
@@ -282,13 +268,6 @@ function serchilo_features_user_default_permissions() {
     'name' => 'block IP addresses',
     'roles' => array(),
     'module' => 'system',
-  );
-
-  // Exported permission: 'bypass honeypot protection'.
-  $permissions['bypass honeypot protection'] = array(
-    'name' => 'bypass honeypot protection',
-    'roles' => array(),
-    'module' => 'honeypot',
   );
 
   // Exported permission: 'bypass node access'.
@@ -1048,13 +1027,6 @@ function serchilo_features_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: 'execute php code'.
-  $permissions['execute php code'] = array(
-    'name' => 'execute php code',
-    'roles' => array(),
-    'module' => 'devel',
-  );
-
   // Exported permission: 'generate features'.
   $permissions['generate features'] = array(
     'name' => 'generate features',
@@ -1118,13 +1090,6 @@ function serchilo_features_user_default_permissions() {
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'comment',
-  );
-
-  // Exported permission: 'switch users'.
-  $permissions['switch users'] = array(
-    'name' => 'switch users',
-    'roles' => array(),
-    'module' => 'devel',
   );
 
   // Exported permission: 'translate interface'.
