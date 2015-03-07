@@ -350,7 +350,6 @@ features[user_permission][] = administer filters
 features[user_permission][] = administer languages
 features[user_permission][] = administer menu
 features[user_permission][] = administer meta tags
-features[user_permission][] = administer module filter
 features[user_permission][] = administer modules
 features[user_permission][] = administer nodes
 features[user_permission][] = administer pathauto

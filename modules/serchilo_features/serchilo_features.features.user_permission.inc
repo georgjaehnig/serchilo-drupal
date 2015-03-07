@@ -170,13 +170,6 @@ function serchilo_features_user_default_permissions() {
     'module' => 'metatag',
   );
 
-  // Exported permission: 'administer module filter'.
-  $permissions['administer module filter'] = array(
-    'name' => 'administer module filter',
-    'roles' => array(),
-    'module' => 'module_filter',
-  );
-
   // Exported permission: 'administer modules'.
   $permissions['administer modules'] = array(
     'name' => 'administer modules',
