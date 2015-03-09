@@ -297,7 +297,7 @@ function serchilo_menu() {
 
     'user/edit' => array(
       'page callback' => 'serchilo_page_user_edit',
-      'access callback' => TRUE,
+      'access callback' => 'user_is_logged_in',
       'type' => MENU_CALLBACK,
       'file' => 'serchilo.pages.user.inc',
     ),
