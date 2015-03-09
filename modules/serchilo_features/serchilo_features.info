@@ -311,6 +311,7 @@ features[menu_links][] = main-menu_tags:tags
 features[menu_links][] = user-menu_edit:user/edit
 features[menu_links][] = user-menu_log-out:user/logout
 features[menu_links][] = user-menu_login:user/login
+features[menu_links][] = user-menu_my-shortcuts:user/shortcuts
 features[menu_links][] = user-menu_register:user/register
 features[menu_links][] = user-menu_user-account:user
 features[metatag][] = global

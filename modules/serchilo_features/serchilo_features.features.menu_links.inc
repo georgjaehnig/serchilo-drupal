@@ -398,6 +398,24 @@ function serchilo_features_menu_default_menu_links() {
     'weight' => -50,
     'customized' => 1,
   );
+  // Exported menu link: user-menu_my-shortcuts:user/shortcuts
+  $menu_links['user-menu_my-shortcuts:user/shortcuts'] = array(
+    'menu_name' => 'user-menu',
+    'link_path' => 'user/shortcuts',
+    'router_path' => 'user/shortcuts',
+    'link_title' => 'My shortcuts',
+    'options' => array(
+      'identifier' => 'user-menu_my-shortcuts:user/shortcuts',
+    ),
+    'module' => 'system',
+    'hidden' => -1,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
+    'customized' => 0,
+    'parent_identifier' => 'user-menu_user-account:user',
+  );
   // Exported menu link: user-menu_register:user/register
   $menu_links['user-menu_register:user/register'] = array(
     'menu_name' => 'user-menu',
@@ -453,6 +471,7 @@ function serchilo_features_menu_default_menu_links() {
   t('Help');
   t('Log out');
   t('Login');
+  t('My shortcuts');
   t('Namespace types');
   t('Namespaces');
   t('Privacy policy');
