@@ -302,6 +302,14 @@ function serchilo_menu() {
       'file' => 'serchilo.pages.user.inc',
     ),
 
+    'user/shortcuts' => array(
+      'title' => 'My shortcuts',
+      'page callback' => 'serchilo_page_user_shortcuts',
+      'access callback' => 'user_is_logged_in',
+      'type' => MENU_LOCAL_TASK,
+      'file' => 'serchilo.pages.user.inc',
+    ),
+
     // Change console namespaces
 
     SERCHILO_NAMESPACES_PATH_AFFIX . '/%/edit' => array(

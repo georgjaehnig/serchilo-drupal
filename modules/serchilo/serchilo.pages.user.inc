@@ -1,6 +1,26 @@
 <?PHP
 
 /**
+ * Redirects to shortcuts view, filtered by shortcuts of logged-in user.
+ *
+ * Builds a query out of the shortcut form arguments
+ * and redirects it to the query handler.
+ *
+ * @return void
+ */
+function serchilo_page_user_shortcuts() {
+
+  global $user;
+  drupal_goto(
+    'shortcuts',
+    array(
+      'query' => array(
+        'namespace' => $user->name,
+      ),
+    )
+  );
+}
+/**
  * Replace user_page().
  */
 function serchilo_page_user_view() {
