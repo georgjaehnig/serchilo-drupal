@@ -539,6 +539,25 @@ function serchilo_field_formatter_view($entity_type, $entity, $field, $instance,
 }
 
 /**
+ * Implements hook_field_attach_view_alter().
+ */
+function serchilo_field_attach_view_alter(&$output, $context) {
+
+  // If rendering the console examples:
+  if ($context['display'] == 'serchilo_console_examples') {
+
+    // Remove the Field collection description.
+    $output['field_example']['#suffix'] = '';
+
+    // Hide the label "Examples".
+    $output['field_example']['#label_display'] = 'hidden';
+
+    // Only show the first example.
+    $output['field_example']['#items'] = array_slice($output['field_example']['#items'], 0, 1);
+  }
+}
+
+/**
  * Return the render array for a shortcut example query link.
  *
  * @param array $variables
