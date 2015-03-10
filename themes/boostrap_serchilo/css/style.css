@@ -205,6 +205,15 @@ body.page-node-revisions-view td.diff-links {
   display: inline-block;
 }
 
+/* Console Examples */
+
+#console-examples dl {
+  margin: 0;
+}
+#console-examples .field-collection-container {
+  border: 0;
+}
+
 /* Forum */
 .submitted {
 	margin-top:    1.5em;
