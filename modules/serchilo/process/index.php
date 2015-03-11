@@ -1146,7 +1146,7 @@ function serchilo_get_url_variables($env) {
 
   $variables['language']       = $env['language_namespace_name'];
   $variables['country:alpha3'] = $env['country_namespace_name'];
-  $variables['user:name']      = (empty($env['user_name'])) ? $env['user_name'] : '';
+  $variables['user:name']      = (!empty($env['user_name'])) ? $env['user_name'] : '';
 
   switch (strlen($env['extra_namespace_name'])) {
     case 2:
