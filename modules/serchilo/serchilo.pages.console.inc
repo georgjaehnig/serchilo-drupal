@@ -251,7 +251,64 @@ function serchilo_page_console() {
     ),
   );
 
+  $content['console_examples'] = serchilo_get_console_examples();
+
   return $content;
+}
+
+/**
+ * Retrieves the console examples for the current namespaces.
+ *
+ * @return $console_examples
+ *   A Drupal render array.
+ */
+function serchilo_get_console_examples() {
+  
+  $namespace_ids =& drupal_static('serchilo_namespace_ids');
+
+  $efq = new EntityFieldQuery;
+
+  $efq = $efq
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'shortcut')
+    ->fieldCondition('field_namespace', 'tid',    $namespace_ids )
+    // Just to make sure there is at least 1 example.
+    ->fieldCondition('field_example',   'value',  0, '!=' )
+    ->fieldCondition('field_approved',  'value',  1 )
+    ->fieldOrderBy('field_weight', 'value', 'DESC')
+    ->range(0, 5);
+
+  $result = $efq->execute();
+
+  if (empty($result)) {
+    return array();
+  }
+
+  $shortcut_ids = array_keys($result['node']);
+  $examples = array();
+  foreach ($shortcut_ids as $shortcut_id) {
+    $shortcut = node_load($shortcut_id);
+    // Only use shortcuts with an example.
+    $examples[] = field_view_field('node', $shortcut, 'field_example', 'serchilo_console_examples');
+    //dpm($shortcut);
+  }
+  $examples = array_reverse($examples);
+
+  $console_examples = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'id' => array('console-examples'),
+    ),
+  ); 
+
+  $console_examples['title'] = array(
+    '#theme' => 'html_tag',
+    '#tag' => 'h4', 
+    '#value' => t('Search with shortcuts:'), 
+  );
+  $console_examples['examples'] = $examples;
+
+  return $console_examples;
 }
 
 
