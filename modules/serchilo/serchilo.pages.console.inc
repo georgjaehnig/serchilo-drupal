@@ -280,11 +280,16 @@ function serchilo_get_console_examples() {
 
   $result = $efq->execute();
 
-  if (empty($result)) {
-    return array();
-  }
+  $shortcut_ids = (!empty($result) ? array_keys($result['node']) : array());
 
-  $shortcut_ids = array_keys($result['node']);
+  $context = array(
+    'namespace_ids' => $namespace_ids, 
+  );
+  drupal_alter('serchilo_console_examples', $shortcut_ids, $context);
+
+  if (empty($shortcut_ids)) {
+    return array(); 
+  }
   $examples = array();
   foreach ($shortcut_ids as $shortcut_id) {
     $shortcut = node_load($shortcut_id);
