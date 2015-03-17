@@ -12,6 +12,7 @@ Drupal profile running Serchilo (a new version, currently being developed).
 
 - PHP >= 5.4 (probably)
   - with GeoIP module, install with: `sudo apt-get install php5-geoip`
+  - with GD extension, install with: `sudo apt-get install php5-gd`
   - with MySQL Native Driver, install with: `sudo apt-get install php5-mysqlnd`
 - MySQL >= 5.0 (probably)
 - [drush](http://drush.ws/)
