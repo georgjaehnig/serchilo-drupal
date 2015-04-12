@@ -1,6 +1,16 @@
 <?PHP
 
 /**
+ * Redirect /commands to /shortcuts, with the GET query parameters.
+ *
+ * @return void
+ */
+function serchilo_legacy_redirect_commands() {
+
+  $query_parameters = drupal_get_query_parameters();
+  drupal_goto('shortcuts', array('query' => $query_parameters));
+}
+/**
  * Redirect 
  * - command/[id] and
  * - command/[id]/foobar

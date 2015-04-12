@@ -4,6 +4,13 @@ function serchilo_legacy_menu() {
 
   $items = array();
 
+  $items['commands'] = array(
+    'page callback' => 'serchilo_legacy_redirect_commands',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'serchilo_legacy.redirect.inc',
+  );
+
   // Redirect old command URLs
 
   $items['command/%'] = array(
