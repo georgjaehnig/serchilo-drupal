@@ -11,7 +11,7 @@
  *
  * @return void
  */
-function serchilo_legacy_redirect_commands($command_id, $path_element) {
+function serchilo_legacy_redirect_command($command_id, $path_element) {
 
   if (
     (empty($command_id)) ||
