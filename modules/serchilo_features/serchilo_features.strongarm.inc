@@ -1241,6 +1241,27 @@ function serchilo_features_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'taxonomy_vocabulary_namespaces_termcase';
+  $strongarm->value = 0;
+  $export['taxonomy_vocabulary_namespaces_termcase'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'taxonomy_vocabulary_namespace_types_termcase';
+  $strongarm->value = 0;
+  $export['taxonomy_vocabulary_namespace_types_termcase'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'taxonomy_vocabulary_tags_termcase';
+  $strongarm->value = 2;
+  $export['taxonomy_vocabulary_tags_termcase'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'theme_bootstrap_serchilo_settings';
   $strongarm->value = array(
     'toggle_logo' => 1,
