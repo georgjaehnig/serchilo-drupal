@@ -1246,6 +1246,9 @@ function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) 
   $form['field_argument_names'][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_no_tags');
   $form['field_url'           ][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_no_tags');
   $form['field_namespace'     ][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_field_namespace');
+
+  array_unshift($form['field_tags'][LANGUAGE_NONE]['#element_validate'], 'serchilo_form_validate_field_tags');
+
   foreach (element_children($form['field_example'][LANGUAGE_NONE]) as $index) {
     if (is_int($index)) {
       $form['field_example'][LANGUAGE_NONE][$index]['field_example_arguments  '][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_no_tags');
@@ -1352,6 +1355,23 @@ function serchilo_form_validate_field_namespace($element, &$form_state) {
       form_error( $element, t('Namespace must be a site namespace.'));
     }
   }
+}
+
+/**
+ * Validate field_tags.
+ */
+function serchilo_form_validate_field_tags(&$element, &$form_state) {
+
+  // Lowercase all tags and deduplicate.
+
+  $tag_names_str = $element['#value'];
+  $tag_names = preg_split('/\s*,\s*/', $tag_names_str); 
+  foreach ($tag_names as &$tag_name) {
+    $tag_name = strtolower($tag_name); 
+  }
+  $tag_names = array_unique($tag_names);
+  $tag_names_str = join(', ', $tag_names);
+  $element['#value'] = $tag_names_str;
 }
 
 /**
