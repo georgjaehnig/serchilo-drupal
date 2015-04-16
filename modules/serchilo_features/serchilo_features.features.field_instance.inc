@@ -109,7 +109,8 @@ function serchilo_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_example-field_example_arguments'
+  // Exported field_instance:
+  // 'field_collection_item-field_example-field_example_arguments'
   $field_instances['field_collection_item-field_example-field_example_arguments'] = array(
     'bundle' => 'field_example',
     'default_value' => NULL,
@@ -143,7 +144,8 @@ function serchilo_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_example-field_example_description'
+  // Exported field_instance:
+  // 'field_collection_item-field_example-field_example_description'
   $field_instances['field_collection_item-field_example-field_example_description'] = array(
     'bundle' => 'field_example',
     'default_value' => NULL,
@@ -177,7 +179,8 @@ function serchilo_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_test-field_test_arguments'
+  // Exported field_instance:
+  // 'field_collection_item-field_test-field_test_arguments'
   $field_instances['field_collection_item-field_test-field_test_arguments'] = array(
     'bundle' => 'field_test',
     'default_value' => NULL,
@@ -211,7 +214,8 @@ function serchilo_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_test-field_test_expected_content'
+  // Exported field_instance:
+  // 'field_collection_item-field_test-field_test_expected_content'
   $field_instances['field_collection_item-field_test-field_test_expected_content'] = array(
     'bundle' => 'field_test',
     'default_value' => NULL,
@@ -245,7 +249,8 @@ function serchilo_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_test-field_test_passed'
+  // Exported field_instance:
+  // 'field_collection_item-field_test-field_test_passed'
   $field_instances['field_collection_item-field_test-field_test_passed'] = array(
     'bundle' => 'field_test',
     'default_value' => array(
