@@ -1583,8 +1583,8 @@ function serchilo_options_list_country_namespace() {
 function serchilo_get_argument_names($url, $post_parameters) {
 
   $argument_names = array_merge(
-    serchilo_get_argument_names_from_string($post_parameters),
-    serchilo_get_argument_names_from_string($url)
+    array_keys(serchilo_get_arguments_from_string($post_parameters)),
+    array_keys(serchilo_get_arguments_from_string($url))
   );
 
   // treat arguments with same name as only one argument
@@ -1605,17 +1605,41 @@ function serchilo_get_argument_names($url, $post_parameters) {
  * @return array $argument_names
  *   The extracted argument names.
  */
-function serchilo_get_argument_names_from_string($str) {
+function serchilo_get_arguments_from_string($str) {
+
+  $arguments = array();
 
   preg_match_all(
     // ? makes ungreedy
-    '/\{s:(.+?)\}/',
+    '/\{%(.+?)\}/',
     $str,
     $matches,
     PREG_PATTERN_ORDER
   );
 
-  return $matches[1];
+  foreach ($matches[1] as $match) {
+
+    // Example value:
+    // $match = query|encoding=utf-8|another=attribute
+    $name_and_attributes = explode('|', $match);
+
+    // Example value:
+    // $name = query
+    $name = array_shift($name_and_attributes);
+    $arguments[$name] = array();
+
+    // Example value:
+    // $name_and_attributes = encoding=utf-8|another=attribute
+    foreach ($name_and_attributes as $attribute_str) {
+      $attribute_name_and_value = explode('=', $attribute_str, 2);
+      $attribute_name  = array_shift($attribute_name_and_value);
+      $attribute_value = array_shift($attribute_name_and_value);
+      $arguments[$name][$attribute_name] = $attribute_value;
+    }
+  }
+
+  print_r($arguments);
+  return $arguments;
 }
 
 /**
