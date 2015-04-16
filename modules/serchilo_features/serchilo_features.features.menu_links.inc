@@ -359,7 +359,7 @@ function serchilo_features_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -50,
     'customized' => 1,
-    'parent_identifier' => 'user-menu_user-account:user',
+    'parent_identifier' => 'user-menu_my-account:user',
   );
   // Exported menu link: user-menu_log-out:user/logout
   $menu_links['user-menu_log-out:user/logout'] = array(
@@ -414,7 +414,7 @@ function serchilo_features_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 0,
     'customized' => 0,
-    'parent_identifier' => 'user-menu_user-account:user',
+    'parent_identifier' => 'user-menu_my-account:user',
   );
   // Exported menu link: user-menu_register:user/register
   $menu_links['user-menu_register:user/register'] = array(
