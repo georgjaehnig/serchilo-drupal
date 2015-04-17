@@ -416,10 +416,6 @@ function serchilo_get_output($env) {
     $output['status']['found'] = FALSE;
   }
 
-  if (!empty($output['url'])) {
-    $output['url']['input_encoding'] = $shortcut['input_encoding'];
-  }
-
   if (!empty($env['user_name'])) {
     $output['user']['name'] = $env['user_name'];
   }

@@ -732,49 +732,6 @@ function serchilo_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-shortcut-field_input_encoding'
-  $field_instances['node-shortcut-field_input_encoding'] = array(
-    'bundle' => 'shortcut',
-    'default_value' => array(
-      0 => array(
-        'value' => 'UTF-8',
-      ),
-    ),
-    'deleted' => 0,
-    'description' => 'The arguments from the query will be encoded in the URL with the encoding provided here.',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 4,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_input_encoding',
-    'label' => 'Input Encoding',
-    'required' => 1,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'content_taxonomy_opt_groups' => FALSE,
-      ),
-      'type' => 'options_select',
-      'weight' => 9,
-    ),
-  );
-
   // Exported field_instance: 'node-shortcut-field_invisible'
   $field_instances['node-shortcut-field_invisible'] = array(
     'bundle' => 'shortcut',
@@ -1373,7 +1330,6 @@ The namespaces will have the following priority (first = highest):
   t('If true, the last test succeeded. If false, it failed.');
   t('If true, the redirect will be done through a HTML page displayed by Serchilo. Thus, the target site will get Serchilo as a referrer site. Useful for affiliate links that require a correct referrer.');
   t('If true, the shortcut will not be shown in the shortcut view or in the autocomplete. Useful for outdated shortcuts, only redirecting the the current shortcut page.');
-  t('Input Encoding');
   t('Invisible');
   t('Keyword');
   t('Language namespace');
@@ -1390,7 +1346,6 @@ The namespaces will have the following priority (first = highest):
   t('The URL can contain placeholders like {s:argument_name}. See Help → "Shortcut URLs" for more info. ');
   t('The argument count is extracted automatically from the URL.');
   t('The argument names are extracted automatically from the URL.');
-  t('The arguments from the query will be encoded in the URL with the encoding provided here.');
   t('The shortcut will be available only to users using this namespace. See Help → "Namespaces" for more info. ');
   t('URL');
   t('Weight');

@@ -400,16 +400,6 @@ function serchilo_features_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: 'create field_input_encoding'.
-  $permissions['create field_input_encoding'] = array(
-    'name' => 'create field_input_encoding',
-    'roles' => array(
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: 'create field_invisible'.
   $permissions['create field_invisible'] = array(
     'name' => 'create field_invisible',
@@ -680,16 +670,6 @@ function serchilo_features_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: 'edit field_input_encoding'.
-  $permissions['edit field_input_encoding'] = array(
-    'name' => 'edit field_input_encoding',
-    'roles' => array(
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: 'edit field_invisible'.
   $permissions['edit field_invisible'] = array(
     'name' => 'edit field_invisible',
@@ -883,16 +863,6 @@ function serchilo_features_user_default_permissions() {
   // Exported permission: 'edit own field_example_description'.
   $permissions['edit own field_example_description'] = array(
     'name' => 'edit own field_example_description',
-    'roles' => array(
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: 'edit own field_input_encoding'.
-  $permissions['edit own field_input_encoding'] = array(
-    'name' => 'edit own field_input_encoding',
     'roles' => array(
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
@@ -1181,16 +1151,6 @@ function serchilo_features_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: 'view field_input_encoding'.
-  $permissions['view field_input_encoding'] = array(
-    'name' => 'view field_input_encoding',
-    'roles' => array(
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: 'view field_invisible'.
   $permissions['view field_invisible'] = array(
     'name' => 'view field_invisible',
@@ -1363,16 +1323,6 @@ function serchilo_features_user_default_permissions() {
   // Exported permission: 'view own field_example_description'.
   $permissions['view own field_example_description'] = array(
     'name' => 'view own field_example_description',
-    'roles' => array(
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: 'view own field_input_encoding'.
-  $permissions['view own field_input_encoding'] = array(
-    'name' => 'view own field_input_encoding',
     'roles' => array(
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',

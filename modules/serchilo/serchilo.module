@@ -71,7 +71,6 @@ function serchilo_entity_diff_alter(&$entity_diffs, $context) {
         'field_description',
         'field_example',
         'field_tags',
-        'field_input_encoding',
         'field_post_parameters',
         'field_test',
         'field_set_referrer',

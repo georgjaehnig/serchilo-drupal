@@ -61,7 +61,6 @@ function serchilo_export_shortcuts_and_namespaces() {
  *   - set_referrer
  *   - invisible
  *   - namespace
- *   - input_encoding
  *   - tags (array)
  *   - examples, array of two-item array containing
  *     - arguments (as string separated by comma)
@@ -95,7 +94,6 @@ function serchilo_export_shortcuts() {
     $exported_shortcut['argument_names'] = (string) drupal_array_get_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value'));
     $exported_shortcut['set_referrer']   = (string) drupal_array_get_nested_value($node->field_set_referrer,   array(LANGUAGE_NONE, 0, 'value'));
     $exported_shortcut['invisible']      = (string) drupal_array_get_nested_value($node->field_invisible,      array(LANGUAGE_NONE, 0, 'value'));
-    $exported_shortcut['input_encoding'] = (string) drupal_array_get_nested_value($node->field_input_encoding, array(LANGUAGE_NONE, 0, 'value'));
 
     $wnode = entity_metadata_wrapper('node', $node);
 

@@ -115,12 +115,6 @@ function serchilo_schema() {
         'length' => '255',
         'not null' => FALSE,
       ),
-      'input_encoding' => array(
-        'description' => 'The input encoding of the URL arguments.',
-        'type' => 'varchar',
-        'length' => '255',
-        'not null' => FALSE,
-      ),
       'tags' => array(
         'description' => 'The tags of the shortcut, as string, separated by comma.',
         'type' => 'text',
