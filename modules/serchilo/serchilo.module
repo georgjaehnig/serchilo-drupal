@@ -1645,6 +1645,23 @@ function serchilo_is_sensible_edit($node) {
         != drupal_array_get_nested_value($node->field_namespace, array(LANGUAGE_NONE, 0, 'tid'))
       ) 
     );
+
+    // Allow editing within the first X minutes after creation.
+    if (
+      $is_sensible_edit && 
+      ($original_node->created > time() - SERCHILO_EDIT_NON_SENSIBLE_AFTER_CREATED * 60) 
+    ) {
+      $is_sensible_edit = FALSE;
+      drupal_set_message(
+        t(
+          'New site shortcuts can freely be edited @minutes minutes after creation. Later edits to keyword, URL or namespace need moderator approval.', 
+          array(
+            '@minutes' => SERCHILO_EDIT_NON_SENSIBLE_AFTER_CREATED,
+          )
+        ),
+        'status'
+      );
+    }
   }
 
   // New shortcuts:
