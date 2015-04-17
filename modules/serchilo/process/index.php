@@ -1173,7 +1173,7 @@ function serchilo_parse_date($argument) {
     $date = DateTime::createFromFormat('d m Y', $matches[1] . ' ' . $matches[2] . ' ' . $matches[3]);
   }
 
-  // Match '11/22':
+  // Match '11/22'
   if (preg_match('/^(\d+)\/(\d+)$/', $argument, $matches)) {
     $date = DateTime::createFromFormat('m d', $matches[1] . ' ' . $matches[2]);
     // If date in past: set it to next year.
@@ -1182,17 +1182,17 @@ function serchilo_parse_date($argument) {
     }
   }
 
-  // Match '11/22/13':
+  // Match '11/22/13'
   if (preg_match('/^(\d+)\/(\d+)\/(\d{2})$/', $argument, $matches)) {
     $date = DateTime::createFromFormat('m d y', $matches[1] . ' ' . $matches[2] . ' ' . $matches[3]);
   }
 
-  // Match '11/22/2013':
+  // Match '11/22/2013'
   if (preg_match('/^(\d+)\/(\d+)\/(\d{4})$/', $argument, $matches)) {
     $date = DateTime::createFromFormat('m d Y', $matches[1] . ' ' . $matches[2] . ' ' . $matches[3]);
   }
 
-  // Match '+1' or '-2':
+  // Match '+1' or '-2'
   if (preg_match('/^(-|\+)(\d+)$/', $argument, $matches)) {
     // Treat as days in future or past.
     $date = new \DateTime($matches[0] . ' days');
