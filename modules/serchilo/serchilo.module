@@ -1,7 +1,7 @@
 <?php
 
 require_once('serchilo.constants.inc');
-require_once('serchilo.overall.inc');
+require_once('serchilo.shared.inc');
 
 // HOOKS 
 
