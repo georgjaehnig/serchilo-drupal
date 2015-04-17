@@ -5,6 +5,8 @@
 * Functions shared by the Drupal module and the standalone Process code.
 */
 
+// GENERAL HELPER
+
 /**
  * Return the value of an array given the key.
  * If the key it not set, return a default value.
@@ -26,8 +28,10 @@ function serchilo_array_value($array, $key, $default_value = null) {
 }
 
 
+// PLACEHOLDER EXTRACTORS
+
 /**
- * Get the arguments from a string.
+ * Get arguments from a string.
  *
  * @param string $str
  *   The string containing placeholders.
@@ -42,13 +46,13 @@ function serchilo_get_arguments_from_string($str) {
 }
 
 /**
- * Get the arguments from a string.
+ * Get variables from a string.
  *
  * @param string $str
  *   The string containing placeholders.
  *
- * @return array $arguments
- *   Array keyed with the arguments names and with an array of the attributes as the value. 
+ * @return array $variables
+ *   Array keyed with the variable names and with an array of the attributes as the value. 
  *   An additional attribute '_match' contains the whole match within the URL (for later replacement).
  */
 function serchilo_get_variables_from_string($str) {
