@@ -1080,7 +1080,7 @@ function serchilo_replace_variables($str, $variables ) {
 /**
  * Replace the placeholders in the given string with arguments.
  *
- * @param string $str
+ * @param string $url
  *   The URL with placeholders.
  * @param array $arguments
  *   The arguments to replace in the $str.
@@ -1090,21 +1090,16 @@ function serchilo_replace_variables($str, $variables ) {
  */
 function serchilo_replace_arguments($url, $arguments) {
 
-  foreach ($arguments as $argument) {
-    preg_match(
-      '/\{s:(.+?)\}/',
-      $str,
-      $matches
-    );
-    if (!count($matches)) {
-      continue; 
-    } 
+  $url_arguments = serchilo_get_arguments_from_string($url);
 
-    switch($input_encoding) {
-      // probably unnecessary, since the option is already not within the Input-encoding dropdown
-      case 'double-urlencode':
-        $argument = rawurlencode(rawurlencode(utf8_decode($argument)));
-        break;
+  foreach ($url_arguments as $name=>$attributes) {
+
+    $argument = array_shift($arguments);
+
+    // Default encoding: utf-8
+    $encoding = (serchilo_array_value($attributes, 'encoding') ?: 'utf-8');
+
+    switch($encoding) {
       case 'none':
         $argument = utf8_decode($argument);
         break;
@@ -1117,14 +1112,14 @@ function serchilo_replace_arguments($url, $arguments) {
         break;
     }
 
-    $str = str_replace(
-      $matches[0],
+    $url = str_replace(
+      $attributes['_match'],
       $argument,
-      $str 
+      $url 
     );
   }
 
-  return $str;
+  return $url;
 }
 
 /**
