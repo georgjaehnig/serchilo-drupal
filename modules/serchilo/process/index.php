@@ -1066,14 +1066,15 @@ function serchilo_output_json($output) {
  */
 function serchilo_replace_variables($str, $variables ) {
 
-  foreach ($variables as $key=>$value) {
+  $str_variables = serchilo_get_variables_from_string($str);
+
+  foreach ($str_variables as $name=>$attributes) {
     $str = str_replace(
-      '{' . $key . '}',
-      $value,
-      $str
+      $attributes['_match'],
+      $variables[$name],
+      $str 
     );
   }
-
   return $str;
 }
 
