@@ -8,9 +8,9 @@ title = Shortcut URLs
 
 <p>Consider for instance the URL of the <a href="/shortcut/1">Google shortcut</a>:</p>
 
-<blockquote><code>https://www.google.com/search?hl={language}&q={s:query}&ie=utf-8</code></blockquote>
+<blockquote><code>https://www.google.com/search?hl={$language}&q={%query}&ie=utf-8</code></blockquote>
 
-<p>It contains 2 placeholders: <code>{s:query}</code> and <code>{language}</code>.</p>
+<p>It contains 2 placeholders: <code>{%query}</code> and <code>{$language}</code>.</p>
 
 <h3 id="placeholders">Placeholders</h3>
 
@@ -33,6 +33,13 @@ title = Shortcut URLs
       <td><code>{%foobar}</code></td>
       <td><p>argument from query.</p> 
         <p>If there is more than one argument placeholder, their order in URL also defines the expected order in the shortcut query.</p></td>
+      <td>always</td>
+    </tr>
+    <tr>
+      <td><code>{%foobar|encoding=iso-8859-1}</code></td>
+      <td><p>argument from query, with encoding specified</p> 
+        <p>See <a href="#input_encoding">Input encoding</a> below.</p>
+      </td>
       <td>always</td>
     </tr>
     <tr>
@@ -77,7 +84,7 @@ title = Shortcut URLs
 </table>
 
 <h3 id="input_encoding">Input encoding</h3>
-<p>When adding or editing a shortcut, an input encoding can be selected. It defines, in which way the user arguments shall be encoded before they replace the placeholders <code>{s:foobar}</code>. Defaults to UTF-8.</p>
+<p>The input encoding defines, in which way the user arguments shall be encoded before they replace the placeholders <code>{%foobar}</code>. Defaults to UTF-8.</p>
 
 <table class="table table-bordered">
   <thead>
@@ -92,7 +99,7 @@ title = Shortcut URLs
   <tbody>
     <tr>
       <td>UTF-8</td>
-      <td rowspan="2"><a href="http://www.php.net/manual/function.mb-convert-encoding.php">mb_convert_encoding()</a> → <a href="http://www.php.net/manual/function.rawurlencode.php">rawurlencode()</a></td>
+      <td rowspan="3"><a href="http://www.php.net/manual/function.mb-convert-encoding.php">mb_convert_encoding()</a> → <a href="http://www.php.net/manual/function.rawurlencode.php">rawurlencode()</a></td>
       <td rowspan="2">foo ä bar/</td>
       <td>foo%20ä%20bar%2F</td>
     </tr>
@@ -101,7 +108,10 @@ title = Shortcut URLs
       <td>ISO-8859-1</td>
       <td>foo%20%E4%20bar%2F</td>
     </tr>
-
+    <tr>
+      <td>... or any of the <a href="http://php.net/manual/de/mbstring.supported-encodings.php">supported encodings</a></td>
+      <td colspan="2">&nbsp;</td>
+    </tr>
     <tr>
       <td>none</td>
       <td>–</td>
