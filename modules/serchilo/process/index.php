@@ -1106,8 +1106,8 @@ function serchilo_replace_arguments($str, $arguments) {
         break;
       default:
         # if encoding is valid
-        if (in_array(strtoupper($input_encoding), mb_list_encodings())) {
-          $argument = mb_convert_encoding($argument, $input_encoding, 'utf-8');
+        if (in_array(strtoupper($encoding), mb_list_encodings())) {
+          $argument = mb_convert_encoding($argument, $encoding, 'utf-8');
         }
         $argument = rawurlencode($argument);
         break;
@@ -1120,6 +1120,8 @@ function serchilo_replace_arguments($str, $arguments) {
     );
   }
 
+  echo $str;
+  exit;
   return $str;
 }
 
