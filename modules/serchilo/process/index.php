@@ -461,8 +461,7 @@ function serchilo_shortcut_to_output($shortcut, $env) {
   if (!empty($env['query'])) {
     $output['url']['final'] = serchilo_replace_arguments(
       $output['url']['replaced_variables'],
-      $env['arguments'], 
-      $shortcut['input_encoding']
+      $env['arguments']
     );
   }
   $output['status']['found']        = TRUE;
@@ -496,7 +495,7 @@ function serchilo_get_post_parameters($shortcut, $arguments, $variables) {
     return array(); 
   }
   $post_parameters_str = serchilo_replace_variables($shortcut['post_parameters'], $variables );
-  $post_parameters_str = serchilo_replace_arguments($post_parameters_str, $arguments, $shortcut['input_encoding']);
+  $post_parameters_str = serchilo_replace_arguments($post_parameters_str, $arguments);
   $post_parameters = array();
   foreach (explode('&', $post_parameters_str) as $post_parameter) {
     $keyValue = explode('=', $post_parameter, 2);
@@ -1085,14 +1084,11 @@ function serchilo_replace_variables($str, $variables ) {
  *   The URL with placeholders.
  * @param array $arguments
  *   The arguments to replace in the $str.
- * @param string $input_encoding
- *   The encoding into which the arguments
- *   shall be converted when being replaced.
  *   
  * @return string $str
  *   The replaced URL. 
  */
-function serchilo_replace_arguments($str, $arguments, $argument_count, $input_encoding = 'utf-8') {
+function serchilo_replace_arguments($url, $arguments) {
 
   foreach ($arguments as $argument) {
     preg_match(
