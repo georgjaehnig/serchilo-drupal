@@ -1097,6 +1097,20 @@ function serchilo_replace_arguments($str, $arguments) {
 
     $argument = array_shift($arguments);
 
+    $type = serchilo_array_value($attributes, 'type');
+    switch($type) {
+      case 'date':
+        // If $argument like +1 or -2:
+        if (preg_match('/^(-|\+)\d+$/', $argument)) {
+          // Treat as day.
+          $argument .= ' days';
+          $timestamp = strtotime($argument);
+          $output = serchilo_array_value($attributes, 'output', 'd.m.Y');
+          $argument = date($output, $timestamp);
+        }
+        break;
+    }
+
     // Default encoding: utf-8
     $encoding = serchilo_array_value($attributes, 'encoding', 'utf-8');
     switch($encoding) {
