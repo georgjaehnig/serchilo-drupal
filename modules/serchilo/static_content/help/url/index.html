@@ -13,12 +13,11 @@ title = Shortcut URLs
 <p>It contains 2 placeholders: <code>{s:query}</code> and <code>{language}</code>.</p>
 
 <h3 id="placeholders">Placeholders</h3>
+
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>Placeholder type</th>
       <th>Example</th>
-      <th>Naming convention</th>
       <th>Will be replaced with</th>
       <th>Available</th>
     </tr>
@@ -26,28 +25,52 @@ title = Shortcut URLs
 
   <tbody>
     <tr>
-      <td>argument</td>
-      <td><code>{s:foobar}</code></td>
-      <td>by <a href="http://www.opensearch.org/Specifications/OpenSearch/1.1#Fully_qualified_parameter_names">OpenSearch URL template syntax, Fully qualified parameter names</a></td>
+      <td colspan="3">
+        <h4>Placeholders for arguments</h4>
+      </td>
+    </tr>
+    <tr>
+      <td><code>{%foobar}</code></td>
       <td><p>argument from query.</p> 
         <p>If there is more than one argument placeholder, their order in URL also defines the expected order in the shortcut query.</p></td>
       <td>always</td>
     </tr>
-
     <tr>
-      <td>language</td>
-      <td><code>{language}</code></td>
-      <td>by <a href="http://www.opensearch.org/Specifications/OpenSearch/1.1#The_.22language.22_parameter">OpenSearch URL template syntax, "language" parameter</a></td>
+      <td><code>{%Datum|type=date|output=Y-m-d}</code></td>
+      <td><p>argument from query, with a specified type</p> 
+        <p>The <code>date</code> type expects a date given in the argument.</p>
+        It will even translate fuzzy entries:
+          <ul>
+            <li><code>7.6.</code> → 2015-06-07 (assumes German format)</li> 
+            <li><code>7/6</code> → 2015-07-06 (assumes American format)</li> 
+            <li><code>7</code> → 2015-06-07 (assumes current month &amp; year)</li> 
+            <li><code>1</code> → 2015-07-01 (enforced future date: increases month and even year if computed date would be in past otherwise)</li> 
+            <li><code>+10</code> → today plus 10 days</li> 
+            <li><code>-5</code> → today minus 5 days</li> 
+          </ul>
+          Optional attribute <code>output</code> defines the output format which must be based on PHP's <a href="http://php.net/manual/function.date.php">date() format</a>. Default is <code>Y-m-d</code>.
+        </td>
+      <td>always</td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <h4>Placeholders for variables</h4>
+      </td>
+    </tr>
+    <tr>
+      <td><code>{$language}</code></td>
       <td>current language namespace</td>
       <td>always</td>
     </tr>
-
     <tr>
-      <td>user</td>
-      <td><code>{user:name}</code></td>
-      <td>by <a href="http://www.opensearch.org/Specifications/OpenSearch/1.1#Fully_qualified_parameter_names">OpenSearch URL template syntax, Fully qualified parameter names</a></td>
-      <td>Name of current user</td>
+      <td><code>{$user:name}</code></td>
+      <td>name of current user</td>
       <td>only when calling via [site:url]u/[username]</td>
+    </tr>
+    <tr>
+      <td><code>{$now|output=Y-m-d}</code></td>
+      <td>current date and time, attribute <code>output</code> defines the output format which must be based on PHP's <a href="http://php.net/manual/function.date.php">date() format</a>. Default is <code>Y-m-d</code>.</td>
+      <td>always</td>
     </tr>
   </tbody>
 
