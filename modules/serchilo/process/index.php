@@ -1099,7 +1099,6 @@ function serchilo_replace_arguments($str, $arguments) {
 
     // Default encoding: utf-8
     $encoding = serchilo_array_value($attributes, 'encoding', 'utf-8');
-
     switch($encoding) {
       case 'none':
         $argument = utf8_decode($argument);
