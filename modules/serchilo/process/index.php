@@ -1112,7 +1112,7 @@ function serchilo_replace_arguments($str, $arguments) {
       case 'date':
         $date = serchilo_parse_date($argument);
         if (isset($date)) {
-          $output   = serchilo_array_value($attributes, 'output', 'd.m.Y');
+          $output   = serchilo_array_value($attributes, 'output', 'Y-m-d');
           $argument = $date->format($output);
         }
         break;
