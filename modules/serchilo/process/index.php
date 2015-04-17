@@ -1071,9 +1071,9 @@ function serchilo_replace_variables($str, $variables ) {
   foreach ($str_variables as $name=>$attributes) {
     switch($name) {
       case 'now':
-        $format = serchilo_array_value($attributes, 'format', 'Y-m-d');
+        $output = serchilo_array_value($attributes, 'output', 'Y-m-d');
         $now = new DateTime();
-        $value = $now->format($format);
+        $value = $now->format($output);
         break; 
       default:
         $value = $variables[$name];
@@ -1112,8 +1112,8 @@ function serchilo_replace_arguments($str, $arguments) {
       case 'date':
         $date = serchilo_parse_date($argument);
         if (isset($date)) {
-          $format   = serchilo_array_value($attributes, 'format', 'd.m.Y');
-          $argument = $date->format($format);
+          $output   = serchilo_array_value($attributes, 'output', 'd.m.Y');
+          $argument = $date->format($output);
         }
         break;
     }
