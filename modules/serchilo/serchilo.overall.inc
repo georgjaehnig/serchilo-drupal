@@ -31,8 +31,9 @@ function serchilo_array_value($array, $key, $default_value = null) {
  * @param string $str
  *   The string containing placeholders.
  *
- * @return array $argument_names
- *   The extracted argument names.
+ * @return array $arguments
+ *   Array keyed with the arguments names and with an array of the attributes as the value. 
+ *   An additional attribute '_match' contains the whole match within the URL (for later replacement).
  */
 function serchilo_get_arguments_from_string($str) {
 
@@ -43,19 +44,20 @@ function serchilo_get_arguments_from_string($str) {
     '/\{%(.+?)\}/',
     $str,
     $matches,
-    PREG_PATTERN_ORDER
+    PREG_SET_ORDER
   );
 
-  foreach ($matches[1] as $match) {
+  foreach ($matches as $match) {
 
     // Example value:
     // $match = query|encoding=utf-8|another=attribute
-    $name_and_attributes = explode('|', $match);
+    $name_and_attributes = explode('|', $match[1]);
 
     // Example value:
     // $name = query
     $name = array_shift($name_and_attributes);
     $arguments[$name] = array();
+    $arguments[$name]['_match'] = $match[0];
 
     // Example value:
     // $name_and_attributes = encoding=utf-8|another=attribute
