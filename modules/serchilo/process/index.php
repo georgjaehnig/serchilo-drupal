@@ -1061,7 +1061,7 @@ function serchilo_output_json($output) {
  * @param array $variables
  *   The variables to replace in the $str.
  *   
- * @return string $url
+ * @return string $str
  *   The replaced URL. 
  */
 function serchilo_replace_variables($str, $variables ) {
@@ -1080,19 +1080,19 @@ function serchilo_replace_variables($str, $variables ) {
 /**
  * Replace the placeholders in the given string with arguments.
  *
- * @param string $url
- *   The URL with placeholders.
+ * @param string $str
+ *   The string with placeholders.
  * @param array $arguments
  *   The arguments to replace in the $str.
  *   
  * @return string $str
- *   The replaced URL. 
+ *   The replaced string. 
  */
-function serchilo_replace_arguments($url, $arguments) {
+function serchilo_replace_arguments($str, $arguments) {
 
-  $url_arguments = serchilo_get_arguments_from_string($url);
+  $str_arguments = serchilo_get_arguments_from_string($str);
 
-  foreach ($url_arguments as $name=>$attributes) {
+  foreach ($str_arguments as $name=>$attributes) {
 
     $argument = array_shift($arguments);
 
@@ -1112,14 +1112,14 @@ function serchilo_replace_arguments($url, $arguments) {
         break;
     }
 
-    $url = str_replace(
+    $str = str_replace(
       $attributes['_match'],
       $argument,
-      $url 
+      $str 
     );
   }
 
-  return $url;
+  return $str;
 }
 
 /**
