@@ -57,7 +57,7 @@ function serchilo_get_arguments_from_string($str) {
  */
 function serchilo_get_variables_from_string($str) {
 
-  return serchilo_get_placeholders_from_string($str, '$');
+  return serchilo_get_placeholders_from_string($str, '\$');
 }
 
 /**
@@ -66,7 +66,7 @@ function serchilo_get_variables_from_string($str) {
  * @param string $str
  *   The string containing placeholders.
  * @param string $prefix
- *   The prefix of the placeholders.
+ *   The prefix of the placeholders. Must be Regex-escaped.
  *
  * @return array $placeholders
  *   Array keyed with the arguments names and with an array of the attributes as the value. 
