@@ -127,8 +127,8 @@ function serchilo_import_shortcuts($rows, $verbose = FALSE) {
     for ($i=0; $i<count($row['examples']); $i++) {
       $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_example'));
       $field_collection_item->setHostEntity('node', $shortcut);
-      $field_collection_item->field_example_arguments[LANGUAGE_NONE][]['value'] = $row['examples'][$i][0];
-      $field_collection_item->field_example_description[LANGUAGE_NONE][]['value'] = $row['examples'][$i][1];
+      $field_collection_item->field_example_arguments[LANGUAGE_NONE][]['value'] = $row['examples'][$i]['arguments'];
+      $field_collection_item->field_example_description[LANGUAGE_NONE][]['value'] = $row['examples'][$i]['description'];
       $field_collection_item->save();
     }
     node_save($shortcut);
