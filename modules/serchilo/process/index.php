@@ -1120,8 +1120,6 @@ function serchilo_replace_arguments($str, $arguments) {
     );
   }
 
-  echo $str;
-  exit;
   return $str;
 }
 
