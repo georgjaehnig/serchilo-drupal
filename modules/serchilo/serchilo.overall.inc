@@ -25,8 +25,9 @@ function serchilo_array_value($array, $key, $default_value = null) {
   return $default_value;
 }
 
+
 /**
- * Get the Serchilo argument names from a string.
+ * Get the arguments from a string.
  *
  * @param string $str
  *   The string containing placeholders.
@@ -37,11 +38,43 @@ function serchilo_array_value($array, $key, $default_value = null) {
  */
 function serchilo_get_arguments_from_string($str) {
 
-  $arguments = array();
+  return serchilo_get_placeholders_from_string($str, '%');
+}
+
+/**
+ * Get the arguments from a string.
+ *
+ * @param string $str
+ *   The string containing placeholders.
+ *
+ * @return array $arguments
+ *   Array keyed with the arguments names and with an array of the attributes as the value. 
+ *   An additional attribute '_match' contains the whole match within the URL (for later replacement).
+ */
+function serchilo_get_variables_from_string($str) {
+
+  return serchilo_get_placeholders_from_string($str, '$');
+}
+
+/**
+ * Get the Serchilo argument names from a string.
+ *
+ * @param string $str
+ *   The string containing placeholders.
+ * @param string $prefix
+ *   The prefix of the placeholders.
+ *
+ * @return array $placeholders
+ *   Array keyed with the arguments names and with an array of the attributes as the value. 
+ *   An additional attribute '_match' contains the whole match within the URL (for later replacement).
+ */
+function serchilo_get_placeholders_from_string($str, $prefix) {
+
+  $placeholders = array();
 
   preg_match_all(
     // ? makes ungreedy
-    '/\{%(.+?)\}/',
+    '/\{' . $prefix . '(.+?)\}/',
     $str,
     $matches,
     PREG_SET_ORDER
@@ -56,8 +89,8 @@ function serchilo_get_arguments_from_string($str) {
     // Example value:
     // $name = query
     $name = array_shift($name_and_attributes);
-    $arguments[$name] = array();
-    $arguments[$name]['_match'] = $match[0];
+    $placeholders[$name] = array();
+    $placeholders[$name]['_match'] = $match[0];
 
     // Example value:
     // $name_and_attributes = encoding=utf-8|another=attribute
@@ -65,10 +98,10 @@ function serchilo_get_arguments_from_string($str) {
       $attribute_name_and_value = explode('=', $attribute_str, 2);
       $attribute_name  = array_shift($attribute_name_and_value);
       $attribute_value = array_shift($attribute_name_and_value);
-      $arguments[$name][$attribute_name] = $attribute_value;
+      $placeholders[$name][$attribute_name] = $attribute_value;
     }
   }
 
-  return $arguments;
+  return $placeholders;
 }
 
