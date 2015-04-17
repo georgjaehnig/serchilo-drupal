@@ -1069,9 +1069,19 @@ function serchilo_replace_variables($str, $variables ) {
   $str_variables = serchilo_get_variables_from_string($str);
 
   foreach ($str_variables as $name=>$attributes) {
+    switch($name) {
+      case 'now':
+        $format = serchilo_array_value($attributes, 'format', 'Y-m-d');
+        $now = new DateTime();
+        $value = $now->format($format);
+        break; 
+      default:
+        $value = $variables[$name];
+        break; 
+    }
     $str = str_replace(
       $attributes['_match'],
-      $variables[$name],
+      $value,
       $str 
     );
   }
