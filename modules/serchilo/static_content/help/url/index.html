@@ -37,26 +37,14 @@ title = Shortcut URLs
     </tr>
     <tr>
       <td><code>{%foobar|encoding=iso-8859-1}</code></td>
-      <td><p>argument from query, with encoding specified</p> 
-        <p>See <a href="#input_encoding">Input encoding</a> below.</p>
+      <td><p>... with encoding specified. See <a href="#input_encoding">Input encoding</a> below.</p>
       </td>
       <td>always</td>
     </tr>
     <tr>
-      <td><code>{%Datum|type=date|output=Y-m-d}</code></td>
-      <td><p>argument from query, with a specified type</p> 
-        <p>The <code>date</code> type expects a date given in the argument.</p>
-        It will even translate fuzzy entries:
-          <ul>
-            <li><code>7.6.</code> → 2015-06-07 (assumes German format)</li> 
-            <li><code>7/6</code> → 2015-07-06 (assumes American format)</li> 
-            <li><code>7</code> → 2015-06-07 (assumes current month &amp; year)</li> 
-            <li><code>1</code> → 2015-07-01 (enforced future date: increases month and even year if computed date would be in past otherwise)</li> 
-            <li><code>+10</code> → today plus 10 days</li> 
-            <li><code>-5</code> → today minus 5 days</li> 
-          </ul>
-          Optional attribute <code>output</code> defines the output format which must be based on PHP's <a href="http://php.net/manual/function.date.php">date() format</a>. Default is <code>Y-m-d</code>.
-        </td>
+      <td><code>{%Datum|type=date|output=Y-m-d}</code>
+        <code>{%Ziel|type=city}</code></td>
+      <td><p>... with a specified type See <a href="#parameter_types">Parameter types</a> below.</p> </td>
       <td>always</td>
     </tr>
     <tr>
@@ -117,6 +105,84 @@ title = Shortcut URLs
       <td>–</td>
       <td>http://example.com/</td>
       <td>http://example.com/</td>
+    </tr>
+
+  </tbody>
+
+</table>
+
+<h3 id="type">Parameter types</h3>
+<p>If a parameter type is specified, the argument will be processed according to the type.</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Conversion</th>
+      <th>Example input</th>
+      <th>Example output</th>
+      <th>Explanation</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td rowspan="6">date</td>
+      <td rowspan="6">The input will be parsed as a date.
+        <ul>
+          <li> 
+          American and European inputs will be distinguished. 
+          </li> <li> 
+          An input containing only a number will be assumed as a day of month. 
+          </li> <li> 
+          A date in the future will be enforced. 
+          </li> <li> 
+          Also relative inputs are possible.
+          </li>
+        </ul>
+        </td>
+      <td><code>7.6.</code></td>
+      <td><code>2015-06-07</code></td><td>assumes German format</td> 
+    </tr>
+    <tr>
+      <td><code>7/6</code></td><td><code>2015-07-06</code></td><td>assumes American format</td> 
+    </tr>
+    <tr>
+      <td><code>7</code></td><td><code>2015-06-07</code></td><td>assumes current month &amp; year</td> 
+    </tr>
+    <tr>
+      <td><code>1</code></td><td><code>2015-07-01</code></td><td>enforced future date: increases month and even year if computed date would be in past otherwise</td> 
+    </tr>
+    <tr>
+      <td><code>+10</code></td><td><code>2015-06-17</code></td><td>today plus 10 days</td> 
+    </tr>
+    <tr>
+      <td><code>-5</code></td><td><code>2015-06-02</code></td><td>today minus 5 days</td> 
+    </tr>
+
+    <tr>
+      <td rowspan="6">city</td>
+      <td rowspan="6">The input will be parsed as an abbreviation for a city, according to <a href="https://github.com/georgjaehnig/serchilo-drupal/tree/master/modules/serchilo/mappings/cities">these mappings</a>.
+        <ul>
+          <li>
+          Abbreviations are mostly based on vehicle registration plate codes (e.g. for Germany, Austria and Ireland).  Others are made up (e.g. for Czech Republic).
+          </li> <li> 
+            The country is assumed from the current country namespace. A different country can be forced with a 2-letter or 3-letter country code.
+          </li> <li> 
+          Suggestions for new mappings are welcome, please <a href="https://github.com/georgjaehnig/serchilo-drupal/issues">leave a Github ticket</a>.
+          </li>
+        </ul>
+        </td>
+      <td><code>b</code></td>
+      <td><code>Berlin</code></td><td>if current country namespace is <a href="/namespaces/deu" class="namespace" title="Germany">deu</a> (Germany)</td> 
+    </tr>
+    <tr>
+      <td><code>at.w</code></td>
+      <td><code>Wien</code></td><td>forcing an Austrian city</td> 
+    </tr>
+    <tr>
+      <td><code>aut.w</code></td>
+      <td><code>Wien</code></td><td>forcing an Austrian city</td> 
     </tr>
 
   </tbody>
