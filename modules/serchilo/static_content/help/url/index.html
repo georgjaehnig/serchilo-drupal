@@ -44,7 +44,7 @@ title = Shortcut URLs
     <tr>
       <td><code>{%Datum|type=date|output=Y-m-d}</code>
         <code>{%Ziel|type=city}</code></td>
-      <td><p>... with a specified type See <a href="#parameter_types">Parameter types</a> below.</p> </td>
+      <td><p>... with a specified type. See <a href="#parameter_types">Parameter types</a> below.</p> </td>
       <td>always</td>
     </tr>
     <tr>
@@ -138,6 +138,8 @@ title = Shortcut URLs
           A date in the future will be enforced. 
           </li> <li> 
           Also relative inputs are possible.
+          </li> <li> 
+          With the attribute <code>output</code>, an output format based on PHP's <a href="http://php.net/manual/function.date.php">date();</a> can be specified. Defaults to <code>Y-m-d</code>.
           </li>
         </ul>
         </td>
