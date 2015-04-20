@@ -457,12 +457,13 @@ function serchilo_shortcut_to_output($shortcut, $env) {
   if (!empty($env['query'])) {
     $output['url']['final'] = serchilo_replace_arguments(
       $output['url']['replaced_variables'],
-      $env['arguments']
+      $env['arguments'],
+      $env
     );
   }
   $output['status']['found']        = TRUE;
   $output['namespace']['name']      = $shortcut['namespace_name'];
-  $output['url']['post_parameters'] = serchilo_get_post_parameters($shortcut, $env['arguments'], $variables);
+  $output['url']['post_parameters'] = serchilo_get_post_parameters($shortcut, $env['arguments'], $variables, $env);
   $output['shortcut']['id']         = (int) $shortcut['nid'];
 
   $output['#shortcut'] = $shortcut;
@@ -485,13 +486,13 @@ function serchilo_shortcut_to_output($shortcut, $env) {
  *   The post parameters.
  *   Empty array if none present.
  */
-function serchilo_get_post_parameters($shortcut, $arguments, $variables) {
+function serchilo_get_post_parameters($shortcut, $arguments, $variables, $env) {
 
   if (empty($shortcut['post_parameters'])) {
     return array(); 
   }
   $post_parameters_str = serchilo_replace_variables($shortcut['post_parameters'], $variables );
-  $post_parameters_str = serchilo_replace_arguments($post_parameters_str, $arguments);
+  $post_parameters_str = serchilo_replace_arguments($post_parameters_str, $arguments, $env);
   $post_parameters = array();
   foreach (explode('&', $post_parameters_str) as $post_parameter) {
     $keyValue = explode('=', $post_parameter, 2);
@@ -1095,7 +1096,7 @@ function serchilo_replace_variables($str, $variables ) {
  * @return string $str
  *   The replaced string. 
  */
-function serchilo_replace_arguments($str, $arguments) {
+function serchilo_replace_arguments($str, $arguments, $env) {
 
   $str_arguments = serchilo_get_arguments_from_string($str);
 
