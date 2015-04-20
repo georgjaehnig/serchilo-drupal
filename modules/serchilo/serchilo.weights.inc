@@ -121,6 +121,8 @@ function serchilo_calculate_shortcut_weights() {
 
         $shortcut->field_weight[LANGUAGE_NONE][0]['value'] = 
           $shortcut_call->count / $calls_last_30_days[0]->count;
+        // Max length is 10.
+        $shortcut->field_weight[LANGUAGE_NONE][0]['value'] = substr($shortcut->field_weight[LANGUAGE_NONE][0]['value'], 0, 10);
         field_attach_update('node', $shortcut);
       }
     }
