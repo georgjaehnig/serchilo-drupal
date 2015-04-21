@@ -1784,11 +1784,13 @@ function serchilo_keyword_is_new($node) {
  *    String of the Opensearch head link.
  */
 function serchilo_opensearch_title($namespaces_path, $default_keyword = NULL) {
+
+  $site_name = variable_get('site_name');
   if( $default_keyword ) {
-    $title =  'Serchilo: ' . $namespaces_path . ' | ' . $default_keyword;
+    $title =  $site_name . ': ' . $namespaces_path . ' | ' . $default_keyword;
   }
   else {
-    $title =  'Serchilo: ' . $namespaces_path;
+    $title =  $site_name . ': ' . $namespaces_path;
   }
   return $title;
 }
