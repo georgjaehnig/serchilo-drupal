@@ -140,12 +140,17 @@ function serchilo_populate_environment(&$env) {
     // Get namespace_ids from namespace_names.
     $env['namespace_ids'] = array_map('serchilo_get_namespace_id', $env['namespace_names']);
 
+    $env['timezone'] = serchilo_get_timezone($env);
+
     break;
 
   case SERCHILO_USER_PATH_AFFIX:
 
     $env['user_name'] = serchilo_get_user_name_from_path($env['path_elements_offset']);
-    $env['namespace_ids'] = serchilo_get_namespace_ids_from_user($env['user_name']);
+    $env['user_id']   = serchilo_get_values_from_table('users', 'name', $env['user_name'], 'uid', TRUE)[0];
+    $env['timezone']  = serchilo_get_timezone($env);
+
+    $env['namespace_ids'] = serchilo_get_namespace_ids_from_user($env['user_name'], $env['user_id']);
 
     // Yes, one '=' is correct.
     if ($env['extra_namespace_id'] = serchilo_get_namespace_id($env['extra_namespace_name'])) {
@@ -157,6 +162,28 @@ function serchilo_populate_environment(&$env) {
     $env['country_namespace_name']  = serchilo_get_values_from_table('taxonomy_term_data', 'tid', $env['namespace_ids']['2'], 'name')[0];
 
     break;
+  }
+}
+
+/**
+ * Get the timezone from the URL or from the user settings.
+ *
+ * @param array $env
+ *   The environment, holding all relevant data of the request.
+ *
+ * @return string $timezone
+ *   The timezone,
+ *   NULL if not found.
+ */
+function serchilo_get_timezone($env) {
+
+  if (!empty($_GET['timezone'])) {
+    // TODO: Validate.
+    return $_GET['timezone'];
+  }
+  if (!empty($env['user_id'])) {
+    $timezone = serchilo_get_values_from_table('users', 'uid', $env['user_id'], 'timezone')[0];
+    return $timezone;
   }
 }
 
@@ -858,9 +885,7 @@ function serchilo_get_namespace_id($namespace_name) {
  * @return array $namespace_ids
  *   The Namespace IDs.
  */
-function serchilo_get_namespace_ids_from_user($user_name) {
-
-  $user_id = serchilo_get_values_from_table('users', 'name', $user_name, 'uid', TRUE)[0];
+function serchilo_get_namespace_ids_from_user($user_name, $user_id) {
 
   $star_namespace_id     = serchilo_get_namespace_id(SERCHILO_PLANET_NAMESPACE);
   $language_namespace_id = serchilo_get_values_from_table('field_data_field_language_namespace', 'entity_id', $user_id, 'field_language_namespace_tid')[0];
@@ -1112,6 +1137,15 @@ function serchilo_replace_arguments($str, $arguments, $env) {
         if (isset($date)) {
           $output   = serchilo_array_value($attributes, 'output', 'Y-m-d');
           $argument = $date->format($output);
+        }
+        break;
+      case 'time':
+        require_once(dirname(__FILE__) . '/serchilo.type.time.inc');
+        $time = serchilo_parse_time($argument);
+        if (isset($time)) {
+          $time->setTimeZone(new DateTimeZone($env['timezone']));
+          $output   = serchilo_array_value($attributes, 'output', 'H:i');
+          $argument = $time->format($output);
         }
         break;
       case 'city':
