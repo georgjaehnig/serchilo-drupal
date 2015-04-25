@@ -7,6 +7,9 @@
             <div class="input-group-btn">
               <button type="submit" class="btn btn-primary">Go</button>
             </div><!-- /btn-group -->
+            <?php foreach ($get_parameters as $name=>$value): ?>
+              <input type="hidden" name="<?php echo $name ?>" value="<?php echo $value ?>"/>
+            <?php endforeach; ?>
           </div><!-- /input-group -->
         </div><!-- /.col-xs-12 -->
       </div><!-- /.row -->

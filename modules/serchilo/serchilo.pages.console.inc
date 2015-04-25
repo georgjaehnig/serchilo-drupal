@@ -241,12 +241,19 @@ function serchilo_page_console() {
   drupal_add_library('system', 'ui.autocomplete');
   
 
+  $get_parameter_names = array('default_keyword', 'timezone');
+  $get_parameters = array_intersect_key(
+    drupal_get_query_parameters(), 
+    array_flip($get_parameter_names)
+  );
+
   $content['console'] = array(
     '#type' => 'markup',
     '#markup' => theme(
       'serchilo_console', 
       array(
         'query' => (string) $query,
+        'get_parameters' => $get_parameters,
       )
     ),
   );
