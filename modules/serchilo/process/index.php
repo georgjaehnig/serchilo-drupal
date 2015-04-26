@@ -1133,7 +1133,7 @@ function serchilo_replace_arguments($str, $arguments, $env) {
     switch($type) {
       case 'date':
         require_once(dirname(__FILE__) . '/serchilo.type.date.inc');
-        $date = serchilo_parse_date($argument);
+        $date = serchilo_parse_date($argument, $env);
         if (!empty($date)) {
           $output   = serchilo_array_value($attributes, 'output', 'Y-m-d');
           $argument = $date->format($output);

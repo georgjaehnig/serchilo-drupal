@@ -10,7 +10,7 @@
  *   The parsed DateTime object.
  *   NULL if parse failed. 
  */
-function serchilo_parse_date($argument) {
+function serchilo_parse_date($argument, $env) {
 
   // Match '22' and '22.'
   if (preg_match('/^(\d+)(\.)?$/', $argument, $matches)) {
@@ -63,6 +63,13 @@ function serchilo_parse_date($argument) {
   if (preg_match('/^(-|\+)(\d+)$/', $argument, $matches)) {
     // Treat as days in future or past.
     $date = new \DateTime($matches[0] . ' days');
+  }
+
+  // Match 'Mo' or 'Di'.
+  if (preg_match('/^([a-z]+)$/', $argument, $matches)) {
+    $mapping = serchilo_load_mapping(dirname(__FILE__) . '/../mappings/weekdays/' . $env['language_namespace_name'] . '.tsv');
+    $weekday = serchilo_array_value($mapping, $argument, $argument);
+    $date = DateTime::createFromFormat('D', $weekday);
   }
 
   return $date;
