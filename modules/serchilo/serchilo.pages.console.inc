@@ -188,42 +188,45 @@ function serchilo_page_console() {
     if (!empty($suggested_shortcut_ids)) {
       $message .= ' ';
       $message .= t('Did you mean:');
-
-      $suggested_shortcut_links = array();
-      foreach($suggested_shortcut_ids as $suggested_shortcut_id) {
-        $suggested_shortcut_link = theme(
-          'serchilo_shortcut_example_link',
-          array(
-            'shortcut' => node_load($suggested_shortcut_id),
-            'arguments' => $arguments,
-            'with_namespace' => TRUE,
-          )
-        );
-        // Collect by keys containing the query
-        // to deduplicate.
-        $suggested_shortcut_links[$suggested_shortcut_link['#title']]['data'] = render($suggested_shortcut_link);
-      }
-
-      $item_list = theme_item_list(array(
-        'items' => $suggested_shortcut_links,
-        'title' => '',
-        'type' => 'ul',
-        'attributes' => array(''),
-      ));
-      $message .=  $item_list;
-    } else {
+      $with_namespace = TRUE;
+    }
+    else  {
       $message .= ' ';
       $message .= t('Common shortcuts for search engines:');
-      foreach(array('g', 'b', 'y') as $keyword) {
-        $suggested_shortcut_links[] = theme(
-          'serchilo_shortcut_example_link',
-          array(
-            'query' => $keyword . ' ' . $query,
-          )
-        );
-      }
-      $message .= drupal_render($suggested_shortcut_links);
+
+      $suggested_shortcut_ids[] = (
+        serchilo_get_shortcut('g', 1, $country_namespace->name)
+        ?:
+        serchilo_get_shortcut('g', 1, SERCHILO_PLANET_NAMESPACE)
+      );
+      $suggested_shortcut_ids[] = serchilo_get_shortcut('b', 1, SERCHILO_PLANET_NAMESPACE);
+      $suggested_shortcut_ids[] = serchilo_get_shortcut('y', 1, SERCHILO_PLANET_NAMESPACE);
+      $arguments = array($query);
+      $with_namespace = FALSE;
     }
+
+    foreach($suggested_shortcut_ids as $suggested_shortcut_id) {
+      $suggested_shortcut_link = theme(
+        'serchilo_shortcut_example_link',
+        array(
+          'shortcut' => node_load($suggested_shortcut_id),
+          'arguments' => $arguments,
+          'with_namespace' => $with_namespace,
+        )
+      );
+      // Collect by keys containing the query
+      // to deduplicate.
+      $suggested_shortcut_links[$suggested_shortcut_link['#title']]['data'] = render($suggested_shortcut_link);
+    }
+
+    $item_list = theme_item_list(array(
+      'items' => $suggested_shortcut_links,
+      'title' => '',
+      'type' => 'ul',
+      'attributes' => array(''),
+    ));
+    $message .=  $item_list;
+
     drupal_set_message($message, 'error');
   }
 
