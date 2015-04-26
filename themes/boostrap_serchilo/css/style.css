@@ -147,8 +147,7 @@ html, body {
 }
 
 /* Do not truncate in Shortcut example */
-.dl-horizontal dt 
-{ 
+.dl-horizontal dt { 
   white-space: normal; 
 }
 
@@ -168,19 +167,16 @@ html, body {
 }
 
 /* Site name */
-.navbar>.container .navbar-brand
-{
+.navbar>.container .navbar-brand {
   margin-left: -0.4em;
 }
 
 /* Hide "More information about text formats" */
-fieldset.filter-wrapper
-{
+fieldset.filter-wrapper {
   display: none;
 }
 /* Views display count */
-.view-header
-{
+.view-header {
   margin: 1em 0;
 }
 /* Field Group */
