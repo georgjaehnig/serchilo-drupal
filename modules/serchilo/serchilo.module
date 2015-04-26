@@ -697,6 +697,9 @@ function serchilo_block_info() {
     'info' => 'Namespaces',
     'status' => 1,
     'region' => 'header',
+    // Show only on n/* and u/* pages.
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => "n/*\nu/*"
   );
 
   $blocks['licenses'] = array(
