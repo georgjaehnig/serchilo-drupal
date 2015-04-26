@@ -109,3 +109,31 @@ function serchilo_get_placeholders_from_string($str, $prefix) {
   return $placeholders;
 }
 
+
+
+/**
+ * Load a mapping from file.
+ *
+ * @param string $filename
+ *   The name of the file containing the mapping.
+ *   
+ * @return array $mapping
+ *   The parsed city name as string.
+ *   NULL if loading failed. 
+ */
+function serchilo_load_mapping($filename) {
+
+  if (!file_exists($filename)) {
+    return NULL; 
+  }
+  $lines = file($filename);
+  $mapping = array();
+  foreach ($lines as $line) {
+    $split = explode("\t", $line, 2);
+    $split[0] = trim($split[0]);
+    $split[1] = trim($split[1]);
+    $mapping[$split[0]] = $split[1];
+  }
+  return $mapping;
+}
+
