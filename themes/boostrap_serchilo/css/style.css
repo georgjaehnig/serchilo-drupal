@@ -63,6 +63,12 @@
   margin-right: 0.2em;
 }
 
+
+a.namespace:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .ui-autocomplete .namespace {
   padding: 0.2em;
 }
@@ -203,6 +209,26 @@ body.page-node-revisions-view td.diff-links {
 }
 #block-serchilo-add-to-browser {
   display: inline-block;
+  float: right;
+}
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+header {
+  margin-bottom: 2em;
+
+}
+#block-serchilo-namespaces {
+  background: #011d24;
+  background: #aa2c30;
+  display: inline-block;
+  padding-bottom: 0.2em;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+  border-bottom-left-radius: 0.6em;
+  border-bottom-right-radius: 0.6em;
 }
 
 /* Console Examples */
@@ -223,8 +249,4 @@ body.page-node-revisions-view td.diff-links {
 
 #comments h2 {
 	font-size: 1.5em;
-}
-
-#block-serchilo-add-to-browser {
-  float: right;
 }
