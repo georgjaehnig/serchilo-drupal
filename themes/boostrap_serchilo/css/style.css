@@ -125,6 +125,27 @@ a.namespace:hover {
 }
 /* ==================================== /namespaces */
 
+/* ==================================== query */
+a.query,
+a.query:visited,
+a.query:hover
+
+{
+  /*color: #428bca;
+  color: #487b7f;
+  background: #ffffff;
+  border: 1px solid #487b7f;
+  border: 1px solid #428bca;
+  font-weight: normal;
+  padding: 0.2em 0.4em;
+  margin: 0.2em 0em;
+  display: inline-block;
+  border-radius: 0.4em;
+  text-decoration:none;*/
+  white-space: nowrap;
+}
+/* ==================================== namespaces */
+
 /* ==================================== view: shortcuts */
 .field.field-name-field-namespace a,
 td.views-field-field-namespace a,
