@@ -8,7 +8,7 @@
 
 
 
-/***************************************** autocomplete */
+/* ==================================== autocomplete */
 .left       { float: left !important; }
 .right      { float: right !important; }
 
@@ -52,7 +52,9 @@
 .ui-menu-item .unreachable .title {
   color: #aaa;
 }
+/* ==================================== /autocomplete */
 
+/* ==================================== namespaces */
 .namespace {
   color: #ffffff;
   background: #aa2c30;
@@ -76,7 +78,9 @@ a.namespace:hover {
 .unreachable .namespace {
   background: #8EaAaC;
 }
+/* ==================================== /namespaces */
 
+/* ==================================== view: shortcuts */
 .field.field-name-field-namespace a,
 td.views-field-field-namespace a,
 .view-namespaces td.views-field-name a
@@ -136,8 +140,10 @@ td.views-field-field-namespace a,
   list-style: none;
   display: inline;
 }
+/* ==================================== /view: shortcuts */
 
-/* Footer */
+/* ==================================== general */
+/* Stick footer to the bottom */
 html, body {
 	height: 100%;
 }
@@ -145,11 +151,27 @@ html, body {
 	min-height: 80%;
 	padding-bottom: 40px;
 }
+/* ==================================== /general */
+
+/* ==================================== examples */
 
 /* Do not truncate in Shortcut example */
 .dl-horizontal dt { 
   white-space: normal; 
 }
+
+/* Console Examples */
+
+#console-examples dl {
+  margin: 0;
+}
+#console-examples .field-collection-container {
+  border: 0;
+}
+
+/* ==================================== /examples */
+
+/* ==================================== shortcut display & edit */
 
 /* Set field-label width to dl-horizontal width. */
 .node-shortcut .field-label {
@@ -164,11 +186,6 @@ html, body {
 /* field_description */
 .node-shortcut .field-name-field-description {
   margin-top: 1em;
-}
-
-/* Site name */
-.navbar>.container .navbar-brand {
-  margin-left: -0.4em;
 }
 
 /* Hide "More information about text formats" */
@@ -199,6 +216,7 @@ body.page-node-revisions-view td.diff-links {
 #edit-field-test .tabledrag-toggle-weight-wrapper {
   display: none;
 }
+/* ==================================== /shortcut display & edit */
 
 /* ==================================== blocks */
 #block-serchilo-licenses {
@@ -222,6 +240,12 @@ body.page-node-revisions-view td.diff-links {
 
 
 /* ==================================== header */
+
+/* Site name */
+.navbar>.container .navbar-brand {
+  margin-left: -0.4em;
+}
+
 .navbar {
   margin-bottom: 0px;
 }
@@ -231,15 +255,6 @@ header {
 
 }
 /* ==================================== /header */
-/* Console Examples */
-
-#console-examples dl {
-  margin: 0;
-}
-#console-examples .field-collection-container {
-  border: 0;
-}
-
 
 /* ==================================== forum */
 
