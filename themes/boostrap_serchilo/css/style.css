@@ -16,6 +16,22 @@ html, body {
 }
 /* ==================================== /general */
 
+/* ==================================== header */
+
+/* Site name */
+.navbar>.container .navbar-brand {
+  margin-left: -0.4em;
+}
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+header {
+  margin-bottom: 2em;
+
+}
+/* ==================================== /header */
 
 /* ==================================== autocomplete */
 .left       { float: left !important; }
@@ -236,24 +252,6 @@ body.page-node-revisions-view td.diff-links {
   border-bottom-right-radius: 0.6em;
 }
 /* ==================================== /blocks */
-
-
-/* ==================================== header */
-
-/* Site name */
-.navbar>.container .navbar-brand {
-  margin-left: -0.4em;
-}
-
-.navbar {
-  margin-bottom: 0px;
-}
-
-header {
-  margin-bottom: 2em;
-
-}
-/* ==================================== /header */
 
 /* ==================================== forum */
 
