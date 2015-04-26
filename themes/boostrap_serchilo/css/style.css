@@ -1,3 +1,12 @@
+/* ==================================== general */
+/* Stick footer to the bottom */
+html, body {
+	height: 100%;
+}
+.main-container {
+	min-height: 80%;
+	padding-bottom: 40px;
+}
 
 /* set a max-width for horizontal fluid layout and make it centered */
 .container {
@@ -5,7 +14,7 @@
   margin-left: auto;
   max-width: 800px; 
 }
-
+/* ==================================== /general */
 
 
 /* ==================================== autocomplete */
@@ -142,16 +151,6 @@ td.views-field-field-namespace a,
 }
 /* ==================================== /view: shortcuts */
 
-/* ==================================== general */
-/* Stick footer to the bottom */
-html, body {
-	height: 100%;
-}
-.main-container {
-	min-height: 80%;
-	padding-bottom: 40px;
-}
-/* ==================================== /general */
 
 /* ==================================== examples */
 
