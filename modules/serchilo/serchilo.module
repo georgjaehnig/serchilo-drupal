@@ -769,8 +769,7 @@ function serchilo_block_namespaces() {
     global $user;
     // If on console of logged-in user:
     if ($user->name == arg(1)) {
-      $uri = entity_uri('user', $user->name);
-      $link_path = $uri['path'] . '/edit';
+      $link_path = 'user/edit';
     }
     else {
       $link_path = 'help/namespaces';
