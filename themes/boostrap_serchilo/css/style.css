@@ -200,21 +200,13 @@ body.page-node-revisions-view td.diff-links {
   display: none;
 }
 
+/* ==================================== blocks */
 #block-serchilo-licenses {
   display: inline-block;
 }
 #block-serchilo-add-to-browser {
   display: inline-block;
   float: right;
-}
-
-.navbar {
-  margin-bottom: 0px;
-}
-
-header {
-  margin-bottom: 2em;
-
 }
 #block-serchilo-namespaces {
   background: #011d24;
@@ -226,7 +218,19 @@ header {
   border-bottom-left-radius: 0.6em;
   border-bottom-right-radius: 0.6em;
 }
+/* ==================================== /blocks */
 
+
+/* ==================================== header */
+.navbar {
+  margin-bottom: 0px;
+}
+
+header {
+  margin-bottom: 2em;
+
+}
+/* ==================================== /header */
 /* Console Examples */
 
 #console-examples dl {
@@ -236,7 +240,9 @@ header {
   border: 0;
 }
 
-/* Forum */
+
+/* ==================================== forum */
+
 .submitted {
 	margin-top:    1.5em;
 	margin-bottom: 1.5em;
@@ -246,3 +252,5 @@ header {
 #comments h2 {
 	font-size: 1.5em;
 }
+
+/* ==================================== /forum */
