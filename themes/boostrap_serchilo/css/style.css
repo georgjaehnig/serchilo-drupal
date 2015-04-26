@@ -33,6 +33,26 @@ header {
 }
 /* ==================================== /header */
 
+/* ==================================== blocks */
+#block-serchilo-licenses {
+  display: inline-block;
+}
+#block-serchilo-add-to-browser {
+  display: inline-block;
+  float: right;
+}
+#block-serchilo-namespaces {
+  background: #011d24;
+  background: #aa2c30;
+  display: inline-block;
+  padding-bottom: 0.2em;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+  border-bottom-left-radius: 0.6em;
+  border-bottom-right-radius: 0.6em;
+}
+/* ==================================== /blocks */
+
 /* ==================================== autocomplete */
 .left       { float: left !important; }
 .right      { float: right !important; }
@@ -232,26 +252,6 @@ body.page-node-revisions-view td.diff-links {
   display: none;
 }
 /* ==================================== /shortcut display & edit */
-
-/* ==================================== blocks */
-#block-serchilo-licenses {
-  display: inline-block;
-}
-#block-serchilo-add-to-browser {
-  display: inline-block;
-  float: right;
-}
-#block-serchilo-namespaces {
-  background: #011d24;
-  background: #aa2c30;
-  display: inline-block;
-  padding-bottom: 0.2em;
-  padding-left: 0.2em;
-  padding-right: 0.2em;
-  border-bottom-left-radius: 0.6em;
-  border-bottom-right-radius: 0.6em;
-}
-/* ==================================== /blocks */
 
 /* ==================================== forum */
 
