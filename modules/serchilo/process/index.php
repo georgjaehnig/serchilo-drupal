@@ -1134,7 +1134,7 @@ function serchilo_replace_arguments($str, $arguments, $env) {
       case 'date':
         require_once(dirname(__FILE__) . '/serchilo.type.date.inc');
         $date = serchilo_parse_date($argument);
-        if (isset($date)) {
+        if (!empty($date)) {
           $output   = serchilo_array_value($attributes, 'output', 'Y-m-d');
           $argument = $date->format($output);
         }
@@ -1142,7 +1142,7 @@ function serchilo_replace_arguments($str, $arguments, $env) {
       case 'time':
         require_once(dirname(__FILE__) . '/serchilo.type.time.inc');
         $time = serchilo_parse_time($argument);
-        if (isset($time)) {
+        if (!empty($time)) {
           $time->setTimeZone(new DateTimeZone($env['timezone']));
           $output   = serchilo_array_value($attributes, 'output', 'H:i');
           $argument = $time->format($output);
@@ -1151,7 +1151,7 @@ function serchilo_replace_arguments($str, $arguments, $env) {
       case 'city':
         require_once(dirname(__FILE__) . '/serchilo.type.city.inc');
         $city = serchilo_parse_city($argument, $env);
-        if (isset($city)) {
+        if (!empty($city)) {
           $argument = $city;
         }
         break;
