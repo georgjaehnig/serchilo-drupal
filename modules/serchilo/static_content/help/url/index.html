@@ -127,8 +127,8 @@ title = Shortcut URLs
 
   <tbody>
     <tr>
-      <td rowspan="6">date</td>
-      <td rowspan="6">The input will be parsed as a date.
+      <td rowspan="7">date</td>
+      <td rowspan="7">The input will be parsed as a date.
         <ul>
           <li> 
           American and European inputs will be distinguished. 
@@ -138,6 +138,8 @@ title = Shortcut URLs
           A date in the future will be enforced. 
           </li> <li> 
           Also relative inputs are possible.
+          </li> <li> 
+          Weekday abbreviations are understood, too. The language is assumed from the current language namespace, <a href="https://github.com/georgjaehnig/serchilo-drupal/tree/master/modules/serchilo/mappings/weekdays">these languages</a> are available.
           </li> <li> 
           With the attribute <code>output</code>, an output format based on PHP's <a href="http://php.net/manual/function.date.php">date();</a> can be specified. Defaults to <code>Y-m-d</code>.
           </li>
