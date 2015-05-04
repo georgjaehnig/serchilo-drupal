@@ -185,6 +185,7 @@ function serchilo_get_timezone($env) {
     $timezone = serchilo_get_values_from_table('users', 'uid', $env['user_id'], 'timezone')[0];
     return $timezone;
   }
+  return 'UTC';
 }
 
 /**
