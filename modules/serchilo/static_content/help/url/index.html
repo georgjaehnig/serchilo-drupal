@@ -161,6 +161,36 @@ title = Shortcut URLs
     <tr>
       <td><code>-5</code></td><td><code>2015-06-02</code></td><td>today minus 5 days</td> 
     </tr>
+    <tr>
+      <td><code>mo</code></td><td><code>2015-06-08</code></td><td>next Monday</td> 
+    </tr>
+
+    <tr>
+      <td rowspan="3">time</td>
+      <td rowspan="3">The input will be parsed as a time.
+        <ul>
+          <li> 
+          Hours and minutes can be separated by <code>.</code> or <code>:</code>.
+          </li> <li> 
+          Only hours can be provided.
+          </li> <li> 
+          Relative hours work, too.
+          </li> <li> 
+          For user consoles (called via <code>/u/USERNAME</code>), the timezone is assumed from the <a href="/user/edit">user's settings</a>. For others, it can also be set via the GET parameter <code>&amp;timezone=</code>. Defaults to UTC.
+          </li> <li> 
+          With the attribute <code>output</code>, an output format based on PHP's <a href="http://php.net/manual/function.date.php">date();</a> can be specified. Defaults to <code>H:i</code>.
+          </li>
+        </ul>
+        </td>
+      <td><code>11.00</code></td>
+      <td><code>11:00</code></td><td>Hours and minutes</td> 
+    </tr>
+    <tr>
+      <td><code>11</code></td><td><code>11:00</code></td><td>only hour given</td> 
+    </tr>
+    <tr>
+      <td><code>+2</code></td><td><code>13:00</code></td><td>2 hours from now</td> 
+    </tr>
 
     <tr>
       <td rowspan="6">city</td>
