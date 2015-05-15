@@ -22,7 +22,7 @@ define('SERCHILO_LOG_PAGE_CONSOLE', 1);
 define('SERCHILO_LOG_PAGE_URL', 2);
 define('SERCHILO_LOG_PAGE_API', 3);
 
-define('SERCHILO_LOG_SOURCE_FIREFOX_ADDON', 6);
+define('SERCHILO_LOG_SOURCE_FIREFOX_ADDON', 10);
 
 // TODO: Delete obsolete:
 define('SERCHILO_METATAG_INSTANCE_CONSOLE', 'serchilo_console');
