@@ -1194,7 +1194,7 @@ The namespaces will have the following priority (first = highest):
       <li>Language namespace</li>
       <li>o (planet namespace)</li>
     </ol>   
-    So it will be first checked, if a query matches a command in your user namespace, then in one of your custom namespaces ..., and at least in the planet namespace.',
+    So it will be first checked, if a query matches a shortcut in your user namespace, then in one of your custom namespaces ..., and at least in the planet namespace.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1303,7 +1303,7 @@ The namespaces will have the following priority (first = highest):
       <li>Language namespace</li>
       <li>o (planet namespace)</li>
     </ol>   
-    So it will be first checked, if a query matches a command in your user namespace, then in one of your custom namespaces ..., and at least in the planet namespace.');
+    So it will be first checked, if a query matches a shortcut in your user namespace, then in one of your custom namespaces ..., and at least in the planet namespace.');
   t('A string of key=value pairs separated by ampersands, to be sent with POST method. May contain placeholders as the URL.');
   t('Allows regular automatic testing to check if the shortcut URL is still valid.');
   t('Approved');
