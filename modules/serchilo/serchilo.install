@@ -151,6 +151,12 @@ function serchilo_schema() {
         'size' => 'tiny',
         'not null' => TRUE,
       ),
+      'source' => array(
+        'description' => 'From where the call was made (saved as INT).',
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+      ),
       'default_keyword_used' => array(
         'description' => 'True if the default keyword was used.',
         'type' => 'int',
