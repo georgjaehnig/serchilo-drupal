@@ -329,7 +329,6 @@ function serchilo_get_console_examples() {
     $shortcut = node_load($shortcut_id);
     // Only use shortcuts with an example.
     $examples[] = field_view_field('node', $shortcut, 'field_example', 'serchilo_console_examples');
-    //dpm($shortcut);
   }
   $examples = array_reverse($examples);
 
