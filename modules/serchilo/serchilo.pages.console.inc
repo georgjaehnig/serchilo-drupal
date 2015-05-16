@@ -306,13 +306,13 @@ function serchilo_get_more_shortcuts() {
 
   $more_shortcuts = array(
     '#theme' => 'item_list',
-    '#title' => 'More shortcuts',
+    '#title' => 'More shortcuts related',
     '#items' => array(
-      'about ' . $language_namespace->description . 
+      'to ' . $language_namespace->description . 
         ': <a class="namespace" href="/namespaces/' . $language_namespace->name . '">' . 
         $language_namespace->name . 
         '</a>, ' . 
-      'about ' . $country_namespace->description . 
+      'to ' . $country_namespace->description . 
         ': <a class="namespace" href="/namespaces/' . $country_namespace->name . '">' . 
         $country_namespace->name . 
         '</a>.'
