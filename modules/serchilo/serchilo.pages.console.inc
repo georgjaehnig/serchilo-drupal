@@ -166,7 +166,6 @@ function serchilo_page_console() {
   $is_front = TRUE;
 
   $default_keyword_get =& drupal_static('serchilo_default_keyword_get');
-  $country_namespace =& drupal_static('serchilo_country_namespace');
 
   serchilo_add_opensearch_link($default_keyword_get);
 
@@ -175,69 +174,9 @@ function serchilo_page_console() {
 
   $query = serchilo_array_value($_GET, 'query');
   $status = serchilo_array_value($_GET, 'status');
-  $suggested_shortcut_ids = serchilo_array_value($_GET, 'nids');
-  $arguments = serchilo_array_value($_GET, 'arguments');
 
   if ($status == 'not_found') {
-    $message = t(
-      'None of the available !shortcuts_link matched your query.',
-      array(
-        '!shortcuts_link' => l(t('shortcuts'), 'shortcuts')
-      )
-    );
-
-    if (!empty($suggested_shortcut_ids)) {
-      $message .= ' ';
-      $message .= t('Did you mean:');
-      $with_namespace = TRUE;
-    }
-    else  {
-      $message .= ' ';
-      $message .= t('Common shortcuts for search engines:');
-
-      $suggested_shortcut_ids[] = (
-        serchilo_get_shortcut('g', 1, $country_namespace->name)
-        ?:
-        serchilo_get_shortcut('g', 1, SERCHILO_PLANET_NAMESPACE)
-      );
-      $suggested_shortcut_ids[] = serchilo_get_shortcut('b', 1, SERCHILO_PLANET_NAMESPACE);
-      $suggested_shortcut_ids[] = serchilo_get_shortcut('y', 1, SERCHILO_PLANET_NAMESPACE);
-      $arguments = array($query);
-      $with_namespace = FALSE;
-    }
-
-    foreach($suggested_shortcut_ids as $suggested_shortcut_id) {
-
-      $shortcut = node_load($suggested_shortcut_id);
-      $suggested_shortcut_link = theme(
-        'serchilo_shortcut_example_link',
-        array(
-          'shortcut' => $shortcut,
-          'arguments' => $arguments,
-          'with_namespace' => $with_namespace,
-        )
-      );
-      // Collect by keys containing the query
-      // to deduplicate.
-      $suggested_shortcut_links[$suggested_shortcut_link['#title']] = 
-        '<dt>' .  
-        render($suggested_shortcut_link) .
-        '</dt>' .  
-        '<dd>' .  
-        l($shortcut->title, 'node/' . $shortcut->nid) .
-        '</dd>' .  
-        '';
-    }
-
-    $definition_list = 
-      '<dl class="dl-horizontal">' .
-      join('', $suggested_shortcut_links) .
-      '</dl>' .
-      '';
-
-    $message .=  $definition_list;
-
-    drupal_set_message($message, 'error');
+    serchilo_set_suggestions_message($query);
   }
 
   $autocomplete_url = base_path() . SERCHILO_AUTOCOMPLETE_PATH_AFFIX . '/' . join('/', arg());
@@ -274,6 +213,81 @@ function serchilo_page_console() {
   $content['console_examples'] = serchilo_get_console_examples();
 
   return $content;
+}
+
+/**
+ * Set the Drupal message with shortcut suggestions.
+ *
+ * @param string $query
+ *   The called query.
+ *
+ * @return void
+ */
+function serchilo_set_suggestions_message($query) {
+
+  $suggested_shortcut_ids = serchilo_array_value($_GET, 'nids');
+  $arguments = serchilo_array_value($_GET, 'arguments');
+  $country_namespace =& drupal_static('serchilo_country_namespace');
+
+  $message = t(
+    'None of the available !shortcuts_link matched your query.',
+    array(
+      '!shortcuts_link' => l(t('shortcuts'), 'shortcuts')
+    )
+  );
+
+  if (!empty($suggested_shortcut_ids)) {
+    $message .= ' ';
+    $message .= t('Did you mean:');
+    $with_namespace = TRUE;
+  }
+  else  {
+    $message .= ' ';
+    $message .= t('Common shortcuts for search engines:');
+
+    $suggested_shortcut_ids[] = (
+      serchilo_get_shortcut('g', 1, $country_namespace->name)
+      ?:
+      serchilo_get_shortcut('g', 1, SERCHILO_PLANET_NAMESPACE)
+    );
+    $suggested_shortcut_ids[] = serchilo_get_shortcut('b', 1, SERCHILO_PLANET_NAMESPACE);
+    $suggested_shortcut_ids[] = serchilo_get_shortcut('y', 1, SERCHILO_PLANET_NAMESPACE);
+    $arguments = array($query);
+    $with_namespace = FALSE;
+  }
+
+  foreach($suggested_shortcut_ids as $suggested_shortcut_id) {
+
+    $shortcut = node_load($suggested_shortcut_id);
+    $suggested_shortcut_link = theme(
+      'serchilo_shortcut_example_link',
+      array(
+        'shortcut' => $shortcut,
+        'arguments' => $arguments,
+        'with_namespace' => $with_namespace,
+      )
+    );
+    // Collect by keys containing the query
+    // to deduplicate.
+    $suggested_shortcut_links[$suggested_shortcut_link['#title']] = 
+      '<dt>' .  
+      render($suggested_shortcut_link) .
+      '</dt>' .  
+      '<dd>' .  
+      l($shortcut->title, 'node/' . $shortcut->nid) .
+      '</dd>' .  
+      '';
+  }
+
+  $definition_list = 
+    '<dl class="dl-horizontal">' .
+    join('', $suggested_shortcut_links) .
+    '</dl>' .
+    '';
+
+  $message .=  $definition_list;
+
+  drupal_set_message($message, 'error');
 }
 
 /**
