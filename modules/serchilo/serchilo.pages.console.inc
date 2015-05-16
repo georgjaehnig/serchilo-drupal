@@ -219,16 +219,23 @@ function serchilo_page_console() {
       );
       // Collect by keys containing the query
       // to deduplicate.
-      $suggested_shortcut_links[$suggested_shortcut_link['#title']]['data'] = render($suggested_shortcut_link);
+      $suggested_shortcut_links[$suggested_shortcut_link['#title']] = 
+        '<dt>' .  
+        render($suggested_shortcut_link) .
+        '</dt>' .  
+        '<dd>' .  
+        l($shortcut->title, 'node/' . $shortcut->nid) .
+        '</dd>' .  
+        '';
     }
 
-    $item_list = theme_item_list(array(
-      'items' => $suggested_shortcut_links,
-      'title' => '',
-      'type' => 'ul',
-      'attributes' => array(''),
-    ));
-    $message .=  $item_list;
+    $definition_list = 
+      '<dl class="dl-horizontal">' .
+      join('', $suggested_shortcut_links) .
+      '</dl>' .
+      '';
+
+    $message .=  $definition_list;
 
     drupal_set_message($message, 'error');
   }

@@ -225,6 +225,13 @@ td.views-field-field-namespace a,
   border: 0;
 }
 
+/* Message box suggestions */
+
+.alert-block dl {
+  margin-top: 0.4em;
+  margin-bottom: 0;
+}
+
 /* ==================================== /examples */
 
 /* ==================================== shortcut display & edit */
