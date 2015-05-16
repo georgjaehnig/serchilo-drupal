@@ -166,6 +166,7 @@ function serchilo_page_console() {
   $is_front = TRUE;
 
   $default_keyword_get =& drupal_static('serchilo_default_keyword_get');
+  $country_namespace =& drupal_static('serchilo_country_namespace');
 
   serchilo_add_opensearch_link($default_keyword_get);
 
