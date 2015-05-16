@@ -310,7 +310,7 @@ function serchilo_get_console_examples() {
     ->fieldCondition('field_example',   'value',  0, '!=' )
     ->fieldCondition('field_approved',  'value',  1 )
     ->fieldOrderBy('field_weight', 'value', 'DESC')
-    ->range(0, 5);
+    ->range(0, 7);
 
   $result = $efq->execute();
 
