@@ -545,7 +545,8 @@ function serchilo_field_attach_view_alter(&$output, $context) {
   // If rendering the console examples:
   if ($context['display'] == 'serchilo_console_examples') {
 
-    // Remove the Field collection description.
+    // Remove wrapping divs.
+    $output['field_example']['#prefix'] = '';
     $output['field_example']['#suffix'] = '';
 
     // Hide the label "Examples".
