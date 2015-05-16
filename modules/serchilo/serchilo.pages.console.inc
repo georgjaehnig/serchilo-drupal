@@ -207,10 +207,12 @@ function serchilo_page_console() {
     }
 
     foreach($suggested_shortcut_ids as $suggested_shortcut_id) {
+
+      $shortcut = node_load($suggested_shortcut_id);
       $suggested_shortcut_link = theme(
         'serchilo_shortcut_example_link',
         array(
-          'shortcut' => node_load($suggested_shortcut_id),
+          'shortcut' => $shortcut,
           'arguments' => $arguments,
           'with_namespace' => $with_namespace,
         )
