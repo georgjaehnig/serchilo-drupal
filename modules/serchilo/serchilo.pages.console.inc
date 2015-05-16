@@ -165,7 +165,7 @@ function serchilo_page_console() {
   $is_front = &drupal_static('drupal_is_front_page');
   $is_front = TRUE;
 
-  $default_keyword_get =& drupal_static('serchilo_default_keyword_get' );
+  $default_keyword_get =& drupal_static('serchilo_default_keyword_get');
 
   serchilo_add_opensearch_link($default_keyword_get);
 
