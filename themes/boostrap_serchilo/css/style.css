@@ -218,6 +218,10 @@ td.views-field-field-namespace a,
 
 /* Console Examples */
 
+#console-examples h3 {
+  font-size: 1.2em;
+}
+
 #console-examples dl {
   margin: 0;
 }

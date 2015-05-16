@@ -341,7 +341,7 @@ function serchilo_get_console_examples() {
 
   $console_examples['title'] = array(
     '#theme' => 'html_tag',
-    '#tag' => 'h4', 
+    '#tag' => 'h3', 
     '#value' => t('Search with shortcuts:'), 
   );
   $console_examples['examples'] = $examples;
