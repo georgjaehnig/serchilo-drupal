@@ -152,7 +152,7 @@ function serchilo_schema() {
         'not null' => TRUE,
       ),
       'source' => array(
-        'description' => 'From where the call was made (saved as INT).',
+        'description' => 'From where the call was made (saved as numbers).',
         'type' => 'int',
         'size' => 'tiny',
         'not null' => TRUE,
