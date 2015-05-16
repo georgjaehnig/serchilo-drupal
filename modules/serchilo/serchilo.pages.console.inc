@@ -210,7 +210,8 @@ function serchilo_page_console() {
     ),
   );
 
-  $content['console_examples'] = serchilo_get_console_examples();
+  $content['console_examples']       = serchilo_get_console_examples();
+  $content['console_more_shortcuts'] = serchilo_get_more_shortcuts();
 
   return $content;
 }
@@ -288,6 +289,41 @@ function serchilo_set_suggestions_message($query) {
   $message .=  $definition_list;
 
   drupal_set_message($message, 'error');
+}
+
+/**
+ * Set the Drupal message with shortcut suggestions.
+ *
+ * @param string $query
+ *   The called query.
+ *
+ * @return void
+ */
+function serchilo_get_more_shortcuts() {
+
+  $language_namespace = drupal_static('serchilo_language_namespace');
+  $country_namespace  = drupal_static('serchilo_country_namespace');
+
+  $more_shortcuts = array(
+    '#theme' => 'item_list',
+    '#title' => 'More shortcuts',
+    '#items' => array(
+      'about ' . $language_namespace->description . 
+        ': <a class="namespace" href="/namespaces/' . $language_namespace->name . '">' . 
+        $language_namespace->name . 
+        '</a>, ' . 
+      'about ' . $country_namespace->description . 
+        ': <a class="namespace" href="/namespaces/' . $country_namespace->name . '">' . 
+        $country_namespace->name . 
+        '</a>.'
+    ),
+    '#type' => 'ul',
+    '#attributes' => array(),
+    '#prefix' => '<div id="more-shortcuts">',
+    '#suffix' => '</div>',
+  );
+
+  return $more_shortcuts;
 }
 
 /**
