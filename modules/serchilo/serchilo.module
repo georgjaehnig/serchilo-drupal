@@ -1213,6 +1213,8 @@ function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) 
       $form['field_example'][LANGUAGE_NONE][$index]['field_example_description'][LANGUAGE_NONE][0]['value']['#element_validate'] = array('serchilo_form_validate_no_tags');
     }
   }
+  $form['field_example'][LANGUAGE_NONE]['add_more']['#value'] = t('Add another example');
+  $form['field_test']   [LANGUAGE_NONE]['add_more']['#value'] = t('Add another test'   );
 }
 
 /**
