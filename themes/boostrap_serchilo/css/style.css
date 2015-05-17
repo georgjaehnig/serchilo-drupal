@@ -234,23 +234,6 @@ td.views-field-field-namespace a,
   margin-top: 1em;
 }
 
-#more-shortcuts h3 {
-  font-size: 1em;
-  font-weight: normal;
-  display: inline;
-}
-
-#more-shortcuts ul {
-  display: inline;
-  margin: 0;
-  padding: 0.5em;
-}
-
-#more-shortcuts li {
-  display: inline;
-  margin: 0;
-}
-
 /* Message box suggestions */
 
 .alert-block dl {

@@ -305,22 +305,25 @@ function serchilo_get_more_shortcuts() {
   $country_namespace  = drupal_static('serchilo_country_namespace');
 
   $more_shortcuts = array(
-    '#theme' => 'item_list',
-    '#title' => 'More shortcuts related',
-    '#items' => array(
-      'to ' . $language_namespace->description . 
-        ': <a class="namespace" href="/namespaces/' . $language_namespace->name . '">' . 
-        $language_namespace->name . 
-        '</a>, ' . 
-      'to ' . $country_namespace->description . 
-        ': <a class="namespace" href="/namespaces/' . $country_namespace->name . '">' . 
-        $country_namespace->name . 
-        '</a>.'
-    ),
-    '#type' => 'ul',
-    '#attributes' => array(),
+    '#type' => 'markup',
     '#prefix' => '<div id="more-shortcuts">',
     '#suffix' => '</div>',
+    '#markup' => 
+      l(
+        'More shortcuts', 
+        'shortcuts'
+      ) .
+      ' / ' .
+      l(
+        'related to ' . $language_namespace->description, 
+        'namespaces/' . $language_namespace->name
+      ) .
+      ', ' .
+      l(
+        'related to ' . $country_namespace->description, 
+        'namespaces/' . $country_namespace->name
+      ) .
+      '.'
   );
 
   return $more_shortcuts;
