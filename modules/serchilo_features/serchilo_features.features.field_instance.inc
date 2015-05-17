@@ -127,7 +127,7 @@ function serchilo_features_field_default_field_instances() {
     ),
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_example_arguments',
-    'label' => 'Arguments',
+    'label' => 'Example arguments',
     'required' => 0,
     'settings' => array(
       'text_processing' => 0,
@@ -162,7 +162,7 @@ function serchilo_features_field_default_field_instances() {
     ),
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_example_description',
-    'label' => 'Description',
+    'label' => 'Example description',
     'required' => 1,
     'settings' => array(
       'text_processing' => 0,
@@ -1323,7 +1323,9 @@ The namespaces will have the following priority (first = highest):
   t('Description');
   t('Ensures backwards compatibility to the old (Drupal) Serchilo (launched 2013). Requests calling command/[command_id] can be redirected to the current Shortcut node page.');
   t('Every shortcut is called with a keyword. See Help → "Getting started" for more info. ');
+  t('Example arguments');
   t('Example arguments to call this shortcut. Separate multiple arguments with comma. The keyword will be prepended automatically.');
+  t('Example description');
   t('Examples');
   t('Examples show how the shortcut can be used. Add various examples to cover as many use cases as possible.');
   t('Expected content');
