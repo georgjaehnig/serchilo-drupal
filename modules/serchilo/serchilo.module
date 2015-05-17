@@ -769,7 +769,10 @@ function serchilo_block_namespaces() {
   case SERCHILO_USER_PATH_AFFIX:
     global $user;
     // If on console of logged-in user:
-    if ($user->name == arg(1)) {
+    if (
+      (!empty($user->name)) && 
+      ($user->name == arg(1))
+    ) {
       $link_path = 'user/edit';
     }
     else {
