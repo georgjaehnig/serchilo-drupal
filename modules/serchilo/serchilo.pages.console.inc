@@ -306,24 +306,59 @@ function serchilo_get_more_shortcuts() {
 
   $more_shortcuts = array(
     '#type' => 'markup',
-    '#prefix' => '<div id="more-shortcuts">',
+    '#prefix' => '<div id="console-more">',
     '#suffix' => '</div>',
     '#markup' => 
-      l(
-        'More shortcuts', 
-        'shortcuts'
-      ) .
-      ' / ' .
+'
+<div class="dropdown">
+<a href="shortcuts" title="" data-target="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown">More shortcuts <span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li class="leaf">' . 
       l(
         'related to ' . $language_namespace->description, 
         'namespaces/' . $language_namespace->name
       ) .
-      ', ' .
+'</li>
+<li class="leaf">' . 
       l(
         'related to ' . $country_namespace->description, 
         'namespaces/' . $country_namespace->name
       ) .
-      '.'
+'</li>
+<li class="leaf">' . 
+      l(
+        'tagged with "programming"',
+        'shortcuts',
+        array(
+          'query' => array(
+            'tags' => 'programming' 
+          ) 
+        )
+      ) .
+'</li>
+<li class="leaf">' . 
+      l(
+        'all',
+        'shortcuts'
+      ) .
+'</li>
+</ul>
+</div>
+
+<div class="dropdown">
+<a href="shortcuts" title="" data-target="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown">Watch videos <span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li class="leaf"><a href="https://www.youtube.com/watch?v=lNx4CFM-P2M">Short explainer</a></li>
+<li class="leaf"><a href="https://www.youtube.com/watch?v=A-lfQyhVVLs">Basic usage</a></li>
+<li class="leaf"><a href="https://www.youtube.com/watch?v=KQSKf08kIN8">Namespaces</a></li>
+<li class="leaf"><a href="https://www.youtube.com/watch?v=DlMCDM4diyI">User accounts</a></li>
+<li class="leaf"><a href="https://www.youtube.com/watch?v=kPhIxK1j-4E">Firefox plugin</a></li>
+<li class="leaf"><a href="https://www.youtube.com/watch?v=0YXYavYNZYM">How to add to Chrome</a></li>
+<li class="leaf"><a href="https://www.youtube.com/watch?v=zB8kVXPOsiI">How to add to Safari</a></li>
+</ul>
+</div>
+
+'
   );
 
   return $more_shortcuts;

@@ -216,6 +216,17 @@ td.views-field-field-namespace a,
   white-space: normal; 
 }
 
+/* Message box suggestions */
+
+.alert-block dl {
+  margin-top: 0.4em;
+  margin-bottom: 0;
+}
+
+/* ==================================== /examples */
+
+/* ==================================== console */
+
 /* Console Examples */
 
 #console-examples h3 {
@@ -229,19 +240,16 @@ td.views-field-field-namespace a,
   border: 0;
 }
 
-/* Console More shortcuts */
-#more-shortcuts {
+/* Console more */
+#console-more {
   margin-top: 1em;
 }
 
-/* Message box suggestions */
-
-.alert-block dl {
-  margin-top: 0.4em;
-  margin-bottom: 0;
+#console-more div {
+  display: inline;
 }
 
-/* ==================================== /examples */
+/* ==================================== /console */
 
 /* ==================================== shortcut display & edit */
 
