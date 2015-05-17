@@ -833,6 +833,7 @@ function serchilo_block_add_to_browser() {
  */
 function serchilo_node_presave($node) {
 
+  global $user;
   if ($node->type == 'shortcut') {
 
     // Make sure language is undefined.
@@ -841,23 +842,8 @@ function serchilo_node_presave($node) {
 
     $wnode = entity_metadata_wrapper('node', $node);
 
-    // If a user shortcut:
-    // Set its user as the owner.
-    if ($wnode->field_namespace->field_namespace_type->name->value() == 'user') {
-      $user_name = $wnode->field_namespace->name->value();
-      // If found an account
-      if ($account = user_load_by_name($user_name)) {
-        $node->uid = $account->uid;
-      }
-      else {
-        $node->uid = 1;
-      }
-    }
-    // If a site shortcut:
-    // Set admin as the owner.
-    else {
-      $node->uid = 1;
-    }
+    // Set uid to editing user.
+    $node->uid = $user->uid;
   }
 }
 
