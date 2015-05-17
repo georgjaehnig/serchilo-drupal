@@ -345,18 +345,8 @@ function serchilo_get_more_shortcuts() {
 </ul>
 </div>
 
-<div class="dropdown">
-<a href="shortcuts" title="" data-target="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown">Watch videos <span class="caret"></span></a>
-<ul class="dropdown-menu">
-<li class="leaf"><a href="https://www.youtube.com/watch?v=lNx4CFM-P2M">Short explainer</a></li>
-<li class="leaf"><a href="https://www.youtube.com/watch?v=A-lfQyhVVLs">Basic usage</a></li>
-<li class="leaf"><a href="https://www.youtube.com/watch?v=KQSKf08kIN8">Namespaces</a></li>
-<li class="leaf"><a href="https://www.youtube.com/watch?v=DlMCDM4diyI">User accounts</a></li>
-<li class="leaf"><a href="https://www.youtube.com/watch?v=kPhIxK1j-4E">Firefox plugin</a></li>
-<li class="leaf"><a href="https://www.youtube.com/watch?v=0YXYavYNZYM">How to add to Chrome</a></li>
-<li class="leaf"><a href="https://www.youtube.com/watch?v=zB8kVXPOsiI">How to add to Safari</a></li>
-</ul>
-</div>
+<a href="https://www.youtube.com/watch?v=lNx4CFM-P2M" target="_blank" class="btn btn-default">Watch video</a>
+<a href="/help/start" class="btn btn-default">Get started</a>
 
 '
   );
