@@ -48,7 +48,7 @@ function serchilo_features_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 1,
     'expanded' => 1,
-    'weight' => -50,
+    'weight' => -49,
     'customized' => 1,
   );
   // Exported menu link: main-menu_browser-integration:help/integration
@@ -71,6 +71,27 @@ function serchilo_features_menu_default_menu_links() {
     'weight' => -45,
     'customized' => 1,
     'parent_identifier' => 'main-menu_help:help',
+  );
+  // Exported menu link: main-menu_changed-shortcuts:new/changes
+  $menu_links['main-menu_changed-shortcuts:new/changes'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'new/changes',
+    'router_path' => 'new/changes',
+    'link_title' => 'Changed shortcuts',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'main-menu_changed-shortcuts:new/changes',
+    ),
+    'module' => 'system',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_new:new',
   );
   // Exported menu link: main-menu_default-keyword:help/default-keyword
   $menu_links['main-menu_default-keyword:help/default-keyword'] = array(
@@ -152,7 +173,7 @@ function serchilo_features_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -48,
+    'weight' => -47,
     'customized' => 1,
   );
   // Exported menu link: main-menu_getting-started:help/start
@@ -193,7 +214,7 @@ function serchilo_features_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 1,
     'expanded' => 1,
-    'weight' => -49,
+    'weight' => -48,
     'customized' => 1,
   );
   // Exported menu link: main-menu_namespace-types:namespace-types
@@ -258,6 +279,44 @@ function serchilo_features_menu_default_menu_links() {
     'weight' => -48,
     'customized' => 1,
     'parent_identifier' => 'main-menu_browse:browse',
+  );
+  // Exported menu link: main-menu_new-shortcuts:new/shortcuts
+  $menu_links['main-menu_new-shortcuts:new/shortcuts'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'new/shortcuts',
+    'router_path' => 'new/shortcuts',
+    'link_title' => 'New shortcuts',
+    'options' => array(
+      'identifier' => 'main-menu_new-shortcuts:new/shortcuts',
+    ),
+    'module' => 'system',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_new:new',
+  );
+  // Exported menu link: main-menu_new:new
+  $menu_links['main-menu_new:new'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'new',
+    'router_path' => 'new',
+    'link_title' => 'New',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'main-menu_new:new',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 1,
+    'expanded' => 1,
+    'weight' => -50,
+    'customized' => 1,
   );
   // Exported menu link: main-menu_privacy-policy:help/privacy
   $menu_links['main-menu_privacy-policy:help/privacy'] = array(
@@ -359,7 +418,7 @@ function serchilo_features_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -50,
     'customized' => 1,
-    'parent_identifier' => 'user-menu_user-account:user',
+    'parent_identifier' => 'user-menu_my-account:user',
   );
   // Exported menu link: user-menu_log-out:user/logout
   $menu_links['user-menu_log-out:user/logout'] = array(
@@ -462,6 +521,7 @@ function serchilo_features_menu_default_menu_links() {
   t('API');
   t('Browse');
   t('Browser integration');
+  t('Changed shortcuts');
   t('Default keyword');
   t('Differences to old Serchilo');
   t('Edit');
@@ -471,9 +531,10 @@ function serchilo_features_menu_default_menu_links() {
   t('Help');
   t('Log out');
   t('Login');
-  t('My shortcuts');
   t('Namespace types');
   t('Namespaces');
+  t('New');
+  t('New shortcuts');
   t('Privacy policy');
   t('Register');
   t('Shortcut URLs');
