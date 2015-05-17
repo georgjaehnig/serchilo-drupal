@@ -290,6 +290,14 @@ body.page-node-revisions-view td.diff-links {
 }
 /* ==================================== /shortcut display & edit */
 
+/* ==================================== console edit */
+
+#intro {
+  margin-bottom: 1em;
+}
+
+/* ==================================== /console edit */
+
 /* ==================================== forum */
 
 .submitted {

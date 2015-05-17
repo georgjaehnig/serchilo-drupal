@@ -1184,17 +1184,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '<p>Separate by comma.</p>
-
-The namespaces will have the following priority (first = highest):
-    <ol>
-      <li>Your user namespace</li>
-      <li>Custom namespaces</li>
-      <li>Country namespace</li>
-      <li>Language namespace</li>
-      <li>o (planet namespace)</li>
-    </ol>   
-    So it will be first checked, if a query matches a shortcut in your user namespace, then in one of your custom namespaces ..., and at least in the planet namespace.',
+    'description' => '<p>Separate by comma.</p>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1293,17 +1283,7 @@ The namespaces will have the following priority (first = highest):
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('<p>Separate by comma.</p>
-
-The namespaces will have the following priority (first = highest):
-    <ol>
-      <li>Your user namespace</li>
-      <li>Custom namespaces</li>
-      <li>Country namespace</li>
-      <li>Language namespace</li>
-      <li>o (planet namespace)</li>
-    </ol>   
-    So it will be first checked, if a query matches a shortcut in your user namespace, then in one of your custom namespaces ..., and at least in the planet namespace.');
+  t('<p>Separate by comma.</p>');
   t('A string of key=value pairs separated by ampersands, to be sent with POST method. May contain placeholders as the URL.');
   t('Allows regular automatic testing to check if the shortcut URL is still valid.');
   t('Approved');

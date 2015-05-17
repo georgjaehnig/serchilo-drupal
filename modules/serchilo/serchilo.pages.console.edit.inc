@@ -37,6 +37,13 @@ function serchilo_form_console_namespaces($form, &$form_state, $namespace_path_o
   $form = array();
   $form['#parents']  = array();
 
+  $form['intro'] = array(
+    '#type' => 'markup',
+    '#markup' => 'By setting ' . l('namespaces', 'help/namespaces') . ', you decide which shortcuts you mainly want to use. ',
+    '#prefix' => '<div id="intro">',
+    '#suffix' => '</div>',
+  );
+
   $form += serchilo_get_form_field('user', 'user', NULL, 'field_language_namespace', array(array_shift($namespace_ids)), $form, $form_state);
   $form += serchilo_get_form_field('user', 'user', NULL, 'field_country_namespace', array(array_shift($namespace_ids)), $form, $form_state);
   $form += serchilo_get_form_field('user', 'user', NULL, 'field_custom_namespaces', $namespace_ids, $form, $form_state);
