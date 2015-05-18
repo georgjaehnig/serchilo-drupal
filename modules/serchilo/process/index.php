@@ -476,7 +476,7 @@ function serchilo_shortcut_to_output($shortcut, $env) {
   $output = array();
   $output['url']['template'] = $shortcut['url'];
   $variables = serchilo_get_url_variables($env);
-  $output['url']['replaced_variables'] = serchilo_replace_variables($shortcut['url'],  $variables);
+  $output['url']['replaced_variables'] = serchilo_replace_variables($shortcut['url'],  $variables, $env);
 
   // Reparse arguments if count does not match.
   if (count($env['arguments']) > $shortcut['argument_count']) {
@@ -522,7 +522,7 @@ function serchilo_get_post_parameters($shortcut, $arguments, $variables, $env) {
   if (empty($shortcut['post_parameters'])) {
     return array(); 
   }
-  $post_parameters_str = serchilo_replace_variables($shortcut['post_parameters'], $variables );
+  $post_parameters_str = serchilo_replace_variables($shortcut['post_parameters'], $variables, $env);
   $post_parameters_str = serchilo_replace_arguments($post_parameters_str, $arguments, $env);
   $post_parameters = array();
   foreach (explode('&', $post_parameters_str) as $post_parameter) {
@@ -1101,11 +1101,13 @@ function serchilo_output_json($output) {
  *   The string with placeholders.
  * @param array $variables
  *   The variables to replace in the $str.
+ * @param array $env
+ *   The environment, holding all relevant data of the request.
  *   
  * @return string $str
  *   The replaced URL. 
  */
-function serchilo_replace_variables($str, $variables ) {
+function serchilo_replace_variables($str, $variables, $env) {
 
   $str_variables = serchilo_get_variables_from_string($str);
 
