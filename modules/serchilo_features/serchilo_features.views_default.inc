@@ -1085,7 +1085,7 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'rss_fields';
   $handler->display->display_options['row_options']['title_field'] = 'title';
   $handler->display->display_options['row_options']['link_field'] = 'path';
-  $handler->display->display_options['row_options']['description_field'] = 'field_description';
+  $handler->display->display_options['row_options']['description_field'] = 'nothing';
   $handler->display->display_options['row_options']['creator_field'] = 'name';
   $handler->display->display_options['row_options']['date_field'] = 'changed';
   $handler->display->display_options['row_options']['guid_field_options'] = array(
@@ -1122,16 +1122,10 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
   $handler->display->display_options['fields']['field_tags']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_tags']['delta_offset'] = '0';
-  $handler->display->display_options['fields']['field_tags']['separator'] = '';
   /* Field: Content: Path */
   $handler->display->display_options['fields']['path']['id'] = 'path';
   $handler->display->display_options['fields']['path']['table'] = 'node';
   $handler->display->display_options['fields']['path']['field'] = 'path';
-  /* Field: Global: Custom text */
-  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['label'] = 'Empty';
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
@@ -1155,10 +1149,16 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['fields']['changed']['date_format'] = 'custom';
   $handler->display->display_options['fields']['changed']['custom_date_format'] = 'r';
   $handler->display->display_options['fields']['changed']['second_date_format'] = 'long';
-  /* Field: Content: Description */
-  $handler->display->display_options['fields']['field_description']['id'] = 'field_description';
-  $handler->display->display_options['fields']['field_description']['table'] = 'field_data_field_description';
-  $handler->display->display_options['fields']['field_description']['field'] = 'field_description';
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = 'Feed item decription';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<table>
+<tr><td>Usage:</td><td><strong>[field_keyword]</strong> [field_argument_names]</td></tr>
+<tr><td>Namespace:</td><td>[field_namespace]</td></tr>
+<tr><td>Tags:</td><td>[field_tags]</td></tr>
+</table>';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Updated date */
   $handler->display->display_options['sorts']['changed']['id'] = 'changed';
@@ -1201,13 +1201,17 @@ function serchilo_features_views_default_views() {
     t('<div title="✔ = Approved, ✖ = pending moderation">[field_approved]</div>'),
     t('Feed'),
     t('Path'),
-    t('Empty'),
     t('Name'),
     t('Nid'),
     t('GUID'),
     t('shortcuts/[nid]'),
     t('Updated date'),
-    t('Description'),
+    t('Feed item decription'),
+    t('<table>
+<tr><td>Usage:</td><td><strong>[field_keyword]</strong> [field_argument_names]</td></tr>
+<tr><td>Namespace:</td><td>[field_namespace]</td></tr>
+<tr><td>Tags:</td><td>[field_tags]</td></tr>
+</table>'),
   );
   $export['shortcuts'] = $view;
 
