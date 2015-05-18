@@ -1116,7 +1116,7 @@ function serchilo_replace_variables($str, $variables, $env) {
       case 'now':
         $output = serchilo_array_value($attributes, 'output', 'Y-m-d');
         $now = new DateTime();
-        // TODO: set current $timezone
+        $now->setTimeZone(new DateTimeZone($env['timezone']));
         $value = $now->format($output);
         break; 
       default:
