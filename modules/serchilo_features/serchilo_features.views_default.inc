@@ -446,6 +446,11 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
+  /* Header: Global: Unfiltered text */
+  $handler->display->display_options['header']['area_text_custom']['id'] = 'area_text_custom';
+  $handler->display->display_options['header']['area_text_custom']['table'] = 'views';
+  $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
+  $handler->display->display_options['header']['area_text_custom']['content'] = '<a href="/namespaces.xml" class="feed-icon" title="Subscribe to Namespaces"><img src="/misc/feed.png" width="16" height="16" alt="Subscribe to Namespaces"></a>';
   /* Relationship: Taxonomy term: Content with term */
   $handler->display->display_options['relationships']['nid']['id'] = 'nid';
   $handler->display->display_options['relationships']['nid']['table'] = 'taxonomy_index';
@@ -620,6 +625,7 @@ function serchilo_features_views_default_views() {
     t('next ›'),
     t('last »'),
     t('Displaying @start - @end of @total'),
+    t('<a href="/namespaces.xml" class="feed-icon" title="Subscribe to Namespaces"><img src="/misc/feed.png" width="16" height="16" alt="Subscribe to Namespaces"></a>'),
     t('count'),
     t('Name'),
     t('Description'),
@@ -848,6 +854,11 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
+  /* Header: Global: Unfiltered text */
+  $handler->display->display_options['header']['area_text_custom']['id'] = 'area_text_custom';
+  $handler->display->display_options['header']['area_text_custom']['table'] = 'views';
+  $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
+  $handler->display->display_options['header']['area_text_custom']['content'] = '<a href="/shortcuts.xml" class="feed-icon" title="Subscribe to Shortcuts"><img src="/misc/feed.png" width="16" height="16" alt="Subscribe to Shortcuts"></a>';
   /* Relationship: Content: Author */
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
   $handler->display->display_options['relationships']['uid']['table'] = 'node';
@@ -1176,6 +1187,7 @@ function serchilo_features_views_default_views() {
     t('next ›'),
     t('last »'),
     t('Displaying @start - @end of @total'),
+    t('<a href="/shortcuts.xml" class="feed-icon" title="Subscribe to Shortcuts"><img src="/misc/feed.png" width="16" height="16" alt="Subscribe to Shortcuts"></a>'),
     t('author'),
     t('Keyword'),
     t('Arguments'),
@@ -1250,6 +1262,11 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
+  /* Header: Global: Unfiltered text */
+  $handler->display->display_options['header']['area_text_custom']['id'] = 'area_text_custom';
+  $handler->display->display_options['header']['area_text_custom']['table'] = 'views';
+  $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
+  $handler->display->display_options['header']['area_text_custom']['content'] = '<a href="/tags.xml" class="feed-icon" title="Subscribe to Tags"><img src="/misc/feed.png" width="16" height="16" alt="Subscribe to Tags"></a>';
   /* Relationship: Taxonomy term: Content with term */
   $handler->display->display_options['relationships']['nid']['id'] = 'nid';
   $handler->display->display_options['relationships']['nid']['table'] = 'taxonomy_index';
@@ -1394,6 +1411,7 @@ function serchilo_features_views_default_views() {
     t('next ›'),
     t('last »'),
     t('Displaying @start - @end of @total'),
+    t('<a href="/tags.xml" class="feed-icon" title="Subscribe to Tags"><img src="/misc/feed.png" width="16" height="16" alt="Subscribe to Tags"></a>'),
     t('count'),
     t('Name'),
     t('Shortcuts'),
