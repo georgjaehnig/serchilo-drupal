@@ -297,6 +297,7 @@ features[menu_links][] = main-menu_changed-shortcuts:new/changes
 features[menu_links][] = main-menu_default-keyword:help/default-keyword
 features[menu_links][] = main-menu_differences-to-old-serchilo:help/differences
 features[menu_links][] = main-menu_editing:help/editing
+features[menu_links][] = main-menu_export-all:export
 features[menu_links][] = main-menu_forum:forum
 features[menu_links][] = main-menu_getting-started:help/start
 features[menu_links][] = main-menu_help:help
