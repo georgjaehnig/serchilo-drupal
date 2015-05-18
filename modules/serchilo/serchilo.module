@@ -116,8 +116,6 @@ function serchilo_entity_diff_alter(&$entity_diffs, $context) {
         $entity_diffs['field_approved']['#old'] = $mapping_approved[(int) $entity_diffs['field_approved']['#old']];
         $entity_diffs['field_approved']['#new'] = $mapping_approved[(int) $entity_diffs['field_approved']['#new']];
       }
-
-      // TODO: Better display of field_approved.
     }
   }
 
