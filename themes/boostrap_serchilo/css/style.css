@@ -208,6 +208,11 @@ td.views-field-field-namespace a,
 }
 /* ==================================== /view: shortcuts */
 
+/* ==================================== view: feed icons */
+.view-header .feed-icon {
+  float: right;
+}
+/* ==================================== /view: feed icons */
 
 /* ==================================== examples */
 
