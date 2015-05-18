@@ -180,8 +180,9 @@ function serchilo_populate_environment(&$env) {
 function serchilo_get_timezone($env) {
 
   if (!empty($_GET['timezone'])) {
-    // TODO: Validate.
-    return $_GET['timezone'];
+    if (in_array($_GET['timezone'], DateTimeZone::listIdentifiers())) {
+      return $_GET['timezone'];
+    }
   }
   if (!empty($env['user_id'])) {
     $timezone = serchilo_get_values_from_table('users', 'uid', $env['user_id'], 'timezone')[0];
