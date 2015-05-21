@@ -402,7 +402,7 @@ function serchilo_menu_local_tasks_alter(&$data, $router_item, $root_path) {
 
   // For 'shortcuts' view:
   // Insert 'Add shortcut' tabs
-  if ('shortcuts' == $root_path) {
+  if (in_array($root_path, array('shortcuts', 'new/shortcuts'))) {
 
     // Add some tabs.
 
