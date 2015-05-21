@@ -352,7 +352,7 @@ function serchilo_features_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_shortcuts_affected',
-    'label' => 'Shortcuts affected',
+    'label' => 'Affected shortcuts',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -1285,6 +1285,7 @@ function serchilo_features_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('<p>Separate by comma.</p>');
   t('A string of key=value pairs separated by ampersands, to be sent with POST method. May contain placeholders as the URL.');
+  t('Affected shortcuts');
   t('Allows regular automatic testing to check if the shortcut URL is still valid.');
   t('Approved');
   t('Argument count');
@@ -1320,7 +1321,6 @@ function serchilo_features_field_default_field_instances() {
   t('POST parameters');
   t('Separate tags with comma. Add any useful tags for the shortcut to be easily found in listings and autocomplete. Tags do not influence the availability of a shortcut.');
   t('Set referrer');
-  t('Shortcuts affected');
   t('Tags');
   t('Test');
   t('Test arguments to call this shortcut. Separate multiple arguments with comma.');
