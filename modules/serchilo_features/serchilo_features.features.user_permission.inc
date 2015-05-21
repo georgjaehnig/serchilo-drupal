@@ -570,10 +570,7 @@ function serchilo_features_user_default_permissions() {
   // Exported permission: 'edit any discussion content'.
   $permissions['edit any discussion content'] = array(
     'name' => 'edit any discussion content',
-    'roles' => array(
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
