@@ -314,11 +314,23 @@ body.page-node-revisions-view td.diff-links {
 /* ==================================== forum */
 
 .submitted {
-	margin-top:    1.5em;
-	margin-bottom: 1.5em;
+	margin-top:    1em;
+	margin-bottom: 1em;
 	font-style: italic;
 }
 
+.node-discussion .field-name-field-body {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.comment li.comment-reply {
+  display: none;
+}
+
+.comment h3 {
+  display: none;
+}
 #comments h2 {
 	font-size: 1.5em;
 }
