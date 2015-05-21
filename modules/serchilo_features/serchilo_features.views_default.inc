@@ -41,26 +41,29 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['relationships']['uid']['table'] = 'node';
   $handler->display->display_options['relationships']['uid']['field'] = 'uid';
   $handler->display->display_options['relationships']['uid']['relationship'] = 'vid';
-  /* Field: Content: Nid */
+  /* Field: Content revision: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
-  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['table'] = 'node_revision';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
-  $handler->display->display_options['fields']['nid']['relationship'] = 'vid';
-  $handler->display->display_options['fields']['nid']['label'] = '≠';
-  $handler->display->display_options['fields']['nid']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['nid']['alter']['text'] = '≠';
-  $handler->display->display_options['fields']['nid']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['nid']['alter']['path'] = 'node/[nid]/revisions/view/latest';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   /* Field: Content revision: Updated date */
   $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
   $handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
   $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
   $handler->display->display_options['fields']['timestamp']['label'] = 'Changed';
+  $handler->display->display_options['fields']['timestamp']['exclude'] = TRUE;
   $handler->display->display_options['fields']['timestamp']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['timestamp']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['timestamp']['date_format'] = 'custom';
   $handler->display->display_options['fields']['timestamp']['custom_date_format'] = 'H:i, d M Y';
   $handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
+  /* Field: Content revision: Link */
+  $handler->display->display_options['fields']['link_to_revision']['id'] = 'link_to_revision';
+  $handler->display->display_options['fields']['link_to_revision']['table'] = 'node_revision';
+  $handler->display->display_options['fields']['link_to_revision']['field'] = 'link_to_revision';
+  $handler->display->display_options['fields']['link_to_revision']['label'] = 'Changed';
+  $handler->display->display_options['fields']['link_to_revision']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['link_to_revision']['alter']['text'] = '[timestamp]';
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
@@ -71,23 +74,24 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node_revision';
   $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['path'] = 'node/[nid]';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['link_to_node_revision'] = TRUE;
   /* Field: Content revision: Log message */
   $handler->display->display_options['fields']['log']['id'] = 'log';
   $handler->display->display_options['fields']['log']['table'] = 'node_revision';
   $handler->display->display_options['fields']['log']['field'] = 'log';
-  /* Field: Content: Approved */
-  $handler->display->display_options['fields']['field_approved']['id'] = 'field_approved';
-  $handler->display->display_options['fields']['field_approved']['table'] = 'field_data_field_approved';
-  $handler->display->display_options['fields']['field_approved']['field'] = 'field_approved';
-  $handler->display->display_options['fields']['field_approved']['relationship'] = 'vid';
-  $handler->display->display_options['fields']['field_approved']['label'] = '✔';
-  $handler->display->display_options['fields']['field_approved']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_approved']['alter']['text'] = '<div title="✔ = Approved, ✖ = pending moderation">[field_approved]</div>';
-  $handler->display->display_options['fields']['field_approved']['type'] = 'boolean_yes_no';
-  $handler->display->display_options['fields']['field_approved']['settings'] = array(
+  /* Field: Content (historical data): Approved */
+  $handler->display->display_options['fields']['field_approved-revision_id']['id'] = 'field_approved-revision_id';
+  $handler->display->display_options['fields']['field_approved-revision_id']['table'] = 'field_revision_field_approved';
+  $handler->display->display_options['fields']['field_approved-revision_id']['field'] = 'field_approved-revision_id';
+  $handler->display->display_options['fields']['field_approved-revision_id']['label'] = '✔';
+  $handler->display->display_options['fields']['field_approved-revision_id']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_approved-revision_id']['alter']['text'] = '<div title="✔ = Approved, ✖ = pending moderation">[field_approved-revision_id]</div>';
+  $handler->display->display_options['fields']['field_approved-revision_id']['alter']['alt'] = '✔ = Approved, ✖ = pending moderation';
+  $handler->display->display_options['fields']['field_approved-revision_id']['type'] = 'boolean_yes_no';
+  $handler->display->display_options['fields']['field_approved-revision_id']['settings'] = array(
     'format' => 'unicode-yes-no',
     'custom_on' => '',
     'custom_off' => '',
@@ -98,22 +102,14 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['sorts']['timestamp']['table'] = 'node_revision';
   $handler->display->display_options['sorts']['timestamp']['field'] = 'timestamp';
   $handler->display->display_options['sorts']['timestamp']['order'] = 'DESC';
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['relationship'] = 'vid';
-  $handler->display->display_options['filters']['status']['value'] = '1';
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['relationship'] = 'vid';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'shortcut' => 'shortcut',
-  );
+  /* Contextual filter: Content revision: Nid */
+  $handler->display->display_options['arguments']['nid']['id'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['table'] = 'node_revision';
+  $handler->display->display_options['arguments']['nid']['field'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -142,13 +138,16 @@ function serchilo_features_views_default_views() {
     t('last »'),
     t('Get the actual content from a content revision.'),
     t('author'),
-    t('≠'),
+    t('Nid'),
     t('Changed'),
+    t('[timestamp]'),
     t('Author'),
     t('Title'),
     t('Log message'),
     t('✔'),
-    t('<div title="✔ = Approved, ✖ = pending moderation">[field_approved]</div>'),
+    t('<div title="✔ = Approved, ✖ = pending moderation">[field_approved-revision_id]</div>'),
+    t('✔ = Approved, ✖ = pending moderation'),
+    t('All'),
     t('Page'),
   );
   $export['changed_shortcuts'] = $view;

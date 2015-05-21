@@ -630,6 +630,28 @@ function theme_serchilo_shortcut_example_link($variables) {
 // VIEWS HOOKS
 
 /**
+ * Implements hook_views_post_execute().
+ */
+function serchilo_views_post_execute(&$view) {
+
+  if ('changed_shortcuts' == $view->name) {
+    // Nasty heuristic to filter out all non-Shortcuts,
+    // due to this Views bug:
+    // https://www.drupal.org/node/1754354#comment-6459056
+    // https://www.drupal.org/node/1321288
+    // https://www.drupal.org/node/2064975
+    // https://www.drupal.org/node/1754354
+    $view->result = array_filter(
+      $view->result,
+      function($item) {
+        // Assuming only Shortcut nodes have field_approved.
+        return (!empty($item->{'field_field_approved-revision_id'}));
+      }
+    );
+  } 
+}
+
+/**
  * Implements hook_views_pre_render().
  */
 function serchilo_views_pre_render(&$view) {
