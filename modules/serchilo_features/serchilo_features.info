@@ -114,6 +114,7 @@ features[field_instance][] = user-user-field_country_namespace
 features[field_instance][] = user-user-field_custom_namespaces
 features[field_instance][] = user-user-field_default_keyword
 features[field_instance][] = user-user-field_language_namespace
+features[filter][] = full_html
 features[filter][] = plain_text
 features[language][] = aa
 features[language][] = ab
