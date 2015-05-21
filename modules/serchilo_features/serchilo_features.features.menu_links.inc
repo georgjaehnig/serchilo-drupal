@@ -455,7 +455,7 @@ function serchilo_features_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -47,
+    'weight' => -46,
     'customized' => 1,
   );
   // Exported menu link: user-menu_login:user/login
@@ -488,7 +488,7 @@ function serchilo_features_menu_default_menu_links() {
       'identifier' => 'user-menu_my-shortcuts:user/shortcuts',
     ),
     'module' => 'system',
-    'hidden' => 0,
+    'hidden' => -1,
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
@@ -553,6 +553,7 @@ function serchilo_features_menu_default_menu_links() {
   t('Help');
   t('Log out');
   t('Login');
+  t('My shortcuts');
   t('Namespace types');
   t('Namespaces');
   t('New');
