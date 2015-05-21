@@ -1063,9 +1063,9 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['fields']['field_approved']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_approved']['type'] = 'boolean_yes_no';
   $handler->display->display_options['fields']['field_approved']['settings'] = array(
-    'format' => 'custom',
-    'custom_on' => '✔',
-    'custom_off' => '✖',
+    'format' => 'unicode-yes-no',
+    'custom_on' => '',
+    'custom_off' => '',
     'reverse' => 0,
   );
   $handler->display->display_options['path'] = 'shortcuts';
