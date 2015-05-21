@@ -31,6 +31,24 @@ function serchilo_features_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_help:help',
   );
+  // Exported menu link: main-menu_articles:articles
+  $menu_links['main-menu_articles:articles'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'articles',
+    'router_path' => 'articles',
+    'link_title' => 'Articles',
+    'options' => array(
+      'identifier' => 'main-menu_articles:articles',
+    ),
+    'module' => 'system',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -48,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_new:new',
+  );
   // Exported menu link: main-menu_browse:browse
   $menu_links['main-menu_browse:browse'] = array(
     'menu_name' => 'main-menu',
@@ -540,6 +558,7 @@ function serchilo_features_menu_default_menu_links() {
   // Translatables
   // Included for use with string extractors like potx.
   t('API');
+  t('Articles');
   t('Browse');
   t('Browser integration');
   t('Changed shortcuts');

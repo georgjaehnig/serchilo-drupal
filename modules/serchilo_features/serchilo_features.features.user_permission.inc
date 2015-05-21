@@ -306,6 +306,13 @@ function serchilo_features_user_default_permissions() {
     'module' => 'clone',
   );
 
+  // Exported permission: 'create article content'.
+  $permissions['create article content'] = array(
+    'name' => 'create article content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
   // Exported permission: 'create discussion content'.
   $permissions['create discussion content'] = array(
     'name' => 'create discussion content',
@@ -507,6 +514,13 @@ function serchilo_features_user_default_permissions() {
     'module' => 'path',
   );
 
+  // Exported permission: 'delete any article content'.
+  $permissions['delete any article content'] = array(
+    'name' => 'delete any article content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
   // Exported permission: 'delete any discussion content'.
   $permissions['delete any discussion content'] = array(
     'name' => 'delete any discussion content',
@@ -520,6 +534,13 @@ function serchilo_features_user_default_permissions() {
     'roles' => array(
       'moderator' => 'moderator',
     ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'delete own article content'.
+  $permissions['delete own article content'] = array(
+    'name' => 'delete own article content',
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -565,6 +586,13 @@ function serchilo_features_user_default_permissions() {
     'name' => 'delete terms in tags',
     'roles' => array(),
     'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'edit any article content'.
+  $permissions['edit any article content'] = array(
+    'name' => 'edit any article content',
+    'roles' => array(),
+    'module' => 'node',
   );
 
   // Exported permission: 'edit any discussion content'.
@@ -762,6 +790,13 @@ function serchilo_features_user_default_permissions() {
     'name' => 'edit meta tags',
     'roles' => array(),
     'module' => 'metatag',
+  );
+
+  // Exported permission: 'edit own article content'.
+  $permissions['edit own article content'] = array(
+    'name' => 'edit own article content',
+    'roles' => array(),
+    'module' => 'node',
   );
 
   // Exported permission: 'edit own comments'.
