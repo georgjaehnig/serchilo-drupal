@@ -922,6 +922,39 @@ function serchilo_node_delete($node) {
 }
 
 
+// COMMENT HOOKS
+
+/**
+ * Implements hook_comment_insert().
+ */
+function serchilo_comment_insert($node) {
+
+  if (module_exists('boost')) {
+    boost_flush_caches();
+  }
+}
+
+/**
+ * Implements hook_comment_update().
+ */
+function serchilo_comment_update($node) {
+
+  if (module_exists('boost')) {
+    boost_flush_caches();
+  }
+}
+
+/**
+ * Implements hook_comment_delete().
+ */
+function serchilo_comment_delete($node) {
+
+  if (module_exists('boost')) {
+    boost_flush_caches();
+  }
+}
+
+
 /**
  * Check the number of affected rows.
  * 
