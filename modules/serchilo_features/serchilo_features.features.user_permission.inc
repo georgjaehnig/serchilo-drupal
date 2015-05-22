@@ -1094,6 +1094,15 @@ function serchilo_features_user_default_permissions() {
     'module' => 'locale',
   );
 
+  // Exported permission: 'use text format full_html'.
+  $permissions['use text format full_html'] = array(
+    'name' => 'use text format full_html',
+    'roles' => array(
+      'moderator' => 'moderator',
+    ),
+    'module' => 'filter',
+  );
+
   // Exported permission: 'view field_approved'.
   $permissions['view field_approved'] = array(
     'name' => 'view field_approved',

@@ -471,6 +471,7 @@ features[user_permission][] = revert revisions
 features[user_permission][] = select account cancellation method
 features[user_permission][] = skip comment approval
 features[user_permission][] = translate interface
+features[user_permission][] = use text format full_html
 features[user_permission][] = view field_approved
 features[user_permission][] = view field_argument_count
 features[user_permission][] = view field_argument_names
