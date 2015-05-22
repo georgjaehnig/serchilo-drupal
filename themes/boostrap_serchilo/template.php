@@ -25,4 +25,16 @@ function bootstrap_serchilo_preprocess_button(&$vars) {
   }
 }
 
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bootstrap_serchilo_preprocess_node(&$variables) {
 
+  // Buttonize 'Add new comment' link.
+  if (!isset($variables['content']['links']['comment']['#links']['comment-add'])) {
+    return; 
+  }
+
+  $variables['content']['links']['comment']['#links']['comment-add']['attributes']['class'][] = 'btn';
+  $variables['content']['links']['comment']['#links']['comment-add']['attributes']['class'][] = 'btn-default';
+}
