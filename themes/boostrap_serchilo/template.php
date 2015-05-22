@@ -30,11 +30,16 @@ function bootstrap_serchilo_preprocess_button(&$vars) {
  */
 function bootstrap_serchilo_preprocess_node(&$variables) {
 
-  // Buttonize 'Add new comment' link.
-  if (!isset($variables['content']['links']['comment']['#links']['comment-add'])) {
-    return; 
+  // Buttonize links.
+
+  if (isset($variables['content']['links']['node']['#links']['node-readmore'])) {
+    $variables['content']['links']['node']['#links']['node-readmore']['attributes']['class'][] = 'btn';
+    $variables['content']['links']['node']['#links']['node-readmore']['attributes']['class'][] = 'btn-default';
   }
 
-  $variables['content']['links']['comment']['#links']['comment-add']['attributes']['class'][] = 'btn';
-  $variables['content']['links']['comment']['#links']['comment-add']['attributes']['class'][] = 'btn-default';
+  if (isset($variables['content']['links']['comment']['#links']['comment-add'])) {
+    $variables['content']['links']['comment']['#links']['comment-add']['attributes']['class'][] = 'btn';
+    $variables['content']['links']['comment']['#links']['comment-add']['attributes']['class'][] = 'btn-default';
+  }
+
 }
