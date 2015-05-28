@@ -991,7 +991,15 @@ function serchilo_get_user_name_from_path($path_elements_offset = 0) {
 function serchilo_log_shortcut_call($shortcut, $env, $default_keyword_used = FALSE) {
 
   $source_mapping = array(
-    'firefox-addon'         => SERCHILO_LOG_SOURCE_FIREFOX_ADDON, 
+    1 => 'homepage',
+    2  => 'opensearch',
+    3  => 'get-q',      # /?q=g berlin
+    4 => 'path',       # /g berlin
+    5  => 'wiki-example',
+    # 6 # used only 35 times, mostly in 2009, last time in 2011
+    # 7 # apparently unused
+    8 => 'dashboard-widget', 
+    9 => 'igoogle-netvibes-gadget',
   );
 
   global $mysqli;
@@ -1021,6 +1029,9 @@ INSERT INTO
 
   ";
 
+  $source = serchilo_array_value($source_mapping, $env['source'], $env['source']);
+  $source = serchilo_utf8_4byte_to_3byte($source);
+
   $sql = serchilo_replace_sql_arguments(
     $mysqli, 
     $sql,
@@ -1028,8 +1039,8 @@ INSERT INTO
       'shortcut_id'          => $shortcut['nid'],
       'namespace_id'         => $shortcut['namespace_id'],
       'default_keyword_used' => $default_keyword_used,
-      'source'               => (int) serchilo_array_value($source_mapping, $env['source'], $env['source']),
       'page_type'            => $env['page_type'],
+      'source'               => $source,
       'called'               => time(),
       'execution_time'       => serchilo_get_execution_time(),
     )
@@ -1038,6 +1049,48 @@ INSERT INTO
   $mysqli->query($sql);
 }
 
+/**
+ * Sanitize 4-byte UTF8 chars; no full utf8mb4 support in drupal7+mysql stack.
+ * This solution runs in O(n) time BUT assumes that all incoming input is
+ * strictly UTF8.
+ *
+ * @return
+ *   the sanitized input
+ *
+ * Source: http://www.avidheap.org/2013/a-quick-way-to-normalize-a-utf8-string-when-your-mysql-database-is-not-utf8mb4
+ */
+function serchilo_utf8_4byte_to_3byte($input) {
+  if (!empty($input)) {
+    $utf8_2byte = 0xC0 /*1100 0000*/; $utf8_2byte_bmask = 0xE0 /*1110 0000*/;
+    $utf8_3byte = 0xE0 /*1110 0000*/; $utf8_3byte_bmask = 0XF0 /*1111 0000*/;
+    $utf8_4byte = 0xF0 /*1111 0000*/; $utf8_4byte_bmask = 0xF8 /*1111 1000*/;
+ 
+    $sanitized = "";
+    $len = strlen($input);
+    for ($i = 0; $i < $len; ++$i) {
+      $mb_char = $input[$i]; // Potentially a multibyte sequence
+      $byte = ord($mb_char);
+      if (($byte & $utf8_2byte_bmask) == $utf8_2byte) {
+        $mb_char .= $input[++$i];
+      }
+      else if (($byte & $utf8_3byte_bmask) == $utf8_3byte) {
+        $mb_char .= $input[++$i];
+        $mb_char .= $input[++$i];
+      }
+      else if (($byte & $utf8_4byte_bmask) == $utf8_4byte) {
+        // Replace with ? to avoid MySQL exception
+        $mb_char = '?';
+        $i += 3;
+      }
+ 
+      $sanitized .=  $mb_char;
+    }
+ 
+    $input= $sanitized;
+  }
+ 
+  return $input;
+}
 /**
  * Output a HTML file with 
  * <meta http-equiv="refresh"> 
