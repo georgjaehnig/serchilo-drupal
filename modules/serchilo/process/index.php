@@ -416,7 +416,7 @@ function serchilo_get_output($env) {
     } else {
 
       // Try via default_keyword.
-      $env['default_keyword'] = serchilo_get_default_keyword($env['user_name'] ?: NULL);
+      $env['default_keyword'] = serchilo_get_default_keyword(serchilo_array_value($env, 'user_name'));
       $env['query'] = $env['default_keyword'] . ' ' . $env['query'];
       $env = serchilo_parse_query($env['query']) + $env;
 
