@@ -28,6 +28,3 @@ define('SERCHILO_LOG_SOURCE_FIREFOX_ADDON', 10);
 define('SERCHILO_METATAG_INSTANCE_CONSOLE', 'serchilo_console');
 define('SERCHILO_METATAG_INSTANCE_CONSOLE_NAMESPACES', 'serchilo_console:namespaces');
 define('SERCHILO_METATAG_INSTANCE_CONSOLE_USER', 'serchilo_console:user');
-
-define('SERCHILO_WATCHDOG_MAIL_INTERVAL', 60*60 );
-
