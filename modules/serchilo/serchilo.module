@@ -702,6 +702,8 @@ function serchilo_block_info() {
     'info' => 'Licenses',
     'status' => 1,
     'region' => 'footer',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => "admin/*"
   );
 
   $blocks['add_to_browser'] = array(
