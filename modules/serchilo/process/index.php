@@ -990,10 +990,6 @@ function serchilo_get_user_name_from_path($path_elements_offset = 0) {
  */
 function serchilo_log_shortcut_call($shortcut, $env, $default_keyword_used = FALSE) {
 
-
-
-
-
   $page_type_mapping = array(
     SERCHILO_CONSOLE        => SERCHILO_LOG_PAGE_CONSOLE, 
     SERCHILO_URL_PATH_AFFIX => SERCHILO_LOG_PAGE_URL, 
