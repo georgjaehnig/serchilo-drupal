@@ -332,6 +332,10 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'node_rss';
   $handler->display->display_options['row_options']['item_length'] = 'full';
   $handler->display->display_options['path'] = 'forum.xml';
+  $handler->display->display_options['displays'] = array(
+    'page' => 'page',
+    'default' => 0,
+  );
   $translatables['forum'] = array(
     t('Master'),
     t('Forum'),
