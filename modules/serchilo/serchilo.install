@@ -147,9 +147,9 @@ function serchilo_schema() {
       ),
       'page_type' => array(
         'description' => 'Whether the call was made via console, URL or API.',
-        'type' => 'int',
-        'size' => 'tiny',
-        'not null' => TRUE,
+        'type' => 'varchar',
+        'length' => '64',
+        'not null' => FALSE,
       ),
       'source' => array(
         'description' => 'From where the call was made (saved as numbers).',

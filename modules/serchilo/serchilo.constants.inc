@@ -18,12 +18,6 @@ define('SERCHILO_API_PATH_AFFIX', 'api');
 
 define('SERCHILO_EDIT_NON_SENSIBLE_AFTER_CREATED', 30 ); // 30 minutes
 
-define('SERCHILO_LOG_PAGE_CONSOLE', 1);
-define('SERCHILO_LOG_PAGE_URL', 2);
-define('SERCHILO_LOG_PAGE_API', 3);
-
-define('SERCHILO_LOG_SOURCE_FIREFOX_ADDON', 10);
-
 // TODO: Delete obsolete:
 define('SERCHILO_METATAG_INSTANCE_CONSOLE', 'serchilo_console');
 define('SERCHILO_METATAG_INSTANCE_CONSOLE_NAMESPACES', 'serchilo_console:namespaces');

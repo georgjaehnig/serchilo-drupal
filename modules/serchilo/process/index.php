@@ -990,12 +990,6 @@ function serchilo_get_user_name_from_path($path_elements_offset = 0) {
  */
 function serchilo_log_shortcut_call($shortcut, $env, $default_keyword_used = FALSE) {
 
-  $page_type_mapping = array(
-    SERCHILO_CONSOLE        => SERCHILO_LOG_PAGE_CONSOLE, 
-    SERCHILO_URL_PATH_AFFIX => SERCHILO_LOG_PAGE_URL, 
-    SERCHILO_API_PATH_AFFIX => SERCHILO_LOG_PAGE_API, 
-  );
-
   $source_mapping = array(
     'firefox-addon'         => SERCHILO_LOG_SOURCE_FIREFOX_ADDON, 
   );
@@ -1034,8 +1028,8 @@ INSERT INTO
       'shortcut_id'          => $shortcut['nid'],
       'namespace_id'         => $shortcut['namespace_id'],
       'default_keyword_used' => $default_keyword_used,
-      'page_type'            => $page_type_mapping[$env['page_type']],
       'source'               => (int) serchilo_array_value($source_mapping, $env['source'], $env['source']),
+      'page_type'            => $env['page_type'],
       'called'               => time(),
       'execution_time'       => serchilo_get_execution_time(),
     )
