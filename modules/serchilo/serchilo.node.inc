@@ -168,3 +168,25 @@ function serchilo_watchdog_check_number_of_affected_rows($num_affected, $node, $
 }
 
 
+/**
+ * Set the shortcut's argument data, parsed from the url,
+ * i.e.
+ * - the argument_names
+ * - the argument count
+ *
+ * @param object &$node
+ *   The shortcut node as a reference
+ *
+ * @return void
+ */
+function serchilo_set_shortcut_arguments_data(&$node) {
+
+  // derive and set url metadata
+  $argument_names = serchilo_get_argument_names(
+    drupal_array_get_nested_value($node->field_url,             array(LANGUAGE_NONE, 0, 'value')),
+    drupal_array_get_nested_value($node->field_post_parameters, array(LANGUAGE_NONE, 0, 'value'))
+  );
+  drupal_array_set_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value'), join(', ', $argument_names));
+  drupal_array_set_nested_value($node->field_argument_count, array(LANGUAGE_NONE, 0, 'value'), count($argument_names));
+}
+
