@@ -283,6 +283,9 @@ function serchilo_static_content_dirs() {
   );
 }
 
+
+// PERMISSION
+
 /**
  * Implements hook_permission().
  */
