@@ -3,174 +3,6 @@
 require_once('serchilo.constants.inc');
 require_once('serchilo.shared.inc');
 
-// HOOKS 
-
-/**
- * Implements hook_static_content_dirs().
- */
-function serchilo_static_content_dirs() {
-  $dir = drupal_get_path('module', 'serchilo') . '/static_content';
-  return array(
-    $dir => array()
-  );
-}
-
-/**
- * Implements hook_permission().
- */
-function serchilo_permission() {
-
-  $items = array();
-  $items['approve shortcut content'] = array(
-    'title' => t('Approve shortcuts'),
-  );
-  return $items;
-}
-
-
-// DIFF
-
-/**
- * Implements hook_entity_diff_alter().
- */
-function serchilo_entity_diff_alter(&$entity_diffs, $context) { 
-
-  module_load_include('inc', 'serchilo', 'serchilo.diff');
-
-  if ($context['entity_type'] = 'node') {
-    if ($context['bundle'] = 'shortcut') {
-
-      $order = array(
-        'title',
-        'field_keyword',
-        'field_url',
-        'field_namespace',
-        'field_description',
-        'field_example',
-        'field_tags',
-        'field_post_parameters',
-        'field_test',
-        'field_set_referrer',
-        'field_invisible',
-        'field_weight',
-        'field_command_id',
-        'field_argument_names',
-        'field_argument_count',
-        'field_calls_total',
-        'field_calls_last_30_days',
-        'field_approved',
-      );
-      foreach($order as $index=>&$field_name) {
-        if (!empty($entity_diffs[$field_name])) {
-          $entity_diffs[$field_name]['#weight'] = $index; 
-        }
-      }
-
-      // Remove hidden fields from diff.
-      unset($entity_diffs['field_calls_last_30_days']);
-      unset($entity_diffs['field_calls_total']);
-      unset($entity_diffs['field_weight']);
-      foreach (array('old', 'new') as $old_new) {
-        $entity_diffs['field_example']['#'.$old_new] = join("\n", serchilo_render_field_collection_revision(
-          $context[$old_new.'_entity']->field_example, 
-          array('field_example_arguments','field_example_description'),
-          '[field_example_arguments] → [field_example_description]'
-        ));
-      }
-      foreach (array('old', 'new') as $old_new) {
-        $entity_diffs['field_test']['#'.$old_new] = join("\n", serchilo_render_field_collection_revision(
-          $context[$old_new.'_entity']->field_test, 
-          array('field_test_arguments','field_test_expected_content'),
-          '[field_test_arguments] → [field_test_expected_content]'
-        ));
-      }
-
-      $mapping_approved = array(
-        0 => '✖ (' . t('pending moderation') . ')',
-        1 => '✔ (' . t('approved') . ')',
-      );
-      if (!empty($entity_diffs['field_approved'])) {
-        $entity_diffs['field_approved']['#old'] = $mapping_approved[(int) $entity_diffs['field_approved']['#old']];
-        $entity_diffs['field_approved']['#new'] = $mapping_approved[(int) $entity_diffs['field_approved']['#new']];
-      }
-    }
-  }
-
-}
-
-/**
- * Implements hook_form_alter().
- */
-function serchilo_form_diff_node_revisions_alter(&$form, &$form_state, $form_id) {
-  
-  // Prepend rendered field_approved to revision items in revisions overview.
-
-  $mapping_approved = array(
-    0 => '✖',
-    1 => '✔',
-  );
-
-  foreach($form['info'] as $vid=>&$render) {
-    $node = node_load($form['nid']['#value'], $vid);
-    $approved = drupal_array_get_nested_value($node->field_approved, array(LANGUAGE_NONE, 0, 'value')) ?: 0;
-    $render['#markup'] = 
-      theme(
-        'html_tag',
-        array(
-          'element' => array(
-            '#tag' => 'span',
-            '#value' => $mapping_approved[$approved],
-            '#attributes' => array(
-              'title' => 
-                '✔ = ' . t('approved') . ', ' . 
-                '✖ = ' . t('pending moderation')
-            )
-          ) 
-        )
-      ) .
-      ' ' . 
-      $render['#markup'];
-  }
-}
-
-
-// CRON
-
-/**
- * Implements hook_cronapi().
- */
-function serchilo_cronapi($op, $job = NULL) {
-
-  $items = array();
-
-  $items['serchilo_export'] = array(
-    'description' => 'Exports shortcuts and namespaces to the files directory.',
-    'callback' => 'serchilo_export',
-    // Every morning at 5:00 am.
-    'rule' => '0 5 * * *', 
-    'file' => 'serchilo.export.inc'
-  );
-
-  $items['serchilo_calculate_shortcut_calls'] = array(
-    'description' => 'Calculate shortcut calls. Set the corresponding node fields.',
-    'callback' => 'serchilo_calculate_shortcut_calls',
-    // Every Monday at 4:00 am.
-    'rule' => '0 4 * * 1', 
-    'file' => 'serchilo.weights.inc'
-  );
-
-  $items['serchilo_calculate_shortcut_weights'] = array(
-    'description' => 'Calculate shortcut weights.',
-    'callback' => 'serchilo_calculate_shortcut_weights',
-    // Every Monday at 4:30 am.
-    'rule' => '30 4 * * 1', 
-    'file' => 'serchilo.weights.inc'
-  );
-
-  return $items;
-}
-
-
 // MENU HOOKS
 
 /**
@@ -399,6 +231,174 @@ function serchilo_shortcut_discussion_access($node) {
     return FALSE; 
   }
   return TRUE; 
+}
+
+
+// CRON
+
+/**
+ * Implements hook_cronapi().
+ */
+function serchilo_cronapi($op, $job = NULL) {
+
+  $items = array();
+
+  $items['serchilo_export'] = array(
+    'description' => 'Exports shortcuts and namespaces to the files directory.',
+    'callback' => 'serchilo_export',
+    // Every morning at 5:00 am.
+    'rule' => '0 5 * * *', 
+    'file' => 'serchilo.export.inc'
+  );
+
+  $items['serchilo_calculate_shortcut_calls'] = array(
+    'description' => 'Calculate shortcut calls. Set the corresponding node fields.',
+    'callback' => 'serchilo_calculate_shortcut_calls',
+    // Every Monday at 4:00 am.
+    'rule' => '0 4 * * 1', 
+    'file' => 'serchilo.weights.inc'
+  );
+
+  $items['serchilo_calculate_shortcut_weights'] = array(
+    'description' => 'Calculate shortcut weights.',
+    'callback' => 'serchilo_calculate_shortcut_weights',
+    // Every Monday at 4:30 am.
+    'rule' => '30 4 * * 1', 
+    'file' => 'serchilo.weights.inc'
+  );
+
+  return $items;
+}
+
+
+// HOOKS 
+
+/**
+ * Implements hook_static_content_dirs().
+ */
+function serchilo_static_content_dirs() {
+  $dir = drupal_get_path('module', 'serchilo') . '/static_content';
+  return array(
+    $dir => array()
+  );
+}
+
+/**
+ * Implements hook_permission().
+ */
+function serchilo_permission() {
+
+  $items = array();
+  $items['approve shortcut content'] = array(
+    'title' => t('Approve shortcuts'),
+  );
+  return $items;
+}
+
+
+// DIFF
+
+/**
+ * Implements hook_entity_diff_alter().
+ */
+function serchilo_entity_diff_alter(&$entity_diffs, $context) { 
+
+  module_load_include('inc', 'serchilo', 'serchilo.diff');
+
+  if ($context['entity_type'] = 'node') {
+    if ($context['bundle'] = 'shortcut') {
+
+      $order = array(
+        'title',
+        'field_keyword',
+        'field_url',
+        'field_namespace',
+        'field_description',
+        'field_example',
+        'field_tags',
+        'field_post_parameters',
+        'field_test',
+        'field_set_referrer',
+        'field_invisible',
+        'field_weight',
+        'field_command_id',
+        'field_argument_names',
+        'field_argument_count',
+        'field_calls_total',
+        'field_calls_last_30_days',
+        'field_approved',
+      );
+      foreach($order as $index=>&$field_name) {
+        if (!empty($entity_diffs[$field_name])) {
+          $entity_diffs[$field_name]['#weight'] = $index; 
+        }
+      }
+
+      // Remove hidden fields from diff.
+      unset($entity_diffs['field_calls_last_30_days']);
+      unset($entity_diffs['field_calls_total']);
+      unset($entity_diffs['field_weight']);
+      foreach (array('old', 'new') as $old_new) {
+        $entity_diffs['field_example']['#'.$old_new] = join("\n", serchilo_render_field_collection_revision(
+          $context[$old_new.'_entity']->field_example, 
+          array('field_example_arguments','field_example_description'),
+          '[field_example_arguments] → [field_example_description]'
+        ));
+      }
+      foreach (array('old', 'new') as $old_new) {
+        $entity_diffs['field_test']['#'.$old_new] = join("\n", serchilo_render_field_collection_revision(
+          $context[$old_new.'_entity']->field_test, 
+          array('field_test_arguments','field_test_expected_content'),
+          '[field_test_arguments] → [field_test_expected_content]'
+        ));
+      }
+
+      $mapping_approved = array(
+        0 => '✖ (' . t('pending moderation') . ')',
+        1 => '✔ (' . t('approved') . ')',
+      );
+      if (!empty($entity_diffs['field_approved'])) {
+        $entity_diffs['field_approved']['#old'] = $mapping_approved[(int) $entity_diffs['field_approved']['#old']];
+        $entity_diffs['field_approved']['#new'] = $mapping_approved[(int) $entity_diffs['field_approved']['#new']];
+      }
+    }
+  }
+
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function serchilo_form_diff_node_revisions_alter(&$form, &$form_state, $form_id) {
+  
+  // Prepend rendered field_approved to revision items in revisions overview.
+
+  $mapping_approved = array(
+    0 => '✖',
+    1 => '✔',
+  );
+
+  foreach($form['info'] as $vid=>&$render) {
+    $node = node_load($form['nid']['#value'], $vid);
+    $approved = drupal_array_get_nested_value($node->field_approved, array(LANGUAGE_NONE, 0, 'value')) ?: 0;
+    $render['#markup'] = 
+      theme(
+        'html_tag',
+        array(
+          'element' => array(
+            '#tag' => 'span',
+            '#value' => $mapping_approved[$approved],
+            '#attributes' => array(
+              'title' => 
+                '✔ = ' . t('approved') . ', ' . 
+                '✖ = ' . t('pending moderation')
+            )
+          ) 
+        )
+      ) .
+      ' ' . 
+      $render['#markup'];
+  }
 }
 
 
@@ -677,6 +677,7 @@ function serchilo_block_view($delta='') {
 
   return $block;
 }
+
 
 // NODE HOOKS
 
