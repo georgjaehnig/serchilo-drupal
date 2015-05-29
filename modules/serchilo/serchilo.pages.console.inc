@@ -663,3 +663,45 @@ function serchilo_add_opensearch_link($default_keyword_get) {
     'title' => serchilo_opensearch_title(arg(1), $default_keyword_get)
   ));
 }
+/**
+ * Retrieves a shortcut.
+ *
+ * @param string $keyword
+ *   The keyword of the shortcut.
+ * @param string $argument_count
+ *   The argument count of the shortcut.
+ * @param string $namespace_name
+ *   The namespace name of the shortcut.
+ *
+ * @return int
+ *   The Shortcut ID or NULL if not found.
+ */
+function serchilo_get_shortcut($keyword, $argument_count, $namespace_name) {
+
+  $namespace_id = key(taxonomy_get_term_by_name($namespace_name, 'namespaces'));
+
+  if (empty($namespace_id)) {
+    return; 
+  }
+
+  $efq = new EntityFieldQuery;
+
+  $efq = $efq
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'shortcut')
+    ->fieldCondition('field_keyword',        'value',  $keyword )
+    ->fieldCondition('field_argument_count', 'value',  $argument_count )
+    ->fieldCondition('field_namespace',      'tid',    $namespace_id )
+    ;
+
+  $result = $efq->execute();
+
+  if (empty($result)) {
+    return; 
+  }
+
+  $shortcut_id = key($result['node']);
+
+  return $shortcut_id;
+}
+
