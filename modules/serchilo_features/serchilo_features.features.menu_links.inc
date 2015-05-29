@@ -494,7 +494,7 @@ function serchilo_features_menu_default_menu_links() {
       'identifier' => 'user-menu_my-shortcuts:user/shortcuts',
     ),
     'module' => 'system',
-    'hidden' => -1,
+    'hidden' => 0,
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
