@@ -757,39 +757,6 @@ function serchilo_node_delete($node) {
   }
 }
 
-
-// COMMENT 
-
-/**
- * Implements hook_comment_insert().
- */
-function serchilo_comment_insert($node) {
-
-  if (module_exists('boost')) {
-    boost_flush_caches();
-  }
-}
-
-/**
- * Implements hook_comment_update().
- */
-function serchilo_comment_update($node) {
-
-  if (module_exists('boost')) {
-    boost_flush_caches();
-  }
-}
-
-/**
- * Implements hook_comment_delete().
- */
-function serchilo_comment_delete($node) {
-
-  if (module_exists('boost')) {
-    boost_flush_caches();
-  }
-}
-
 /**
  * Implements hook_node_access().
  */
@@ -842,6 +809,39 @@ function serchilo_node_view($node, $view_mode, $langcode) {
       module_load_include('inc', 'serchilo', 'serchilo.node.view');
       $node->content['shortcut_call_form'] = drupal_get_form('serchilo_shortcut_call_form', $node);
     }
+  }
+}
+
+
+// COMMENT 
+
+/**
+ * Implements hook_comment_insert().
+ */
+function serchilo_comment_insert($node) {
+
+  if (module_exists('boost')) {
+    boost_flush_caches();
+  }
+}
+
+/**
+ * Implements hook_comment_update().
+ */
+function serchilo_comment_update($node) {
+
+  if (module_exists('boost')) {
+    boost_flush_caches();
+  }
+}
+
+/**
+ * Implements hook_comment_delete().
+ */
+function serchilo_comment_delete($node) {
+
+  if (module_exists('boost')) {
+    boost_flush_caches();
   }
 }
 
