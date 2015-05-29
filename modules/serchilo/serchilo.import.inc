@@ -79,6 +79,8 @@ function serchilo_import_namespaces($rows, $verbose = FALSE) {
  */
 function serchilo_import_shortcuts($rows, $verbose = FALSE) {
 
+  module_load_include('inc', 'serchilo', 'serchilo.node');
+
   //for debug: try to import only 1
   //$rows = array_slice($rows, 0, 1);
 
