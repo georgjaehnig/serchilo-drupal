@@ -405,30 +405,7 @@ function serchilo_form_diff_node_revisions_alter(&$form, &$form_state, $form_id)
 }
 
 
-// THEME 
-
-/**
- * Implements hook_theme().
- */
-function serchilo_theme($existing, $type, $theme, $path) {
-
-  $themes = array(
-    'serchilo_console' => array(
-      'template' => 'serchilo-console', 
-      'variables' => array('query' => null), 
-      'path' => drupal_get_path('module', 'serchilo') . '/templates',
-    ),
-    'serchilo_opensearch' => array(
-      'template' => 'serchilo-opensearch', 
-      'variables' => array('content' => null), 
-      'path' => drupal_get_path('module', 'serchilo') . '/templates',
-    ),
-    'serchilo_shortcut_example_link' => array(
-    ),
-  );
-
-  return $themes;
-}
+// FIELD
 
 /**
  * Implements hook_field_formatter_info().
@@ -481,6 +458,32 @@ function serchilo_field_attach_view_alter(&$output, $context) {
     // Only show the first example.
     $output['field_example']['#items'] = array_slice($output['field_example']['#items'], 0, 1);
   }
+}
+
+
+// THEME 
+
+/**
+ * Implements hook_theme().
+ */
+function serchilo_theme($existing, $type, $theme, $path) {
+
+  $themes = array(
+    'serchilo_console' => array(
+      'template' => 'serchilo-console', 
+      'variables' => array('query' => null), 
+      'path' => drupal_get_path('module', 'serchilo') . '/templates',
+    ),
+    'serchilo_opensearch' => array(
+      'template' => 'serchilo-opensearch', 
+      'variables' => array('content' => null), 
+      'path' => drupal_get_path('module', 'serchilo') . '/templates',
+    ),
+    'serchilo_shortcut_example_link' => array(
+    ),
+  );
+
+  return $themes;
 }
 
 /**
