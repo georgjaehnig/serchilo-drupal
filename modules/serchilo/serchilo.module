@@ -584,6 +584,8 @@ function serchilo_views_pre_render(&$view) {
   // Only for Serchilo views.
   if (in_array($view->name, array('shortcuts', 'namespaces', 'namespace-types', 'tags'))) {
 
+    module_load_include('inc', 'serchilo', 'serchilo.views');
+
     // Wrap filters into a collapsible panel.
 
     // Start opened when already some filters set.
@@ -608,25 +610,6 @@ function serchilo_views_pre_render(&$view) {
     </div>
       ';
   }
-}
-
-/**
- * Checks if a view uses filters.
- *
- * @param array $filter
- *   The $view->filter array.
- *
- * @return boolean
- *   True if filters are used.
- */
-function serchilo_views_is_filter_used($filters) {
-
-  foreach ($filters as $filter) {
-    if (!empty($filter->value)) {
-      return TRUE; 
-    }
-  }
-  return FALSE; 
 }
 
 
