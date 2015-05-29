@@ -706,7 +706,7 @@ function serchilo_node_insert($node) {
 
   if ($node->type == 'shortcut') {
     if (!empty($node->field_approved[LANGUAGE_NONE][0]['value'])) {
-      module_load_include('inc', 'serchilo', 'serchilo.sync');
+      module_load_include('inc', 'serchilo', 'serchilo.node');
       $num_affected = serchilo_insert_shortcut_row($node);
       serchilo_watchdog_check_number_of_affected_rows($num_affected, $node, __FUNCTION__);
     }
@@ -727,7 +727,7 @@ function serchilo_node_update($node) {
     // https://www.drupal.org/node/2385985
     if (!empty($node->revision)) {
       if (!empty($node->field_approved[LANGUAGE_NONE][0]['value'])) {
-        module_load_include('inc', 'serchilo', 'serchilo.sync');
+        module_load_include('inc', 'serchilo', 'serchilo.node');
         $num_affected = serchilo_insert_or_update_shortcut_row($node);
         serchilo_watchdog_check_number_of_affected_rows($num_affected, $node, __FUNCTION__);
       }
@@ -744,7 +744,7 @@ function serchilo_node_update($node) {
 function serchilo_node_delete($node) {
 
   if ($node->type == 'shortcut') {
-    module_load_include('inc', 'serchilo', 'serchilo.sync');
+    module_load_include('inc', 'serchilo', 'serchilo.node');
     $num_affected = serchilo_delete_shortcut_row($node);
     serchilo_watchdog_check_number_of_affected_rows($num_affected, $node, __FUNCTION__);
   }
