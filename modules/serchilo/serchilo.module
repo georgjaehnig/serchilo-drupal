@@ -3,7 +3,7 @@
 require_once('serchilo.constants.inc');
 require_once('serchilo.shared.inc');
 
-// MENU HOOKS
+// MENU 
 
 /**
  * Implements hook_menu().
@@ -402,7 +402,7 @@ function serchilo_form_diff_node_revisions_alter(&$form, &$form_state, $form_id)
 }
 
 
-// THEME HOOKS 
+// THEME 
 
 /**
  * Implements hook_theme().
@@ -552,7 +552,7 @@ function theme_serchilo_shortcut_example_link($variables) {
 }
 
 
-// VIEWS HOOKS
+// VIEWS 
 
 /**
  * Implements hook_views_post_execute().
@@ -613,7 +613,7 @@ function serchilo_views_pre_render(&$view) {
 }
 
 
-// BLOCK HOOKS
+// BLOCK 
 
 /**
  * Implements hook_block_info().
@@ -679,7 +679,7 @@ function serchilo_block_view($delta='') {
 }
 
 
-// NODE HOOKS
+// NODE 
 
 /**
  * Implements hook_node_presave().
@@ -755,7 +755,7 @@ function serchilo_node_delete($node) {
 }
 
 
-// COMMENT HOOKS
+// COMMENT 
 
 /**
  * Implements hook_comment_insert().
@@ -843,7 +843,7 @@ function serchilo_node_view($node, $view_mode, $langcode) {
 }
 
 
-// FORM HOOKS
+// FORM 
 
 // Shortcut node (edit) form
 
