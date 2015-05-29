@@ -864,7 +864,7 @@ function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) 
 
   global $user;
 
-  module_load_include('inc', 'serchilo', 'serchilo.node.form');
+  form_load_include($form_state, 'inc', 'serchilo', 'serchilo.node.form');
 
   // If creating a new Shortcut:
   if (empty($form['nid']['#value'])) {
@@ -1011,7 +1011,7 @@ function serchilo_form_discussion_node_form_alter(&$form, &$form_state, $form_id
  */
 function serchilo_form_user_register_form_alter(&$form, &$form_state, $form_id) {
 
-  module_load_include('inc', 'serchilo', 'serchilo.user.form');
+  form_load_include($form_state, 'inc', 'serchilo', 'serchilo.user.form');
 
   $form['field_language_namespace']['#access'] = FALSE;
   $form['field_country_namespace']['#access'] = FALSE;
