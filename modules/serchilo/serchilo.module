@@ -788,34 +788,6 @@ function serchilo_comment_delete($node) {
 
 
 /**
- * Check the number of affected rows.
- * 
- * @param int $num_affected
- *   Number of affected rows.
- * @param object $node
- *   The node object that was dealt with.
- * @param string $function_name
- *   The name of the calling function.
- * 
- * @return void
- */
-function serchilo_watchdog_check_number_of_affected_rows($num_affected, $node, $function_name) {
-
-  if ($num_affected == 0) {
-    watchdog(
-      'serchilo', 
-      'Wrong number of affected rows in %function: %num_affected rows when processing node %nid',
-      array(
-        '%function'     => $function_name, 
-        '%num_affected' => $num_affected,
-        '%nid'          => $node->nid,
-      ),
-      WATCHDOG_ERROR
-    );
-  }
-}
-
-/**
  * Set the shortcut's argument data, parsed from the url,
  * i.e.
  * - the argument_names
