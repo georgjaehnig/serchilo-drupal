@@ -271,7 +271,7 @@ function serchilo_cronapi($op, $job = NULL) {
 }
 
 
-// OTHER 
+// STATIC CONTENT 
 
 /**
  * Implements hook_static_content_dirs().
