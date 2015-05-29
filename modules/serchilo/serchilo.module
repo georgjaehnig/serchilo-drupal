@@ -189,7 +189,7 @@ function serchilo_menu_local_tasks_alter(&$data, $router_item, $root_path) {
 }
 
 
-# ACCESS CALLBACKS
+// ACCESS 
 
 /**
  * Access callback for node/%node/approve.
