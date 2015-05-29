@@ -167,7 +167,6 @@ function serchilo_watchdog_check_number_of_affected_rows($num_affected, $node, $
   }
 }
 
-
 /**
  * Set the shortcut's argument data, parsed from the url,
  * i.e.
