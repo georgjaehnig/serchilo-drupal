@@ -1261,7 +1261,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '<p>Separate by comma.</p>',
+    'description' => 'Separate by comma. <a href="/help/namespaces">Learn more about namespaces.</a>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1296,7 +1296,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => '<a href="/help/default-keyword">Learn more about the default keyword.</a>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1360,7 +1360,7 @@ function serchilo_features_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('<p>Separate by comma.</p>');
+  t('<a href="/help/default-keyword">Learn more about the default keyword.</a>');
   t('A string of key=value pairs separated by ampersands, to be sent with POST method. May contain placeholders as the URL.');
   t('Affected shortcuts');
   t('Allows regular automatic testing to check if the shortcut URL is still valid.');
@@ -1396,6 +1396,7 @@ function serchilo_features_field_default_field_instances() {
   t('Namespace');
   t('Namespace type');
   t('POST parameters');
+  t('Separate by comma. <a href="/help/namespaces">Learn more about namespaces.</a>');
   t('Separate tags with comma. Add any useful tags for the shortcut to be easily found in listings and autocomplete. Tags do not influence the availability of a shortcut.');
   t('Set referrer');
   t('Tags');
