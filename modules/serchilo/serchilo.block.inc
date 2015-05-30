@@ -24,7 +24,7 @@ function serchilo_block_namespaces() {
     global $user;
     // If on console of logged-in user:
     if (
-      (!empty($user->name)) && 
+      (isset($user->name)) && 
       ($user->name == arg(1))
     ) {
       $link_path = 'user/edit';
