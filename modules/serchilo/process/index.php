@@ -1014,7 +1014,6 @@ INSERT INTO
     default_keyword_used,
     page_type,
     source,
-    source_domain,
     called,
     execution_time
   )
@@ -1024,7 +1023,6 @@ INSERT INTO
     :default_keyword_used,
     :page_type,
     :source,
-    :source_domain,
     :called,
     :execution_time
   );
@@ -1042,12 +1040,7 @@ INSERT INTO
       'namespace_id'         => $shortcut['namespace_id'],
       'default_keyword_used' => $default_keyword_used,
       'page_type'            => $env['page_type'],
-
-      // if prefix the same
-      // longer string must be before
-      'source_domain'        => $_SERVER['HTTP_HOST'],
       'source'               => $source,
-
       'called'               => time(),
       'execution_time'       => serchilo_get_execution_time(),
     )
