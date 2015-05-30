@@ -1105,7 +1105,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'The URL can contain placeholders like {s:argument_name}. See Help → "Shortcut URLs" for more info. ',
+    'description' => 'The URL can contain placeholders like {%argument_name}. See Help → "Shortcut URLs" for more info. ',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -1403,7 +1403,7 @@ function serchilo_features_field_default_field_instances() {
   t('Test');
   t('Test arguments to call this shortcut. Separate multiple arguments with comma.');
   t('Test passed');
-  t('The URL can contain placeholders like {s:argument_name}. See Help → "Shortcut URLs" for more info. ');
+  t('The URL can contain placeholders like {%argument_name}. See Help → "Shortcut URLs" for more info. ');
   t('The argument count is extracted automatically from the URL.');
   t('The argument names are extracted automatically from the URL.');
   t('The shortcut will be available only to users using this namespace. See Help → "Namespaces" for more info. ');
