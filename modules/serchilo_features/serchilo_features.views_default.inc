@@ -37,7 +37,7 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['header']['area_text_custom']['table'] = 'views';
   $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
   $handler->display->display_options['header']['area_text_custom']['empty'] = TRUE;
-  $handler->display->display_options['header']['area_text_custom']['content'] = '<a href="/articles.xml" class="feed-icon" title="Subscribe to Articles"><img src="/misc/feed.png" width="16" height="16" alt="Subscribe to Articles"></a>';
+  $handler->display->display_options['header']['area_text_custom']['content'] = '<a href="/blog.xml" class="feed-icon" title="Subscribe to Articles"><img src="/misc/feed.png" width="16" height="16" alt="Subscribe to Articles"></a>';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -101,7 +101,7 @@ function serchilo_features_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('<a href="/articles.xml" class="feed-icon" title="Subscribe to Articles"><img src="/misc/feed.png" width="16" height="16" alt="Subscribe to Articles"></a>'),
+    t('<a href="/blog.xml" class="feed-icon" title="Subscribe to Articles"><img src="/misc/feed.png" width="16" height="16" alt="Subscribe to Articles"></a>'),
     t('Page'),
     t('Feed'),
   );
