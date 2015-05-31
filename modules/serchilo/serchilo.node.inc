@@ -247,7 +247,6 @@ function serchilo_is_sensible_edit($node) {
   // Non-new shortcuts:
   if (!empty($node->nid)) {
     $original_node = node_load($node->nid);
-    $woriginal_node = entity_metadata_wrapper('node', $original_node);
     $is_sensible_edit = (
       (
         // change in keyword
@@ -312,16 +311,12 @@ function serchilo_is_sensible_edit($node) {
   if (user_is_logged_in()) {
     // Check on the namespace which was set BEFORE the edit
     // (if available).
-    if (isset($woriginal_node)) {
-      $is_sensible_edit = ($user->name != $woriginal_node->field_namespace->name->value());
+    if (isset($original_node)) {
+      $is_sensible_edit = ($user->name != drupal_array_get_nested_value($original_node->field_namespace, array(LANGUAGE_NONE, 0, 'name')));
     }
     else {
       $is_sensible_edit = ($user->name != drupal_array_get_nested_value($node->field_namespace, array(LANGUAGE_NONE, 0, 'name')));
     }
-    //print_r($user);
-    echo '<pre>';
-    print_r($is_sensible_edit);
-    exit;
   }
 
   return $is_sensible_edit;
