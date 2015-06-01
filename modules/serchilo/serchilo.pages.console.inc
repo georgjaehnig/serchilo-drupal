@@ -348,7 +348,7 @@ function serchilo_get_more_shortcuts() {
 
 <a href="https://www.youtube.com/watch?v=lNx4CFM-P2M" target="_blank" class="btn btn-default">Watch video</a>
 <!-- <a href="/help/start" class="btn btn-default">Get started</a> -->
-<a href="/blog/relaunch-serchilo-now-findfind-it" class="btn btn-default">What\'s new?</a>
+<a href="/blog/relaunch-serchilo-now-findfind-it" class="btn btn-default">Serchilo is now FindFind.it</a>
 
 '
   );
