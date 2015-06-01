@@ -303,16 +303,18 @@ function serchilo_is_sensible_edit($node) {
     $is_sensible_edit = TRUE;
   }
 
-  // If the user is logged in and the shortcut is saved to the current user's namespace,
-  // it is not sensible, since users can do anything in their own namespaces.
-  if (user_is_logged_in()) {
-    // Check on the namespace which was set BEFORE the edit
-    // (if available).
-    if (isset($woriginal_node)) {
-      $is_sensible_edit = ($user->name != $woriginal_node->field_namespace->name->value());
-    }
-    else {
-      $is_sensible_edit = ($user->name != drupal_array_get_nested_value($node->field_namespace, array(LANGUAGE_NONE, 0, 'name')));
+  if ($is_sensible_edit) {
+    // If the user is logged in and the shortcut is saved to the current user's namespace,
+    // it is not sensible, since users can do anything in their own namespaces.
+    if (user_is_logged_in()) {
+      // Check on the namespace which was set BEFORE the edit
+      // (if available).
+      if (isset($woriginal_node)) {
+        $is_sensible_edit = ($user->name != $woriginal_node->field_namespace->name->value());
+      }
+      else {
+        $is_sensible_edit = ($user->name != drupal_array_get_nested_value($node->field_namespace, array(LANGUAGE_NONE, 0, 'name')));
+      }
     }
   }
 
