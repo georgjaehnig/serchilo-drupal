@@ -762,7 +762,7 @@ function serchilo_features_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 6,
+      'weight' => 9,
     ),
   );
 
@@ -805,7 +805,7 @@ function serchilo_features_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => 7,
+      'weight' => 10,
     ),
   );
 
