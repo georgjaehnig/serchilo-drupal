@@ -375,6 +375,7 @@ function serchilo_get_console_examples() {
     // Just to make sure there is at least 1 example.
     ->fieldCondition('field_example',   'value',  0, '!=' )
     ->fieldCondition('field_approved',  'value',  1 )
+    ->fieldCondition('field_invisible', 'value',  0 )
     ->fieldOrderBy('field_weight', 'value', 'DESC')
     ->range(0, 7);
 
