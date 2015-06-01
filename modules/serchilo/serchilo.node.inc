@@ -248,25 +248,21 @@ function serchilo_is_sensible_edit($node) {
   if (!empty($node->nid)) {
     $original_node = node_load($node->nid);
     $woriginal_node = entity_metadata_wrapper('node', $original_node);
-    $is_sensible_edit = (
-      (
-        // change in keyword
-        drupal_array_get_nested_value($original_node->field_keyword, array(LANGUAGE_NONE, 0, 'value')) 
-        != drupal_array_get_nested_value($node->field_keyword, array(LANGUAGE_NONE, 0, 'value'))
-      ) 
-      ||
-      (
-        // change in url
-        drupal_array_get_nested_value($original_node->field_url, array(LANGUAGE_NONE, 0, 'value')) 
-        != drupal_array_get_nested_value($node->field_url, array(LANGUAGE_NONE, 0, 'value'))
-      ) 
-      ||
-      (
-        // change in namespace
-        drupal_array_get_nested_value($original_node->field_namespace, array(LANGUAGE_NONE, 0, 'tid')) 
-        != drupal_array_get_nested_value($node->field_namespace, array(LANGUAGE_NONE, 0, 'tid'))
-      ) 
-    );
+
+    $change_in_keyword = 
+      drupal_array_get_nested_value($original_node->field_keyword, array(LANGUAGE_NONE, 0, 'value')) 
+      != drupal_array_get_nested_value($node->field_keyword, array(LANGUAGE_NONE, 0, 'value'));
+    $change_in_url =
+      drupal_array_get_nested_value($original_node->field_url, array(LANGUAGE_NONE, 0, 'value')) 
+      != drupal_array_get_nested_value($node->field_url, array(LANGUAGE_NONE, 0, 'value'));
+    $change_in_namespace =
+      drupal_array_get_nested_value($original_node->field_namespace, array(LANGUAGE_NONE, 0, 'tid')) 
+      != drupal_array_get_nested_value($node->field_namespace, array(LANGUAGE_NONE, 0, 'tid'));
+        
+    $is_sensible_edit = 
+      $change_in_keyword || 
+      $change_in_url ||
+      $change_in_namespace;
 
     // Allow editing within the first X minutes after creation.
     if (
