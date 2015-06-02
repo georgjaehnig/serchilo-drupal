@@ -336,3 +336,18 @@ body.page-node-revisions-view td.diff-links {
 }
 
 /* ==================================== /forum */
+/* ==================================== blog */
+
+figure {
+	text-align: center;
+}
+figure img {
+	border: 1px solid #ccc;
+	padding: 5px;
+}
+figcaption {
+	margin-top: 0.5em;
+	font-style: italic;
+}
+
+/* ==================================== /blog */
