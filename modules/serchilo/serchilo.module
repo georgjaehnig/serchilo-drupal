@@ -879,7 +879,7 @@ function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) 
       // Add link to set user namespace.
       $form['field_namespace']['#attached']['js'][] = array(
         'data' => 'jQuery(document).ready(function () { 
-          var link = jQuery("<a>Set my user namespace</a>");
+          var link = jQuery("<a>Use my user namespace</a>");
           link.click(function() {
             jQuery("#edit-field-namespace-und").val("' . $user->name .  '");
           });
