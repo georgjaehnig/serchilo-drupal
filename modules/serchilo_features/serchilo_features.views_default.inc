@@ -1400,11 +1400,6 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['fields']['nid']['group_type'] = 'count_distinct';
   $handler->display->display_options['fields']['nid']['ui_name'] = 'count';
   $handler->display->display_options['fields']['nid']['label'] = 'Shortcuts';
-  /* Sort criterion: Taxonomy term: Term ID */
-  $handler->display->display_options['sorts']['tid']['id'] = 'tid';
-  $handler->display->display_options['sorts']['tid']['table'] = 'taxonomy_term_data';
-  $handler->display->display_options['sorts']['tid']['field'] = 'tid';
-  $handler->display->display_options['sorts']['tid']['order'] = 'DESC';
   /* Filter criterion: Taxonomy vocabulary: Machine name */
   $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
   $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
