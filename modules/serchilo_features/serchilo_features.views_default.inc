@@ -526,7 +526,7 @@ function serchilo_features_views_default_views() {
     'field_namespace_type' => 'field_namespace_type',
     'nid' => 'nid',
   );
-  $handler->display->display_options['style_options']['default'] = 'name';
+  $handler->display->display_options['style_options']['default'] = 'nid';
   $handler->display->display_options['style_options']['info'] = array(
     'name' => array(
       'sortable' => 1,
@@ -1354,7 +1354,7 @@ function serchilo_features_views_default_views() {
     'name' => 'name',
     'nid' => 'nid',
   );
-  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['default'] = 'nid';
   $handler->display->display_options['style_options']['info'] = array(
     'name' => array(
       'sortable' => 1,
