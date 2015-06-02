@@ -1008,6 +1008,8 @@ function serchilo_form_discussion_node_form_alter(&$form, &$form_state, $form_id
     $shortcut = node_load($_GET['shortcut_affected']);
     $form['field_shortcuts_affected'][LANGUAGE_NONE][0]['target_id']['#default_value'] = "$shortcut->title ($shortcut->nid)";
   }
+  // Hide whole "Revision information" tab.
+  $form['revision_information']['#access'] = FALSE;
 }
 
 
