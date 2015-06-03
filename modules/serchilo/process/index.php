@@ -336,6 +336,8 @@ function serchilo_process_opensearch_suggestions($env) {
       $shortcut['keyword'] . 
       ' ' .
       join(', ', $argument_names_braces) . 
+      ' ' .
+      '(' . $shortcut['title'] . ')' .
       '';
     $descriptions[] = $shortcut['title']; 
   }
