@@ -327,7 +327,10 @@ function serchilo_process_opensearch_suggestions($env) {
       if ($argument_name == '') {
         continue; 
       }
-      $argument_names_braces[] = '{' . $argument_name . '}';
+      // Testing:
+      // Disable braces.
+      //$argument_names_braces[] = '{' . $argument_name . '}';
+      $argument_names_braces[] = $argument_name;
     }
 
     $completions[] = 
