@@ -369,7 +369,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'discussion',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => '<a href="https://help.github.com/articles/markdown-basics/">Markdown</a> enabled.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -390,7 +390,7 @@ function serchilo_features_field_default_field_instances() {
     'label' => 'Body',
     'required' => 1,
     'settings' => array(
-      'text_processing' => 0,
+      'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1361,6 +1361,7 @@ function serchilo_features_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('<a href="/help/default-keyword">Learn more about the default keyword.</a>');
+  t('<a href="https://help.github.com/articles/markdown-basics/">Markdown</a> enabled.');
   t('A string of key=value pairs separated by ampersands, to be sent with POST method. May contain placeholders as the URL.');
   t('Affected shortcuts');
   t('Allows regular automatic testing to check if the shortcut URL is still valid.');
