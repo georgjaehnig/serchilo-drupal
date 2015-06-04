@@ -1103,6 +1103,17 @@ function serchilo_features_user_default_permissions() {
     'module' => 'filter',
   );
 
+  // Exported permission: 'use text format markdown'.
+  $permissions['use text format markdown'] = array(
+    'name' => 'use text format markdown',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+      'moderator' => 'moderator',
+    ),
+    'module' => 'filter',
+  );
+
   // Exported permission: 'view field_approved'.
   $permissions['view field_approved'] = array(
     'name' => 'view field_approved',
