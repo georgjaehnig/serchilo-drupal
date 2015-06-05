@@ -56,12 +56,6 @@ function serchilo_shortcut_call_form($form, $form_state, $node) {
     );
   }
 
-  // Set focus on first input field.
-  if (isset($form['arguments'][0])) {
-    $form['arguments'][0]['#attributes']['autofocus'] = NULL;
-  
-  }
-
   $form['node'] = array(
     '#type' => 'value',
     '#value' => $node,
@@ -70,6 +64,15 @@ function serchilo_shortcut_call_form($form, $form_state, $node) {
     '#type' => 'submit',
     '#value' => t('Go'),
   );
+
+  // Set focus on first input field
+  // or on submit.
+  if (isset($form['arguments'][0])) {
+    $form['arguments'][0]['#attributes']['autofocus'] = NULL;
+  }
+  else {
+    $form['submit']['#attributes']['autofocus'] = NULL;
+  }
 
   // TODO: This should rather be in the theme,
   // but weirdly, in hook_preprocess_form() it is too late
