@@ -56,6 +56,12 @@ function serchilo_shortcut_call_form($form, $form_state, $node) {
     );
   }
 
+  // Set focus on first input field.
+  if (isset($form['arguments'][0])) {
+    $form['arguments'][0]['#attributes']['autofocus'] = NULL;
+  
+  }
+
   $form['node'] = array(
     '#type' => 'value',
     '#value' => $node,
