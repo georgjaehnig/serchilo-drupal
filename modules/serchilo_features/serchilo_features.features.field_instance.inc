@@ -858,7 +858,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Every shortcut is called with a keyword. See Help → "Getting started" for more info. ',
+    'description' => 'Every shortcut is called with a keyword. More info: <a target="_blank"  href="/help/start">Help → Getting started</a>.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -898,7 +898,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'The shortcut will be available only to users using this namespace. See Help → "Namespaces" for more info. ',
+    'description' => 'The shortcut will be available only to users using this namespace. More info: <a target="_blank"  href="/help/namespaces">Help → Namespaces</a>',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -1106,7 +1106,7 @@ function serchilo_features_field_default_field_instances() {
     'bundle' => 'shortcut',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'The URL can contain placeholders like {%argument_name}. See Help → "Shortcut URLs" for more info. ',
+    'description' => 'The URL can contain placeholders like {%argument_name}. More info: <a target="_blank" href="/help/url">Help → Shortcut URLs</a>.',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -1382,7 +1382,7 @@ function serchilo_features_field_default_field_instances() {
   t('Default keyword');
   t('Description');
   t('Ensures backwards compatibility to the old (Drupal) Serchilo (launched 2013). Requests calling command/[command_id] can be redirected to the current Shortcut node page.');
-  t('Every shortcut is called with a keyword. See Help → "Getting started" for more info. ');
+  t('Every shortcut is called with a keyword. More info: <a target="_blank"  href="/help/start">Help → Getting started</a>.');
   t('Example arguments');
   t('Example arguments to call this shortcut. Separate multiple arguments with comma. The keyword will be prepended automatically.');
   t('Example description');
@@ -1405,10 +1405,10 @@ function serchilo_features_field_default_field_instances() {
   t('Test');
   t('Test arguments to call this shortcut. Separate multiple arguments with comma.');
   t('Test passed');
-  t('The URL can contain placeholders like {%argument_name}. See Help → "Shortcut URLs" for more info. ');
+  t('The URL can contain placeholders like {%argument_name}. More info: <a target="_blank" href="/help/url">Help → Shortcut URLs</a>.');
   t('The argument count is extracted automatically from the URL.');
   t('The argument names are extracted automatically from the URL.');
-  t('The shortcut will be available only to users using this namespace. See Help → "Namespaces" for more info. ');
+  t('The shortcut will be available only to users using this namespace. More info: <a target="_blank"  href="/help/namespaces">Help → Namespaces</a>');
   t('URL');
   t('Weight');
   t('What happens when calling this shortcut?');
