@@ -383,24 +383,26 @@ function serchilo_form_diff_node_revisions_alter(&$form, &$form_state, $form_id)
 
   foreach($form['info'] as $vid=>&$render) {
     $node = node_load($form['nid']['#value'], $vid);
-    $approved = drupal_array_get_nested_value($node->field_approved, array(LANGUAGE_NONE, 0, 'value')) ?: 0;
-    $render['#markup'] = 
-      theme(
-        'html_tag',
-        array(
-          'element' => array(
-            '#tag' => 'span',
-            '#value' => $mapping_approved[$approved],
-            '#attributes' => array(
-              'title' => 
-                '✔ = ' . t('approved') . ', ' . 
-                '✖ = ' . t('pending moderation')
-            )
-          ) 
-        )
-      ) .
-      ' ' . 
-      $render['#markup'];
+    if ('shortcut' == $node->type) {
+      $approved = drupal_array_get_nested_value($node->field_approved, array(LANGUAGE_NONE, 0, 'value')) ?: 0;
+      $render['#markup'] = 
+        theme(
+          'html_tag',
+          array(
+            'element' => array(
+              '#tag' => 'span',
+              '#value' => $mapping_approved[$approved],
+              '#attributes' => array(
+                'title' => 
+                  '✔ = ' . t('approved') . ', ' . 
+                  '✖ = ' . t('pending moderation')
+              )
+            ) 
+          )
+        ) .
+        ' ' . 
+        $render['#markup'];
+    }
   }
 }
 
