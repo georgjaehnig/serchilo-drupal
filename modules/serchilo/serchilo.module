@@ -961,9 +961,10 @@ function serchilo_node_validate($node, $form, &$form_state) {
     $efq = $efq
       ->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', 'shortcut')
-      ->fieldCondition('field_keyword',        'value',  $node->field_keyword[LANGUAGE_NONE][0]['value'])
-      ->fieldCondition('field_argument_count', 'value',  $node->field_argument_count[LANGUAGE_NONE][0]['value'])
-      ->fieldCondition('field_namespace',      'tid',    $node->field_namespace[LANGUAGE_NONE][0]['tid']);
+      ->fieldCondition('field_keyword',        'value',  drupal_array_get_nested_value($node->field_keyword,        array(LANGUAGE_NONE, 0, 'value')))
+      ->fieldCondition('field_argument_count', 'value',  drupal_array_get_nested_value($node->field_argument_count, array(LANGUAGE_NONE, 0, 'value')))
+      ->fieldCondition('field_namespace',      'tid',    drupal_array_get_nested_value($node->field_namespace,      array(LANGUAGE_NONE, 0, 'tid'  )))
+    ;
 
     // Exclude the current shortcut.
     if (!empty($node->nid)) {
