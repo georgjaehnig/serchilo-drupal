@@ -343,6 +343,12 @@ function serchilo_get_more_shortcuts() {
         'shortcuts'
       ) .
 '</li>
+<li class="leaf">' . 
+      l(
+        'create new',
+        'node/add/shortcut'
+      ) .
+'</li>
 </ul>
 </div>
 
