@@ -873,6 +873,16 @@ function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) 
 
   form_load_include($form_state, 'inc', 'serchilo', 'serchilo.node.form');
 
+  $form['help'] = array(
+    '#theme' => 'html_tag',
+    '#tag' => 'div', 
+    '#attributes' => array(
+      'class' => 'form-help', 
+    ), 
+    '#value' => l('Help for Editing shortcuts', 'help/editing'), 
+    '#weight' => -10,
+  );
+
   // If creating a new Shortcut:
   if (empty($form['nid']['#value'])) {
     if (user_is_logged_in()) {
