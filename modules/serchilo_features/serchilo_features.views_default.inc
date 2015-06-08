@@ -1220,6 +1220,10 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Field: Content: URL */
+  $handler->display->display_options['fields']['field_url']['id'] = 'field_url';
+  $handler->display->display_options['fields']['field_url']['table'] = 'field_data_field_url';
+  $handler->display->display_options['fields']['field_url']['field'] = 'field_url';
   /* Field: Content: Namespace */
   $handler->display->display_options['fields']['field_namespace']['id'] = 'field_namespace';
   $handler->display->display_options['fields']['field_namespace']['table'] = 'field_data_field_namespace';
@@ -1265,6 +1269,7 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['fields']['nothing']['label'] = 'Feed item decription';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<table>
 <tr><td>Usage:</td><td><strong>[field_keyword]</strong> [field_argument_names]</td></tr>
+<tr><td>URL:</td><td>[field_url]</td></tr>
 <tr><td>Namespace:</td><td>[field_namespace]</td></tr>
 <tr><td>Tags:</td><td>[field_tags]</td></tr>
 </table>';
@@ -1318,6 +1323,7 @@ function serchilo_features_views_default_views() {
     t('Feed item decription'),
     t('<table>
 <tr><td>Usage:</td><td><strong>[field_keyword]</strong> [field_argument_names]</td></tr>
+<tr><td>URL:</td><td>[field_url]</td></tr>
 <tr><td>Namespace:</td><td>[field_namespace]</td></tr>
 <tr><td>Tags:</td><td>[field_tags]</td></tr>
 </table>'),
