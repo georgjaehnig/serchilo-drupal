@@ -18,8 +18,7 @@ function serchilo_redirect_shortcuts($shortcut_id) {
     (!is_numeric($shortcut_id)) ||
     FALSE
   ) {
-    drupal_not_found();
-    return;
+    return MENU_NOT_FOUND;
   }
   drupal_goto(
     'node/' . $shortcut_id,

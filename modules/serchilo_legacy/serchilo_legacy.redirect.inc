@@ -28,8 +28,7 @@ function serchilo_legacy_redirect_command($command_id, $path_element) {
     (!is_numeric($command_id)) ||
     FALSE
   ) {
-    drupal_not_found();
-    return;
+    return MENU_NOT_FOUND;
   }
 
   $efq = new EntityFieldQuery;
@@ -50,7 +49,6 @@ function serchilo_legacy_redirect_command($command_id, $path_element) {
     );
   }
   else {
-    drupal_not_found();
-    return;
+    return MENU_NOT_FOUND;
   }
 }
