@@ -49,7 +49,38 @@ function serchilo_drush_command() {
     'aliases' => array('ssso'), 
   );
 
+  $items['serchilo-set-shortcuts-active'] = array(
+    'callback' => 'drush_serchilo_set_shortcuts_active',
+    'aliases' => array('sssa'), 
+  );
+
   return $items;
+}
+
+/**
+ * Set
+ * - owners of user shortcuts to the users of the namespace.
+ * - owners of user shortcuts to admin.
+ *
+ * @return void
+ */
+function drush_serchilo_set_shortcuts_active() {
+  
+  $efq = new EntityFieldQuery;
+
+  $result = $efq
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'shortcut')
+    ->execute();
+
+  $nids = array_keys(array_shift($result));
+
+  foreach ($nids as $nid) {
+    echo $nid . ' ';
+    $node = node_load($nid);
+    drupal_array_set_nested_value($node->field_active, array(LANGUAGE_NONE, 0, 'value'), TRUE);
+    field_attach_update('node', $node);
+  }
 }
 
 /**
