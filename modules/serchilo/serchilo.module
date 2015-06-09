@@ -878,6 +878,19 @@ function serchilo_node_view($node, $view_mode, $langcode) {
 
   if ('shortcut' == $node->type) {
 
+    if (empty($node->field_active[LANGUAGE_NONE][0]['value'])) {
+      drupal_set_message(
+        t(
+          'This shortcut has been deactivated. !activate', 
+          array(
+            '!activate' => l(t('It can be activated here.'), 'node/' . $node->nid . '/deactivate') 
+          )
+        ),
+        'warning'
+      );
+      return;
+    }
+
     if (empty($node->field_approved[LANGUAGE_NONE][0]['value'])) {
       drupal_set_message(
         t(
