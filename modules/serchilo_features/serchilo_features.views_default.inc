@@ -1130,6 +1130,48 @@ function serchilo_features_views_default_views() {
     3 => 0,
   );
   $handler->display->display_options['filters']['field_tags_tid']['vocabulary'] = 'tags';
+  /* Filter criterion: Content: Active (field_active) */
+  $handler->display->display_options['filters']['field_active_value']['id'] = 'field_active_value';
+  $handler->display->display_options['filters']['field_active_value']['table'] = 'field_data_field_active';
+  $handler->display->display_options['filters']['field_active_value']['field'] = 'field_active_value';
+  $handler->display->display_options['filters']['field_active_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_active_value']['expose']['operator_id'] = 'field_active_value_op';
+  $handler->display->display_options['filters']['field_active_value']['expose']['label'] = 'Active';
+  $handler->display->display_options['filters']['field_active_value']['expose']['operator'] = 'field_active_value_op';
+  $handler->display->display_options['filters']['field_active_value']['expose']['identifier'] = 'field_active_value';
+  $handler->display->display_options['filters']['field_active_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  $handler->display->display_options['filters']['field_active_value']['is_grouped'] = TRUE;
+  $handler->display->display_options['filters']['field_active_value']['group_info']['identifier'] = 'field_active_value';
+  $handler->display->display_options['filters']['field_active_value']['group_info']['optional'] = FALSE;
+  $handler->display->display_options['filters']['field_active_value']['group_info']['remember'] = 1;
+  $handler->display->display_options['filters']['field_active_value']['group_info']['default_group'] = '1';
+  $handler->display->display_options['filters']['field_active_value']['group_info']['group_items'] = array(
+    1 => array(
+      'title' => 'Only active',
+      'operator' => 'or',
+      'value' => array(
+        1 => '1',
+      ),
+    ),
+    2 => array(
+      'title' => 'Only deactivated',
+      'operator' => 'or',
+      'value' => array(
+        0 => '0',
+      ),
+    ),
+    3 => array(
+      'title' => 'Both',
+      'operator' => 'not empty',
+      'value' => array(
+        'all' => 'all',
+      ),
+    ),
+  );
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -1310,6 +1352,7 @@ function serchilo_features_views_default_views() {
     t('Tags'),
     t('<div title="✔ = Approved, ✖ = pending moderation">[status]</div>'),
     t('URL'),
+    t('Active'),
     t('Page'),
     t('✔'),
     t('<div title="✔ = Approved, ✖ = pending moderation">[field_approved]</div>'),
