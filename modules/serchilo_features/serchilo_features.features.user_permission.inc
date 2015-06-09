@@ -514,6 +514,15 @@ function serchilo_features_user_default_permissions() {
     'module' => 'path',
   );
 
+  // Exported permission: 'deactivate any shortcut content'.
+  $permissions['deactivate any shortcut content'] = array(
+    'name' => 'deactivate any shortcut content',
+    'roles' => array(
+      'moderator' => 'moderator',
+    ),
+    'module' => 'serchilo',
+  );
+
   // Exported permission: 'delete any article content'.
   $permissions['delete any article content'] = array(
     'name' => 'delete any article content',

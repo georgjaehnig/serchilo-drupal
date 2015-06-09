@@ -404,6 +404,7 @@ features[user_permission][] = create field_url
 features[user_permission][] = create field_weight
 features[user_permission][] = create shortcut content
 features[user_permission][] = create url aliases
+features[user_permission][] = deactivate any shortcut content
 features[user_permission][] = delete any article content
 features[user_permission][] = delete any discussion content
 features[user_permission][] = delete any shortcut content
