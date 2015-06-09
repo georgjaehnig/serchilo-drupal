@@ -448,6 +448,49 @@ function serchilo_features_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-shortcut-field_active'
+  $field_instances['node-shortcut-field_active'] = array(
+    'bundle' => 'shortcut',
+    'default_value' => array(
+      0 => array(
+        'value' => 1,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 18,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_active',
+    'label' => 'Active',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 18,
+    ),
+  );
+
   // Exported field_instance: 'node-shortcut-field_approved'
   $field_instances['node-shortcut-field_approved'] = array(
     'bundle' => 'shortcut',
@@ -1364,6 +1407,7 @@ function serchilo_features_field_default_field_instances() {
   t('<a href="/help/default-keyword">Learn more about the default keyword.</a>');
   t('<a href="https://help.github.com/articles/markdown-basics/">Markdown</a> enabled.');
   t('A string of key=value pairs separated by ampersands, to be sent with POST method. May contain placeholders as the URL.');
+  t('Active');
   t('Affected shortcuts');
   t('Allows regular automatic testing to check if the shortcut URL is still valid.');
   t('Approved');
