@@ -155,3 +155,52 @@ function serchilo_page_shortcut_discussion($shortcut) {
 
   return $output;
 }
+
+
+// (De)activate
+
+/**
+ * Return the Shortcut deactivate and activate form.
+ *
+ * @param $node
+ *   Node of type shortcut.
+ * @return array
+ *   Render array containing the page.
+ */
+function serchilo_form_shortcut_deactivate($form, &$form_state, $node) {
+  
+  $active = drupal_array_get_nested_value($node->field_active, array(LANGUAGE_NONE, 0, 'value')); 
+  if ($active) {
+    $action = 'deactivate';
+  }
+  else {
+    // Check if another shortcut with the same
+    // keyword, argument_count and namespace exists.
+    module_load_include('inc', 'serchilo', 'serchilo.node');
+    if (serchilo_collides_with_existing_shortcut($node)) {
+      // (Yes, one '=' is correct.)
+      if ($existing_shortcut = serchilo_collides_with_existing_shortcut($node)) {
+        $form[]['#markup'] = t(
+          'Currently cannot activate shortcut. There is already an active shortcut !title using the same keyword, argument count and namespace.',
+          array(
+            '!title' => '<em>' . l($existing_shortcut->title, 'node/' . $existing_shortcut->nid) . '</em>',
+          )
+        );
+      }
+      return $form;
+    }
+    $action = 'activate';
+  }
+
+  $form['#node'] = $node;
+  $form['nid'] = array('#type' => 'value', '#value' => $node->nid);
+
+  return confirm_form(
+    $form,
+    t('Are you sure you want to ' . $action .' %title?', array('%title' => $node->title)),
+    'node/' . $node->nid,
+    '',
+    t('Confirm'),
+    t('Cancel')
+  );
+}

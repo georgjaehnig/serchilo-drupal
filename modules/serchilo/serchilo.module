@@ -119,11 +119,11 @@ function serchilo_menu() {
       'file' => 'serchilo.pages.shortcut.inc',
     ),
 
-    'node/%node/active' => array(
+    'node/%node/deactivate' => array(
       'title callback' => 'serchilo_title_shortcut_deactivate',
       'title arguments' => array(1),
-      'page callback' => 'serchilo_page_shortcut_deactivate',
-      'page arguments' => array(1),
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('serchilo_form_shortcut_deactivate', 1),
       'access callback' => 'serchilo_access_shortcut_deactivate',
       'access arguments' => array(1),
       'weight' => 12,
