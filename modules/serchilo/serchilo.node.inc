@@ -103,6 +103,50 @@ function serchilo_delete_shortcut_row($node) {
 // Helper
 
 /**
+ * Checks if given shortcut has the same keyword, argument count
+ * and namespace as an existing shortcut.
+ *
+ * @param object $node
+ *   Shortcut node to check.
+ *
+ * @return object or FALSE
+ *   Node object of the colliding shortcut, if found.
+ *   FALSE if found none.
+ */
+function serchilo_collides_with_existing_shortcut($node) {
+
+  serchilo_set_shortcut_arguments_data($node);
+
+  $efq = new EntityFieldQuery;
+
+  $efq = $efq
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'shortcut')
+    ->fieldCondition('field_keyword',        'value',  drupal_array_get_nested_value($node->field_keyword,        array(LANGUAGE_NONE, 0, 'value')))
+    ->fieldCondition('field_argument_count', 'value',  drupal_array_get_nested_value($node->field_argument_count, array(LANGUAGE_NONE, 0, 'value')))
+    ->fieldCondition('field_namespace',      'tid',    drupal_array_get_nested_value($node->field_namespace,      array(LANGUAGE_NONE, 0, 'tid'  )))
+    ->fieldCondition('field_active',         'value',  TRUE )
+  ;
+
+  // Exclude the current shortcut.
+  if (!empty($node->nid)) {
+    $efq->propertyCondition('nid', $node->nid, '!=');
+  }
+
+  $result = $efq->execute();
+
+  // If found a colliding shortcut:
+  if (!empty($result)) {
+    $existing_shortcut_nid = array_keys($result['node'])[0];
+    $existing_shortcut = node_load($existing_shortcut_nid);
+    return $existing_shortcut;
+  }
+  else {
+    return FALSE; 
+  }
+}
+
+/**
  * Convert a shortcut node to an array of database fields.
  *
  * @param object $node
