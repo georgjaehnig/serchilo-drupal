@@ -371,6 +371,9 @@ function serchilo_permission() {
   $items['approve shortcut content'] = array(
     'title' => t('Approve shortcuts'),
   );
+  $items['deactivate any shortcut content'] = array(
+    'title' => t('Deactivate any shortcuts'),
+  );
   return $items;
 }
 
