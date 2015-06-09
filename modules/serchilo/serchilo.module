@@ -118,6 +118,19 @@ function serchilo_menu() {
       'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
       'file' => 'serchilo.pages.shortcut.inc',
     ),
+
+    'node/%node/active' => array(
+      'title callback' => 'serchilo_title_shortcut_deactivate',
+      'title arguments' => array(1),
+      'page callback' => 'serchilo_page_shortcut_deactivate',
+      'page arguments' => array(1),
+      'access callback' => 'serchilo_access_shortcut_deactivate',
+      'access arguments' => array(1),
+      'weight' => 12,
+      'type' => MENU_LOCAL_TASK,
+      'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
+      'file' => 'serchilo.pages.shortcut.inc',
+    ),
   );
 
   return $items;
@@ -189,6 +202,28 @@ function serchilo_menu_local_tasks_alter(&$data, $router_item, $root_path) {
 }
 
 
+// TITLE 
+
+/**
+ * Return title for node/%node/deactivate.
+ *
+ * @param object $node
+ *   The shortcut node.
+ *
+ * @return string
+ *   The title.
+ */
+function serchilo_title_shortcut_deactivate($node) {
+
+  if (drupal_array_get_nested_value($node->field_active, array(LANGUAGE_NONE, 0, 'value'))) {
+    return t('Deactivate'); 
+  }
+  else {
+    return t('Activate'); 
+  }
+}
+
+
 // ACCESS 
 
 /**
@@ -231,6 +266,47 @@ function serchilo_access_shortcut_discussion($node) {
     return FALSE; 
   }
   return TRUE; 
+}
+
+/**
+ * Access callback for node/%node/deactivate.
+ *
+ * @param object $node
+ *   The shortcut node.
+ *
+ * @return bool
+ *   TRUE if access is given.
+ *   FALSE if access is not given.
+ */
+function serchilo_access_shortcut_deactivate($node) {
+
+  global $user;
+
+  if ($node->type != 'shortcut') {
+    return FALSE; 
+  }
+
+  if (user_access('deactivate any shortcut content')) {
+    return TRUE; 
+  }
+
+  $wnode = entity_metadata_wrapper('node', $node);
+
+  // If not a user namespace:
+  // Everyone can deactivate.
+  if ('user' != $wnode->field_namespace->field_namespace_type->name->value()) {
+    return TRUE;
+  }
+
+  // If a user is on a shortcut in his own namespace
+  // Can deactivate.
+  if (user_is_logged_in()) {
+    if ($user->name == $wnode->field_namespace->name->value()) {
+      return TRUE; 
+    }
+  }
+
+  return FALSE;
 }
 
 
