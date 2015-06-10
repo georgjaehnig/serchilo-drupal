@@ -72,6 +72,7 @@ function serchilo_shortcut_approve_confirm($form, &$form_state, $node) {
  * @see serchilo_shortcut_approve_confirm()
  */
 function serchilo_shortcut_approve_confirm_submit($form, &$form_state) {
+
   if ($form_state['values']['confirm']) {
     $node = node_load($form_state['values']['nid']);
     $node->field_approved[LANGUAGE_NONE][0]['value'] = (int) TRUE;
