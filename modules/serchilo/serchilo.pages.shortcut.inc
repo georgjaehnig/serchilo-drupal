@@ -163,10 +163,7 @@ function serchilo_page_shortcut_discussion($shortcut) {
 /**
  * Return the Shortcut deactivate and activate form.
  *
- * @param $node
- *   Node of type shortcut.
- * @return array
- *   Render array containing the page.
+ * @see serchilo_form_shortcut_deactivate_submit()
  */
 function serchilo_form_shortcut_deactivate($form, &$form_state, $node) {
   
