@@ -169,8 +169,7 @@ function serchilo_page_shortcut_discussion($shortcut) {
  */
 function serchilo_form_shortcut_deactivate($form, &$form_state, $node) {
   
-  $active = drupal_array_get_nested_value($node->field_active, array(LANGUAGE_NONE, 0, 'value')); 
-  if ($active) {
+  if (drupal_array_get_nested_value($node->field_active, array(LANGUAGE_NONE, 0, 'value'))) {
     $action = 'deactivate';
   }
   else {
