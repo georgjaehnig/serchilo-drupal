@@ -42,7 +42,7 @@ function serchilo_page_shortcut_changed($shortcut_id) {
 // Approve
 
 /**
- * Form constructor for the shortcut approval confirmation form.
+ * Constructs shortcut approval confirmation form.
  *
  * @see serchilo_shortcut_approve_confirm_submit()
  */
@@ -67,7 +67,7 @@ function serchilo_shortcut_approve_confirm($form, &$form_state, $node) {
 }
 
 /**
- * Executes shortcut approval.
+ * Executes shortcut approval confirmation form.
  *
  * @see serchilo_shortcut_approve_confirm()
  */
@@ -161,7 +161,7 @@ function serchilo_page_shortcut_discussion($shortcut) {
 // (De)activate
 
 /**
- * Return the Shortcut deactivate and activate form.
+ * Constructs Shortcut deactivate and activate form.
  *
  * @see serchilo_form_shortcut_deactivate_submit()
  */
