@@ -206,6 +206,9 @@ td.views-field-field-namespace a,
   list-style: none;
   display: inline;
 }
+tr.not-active {
+	text-decoration: line-through;
+}
 /* ==================================== /view: shortcuts */
 
 /* ==================================== view: feed icons */

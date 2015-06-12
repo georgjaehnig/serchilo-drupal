@@ -910,7 +910,9 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['row_class'] = '[field_active]';
   $handler->display->display_options['style_options']['columns'] = array(
+    'field_active' => 'field_active',
     'field_keyword' => 'field_keyword',
     'field_argument_names' => 'field_argument_names',
     'title' => 'title',
@@ -920,6 +922,13 @@ function serchilo_features_views_default_views() {
   );
   $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
+    'field_active' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
     'field_keyword' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
@@ -1176,6 +1185,19 @@ function serchilo_features_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Active */
+  $handler->display->display_options['fields']['field_active']['id'] = 'field_active';
+  $handler->display->display_options['fields']['field_active']['table'] = 'field_data_field_active';
+  $handler->display->display_options['fields']['field_active']['field'] = 'field_active';
+  $handler->display->display_options['fields']['field_active']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_active']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_active']['type'] = 'boolean_yes_no';
+  $handler->display->display_options['fields']['field_active']['settings'] = array(
+    'format' => 'custom',
+    'custom_on' => 'active',
+    'custom_off' => 'not-active',
+    'reverse' => 0,
+  );
   /* Field: Content: Keyword */
   $handler->display->display_options['fields']['field_keyword']['id'] = 'field_keyword';
   $handler->display->display_options['fields']['field_keyword']['table'] = 'field_data_field_keyword';
