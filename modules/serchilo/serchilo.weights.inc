@@ -119,10 +119,12 @@ function serchilo_calculate_shortcut_weights() {
       // Only if namespace_id matches current namespace.
       if ($shortcut->field_namespace[LANGUAGE_NONE][0]['tid'] == $shortcut_call->namespace_id) {
 
-        $shortcut->field_weight[LANGUAGE_NONE][0]['value'] = 
-          $shortcut_call->count / $calls_last_30_days[0]->count;
-        // Max length is 10.
-        $shortcut->field_weight[LANGUAGE_NONE][0]['value'] = substr($shortcut->field_weight[LANGUAGE_NONE][0]['value'], 0, 10);
+        $weight = $shortcut_call->count / $calls_last_30_days[0]->count;
+
+        // Limit decimals.
+        $weight = sprintf("%.8f", $weight);
+
+        $shortcut->field_weight[LANGUAGE_NONE][0]['value'] = $weight;
         field_attach_update('node', $shortcut);
 
         module_load_include('inc', 'serchilo', 'serchilo.node');
