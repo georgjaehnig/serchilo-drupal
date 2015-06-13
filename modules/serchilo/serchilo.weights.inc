@@ -124,6 +124,9 @@ function serchilo_calculate_shortcut_weights() {
         // Max length is 10.
         $shortcut->field_weight[LANGUAGE_NONE][0]['value'] = substr($shortcut->field_weight[LANGUAGE_NONE][0]['value'], 0, 10);
         field_attach_update('node', $shortcut);
+
+        module_load_include('inc', 'serchilo', 'serchilo.node');
+        serchilo_update_shortcut_row($shortcut);
       }
     }
   }
