@@ -1023,11 +1023,6 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['fields']['status']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['status']['type'] = 'unicode-yes-no';
   $handler->display->display_options['fields']['status']['not'] = 0;
-  /* Sort criterion: Content: Weight (field_weight) */
-  $handler->display->display_options['sorts']['field_weight_value']['id'] = 'field_weight_value';
-  $handler->display->display_options['sorts']['field_weight_value']['table'] = 'field_data_field_weight';
-  $handler->display->display_options['sorts']['field_weight_value']['field'] = 'field_weight_value';
-  $handler->display->display_options['sorts']['field_weight_value']['order'] = 'DESC';
   /* Sort criterion: Content: Keyword (field_keyword) */
   $handler->display->display_options['sorts']['field_keyword_value']['id'] = 'field_keyword_value';
   $handler->display->display_options['sorts']['field_keyword_value']['table'] = 'field_data_field_keyword';
