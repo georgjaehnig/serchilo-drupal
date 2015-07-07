@@ -291,6 +291,11 @@ function serchilo_is_sensible_edit($node) {
   // Work with wrapped node.
   $wnode = entity_metadata_wrapper('node', $node);
 
+  // An unapproved shortcut stays unapproved.
+  if (!$wnode->field_approved->value()) {
+    return TRUE; 
+  }
+
   // Non-new shortcuts:
   // TODO: Find 'proper' way to check if new.
   if (!empty($node->nid)) {
