@@ -288,20 +288,18 @@ function serchilo_is_sensible_edit($node) {
   // Default is TRUE.
   $is_sensible_edit = TRUE;
 
+  // Work with wrapped node.
+  $wnode = entity_metadata_wrapper('node', $node);
+
   // Non-new shortcuts:
+  // TODO: Find 'proper' way to check if new.
   if (!empty($node->nid)) {
     $original_node = node_load($node->nid);
     $woriginal_node = entity_metadata_wrapper('node', $original_node);
 
-    $change_in_keyword = 
-      drupal_array_get_nested_value($original_node->field_keyword, array(LANGUAGE_NONE, 0, 'value')) 
-      != drupal_array_get_nested_value($node->field_keyword, array(LANGUAGE_NONE, 0, 'value'));
-    $change_in_url =
-      drupal_array_get_nested_value($original_node->field_url, array(LANGUAGE_NONE, 0, 'value')) 
-      != drupal_array_get_nested_value($node->field_url, array(LANGUAGE_NONE, 0, 'value'));
-    $change_in_namespace =
-      drupal_array_get_nested_value($original_node->field_namespace, array(LANGUAGE_NONE, 0, 'tid')) 
-      != drupal_array_get_nested_value($node->field_namespace, array(LANGUAGE_NONE, 0, 'tid'));
+    $change_in_keyword   = $wnode->field_keyword        ->value() != $woriginal_node->field_keyword        ->value();
+    $change_in_url       = $wnode->field_url            ->value() != $woriginal_node->field_url            ->value();
+    $change_in_namespace = $wnode->field_namespace->name->value() != $woriginal_node->field_namespace->name->value();
         
     $is_sensible_edit = 
       $change_in_keyword || 
@@ -311,7 +309,7 @@ function serchilo_is_sensible_edit($node) {
     // Allow editing within the first X minutes after creation.
     if (
       $is_sensible_edit && 
-      ($original_node->created > time() - SERCHILO_EDIT_NON_SENSIBLE_AFTER_CREATED * 60) 
+      ($woriginal_node->created->value() > time() - SERCHILO_EDIT_NON_SENSIBLE_AFTER_CREATED * 60) 
     ) {
       $is_sensible_edit = FALSE;
       drupal_set_message(
@@ -357,7 +355,7 @@ function serchilo_is_sensible_edit($node) {
         $is_sensible_edit = ($user->name != $woriginal_node->field_namespace->name->value());
       }
       else {
-        $is_sensible_edit = ($user->name != drupal_array_get_nested_value($node->field_namespace, array(LANGUAGE_NONE, 0, 'name')));
+        $is_sensible_edit = ($user->name != $wnode->field_namespace->name->value());
       }
     }
   }
