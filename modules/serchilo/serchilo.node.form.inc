@@ -79,7 +79,7 @@ function serchilo_form_validate_lowercase($element, &$form_state) {
  */
 function serchilo_form_validate_field_namespace($element, &$form_state) {
 
-  if (!user_permission('edit any shortcut content')) {
+  if (user_permission('approve shortcut content')) {
     return TRUE;
   }
 
