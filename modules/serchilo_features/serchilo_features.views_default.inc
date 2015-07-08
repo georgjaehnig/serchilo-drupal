@@ -291,7 +291,7 @@ function serchilo_features_views_default_views() {
   $handler->display->display_options['footer']['area_text_custom']['table'] = 'views';
   $handler->display->display_options['footer']['area_text_custom']['field'] = 'area_text_custom';
   $handler->display->display_options['footer']['area_text_custom']['empty'] = TRUE;
-  $handler->display->display_options['footer']['area_text_custom']['content'] = '<a href="/node/add/discussion">Add new discussion</a>';
+  $handler->display->display_options['footer']['area_text_custom']['content'] = '<a href="/node/add/discussion" class="btn btn-default">Add new discussion</a>';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -355,7 +355,7 @@ function serchilo_features_views_default_views() {
     t('next ›'),
     t('last »'),
     t('<a href="/forum.xml" class="feed-icon" title="Subscribe to Forum"><img src="/misc/feed.png" width="16" height="16" alt="Subscribe to Forum"></a>'),
-    t('<a href="/node/add/discussion">Add new discussion</a>'),
+    t('<a href="/node/add/discussion" class="btn btn-default">Add new discussion</a>'),
     t('Title'),
     t('Replies'),
     t('.'),
