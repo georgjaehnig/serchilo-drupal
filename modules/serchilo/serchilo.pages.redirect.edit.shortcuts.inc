@@ -53,7 +53,6 @@ function serchilo_redirect_edit_shortcuts() {
   // Now search for the shortcut.
 
   $keyword        = (string) $_GET['keyword'];
-  $argument_count = (empty($_GET['argument_count']) ? 0 : $_GET['argument_count']);
 
   $efq = new EntityFieldQuery;
 
@@ -61,10 +60,25 @@ function serchilo_redirect_edit_shortcuts() {
     ->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'shortcut')
     ->fieldCondition('field_keyword',        'value',  $keyword)
-    ->fieldCondition('field_argument_count', 'value',  $argument_count)
     ->fieldCondition('field_namespace',      'tid',    $namespace_id)
     ->fieldCondition('field_active',         'value',  TRUE )
   ;
+
+  // If no argument_count provided
+  // Search for the shortcut with the lowest argument count.
+  if (!isset($_GET['argument_count'])) {
+    $efq 
+      ->fieldCondition('field_argument_count', 'value', 0, '>=')
+      ->fieldOrderBy('field_argument_count', 'value')
+    ;
+  }
+  else {
+    $argument_count = $_GET['argument_count'];
+    $efq 
+      ->fieldCondition('field_argument_count', 'value', $argument_count)
+    ;
+  }
+
   $result = $efq->execute();
 
   // If nothing found: 
