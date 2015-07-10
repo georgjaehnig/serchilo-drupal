@@ -574,6 +574,8 @@ function serchilo_theme($existing, $type, $theme, $path) {
  *   Theme variables, with keys:
  *     - with_namespace
  *       True when the link text shall contain the namespace name.
+ *     - (optional) source
+ *       The source param value, added to the example link. 
  *     - Either
  *       - shortcut
  *         The shortcut node object.
@@ -595,6 +597,10 @@ function theme_serchilo_shortcut_example_link($variables) {
     elseif (is_string($variables['arguments'])) {
       $arguments_str = $variables['arguments']; 
     }
+  }
+
+  if (empty($variables['source'])) {
+    $variables['source'] = 'example';
   }
   
   if (!empty($variables['shortcut'])) {
@@ -631,6 +637,7 @@ function theme_serchilo_shortcut_example_link($variables) {
       ),
       'query' => array(
         'query' => $query,
+        'source' => $variables['source'],
       ), 
     ),
   );
