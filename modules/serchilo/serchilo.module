@@ -85,6 +85,13 @@ function serchilo_menu() {
       'file' => 'serchilo.pages.shortcut.inc',
     ),
 
+    'shortcuts/edit' => array(
+      'page callback' => 'serchilo_redirect_edit_shortcuts',
+      'access callback' => TRUE,
+      'type' => MENU_CALLBACK,
+      'file' => 'serchilo.pages.redirect.edit.shortcuts.inc',
+    ),
+
     // Redirect broken Shortcut URLs
 
     'shortcuts/%' => array(
