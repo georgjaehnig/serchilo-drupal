@@ -972,6 +972,11 @@ function serchilo_comment_delete($node) {
  */
 function serchilo_clone_node_alter(&$node, $context) {
 
+  // Remove generated title prefix.
+  if (substr($node->title, 0, 9) == 'Clone of ') {
+    $node->title = substr($node->title, 9);
+  }
+
   // Set stats fields to 0.
   $node->field_calls_last_30_days[LANGUAGE_NONE][0]['value'] = 0;
   $node->field_calls_total       [LANGUAGE_NONE][0]['value'] = 0;
