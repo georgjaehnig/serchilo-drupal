@@ -110,7 +110,7 @@ function serchilo_redirect_edit_shortcuts() {
 
   // If found:
   // Redirect to node edit.
-  $nid = array_shift(array_keys($result['node']));
+  $nid = current(array_keys($result['node']));
   drupal_goto('node/' . $nid . '/edit');
 
 }
