@@ -1121,6 +1121,35 @@ function serchilo_form_discussion_node_form_alter(&$form, &$form_state, $form_id
 }
 
 
+// User login form
+
+/**
+ * Implements hook_form_alter().
+ */
+function serchilo_form_user_login_alter(&$form, &$form_state) {
+
+  global $base_url;
+
+  // Only if referrer starts with base_url of this website.
+  if (0 !== strpos($_SERVER['HTTP_REFERER'], $base_url)) {
+    return;
+  }
+
+  // Use a relative path.
+  $destination = str_replace($base_url, '', $_SERVER['HTTP_REFERER']);
+
+  // If referrer is non-user console:
+  // don't set it as redirect
+  // instead rely on automatic redirect to user console.
+  if (0 === strpos($destination, '/n/')) {
+    return;
+  }
+
+  // Redirect to previous page.
+  $form['#action'] = url('user', array('query' => array('destination' => $destination)));
+  
+}  
+
 // User register form
 
 /**
