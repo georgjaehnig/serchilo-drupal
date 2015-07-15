@@ -91,6 +91,7 @@ function serchilo_form_validate_field_namespace($element, &$form_state) {
   // If this is a user namespace.
   if ($wnamespace->field_namespace_type->name->value() == 'user') {
     if (user_is_logged_in()) {
+
       if ($namespace_name != $user->name) {
         form_error( $element, t('Namespace must be a site namespace or your user namespace.'));
       }
