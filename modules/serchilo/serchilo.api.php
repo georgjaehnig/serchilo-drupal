@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Hooks provided by the diff module.
+ * Hooks provided by the serchilo module.
  */
 
 /**
