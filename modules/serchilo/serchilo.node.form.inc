@@ -96,7 +96,15 @@ function serchilo_form_validate_field_namespace($element, &$form_state) {
         form_error( $element, t('Namespace must be a site namespace or your user namespace.'));
       }
     } else {
-      form_error( $element, t('Namespace must be a site namespace.'));
+      form_error( 
+        $element, 
+        t(
+          'Namespace must be a site namespace. To edit shortcuts in your user namespace, please !login.',
+          array(
+            '!login' => l(t('login'), 'user/login') 
+          )
+        )
+      );
     }
   }
 }
