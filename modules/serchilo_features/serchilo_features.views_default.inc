@@ -1176,6 +1176,13 @@ function serchilo_features_views_default_views() {
       ),
     ),
   );
+  /* Filter criterion: Content: Invisible (field_invisible) */
+  $handler->display->display_options['filters']['field_invisible_value']['id'] = 'field_invisible_value';
+  $handler->display->display_options['filters']['field_invisible_value']['table'] = 'field_data_field_invisible';
+  $handler->display->display_options['filters']['field_invisible_value']['field'] = 'field_invisible_value';
+  $handler->display->display_options['filters']['field_invisible_value']['value'] = array(
+    0 => '0',
+  );
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
