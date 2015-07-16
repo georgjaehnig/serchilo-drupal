@@ -28,7 +28,7 @@ function serchilo_page_shortcut_changed($shortcut_id) {
       ':title changed its keyword to :keyword. Continue with !query_link.',
       array(
         ':title' => $shortcut->title,
-        ':keyword' =>  'g',
+        ':keyword' =>  $shortcut->field_keyword[LANGUAGE_NONE][0]['value'],
         '!query_link' => render($query_link),
       )
     ), 
