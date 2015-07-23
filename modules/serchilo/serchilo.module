@@ -82,7 +82,7 @@ function serchilo_menu() {
       'page arguments' => array(1),
       'type' => MENU_CALLBACK,
       'access callback' => TRUE,
-      'file' => 'serchilo.pages.shortcut.inc',
+      'file' => 'serchilo.pages.shortcut.changed.inc',
     ),
 
     'shortcuts/edit' => array(
@@ -111,7 +111,7 @@ function serchilo_menu() {
       'weight' => 10,
       'type' => MENU_LOCAL_TASK,
       'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
-      'file' => 'serchilo.pages.shortcut.inc',
+      'file' => 'serchilo.pages.shortcut.approve.inc',
     ),
 
     'node/%node/discussion' => array(
@@ -123,7 +123,7 @@ function serchilo_menu() {
       'weight' => 11,
       'type' => MENU_LOCAL_TASK,
       'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
-      'file' => 'serchilo.pages.shortcut.inc',
+      'file' => 'serchilo.pages.shortcut.discussion.inc',
     ),
 
     'node/%node/deactivate' => array(
@@ -136,7 +136,7 @@ function serchilo_menu() {
       'weight' => 12,
       'type' => MENU_LOCAL_TASK,
       'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
-      'file' => 'serchilo.pages.shortcut.inc',
+      'file' => 'serchilo.pages.shortcut.deactivate.inc',
     ),
   );
 
