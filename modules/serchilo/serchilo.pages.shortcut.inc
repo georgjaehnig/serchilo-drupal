@@ -15,12 +15,14 @@ function serchilo_page_shortcut_changed($shortcut_id) {
 
   $shortcut = node_load($shortcut_id);
   $arguments = (drupal_array_get_nested_value($_GET, array('arguments')) ?: array());
+  $with_namespace = (bool) (drupal_array_get_nested_value($_GET, array('with_namespace')) ?: FALSE);
 
   $query_link = theme(
     'serchilo_shortcut_example_link', 
     array(
       'shortcut' => $shortcut, 
       'arguments' => $arguments,
+      'with_namespace' => $with_namespace,
     )
   );
   drupal_set_message(
