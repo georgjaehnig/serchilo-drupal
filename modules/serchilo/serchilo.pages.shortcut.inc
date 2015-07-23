@@ -20,7 +20,7 @@ function serchilo_page_shortcut_changed($shortcut_id) {
     'serchilo_shortcut_example_link', 
     array(
       'shortcut' => $shortcut, 
-      'arguments' => $arguments
+      'arguments' => $arguments,
     )
   );
   drupal_set_message(
