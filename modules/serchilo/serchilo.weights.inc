@@ -41,7 +41,7 @@ function serchilo_calculate_shortcut_calls() {
 function serchilo_fetch_shortcut_calls($after_timestamp) {
 
   $shortcut_calls = 
-    db_query('
+    db_query("
       SELECT 
         *, 
         COUNT(*) AS count
@@ -49,10 +49,11 @@ function serchilo_fetch_shortcut_calls($after_timestamp) {
         serchilo_shortcut_log
       WHERE
         called > :after_timestamp AND
-        shortcut_id > 0
+        shortcut_id > 0 AND
+        source NOT LIKE '%example%'
       GROUP BY 
         shortcut_id, namespace_id;
-      ',
+      ",
       array(
         ':after_timestamp' => $after_timestamp,
       ) 
@@ -76,15 +77,16 @@ function serchilo_calculate_shortcut_weights() {
   $after_timestamp = time() - (7*24*60*60*30); 
 
   $calls_last_30_days = 
-    db_query('
+    db_query("
       SELECT 
         COUNT(*) AS count
       FROM 
         serchilo_shortcut_log
       WHERE
         called > :after_timestamp AND
-        namespace_id > 0
-      ',
+        namespace_id > 0 AND
+        source NOT LIKE '%example%'
+      ",
       array(
         ':after_timestamp' => $after_timestamp,
       ) 
@@ -92,7 +94,7 @@ function serchilo_calculate_shortcut_weights() {
     ->fetchAll();
 
   $shortcut_calls = 
-    db_query('
+    db_query("
       SELECT 
         *, 
         COUNT(*) AS count
@@ -100,10 +102,11 @@ function serchilo_calculate_shortcut_weights() {
         serchilo_shortcut_log
       WHERE
         called > :after_timestamp AND
-        shortcut_id > 0
+        shortcut_id > 0 AND
+        source NOT LIKE '%example%'
       GROUP BY 
         shortcut_id;
-      ',
+      ",
       array(
         ':after_timestamp' => $after_timestamp,
       ) 
