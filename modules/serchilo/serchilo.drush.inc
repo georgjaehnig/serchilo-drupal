@@ -54,7 +54,38 @@ function serchilo_drush_command() {
     'aliases' => array('sssa'), 
   );
 
+  $items['serchilo-reset-shortcut-stats'] = array(
+    'callback' => 'drush_serchilo_reset_shortcut_stats',
+    'aliases' => array('srss'), 
+  );
+
   return $items;
+}
+
+/**
+ * Set shortcut calls and weights to 0.
+ *
+ * @return void
+ */
+function drush_serchilo_reset_shortcut_stats() {
+  
+  $efq = new EntityFieldQuery;
+
+  $result = $efq
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'shortcut')
+    ->execute();
+
+  $nids = array_keys(array_shift($result));
+
+  foreach ($nids as $nid) {
+    echo $nid . ' ';
+    $node = node_load($nid);
+    drupal_array_set_nested_value($node->field_calls_total,        array(LANGUAGE_NONE, 0, 'value'), 0);
+    drupal_array_set_nested_value($node->field_calls_last_30_days, array(LANGUAGE_NONE, 0, 'value'), 0);
+    drupal_array_set_nested_value($node->field_weight,             array(LANGUAGE_NONE, 0, 'value'), 0);
+    field_attach_update('node', $node);
+  }
 }
 
 /**
