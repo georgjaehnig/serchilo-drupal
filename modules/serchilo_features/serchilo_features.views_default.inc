@@ -652,6 +652,22 @@ function serchilo_features_views_default_views() {
   );
   $handler->display->display_options['filters']['field_namespace_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_namespace_type_tid']['vocabulary'] = 'namespace_types';
+  /* Filter criterion: Content: Active (field_active) */
+  $handler->display->display_options['filters']['field_active_value']['id'] = 'field_active_value';
+  $handler->display->display_options['filters']['field_active_value']['table'] = 'field_data_field_active';
+  $handler->display->display_options['filters']['field_active_value']['field'] = 'field_active_value';
+  $handler->display->display_options['filters']['field_active_value']['relationship'] = 'nid';
+  $handler->display->display_options['filters']['field_active_value']['value'] = array(
+    1 => '1',
+  );
+  /* Filter criterion: Content: Invisible (field_invisible) */
+  $handler->display->display_options['filters']['field_invisible_value']['id'] = 'field_invisible_value';
+  $handler->display->display_options['filters']['field_invisible_value']['table'] = 'field_data_field_invisible';
+  $handler->display->display_options['filters']['field_invisible_value']['field'] = 'field_invisible_value';
+  $handler->display->display_options['filters']['field_invisible_value']['relationship'] = 'nid';
+  $handler->display->display_options['filters']['field_invisible_value']['value'] = array(
+    0 => '0',
+  );
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
