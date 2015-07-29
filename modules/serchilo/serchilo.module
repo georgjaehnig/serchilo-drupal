@@ -1013,7 +1013,8 @@ function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) 
       $form['field_namespace']['#attached']['js'][] = array(
         'data' => array(
           'serchilo' => array(
-            'user_name' => $user->name,
+            'link_text'      => t('Use my user namespace'),
+            'namespace_name' => $user->name,
           ),
         ),
         'type' => 'setting',
