@@ -1002,6 +1002,12 @@ function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) 
     '#weight' => -10,
   );
 
+  // Prefill empty example descriptions when entered an argument.
+  $form['field_example']['#attached']['js'][] = array(
+    'data' => drupal_get_path('module', 'serchilo') . '/js/shortcut.form.field_example.js',
+    'type' => 'file',
+  );
+
   // If creating a new Shortcut:
   if (empty($form['nid']['#value'])) {
     if (user_is_logged_in()) {
