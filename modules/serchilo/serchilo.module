@@ -1007,14 +1007,16 @@ function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) 
     if (user_is_logged_in()) {
       // Add link to set user namespace.
       $form['field_namespace']['#attached']['js'][] = array(
-        'data' => 'jQuery(document).ready(function () { 
-          var link = jQuery("<a style=\"cursor: pointer; cursor: hand;\">Use my user namespace</a>");
-          link.click(function() {
-            jQuery("#edit-field-namespace-und").val("' . $user->name .  '");
-          });
-          jQuery(".form-item-field-namespace-und").append(link);
-        });', 
-        'type' => 'inline',
+        'data' => drupal_get_path('module', 'serchilo') . '/js/shortcut.form.field_namespace.js',
+        'type' => 'file',
+      );
+      $form['field_namespace']['#attached']['js'][] = array(
+        'data' => array(
+          'serchilo' => array(
+            'user_name' => $user->name,
+          ),
+        ),
+        'type' => 'setting',
       );
     }
     if (!empty($_GET['namespace'])) {
