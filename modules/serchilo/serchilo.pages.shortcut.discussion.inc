@@ -56,7 +56,12 @@ function serchilo_page_shortcut_discussion($shortcut) {
     '#path' =>  'node/add/discussion',
     '#attributes' =>  array(),
     '#options' => array(
-      'attributes' => array(),
+      'attributes' => array(
+        'class' => array(
+          'btn', 
+          'btn-default', 
+        )
+      ),
       'html' => FALSE,
       'query' => array(
         'shortcut_affected' => $shortcut->nid, 
