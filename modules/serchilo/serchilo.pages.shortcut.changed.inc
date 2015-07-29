@@ -35,6 +35,13 @@ function serchilo_page_shortcut_changed($shortcut_id) {
     'warning'
   );
 
-  drupal_goto('node/' . $shortcut->nid );
+  drupal_goto(
+    'node/' . $shortcut->nid,
+    array(
+      'query' => array(
+        'arguments' => drupal_array_get_nested_value($_GET, array('arguments')),
+      ), 
+    )
+  );
 }
 

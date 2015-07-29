@@ -16,6 +16,9 @@
  */
 function serchilo_shortcut_call_form($form, $form_state, $node) {
 
+  // Get optional arguments from GET query string.
+  $arguments = drupal_array_get_nested_value($_GET, array('arguments')) ?: array();
+
   $form = array();
 
   $form['#attributes']['class'] = array('form-inline'); 
@@ -53,6 +56,7 @@ function serchilo_shortcut_call_form($form, $form_state, $node) {
       '#attributes' => array(
         'placeholder' => $argument_name,
       ), 
+      '#default_value' => drupal_array_get_nested_value($arguments, array($i)),
     );
   }
 
