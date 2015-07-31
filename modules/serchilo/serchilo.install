@@ -52,6 +52,12 @@ function serchilo_schema() {
         'unsigned' => TRUE,
         'not null' => TRUE,
       ),
+      'vid' => array(
+        'description' => 'The revision id.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
       'title' => array(
         'description' => 'The node title.',
         'type' => 'varchar',
@@ -99,6 +105,13 @@ function serchilo_schema() {
       ),
       'set_referrer' => array(
         'description' => 'If true, will redirect the shortcut via HTML refresh, to set a referrer.',
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => FALSE,
+        'default' => 0,
+      ),
+      'approved' => array(
+        'description' => 'If false, will redirect first to sight page.',
         'type' => 'int',
         'size' => 'tiny',
         'not null' => FALSE,
