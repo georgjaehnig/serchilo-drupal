@@ -394,8 +394,8 @@ function serchilo_get_console_examples() {
   );
 
   drupal_alter('serchilo_console_examples', $shortcut_ids, $context);
-
-  if (empty($shortcut_ids)) {
+  
+  if (!is_array($shortcut_ids)) {
     return array(); 
   }
   $examples = array();
