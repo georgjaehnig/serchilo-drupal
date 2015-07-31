@@ -398,6 +398,10 @@ function serchilo_get_console_examples() {
   if (!is_array($shortcut_ids)) {
     return array(); 
   }
+  
+  // Filter out empty IDs.
+  $shortcut_ids = array_filter($shortcut_ids);
+
   $examples = array();
   foreach ($shortcut_ids as $shortcut_id) {
     $shortcut = node_load($shortcut_id);
