@@ -416,6 +416,7 @@ function serchilo_entity_diff_alter(&$entity_diffs, $context) {
         'field_calls_total',
         'field_calls_last_30_days',
         'field_approved',
+        'field_activated',
       );
       foreach($order as $index=>&$field_name) {
         if (!empty($entity_diffs[$field_name])) {
@@ -449,6 +450,14 @@ function serchilo_entity_diff_alter(&$entity_diffs, $context) {
       if (!empty($entity_diffs['field_approved'])) {
         $entity_diffs['field_approved']['#old'] = $mapping_approved[(int) $entity_diffs['field_approved']['#old']];
         $entity_diffs['field_approved']['#new'] = $mapping_approved[(int) $entity_diffs['field_approved']['#new']];
+      }
+      $mapping_active = array(
+        0 => '❙❙ (' . t('deactivated') . ')',
+        1 => '▶ (' . t('active') . ')',
+      );
+      if (!empty($entity_diffs['field_active'])) {
+        $entity_diffs['field_active']['#old'] = $mapping_active[(int) $entity_diffs['field_active']['#old']];
+        $entity_diffs['field_active']['#new'] = $mapping_active[(int) $entity_diffs['field_active']['#new']];
       }
     }
   }
