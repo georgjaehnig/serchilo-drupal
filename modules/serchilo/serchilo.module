@@ -816,15 +816,8 @@ function serchilo_node_presave($node) {
 function serchilo_node_insert($node) {
 
   if ($node->type == 'shortcut') {
-    if (!empty($node->field_approved[LANGUAGE_NONE][0]['value'])) {
-      if (!empty($node->field_active[LANGUAGE_NONE][0]['value'])) {
-        module_load_include('inc', 'serchilo', 'serchilo.node');
-        $num_affected = serchilo_insert_shortcut_row($node);
-        // Deactivate as due to new field_active and field_approved flags, the 
-        // number can be correctly 0.
-        //serchilo_watchdog_check_number_of_affected_rows($num_affected, $node, __FUNCTION__);
-      }
-    }
+    module_load_include('inc', 'serchilo', 'serchilo.node');
+    serchilo_sync_shortcut_row($node);
   }
   if (module_exists('boost')) {
     boost_flush_caches();
@@ -841,15 +834,8 @@ function serchilo_node_update($node) {
     // or just one caused by the bug in
     // https://www.drupal.org/node/2385985
     if (!empty($node->revision)) {
-      if (!empty($node->field_approved[LANGUAGE_NONE][0]['value'])) {
-        if (!empty($node->field_active[LANGUAGE_NONE][0]['value'])) {
-          module_load_include('inc', 'serchilo', 'serchilo.node');
-          $num_affected = serchilo_insert_or_update_shortcut_row($node);
-          // Deactivate as due to new field_active and field_approved flags, the 
-          // number can be correctly 0.
-          //serchilo_watchdog_check_number_of_affected_rows($num_affected, $node, __FUNCTION__);
-        }
-      }
+      module_load_include('inc', 'serchilo', 'serchilo.node');
+      serchilo_sync_shortcut_row($node);
     }
   }
   if (module_exists('boost')) {

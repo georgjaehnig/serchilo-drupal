@@ -58,13 +58,13 @@ function serchilo_form_shortcut_deactivate_submit($form, &$form_state) {
     $node = node_load($form_state['values']['nid']);
 
     if (drupal_array_get_nested_value($node->field_active, array(LANGUAGE_NONE, 0, 'value'))) {
-      serchilo_delete_shortcut_row($node);
+      serchilo_sync_shortcut_row($node);
       $node->field_active[LANGUAGE_NONE][0]['value'] = (int) FALSE;
       $node->log = 'Deactivated.';
       drupal_set_message(t('Shortcut %title has been deactivated.', array('%title' => $node->title)));
     }
     else {
-      serchilo_insert_shortcut_row($node);
+      serchilo_sync_shortcut_row($node);
       $node->field_active[LANGUAGE_NONE][0]['value'] = (int) TRUE;
       $node->log = 'Activated.';
       drupal_set_message(t('Shortcut %title has been activated.', array('%title' => $node->title)));

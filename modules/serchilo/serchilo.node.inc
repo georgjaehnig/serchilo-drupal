@@ -8,6 +8,27 @@
 // Wrapper
 
 /**
+ * Sync a shortcut with its row in serchilo_shortcut table.
+ *  (New approach to later replace serchilo_insert_or_update_shortcut_row().)
+ *
+ * @param object $node
+ *   Shortcut node to deal with.
+ *
+ * @return void
+ */
+function serchilo_sync_shortcut_row($node) {
+
+  $wnode = entity_metadata_wrapper('node', $node);
+
+  // Always delete first.
+  serchilo_delete_shortcut_row($node);
+
+  if (($wnode->field_active->value()) && ($wnode->field_approved->value())) {
+    serchilo_insert_shortcut_row($node);
+  }
+}
+
+/**
  * Insert or update a shortcut row.
  *
  * @param object $node
