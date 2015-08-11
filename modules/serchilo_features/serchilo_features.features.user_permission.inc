@@ -323,6 +323,17 @@ function serchilo_features_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'create field_active'.
+  $permissions['create field_active'] = array(
+    'name' => 'create field_active',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+      'moderator' => 'moderator',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'create field_approved'.
   $permissions['create field_approved'] = array(
     'name' => 'create field_approved',
@@ -617,6 +628,17 @@ function serchilo_features_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'edit field_active'.
+  $permissions['edit field_active'] = array(
+    'name' => 'edit field_active',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+      'moderator' => 'moderator',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'edit field_approved'.
   $permissions['edit field_approved'] = array(
     'name' => 'edit field_approved',
@@ -821,6 +843,17 @@ function serchilo_features_user_default_permissions() {
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: 'edit own field_active'.
+  $permissions['edit own field_active'] = array(
+    'name' => 'edit own field_active',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+      'moderator' => 'moderator',
+    ),
+    'module' => 'field_permissions',
   );
 
   // Exported permission: 'edit own field_approved'.
@@ -1119,6 +1152,17 @@ function serchilo_features_user_default_permissions() {
     'module' => 'filter',
   );
 
+  // Exported permission: 'view field_active'.
+  $permissions['view field_active'] = array(
+    'name' => 'view field_active',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+      'moderator' => 'moderator',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'view field_approved'.
   $permissions['view field_approved'] = array(
     'name' => 'view field_approved',
@@ -1295,6 +1339,17 @@ function serchilo_features_user_default_permissions() {
   $permissions['view field_weight'] = array(
     'name' => 'view field_weight',
     'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'view own field_active'.
+  $permissions['view own field_active'] = array(
+    'name' => 'view own field_active',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+      'moderator' => 'moderator',
+    ),
     'module' => 'field_permissions',
   );
 
