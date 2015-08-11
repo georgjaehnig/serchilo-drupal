@@ -820,7 +820,9 @@ function serchilo_node_insert($node) {
       if (!empty($node->field_active[LANGUAGE_NONE][0]['value'])) {
         module_load_include('inc', 'serchilo', 'serchilo.node');
         $num_affected = serchilo_insert_shortcut_row($node);
-        serchilo_watchdog_check_number_of_affected_rows($num_affected, $node, __FUNCTION__);
+        // Deactivate as due to new field_active and field_approved flags, the 
+        // number can be correctly 0.
+        //serchilo_watchdog_check_number_of_affected_rows($num_affected, $node, __FUNCTION__);
       }
     }
   }
@@ -843,7 +845,9 @@ function serchilo_node_update($node) {
         if (!empty($node->field_active[LANGUAGE_NONE][0]['value'])) {
           module_load_include('inc', 'serchilo', 'serchilo.node');
           $num_affected = serchilo_insert_or_update_shortcut_row($node);
-          serchilo_watchdog_check_number_of_affected_rows($num_affected, $node, __FUNCTION__);
+          // Deactivate as due to new field_active and field_approved flags, the 
+          // number can be correctly 0.
+          //serchilo_watchdog_check_number_of_affected_rows($num_affected, $node, __FUNCTION__);
         }
       }
     }
