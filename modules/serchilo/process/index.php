@@ -589,7 +589,13 @@ function serchilo_find_shortcut($keyword, $argument_count, $namespace_ids) {
     # Rightmost namespaces first
     " . 
     join(',', array_map(function($v) { return "namespace_id = " . (int) $v . " DESC";  }, array_reverse($namespace_ids))) 
-    . "
+    . ",
+
+    # TODO: Change later to =0, when sight feature implemented.
+    approved=1 DESC
+
+    LIMIT 1;
+
     ";
 
   #echo $sql;
