@@ -23,9 +23,69 @@ function serchilo_sync_shortcut_row($node) {
   // Always delete first.
   serchilo_delete_shortcut_row($node);
 
+  // Case 1: active, approved
   if (($wnode->field_active->value()) && ($wnode->field_approved->value())) {
     serchilo_insert_shortcut_row($node);
+    return;
   }
+
+  // Case 2: active, not approved
+  if (($wnode->field_active->value()) && (!$wnode->field_approved->value())) {
+    serchilo_insert_shortcut_row($node);
+    // Get last approved shortcut.
+    $node_approved = serchilo_shortcut_get_last_approved_revision($node);
+    if ($node_approved) {
+      serchilo_insert_shortcut_row($node_approved);
+    }
+    return;
+  }
+
+  // Case 3: not active, approved
+  if ((!$wnode->field_active->value()) && ($wnode->field_approved->value())) {
+    // Do nothing, since non-active shortcuts shall not exist (when approved).
+    return;
+  }
+
+  // Case 4: not active, not approved
+  if ((!$wnode->field_active->value()) && (!$wnode->field_approved->value())) {
+    // Get last approved revision.
+    $node_approved = serchilo_shortcut_get_last_approved_revision($node);
+    // If none found: Get out.
+    if (!$node_approved) {
+      return;
+    }
+    $wnode_approved = entity_metadata_wrapper('node', $node_approved);
+    // If last approved revision is also active: Save only this one.
+    if ($wnode_approved->field_active->value()) {
+      serchilo_insert_shortcut_row($node_approved);
+    }
+    return;
+  }
+}
+
+function serchilo_shortcut_get_last_approved_revision($node) {
+
+  $efq = new EntityFieldQuery;
+
+  $efq = $efq
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'shortcut')
+    ->propertyCondition('nid', $node->nid )
+    ->fieldCondition('field_approved',      'value',    TRUE )
+    ->age(FIELD_LOAD_REVISION)
+    ->entityOrderBy('revision_id', 'DESC')
+    ->range(0,1)
+    ;
+
+  $result = $efq->execute();
+
+  if (!empty($result)) {
+    $node_approved = current(current($result));
+    $node_approved = node_load($node_approved->nid, $node_approved->vid);
+    return $node_approved;
+  }
+
+  return FALSE; 
 }
 
 /**
@@ -181,6 +241,7 @@ function serchilo_shortcut_to_db_fields($node) {
   $fields = array();
 
   $fields['nid']             = $node->nid;
+  $fields['vid']             = $node->vid;
   $fields['title']           = $node->title;
   $fields['keyword']         = drupal_array_get_nested_value($node->field_keyword,         array(LANGUAGE_NONE, 0, 'value'));
   $fields['argument_names']  = drupal_array_get_nested_value($node->field_argument_names,  array(LANGUAGE_NONE, 0, 'value'));
@@ -190,6 +251,7 @@ function serchilo_shortcut_to_db_fields($node) {
   $fields['weight']          = drupal_array_get_nested_value($node->field_weight,          array(LANGUAGE_NONE, 0, 'value'));
   $fields['invisible']       = drupal_array_get_nested_value($node->field_invisible,       array(LANGUAGE_NONE, 0, 'value'));
   $fields['set_referrer']    = drupal_array_get_nested_value($node->field_set_referrer,    array(LANGUAGE_NONE, 0, 'value'));
+  $fields['approved']        = drupal_array_get_nested_value($node->field_approved,        array(LANGUAGE_NONE, 0, 'value'));
   $fields['namespace_id']    = drupal_array_get_nested_value($node->field_namespace,       array(LANGUAGE_NONE, 0, 'tid'));
 
   $wnode = entity_metadata_wrapper('node', $node);
