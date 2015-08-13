@@ -102,6 +102,16 @@ function serchilo_menu() {
       'file' => 'serchilo.pages.redirect.inc',
     ),
 
+    'node/%node/revisions/sight/%' => array(
+      'title' => 'Sight new revision',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('serchilo_shortcut_sight_form', 1),
+      'load arguments' => array(4),
+      'access callback' => '_node_revision_access',
+      'access arguments' => array(1),
+      'file' => 'serchilo.pages.shortcut.sight.inc',
+    ),
+
     'node/%node/approve' => array(
       'title' => 'Approve',
       'page callback' => 'drupal_get_form',
