@@ -690,6 +690,8 @@ FROM
 WHERE 
 
   invisible = 0
+  AND
+  approved = 1
 
   AND
   argument_count >= :argument_count
