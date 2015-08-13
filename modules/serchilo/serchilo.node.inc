@@ -383,17 +383,21 @@ function serchilo_is_sensible_edit($node) {
       return TRUE; 
     }
 
-    $original_node = node_load($node->nid);
+    // Do not used cached version.
+    $original_node = node_load($node->nid, NULL, TRUE);
     $woriginal_node = entity_metadata_wrapper('node', $original_node);
+
 
     $change_in_keyword   = $wnode->field_keyword        ->value() != $woriginal_node->field_keyword        ->value();
     $change_in_url       = $wnode->field_url            ->value() != $woriginal_node->field_url            ->value();
     $change_in_namespace = $wnode->field_namespace->name->value() != $woriginal_node->field_namespace->name->value();
+    $change_in_active    = $wnode->field_active         ->value() != $woriginal_node->field_active         ->value();
         
     $is_sensible_edit = 
       $change_in_keyword || 
       $change_in_url ||
-      $change_in_namespace;
+      $change_in_namespace ||
+      $change_in_active;
 
     // Allow editing within the first X minutes after creation.
     if (
