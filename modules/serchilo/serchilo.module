@@ -911,6 +911,9 @@ function serchilo_node_view($node, $view_mode, $langcode) {
         'warning'
       );
 
+      // Dont show the form, so get out here.
+      return;
+
     // Not active.
     } else if (!($wnode->field_active->value())) {
 
@@ -924,8 +927,6 @@ function serchilo_node_view($node, $view_mode, $langcode) {
         'warning'
       );
 
-      // Dont show the form, so get out here.
-      return;
 
     // Not approved.
     } else if (!($wnode->field_approved->value())) {
