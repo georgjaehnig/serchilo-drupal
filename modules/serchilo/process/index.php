@@ -665,10 +665,9 @@ function serchilo_search_shortcuts( $keyword, $arguments, $query, $namespace_ids
     
 SELECT
   *,
-  nid,
-  nid=(
+  vid=(
     SELECT 
-      nid  
+      vid  
     FROM 
       serchilo_shortcut AS csub
     WHERE 
@@ -710,7 +709,7 @@ WHERE
     namespace_id = :extra_namespace_id, 
     TRUE
   )
-  GROUP BY nid
+  GROUP BY vid
 
 ORDER BY
 
