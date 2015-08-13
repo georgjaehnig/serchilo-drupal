@@ -135,6 +135,9 @@ function serchilo_schema() {
       ),
     ),
     'primary key' => array('vid'),
+    'indexes' => array(
+      'nid' => array('nid'),
+    ),
   );
  
   $schema['serchilo_shortcut_log'] = array(
