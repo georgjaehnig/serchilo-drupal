@@ -230,6 +230,20 @@ function serchilo_process_query_console($env) {
 
     serchilo_log_shortcut_call($output['#shortcut'], $env, $output['status']['default_keyword_used']);
 
+    if (!($output['status']['approved'])) {
+      // Redirect to sight page. 
+      $sight_url = 
+        '/node/' . 
+        $output['shortcut']['id'] . 
+        '/revisions/sight/' . 
+        $output['shortcut']['revision_id'] . 
+        '?url=' . 
+        urlencode($output['url']['final']);
+
+      header('Location: ' . $sight_url);
+      exit;
+    }
+
     if (!empty($output['url']['post_parameters'])) {
       // Redirect via HTML form
       // for shortcuts with POST parameters
