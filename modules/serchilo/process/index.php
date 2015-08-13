@@ -614,8 +614,8 @@ function serchilo_find_shortcut($keyword, $argument_count, $namespace_ids) {
 
     ";
 
-  #echo $sql;
-  #exit();
+  //echo $sql;
+  //exit();
 
   $result = $mysqli->query($sql);
   if (!$result) {
