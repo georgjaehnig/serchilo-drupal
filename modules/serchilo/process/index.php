@@ -497,10 +497,12 @@ function serchilo_shortcut_to_output($shortcut, $env) {
       $env
     );
   }
-  $output['status']['found']        = TRUE;
-  $output['namespace']['name']      = $shortcut['namespace_name'];
-  $output['url']['post_parameters'] = serchilo_get_post_parameters($shortcut, $env['arguments'], $variables, $env);
-  $output['shortcut']['id']         = (int) $shortcut['nid'];
+  $output['status']['found']         = TRUE;
+  $output['status']['approved']      = (bool) $shortcut['approved'];
+  $output['namespace']['name']       = $shortcut['namespace_name'];
+  $output['url']['post_parameters']  = serchilo_get_post_parameters($shortcut, $env['arguments'], $variables, $env);
+  $output['shortcut']['id']          = (int) $shortcut['nid'];
+  $output['shortcut']['revision_id'] = (int) $shortcut['vid'];
 
   $output['#shortcut'] = $shortcut;
 
