@@ -9,7 +9,6 @@
 
 /**
  * Sync a shortcut with its row in serchilo_shortcut table.
- *  (New approach to later replace serchilo_insert_or_update_shortcut_row().)
  *
  * @param object $node
  *   Shortcut node to deal with.
@@ -86,41 +85,6 @@ function serchilo_shortcut_get_last_approved_revision($node) {
   }
 
   return FALSE; 
-}
-
-/**
- * Insert or update a shortcut row.
- *
- * @param object $node
- *   Shortcut node to deal with.
- *
- * @return void
- */
-function serchilo_insert_or_update_shortcut_row($node) {
-
-  // Check if shortcut already exists in sync table.
-  $row_count = db_select('serchilo_shortcut') 
-    ->fields('serchilo_shortcut')
-    ->condition('nid', $node->nid )
-    ->execute()
-    ->rowCount() 
-    ;
-
-  // If it does not exist, insert it.
-  if ($row_count == 0) {
-    $nid = serchilo_insert_shortcut_row($node); 
-    if (empty($nid)) {
-      // Return 0 to raise an error.
-      return 0; 
-    } else {
-      return 1; 
-    }
-  }
-  // If it does exist, update it.
-  else {
-    $num_updated = serchilo_update_shortcut_row($node); 
-    return $num_updated;
-  }
 }
 
 
