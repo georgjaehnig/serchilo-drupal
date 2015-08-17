@@ -19,6 +19,12 @@ function serchilo_sync_shortcut_row($node) {
 
   $wnode = entity_metadata_wrapper('node', $node);
 
+  // Sight the shortcut revison for the current user.
+  if (!$wnode->field_approved->value()) {
+    drupal_session_start();
+    drupal_array_set_nested_value($_SESSION, array('serchilo', 'sighted', $node->vid), TRUE, TRUE);
+  }
+
   // Always delete first.
   serchilo_delete_shortcut_row($node);
 
