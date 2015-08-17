@@ -608,7 +608,7 @@ function serchilo_find_shortcut($keyword, $argument_count, $namespace_ids) {
     . ",
 
     # TODO: Change later to =0, when sight feature implemented.
-    approved=1 DESC
+    approved=0 DESC
 
     LIMIT 1;
 
