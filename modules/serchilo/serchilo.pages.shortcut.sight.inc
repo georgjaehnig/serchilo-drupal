@@ -18,6 +18,7 @@ function serchilo_shortcut_sight_form($form, $form_state, $node) {
     return;
   }
 
+  drupal_session_start();
   $sighted = drupal_array_get_nested_value($_SESSION, array('serchilo', 'sighted', $node->vid));
 
   // If sighted:
