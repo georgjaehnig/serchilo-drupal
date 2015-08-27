@@ -265,6 +265,8 @@ function serchilo_process_query_console($env) {
 
   // If no shortcut found:
 
+  serchilo_log_shortcut_call(NULL, $env, $output['status']['default_keyword_used']);
+
   // Get shortcut suggestions.
   $suggested_shortcuts = serchilo_search_shortcuts($env['keyword'], $env['arguments'], $env['query'], $env['namespace_ids'], $env['extra_namespace_name']);
 
@@ -1064,12 +1066,22 @@ INSERT INTO
   $source = serchilo_array_value($source_mapping, $env['source'], $env['source']);
   $source = serchilo_utf8_4byte_to_3byte($source);
 
+  if (!empty($shortcut)) {
+    $nid          = $shortcut['nid'];
+    $namespace_id = $shortcut['namespace_id'];
+  }
+  else {
+    $nid          = 0;
+    $namespace_id = 0;
+  }
+
+
   $sql = serchilo_replace_sql_arguments(
     $mysqli, 
     $sql,
     array(
-      'shortcut_id'          => $shortcut['nid'],
-      'namespace_id'         => $shortcut['namespace_id'],
+      'shortcut_id'          => $nid,
+      'namespace_id'         => $namespace_id,
       'default_keyword_used' => $default_keyword_used,
       'page_type'            => $env['page_type'],
       'source'               => $source,
