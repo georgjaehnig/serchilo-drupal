@@ -434,21 +434,25 @@ function serchilo_get_output($env) {
 
     } else {
 
-      // Try via default_keyword.
       $env['default_keyword'] = serchilo_get_default_keyword(serchilo_array_value($env, 'user_name'));
-      $env['query'] = $env['default_keyword'] . ' ' . $env['query'];
-      $env = serchilo_parse_query($env['query']) + $env;
 
-      // Add extra namespace from default keyword if present.
-      if (!empty($env['extra_namespace_name'])) {
-        $env['namespace_ids'][] = serchilo_get_namespace_id($env['extra_namespace_name']);
-      }
+      // Try via default_keyword.
+      if (!empty($env['default_keyword'])) {
 
-      $shortcut = serchilo_find_shortcut($env['keyword'], count($env['arguments']), $env['namespace_ids']);
-      if ($shortcut) {
-        $output = serchilo_shortcut_to_output($shortcut, $env);
+        $env['query'] = $env['default_keyword'] . ' ' . $env['query'];
+        $env = serchilo_parse_query($env['query']) + $env;
+
+        // Add extra namespace from default keyword if present.
+        if (!empty($env['extra_namespace_name'])) {
+          $env['namespace_ids'][] = serchilo_get_namespace_id($env['extra_namespace_name']);
+        }
+
+        $shortcut = serchilo_find_shortcut($env['keyword'], count($env['arguments']), $env['namespace_ids']);
+        if ($shortcut) {
+          $output = serchilo_shortcut_to_output($shortcut, $env);
+        }
+        $output['status']['default_keyword_used'] = TRUE;
       }
-      $output['status']['default_keyword_used'] = TRUE;
     }
   }
 
