@@ -372,7 +372,9 @@ function serchilo_cronapi($op, $job = NULL) {
 function serchilo_static_content_dirs() {
   $dir = drupal_get_path('module', 'serchilo') . '/static_content';
   return array(
-    $dir => array()
+    $dir => array(
+      'filter_format' => 'markdown',
+    )
   );
 }
 
