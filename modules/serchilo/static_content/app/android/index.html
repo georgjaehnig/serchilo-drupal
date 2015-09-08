@@ -7,5 +7,26 @@ title = Android app (experimental)
 
 - [Download version 0.2](/[static-content:current-dir]/serchilo.apk)
 
-This version is (as far as I know) bugfree but still experimental. To contribute to the development, check the [Github profile](https://github.com/georgjaehnig/serchilo-android/) and its [issues](https://github.com/georgjaehnig/serchilo-android/issues), where you can  add bugs and feature requests. Or [send me email](mailto:android@findfind.it).
+This version is (as far as I know) bugfree but still experimental. 
 
+### What the app does:
+
+- opens up an input field with automatically enabled soft keyboard
+- remembers 5 recent keywords (can be reused with a single tap)
+- recent keywords can be deleted with a long tap
+- In the settings, allows to specify user name or language/country namespaces
+  (If user name is given, settings for this user from findfind.it will be used.)
+- Fetches the Shortcut URL by the API to the app, the app sends then
+an intent. This means that calling for instance `gm berlin` lets you
+directly open the Google Maps app, without a detour via the web
+browser.
+
+### What it does not (yet):
+
+- Suggestions. Before implementing them, I prefer to have a
+conversation about how they shall look like (collapsing overlay like
+on the website, defined area below with recent keywords removed ...
+etc.) And is this the most missing feature right now? Or maybe
+something else?
+
+To contribute to the development, check the [Github profile](https://github.com/georgjaehnig/serchilo-android/) and its [issues](https://github.com/georgjaehnig/serchilo-android/issues), where you can  add bugs and feature requests. Or [send me email](mailto:android@findfind.it).
