@@ -319,6 +319,12 @@ body.page-node-revisions-view td.diff-links {
 
 /* ==================================== /console edit */
 
+/* ==================================== comments */
+.comment .new {
+  display: none;
+}
+/* ==================================== /comments */
+
 /* ==================================== forum */
 
 .submitted {
