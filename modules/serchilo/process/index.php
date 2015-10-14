@@ -499,9 +499,10 @@ function serchilo_get_output($env) {
 function serchilo_shortcut_to_output($shortcut, $env) {
 
   $output = array();
-  $output['url']['template'] = $shortcut['url'];
+  $output['url']['template'] = utf8_encode($shortcut['url']);
   $variables = serchilo_get_url_variables($env);
-  $output['url']['replaced_variables'] = serchilo_replace_variables($shortcut['url'],  $variables, $env);
+  $url_replaced_variables = serchilo_replace_variables($shortcut['url'],  $variables, $env);
+  $output['url']['replaced_variables'] = utf8_encode($url_replaced_variables);
 
   // Reparse arguments if count does not match.
   if (count($env['arguments']) > $shortcut['argument_count']) {
@@ -511,16 +512,18 @@ function serchilo_shortcut_to_output($shortcut, $env) {
   // Create final URL if called with query
   // (and not with keyword/argument_count).
   if (!empty($env['query'])) {
-    $output['url']['final'] = serchilo_replace_arguments(
-      $output['url']['replaced_variables'],
+    $url_final = serchilo_replace_arguments(
+      $url_replaced_variables,
       $env['arguments'],
       $env
     );
+    $output['url']['final'] = utf8_encode($url_final);
   }
   $output['status']['found']         = TRUE;
   $output['status']['approved']      = (bool) $shortcut['approved'];
   $output['namespace']['name']       = $shortcut['namespace_name'];
-  $output['url']['post_parameters']  = serchilo_get_post_parameters($shortcut, $env['arguments'], $variables, $env);
+  $url_post_parameters               = serchilo_get_post_parameters($shortcut, $env['arguments'], $variables, $env);
+  $output['url']['post_parameters']  = utf8_encode($url_post_parameters);
   $output['shortcut']['id']          = (int) $shortcut['nid'];
   $output['shortcut']['revision_id'] = (int) $shortcut['vid'];
 
