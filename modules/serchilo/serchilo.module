@@ -1041,6 +1041,8 @@ function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) 
   // If creating a new Shortcut:
   if (empty($form['nid']['#value'])) {
     if (user_is_logged_in()) {
+      // Set planet namespace as default value.
+      $form['field_namespace'][LANGUAGE_NONE]['#default_value'] = SERCHILO_PLANET_NAMESPACE;
       // Add link to set user namespace.
       $form['field_namespace']['#attached']['js'][] = array(
         'data' => drupal_get_path('module', 'serchilo') . '/js/shortcut.form.field_namespace.js',
