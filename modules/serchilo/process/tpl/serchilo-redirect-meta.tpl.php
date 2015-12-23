@@ -2,6 +2,6 @@
        "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="refresh" content="0; URL=<?php echo $url ?>">
+<meta http-equiv="refresh" content="0; URL=<?php echo strip_tags($url) ?>">
 </head>
 </html>
