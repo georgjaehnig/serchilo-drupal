@@ -522,9 +522,7 @@ function serchilo_shortcut_to_output($shortcut, $env) {
   $output['status']['found']         = TRUE;
   $output['status']['approved']      = (bool) $shortcut['approved'];
   $output['namespace']['name']       = $shortcut['namespace_name'];
-  $url_post_parameters               = serchilo_get_post_parameters($shortcut, $env['arguments'], $variables, $env);
-  $url_post_parameters_utf8          = array_map('utf8_encode', $url_post_parameters);
-  $output['url']['post_parameters']  = $url_post_parameters_utf8;
+  $output['url']['post_parameters']  = serchilo_get_post_parameters($shortcut, $env['arguments'], $variables, $env);
   $output['shortcut']['id']          = (int) $shortcut['nid'];
   $output['shortcut']['revision_id'] = (int) $shortcut['vid'];
 
@@ -557,6 +555,7 @@ function serchilo_get_post_parameters($shortcut, $arguments, $variables, $env) {
   $post_parameters_str = serchilo_replace_arguments($post_parameters_str, $arguments, $env);
   $post_parameters = array();
   foreach (explode('&', $post_parameters_str) as $post_parameter) {
+    $post_parameter = utf8_encode($post_parameter);
     $keyValue = explode('=', $post_parameter, 2);
     if (count($keyValue) == 2) {
       $post_parameters[$keyValue[0]] = $keyValue[1];
