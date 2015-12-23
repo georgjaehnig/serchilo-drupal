@@ -555,6 +555,7 @@ function serchilo_get_post_parameters($shortcut, $arguments, $variables, $env) {
   $post_parameters_str = serchilo_replace_arguments($post_parameters_str, $arguments, $env);
   $post_parameters = array();
   foreach (explode('&', $post_parameters_str) as $post_parameter) {
+    $post_parameter = urldecode($post_parameter);
     $post_parameter = utf8_encode($post_parameter);
     $keyValue = explode('=', $post_parameter, 2);
     if (count($keyValue) == 2) {
