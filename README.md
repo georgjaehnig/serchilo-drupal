@@ -1,9 +1,6 @@
 # serchilo-drupal
 
-Drupal profile running Serchilo (a new version, currently being developed).
-- Demo: http://serchilo.org/
-- current official version (not this code here) http://www.serchilo.net/
-- mailing list: https://groups.google.com/d/forum/serchilo
+Drupal profile running [FindFind.it](https://www.findfind.it/).
 
 
 ## Install
@@ -121,3 +118,8 @@ drush cache-clear all
 drush pm-disable serchilo
 drush pm-enable serchilo
 ```
+
+# Mailing list: 
+
+https://groups.google.com/d/forum/serchilo
+
