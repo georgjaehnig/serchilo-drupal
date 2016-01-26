@@ -344,6 +344,24 @@ function serchilo_is_sensible_edit($node) {
   // Work with wrapped node.
   $wnode = entity_metadata_wrapper('node', $node);
 
+  // If the user is logged in and the shortcut is saved to the current user's
+  // namespace, it is not sensible, since users can do anything in their own 
+  // namespaces.
+  if (user_is_logged_in()) {
+    // Check on the namespace which was set BEFORE the edit
+    // (if available).
+    if (isset($woriginal_node)) {
+      if ($user->name == $woriginal_node->field_namespace->name->value()) {
+        return FALSE; 
+      }
+    }
+    else {
+      if ($user->name == $wnode->field_namespace->name->value()) {
+        return FALSE; 
+      }
+    }
+  }
+
   // Non-new shortcuts:
   // TODO: Find 'proper' way to check if new.
   if (!empty($node->nid)) {
@@ -389,21 +407,6 @@ function serchilo_is_sensible_edit($node) {
 
     // Every other new shortcut is sensible.
     $is_sensible_edit = TRUE;
-  }
-
-  if ($is_sensible_edit) {
-    // If the user is logged in and the shortcut is saved to the current user's namespace,
-    // it is not sensible, since users can do anything in their own namespaces.
-    if (user_is_logged_in()) {
-      // Check on the namespace which was set BEFORE the edit
-      // (if available).
-      if (isset($woriginal_node)) {
-        $is_sensible_edit = ($user->name != $woriginal_node->field_namespace->name->value());
-      }
-      else {
-        $is_sensible_edit = ($user->name != $wnode->field_namespace->name->value());
-      }
-    }
   }
 
   return $is_sensible_edit;
