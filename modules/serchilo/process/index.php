@@ -1202,23 +1202,26 @@ function serchilo_replace_variables($str, $variables, $env) {
 
   $str_variables = serchilo_get_variables_from_string($str);
 
-  foreach ($str_variables as $name=>$attributes) {
-    switch($name) {
-      case 'now':
-        $output = serchilo_array_value($attributes, 'output', 'Y-m-d');
-        $now = new DateTime();
-        $now->setTimeZone(new DateTimeZone($env['timezone']));
-        $value = $now->format($output);
-        break; 
-      default:
-        $value = $variables[$name];
-        break; 
+  foreach ($str_variables as $name=>$placeholders) {
+    foreach ($placeholders as $match=>$attributes) {
+
+      switch($name) {
+        case 'now':
+          $output = serchilo_array_value($attributes, 'output', 'Y-m-d');
+          $now = new DateTime();
+          $now->setTimeZone(new DateTimeZone($env['timezone']));
+          $value = $now->format($output);
+          break; 
+        default:
+          $value = $variables[$name];
+          break; 
+      }
+      $str = str_replace(
+        $match,
+        $value,
+        $str 
+      );
     }
-    $str = str_replace(
-      $attributes['_match'],
-      $value,
-      $str 
-    );
   }
   return $str;
 }
@@ -1238,58 +1241,66 @@ function serchilo_replace_arguments($str, $arguments, $env) {
 
   $str_arguments = serchilo_get_arguments_from_string($str);
 
-  foreach ($str_arguments as $name=>$attributes) {
+  foreach ($str_arguments as $name=>$placeholders) {
 
+    // Argument from user input.
     $argument = array_shift($arguments);
 
-    $type = serchilo_array_value($attributes, 'type');
-    switch($type) {
-      case 'date':
-        require_once(dirname(__FILE__) . '/serchilo.type.date.inc');
-        $date = serchilo_parse_date($argument, $env);
-        if (!empty($date)) {
-          $date->setTimeZone(new DateTimeZone($env['timezone']));
-          $output   = serchilo_array_value($attributes, 'output', 'Y-m-d');
-          $argument = $date->format($output);
-        }
-        break;
-      case 'time':
-        require_once(dirname(__FILE__) . '/serchilo.type.time.inc');
-        $time = serchilo_parse_time($argument);
-        if (!empty($time)) {
-          $time->setTimeZone(new DateTimeZone($env['timezone']));
-          $output   = serchilo_array_value($attributes, 'output', 'H:i');
-          $argument = $time->format($output);
-        }
-        break;
-      case 'city':
-        require_once(dirname(__FILE__) . '/serchilo.type.city.inc');
-        $city = serchilo_parse_city($argument, $env);
-        if (!empty($city)) {
-          $argument = $city;
-        }
-        break;
-    }
+    foreach ($placeholders as $match=>$attributes) {
 
-    // Default encoding: utf-8
-    $encoding = serchilo_array_value($attributes, 'encoding', 'utf-8');
-    switch($encoding) {
-      case 'none':
-        break;
-      default:
-        # if encoding is valid
-        if (in_array(strtoupper($encoding), mb_list_encodings())) {
-          $argument = mb_convert_encoding($argument, $encoding, 'utf-8');
-        }
-        $argument = rawurlencode($argument);
-        break;
-    }
+      // Copy argument, because different placeholders can cause
+      // different processing.
+      $processed_argument = $argument;
 
-    $str = str_replace(
-      $attributes['_match'],
-      $argument,
-      $str 
-    );
+      $type = serchilo_array_value($attributes, 'type');
+      switch($type) {
+        case 'date':
+          require_once(dirname(__FILE__) . '/serchilo.type.date.inc');
+          $date = serchilo_parse_date($processed_argument, $env);
+          if (!empty($date)) {
+            $date->setTimeZone(new DateTimeZone($env['timezone']));
+            $output = serchilo_array_value($attributes, 'output', 'Y-m-d');
+            $processed_argument = $date->format($output);
+          }
+          break;
+        case 'time':
+          require_once(dirname(__FILE__) . '/serchilo.type.time.inc');
+          $time = serchilo_parse_time($processed_argument);
+          if (!empty($time)) {
+            $time->setTimeZone(new DateTimeZone($env['timezone']));
+            $output = serchilo_array_value($attributes, 'output', 'H:i');
+            $processed_argument = $time->format($output);
+          }
+          break;
+        case 'city':
+          require_once(dirname(__FILE__) . '/serchilo.type.city.inc');
+          $city = serchilo_parse_city($processed_argument, $env);
+          if (!empty($city)) {
+            $processed_argument = $city;
+          }
+          break;
+      }
+
+      // Default encoding: utf-8
+      $encoding = serchilo_array_value($attributes, 'encoding', 'utf-8');
+      switch($encoding) {
+        case 'none':
+          break;
+        default:
+          # if encoding is valid
+          if (in_array(strtoupper($encoding), mb_list_encodings())) {
+            $processed_argument = mb_convert_encoding($processed_argument, $encoding, 'utf-8');
+          }
+          $processed_argument = rawurlencode($processed_argument);
+          break;
+      }
+
+      $str = str_replace(
+        $match,
+        $processed_argument,
+        $str 
+      );
+    }
   }
 
   return $str;

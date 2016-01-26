@@ -69,8 +69,32 @@ function serchilo_get_variables_from_string($str) {
  *   The prefix of the placeholders. Must be Regex-escaped.
  *
  * @return array $placeholders
- *   Array keyed with the arguments names and with an array of the attributes as the value. 
- *   An additional attribute '_match' contains the whole match within the URL (for later replacement).
+ *   Array keyed with the arguments names and with an array of corresponding
+ *   placeholders.
+ *
+ *   If the placeholder with the same name occurs multiple times, there are also
+ *   multiple arrays in the nested array. 
+ *
+ *   Example: 
+ *     http://{%first|type=foo}{%first|type=bar}
+ *   becomes:
+ *   Array 
+ *       (
+ *            [first] => Array
+ *            (
+ *                [{%first|type=foo}] => Array
+ *                    (
+ *                        [type] => foo
+ *                    )
+ *                [{%first|type=bar}] => Array
+ *                    (
+ *                        [type] => bar
+ *                    )
+ *            )
+ *        )
+ *
+ *   An additional attribute '_match' contains the whole match within the URL 
+ *   (for later replacement).
  */
 function serchilo_get_placeholders_from_string($str, $prefix) {
 
@@ -93,8 +117,7 @@ function serchilo_get_placeholders_from_string($str, $prefix) {
     // Example value:
     // $name = query
     $name = array_shift($name_and_attributes);
-    $placeholders[$name] = array();
-    $placeholders[$name]['_match'] = $match[0];
+    $placeholder = array();
 
     // Example value:
     // $name_and_attributes = encoding=utf-8|another=attribute
@@ -102,8 +125,9 @@ function serchilo_get_placeholders_from_string($str, $prefix) {
       $attribute_name_and_value = explode('=', $attribute_str, 2);
       $attribute_name  = array_shift($attribute_name_and_value);
       $attribute_value = array_shift($attribute_name_and_value);
-      $placeholders[$name][$attribute_name] = $attribute_value;
+      $placeholder[$attribute_name] = $attribute_value;
     }
+    $placeholders[$name][$match[0]] = $placeholder;
   }
 
   return $placeholders;
