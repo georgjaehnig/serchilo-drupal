@@ -1068,7 +1068,16 @@ function serchilo_form_shortcut_node_form_alter(&$form, &$form_state, $form_id) 
       $form['field_keyword'][LANGUAGE_NONE][0]['value']['#default_value'] = $_GET['keyword'];
     }
     if (!empty($_GET['url'])) {
-      $form['field_url'][LANGUAGE_NONE][0]['value']['#default_value'] = $_GET['url'];
+
+      $url = $_GET['url'];
+
+      // If passed URL is not valid:
+      // prepend 'http://'.
+      if (filter_var($url, FILTER_VALIDATE_URL) === FALSE) {
+        $url = 'http://' . $url;
+      }
+
+      $form['field_url'][LANGUAGE_NONE][0]['value']['#default_value'] = $url;
     }
   }
 
