@@ -336,6 +336,7 @@ function serchilo_cronapi($op, $job = NULL) {
 
   $items = array();
 
+  /*
   $items['serchilo_export'] = array(
     'description' => 'Exports shortcuts and namespaces to the files directory.',
     'callback' => 'serchilo_export',
@@ -359,6 +360,7 @@ function serchilo_cronapi($op, $job = NULL) {
     'rule' => '30 4 * * 1', 
     'file' => 'serchilo.weights.inc'
   );
+   */
 
   return $items;
 }
