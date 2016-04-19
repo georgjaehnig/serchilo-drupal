@@ -863,10 +863,8 @@ function serchilo_node_update($node) {
 function serchilo_node_delete($node) {
 
   if ($node->type == 'shortcut') {
-    if (!empty($node->field_active[LANGUAGE_NONE][0]['value'])) {
-      module_load_include('inc', 'serchilo', 'serchilo.node');
-      serchilo_delete_shortcut_row($node);
-    }
+    module_load_include('inc', 'serchilo', 'serchilo.node');
+    serchilo_delete_shortcut_row($node);
   }
   if (module_exists('boost')) {
     boost_flush_caches();
