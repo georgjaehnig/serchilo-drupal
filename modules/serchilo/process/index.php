@@ -206,6 +206,7 @@ function serchilo_handle_query_from_request($param_name = 'query') {
   $env = array();
   $env['query'] = serchilo_array_value($_GET, $param_name);
   $env['query'] = trim($env['query']);
+  $env['query'] = utf8_decode($env['query']);
 
   // Parse the query and set keyword, arguments and extra_namespace_name.
   $env += serchilo_parse_query($env['query']);
