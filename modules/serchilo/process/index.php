@@ -1287,12 +1287,12 @@ function serchilo_replace_arguments($str, $arguments, $env) {
       switch($encoding) {
         case 'none':
           break;
+        case 'utf-8':
+          $processed_argument = utf8_encode($processed_argument);
+          break;
         default:
-          # if encoding is utf-8
-          if (strtoupper($encoding == 'UTF-8')) {
-            $processed_argument = utf8_encode($processed_argument);
-          # if encoding is another valid one
-          } elseif (in_array(strtoupper($encoding), mb_list_encodings())) {
+          # if encoding is valid
+          if (in_array(strtoupper($encoding), mb_list_encodings())) {
             $processed_argument = mb_convert_encoding($processed_argument, $encoding);
           }
           $processed_argument = rawurlencode($processed_argument);
