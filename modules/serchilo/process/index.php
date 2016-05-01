@@ -1289,7 +1289,7 @@ function serchilo_replace_arguments($str, $arguments, $env) {
           break;
         default:
           # if encoding is utf-8
-          if (strtoupper($encoding) == 'UTF-8') {
+          if (strtoupper($encoding == 'UTF-8')) {
             $processed_argument = utf8_encode($processed_argument);
           # if encoding is another valid one
           } elseif (in_array(strtoupper($encoding), mb_list_encodings())) {
