@@ -75,7 +75,7 @@ function serchilo_block_licenses() {
 function serchilo_block_add_to_browser() {
 
   return '
-      <button class="btn btn-sm btn-default" onclick="window.external.AddSearchProvider( \'http://\' + location.host + \'/opensearch\' + location.pathname + location.search);">Add to browser</button>
+      <button class="btn btn-sm btn-default" onclick="window.external.AddSearchProvider( \'https://\' + location.host + \'/opensearch\' + location.pathname + location.search);">Add to browser</button>
     ';
 }
 
