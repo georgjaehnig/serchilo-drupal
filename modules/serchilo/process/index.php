@@ -30,6 +30,7 @@ function serchilo_connect_db() {
     $db['password'],
     $db['database']
   );
+  $mysqli->set_charset('utf8');
 }
 
 /**
