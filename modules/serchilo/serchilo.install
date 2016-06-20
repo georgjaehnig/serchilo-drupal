@@ -69,6 +69,7 @@ function serchilo_schema() {
         'type' => 'varchar',
         'length' => '255',
         'not null' => FALSE,
+        'binary' => TRUE,
       ),
       'argument_names' => array(
         'description' => 'The argument names, as string, seperated by comma.',
