@@ -1,5 +1,6 @@
 <?PHP
 
+define('WEBHOOK_URL', 'https://www.findfind.it/telegram/index.php');
 define('API_URL', 'https://api.telegram.org/bot'.SERCHILO_TELEGRAM_BOT_TOKEN.'/');
 
 function apiRequestWebhook($method, $parameters) {
@@ -138,7 +139,6 @@ function processMessage($message) {
 }
 
 
-define('WEBHOOK_URL', 'https://www.findfind.it/telegram/index.php');
 
 if (php_sapi_name() == 'cli') {
   // if run from console, set or delete webhook
