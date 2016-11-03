@@ -1,7 +1,7 @@
 <?PHP
 
-define('WEBHOOK_URL', 'https://www.findfind.it/telegram/index.php');
-define('API_URL', 'https://api.telegram.org/bot'.SERCHILO_TELEGRAM_BOT_TOKEN.'/');
+define('SERCHILO_TELEGRAM_WEBHOOK_URL', 'https://www.findfind.it/telegram/index.php');
+define('SERCHILO_TELEGRAM_API_URL', 'https://api.telegram.org/bot'.SERCHILO_TELEGRAM_BOT_TOKEN.'/');
 
 function apiRequestWebhook($method, $parameters) {
   if (!is_string($method)) {
@@ -78,7 +78,7 @@ function apiRequest($method, $parameters) {
       $val = json_encode($val);
     }
   }
-  $url = API_URL.$method.'?'.http_build_query($parameters);
+  $url = SERCHILO_TELEGRAM_API_URL.$method.'?'.http_build_query($parameters);
 
   $handle = curl_init($url);
   curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
@@ -103,7 +103,7 @@ function apiRequestJson($method, $parameters) {
 
   $parameters["method"] = $method;
 
-  $handle = curl_init(API_URL);
+  $handle = curl_init(SERCHILO_TELEGRAM_API_URL);
   curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
   curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 5);
   curl_setopt($handle, CURLOPT_TIMEOUT, 60);
@@ -142,7 +142,7 @@ function processMessage($message) {
 
 if (php_sapi_name() == 'cli') {
   // if run from console, set or delete webhook
-  apiRequest('setWebhook', array('url' => isset($argv[1]) && $argv[1] == 'delete' ? '' : WEBHOOK_URL));
+  apiRequest('setWebhook', array('url' => isset($argv[1]) && $argv[1] == 'delete' ? '' : SERCHILO_TELEGRAM_WEBHOOK_URL));
   exit;
 }
 
