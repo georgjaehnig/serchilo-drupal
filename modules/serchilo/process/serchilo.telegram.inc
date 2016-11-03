@@ -6,13 +6,16 @@
 require '../../../vendor/autoload.php';
 use Telegram\Bot\Api;
 
-$telegram = new Api(SERCHILO_TELEGRAM_BOT_TOKEN);
-//$response = $telegram->getMe();
+  $telegram = new Api(SERCHILO_TELEGRAM_BOT_TOKEN);
+  //$response = $telegram->getMe();
 
-$update = $telegram->getWebhookUpdates();
-$message = $update->getMessage();
+  $update = $telegram->getWebhookUpdates();
+  $message = $update->getMessage();
 
-$response = $telegram->sendMessage([
-  'chat_id' => $message->getChat()->getId(),
-  'text' => $message->getText()
-]);
+  $output = serchilo_get_output($env);
+
+  $response = $telegram->sendMessage([
+    'chat_id' => $message->getChat()->getId(),
+    //'text' => $message->getText()
+    'text' => $output['url']['final']
+  ]);
