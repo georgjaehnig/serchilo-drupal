@@ -420,7 +420,9 @@ function serchilo_process_query_url($env) {
  *   The environment, holding all relevant data of the request.
  */
 function serchilo_process_query_telegram($env) {
-  echo 'telegram func';
+
+  require_once('../../../../../sites/default/settings.php');
+  require_once('serchilo.telegram.inc');
 }
 
 // Process helpers
