@@ -68,6 +68,9 @@ function serchilo_dispatch() {
   case SERCHILO_URL_PATH_AFFIX:
     serchilo_process_query_url($env);
     break;
+  case SERCHILO_TELEGRAM_PATH_AFFIX:
+    echo 'telegram';
+    break;
   }
 }
 
