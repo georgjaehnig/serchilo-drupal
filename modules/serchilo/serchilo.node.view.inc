@@ -16,8 +16,15 @@
  */
 function serchilo_shortcut_call_form($form, $form_state, $node) {
 
-  // Get optional arguments from GET query string.
-  $arguments = drupal_array_get_nested_value($_GET, array('arguments')) ?: array();
+  // Use arguments from GET if they are set correctly.
+  if (
+    (!empty($_GET['arguments'])) &&
+    (is_array($_GET['arguments']))
+  ) {
+    $arguments = $_GET['arguments'];
+  } else {
+    $arguments = array();
+  }
 
   $form = array();
 
