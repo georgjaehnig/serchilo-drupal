@@ -32,6 +32,20 @@ function serchilo_telegram_populate_environment(&$env, $telegram) {
   $env['query'] = $message->getText();
   $env = serchilo_parse_query($env['query']) + $env;
 
+  // TODO: Copied this from 
+  // serchilo_populate_environment(&$env) {
+  // case SERCHILO_NAMESPACES_PATH_AFFIX:
+  // Needs to be refactored.
+
+  // Add extra_namespace to namespace_names.
+  if (!empty($env['extra_namespace_name'])) {
+    $env['namespace_names'][] = $env['extra_namespace_name'];
+  }
+  // Get namespace_ids from namespace_names.
+  $env['namespace_ids'] = array_map('serchilo_get_namespace_id', $env['namespace_names']);
+
+
+
   $env['telegram'] = array();
   $env['telegram']['chat'] = array();
   $env['telegram']['chat']['id'] = $message->getChat()->getId();

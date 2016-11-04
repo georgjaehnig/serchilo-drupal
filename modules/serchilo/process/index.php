@@ -407,6 +407,7 @@ function serchilo_process_query_api($env) {
  */
 function serchilo_process_query_url($env) {
 
+  // print_r($env);
   $output = serchilo_get_output($env);
 
   if ($output['status']['found']) {
@@ -447,6 +448,7 @@ function serchilo_process_query_telegram($env) {
   $response = $telegram->sendMessage([
     'chat_id' => $env['telegram']['chat']['id'],
     'text' => $text,
+    //'text' => var_export($env, TRUE),
   ]);
 }
 
