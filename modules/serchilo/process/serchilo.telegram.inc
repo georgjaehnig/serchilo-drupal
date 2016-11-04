@@ -20,6 +20,8 @@ function serchilo_telegram_create_api($env) {
  *
  * @param array $env
  *   The environment, holding all relevant data of the request.
+ * @param object $telegram
+ *   The Telegram API object.
  */
 function serchilo_telegram_populate_environment(&$env, $telegram) {
 
@@ -59,6 +61,10 @@ function serchilo_telegram_populate_environment(&$env, $telegram) {
  *
  * @param array $env
  *   The environment, holding all relevant data of the request.
+ * @param object $telegram
+ *   The environment, holding all relevant data of the request.
+ * @return mixed $output
+ *   The data to output.
  */
 function serchilo_telegram_respond(&$env, $telegram, $output) {
 
