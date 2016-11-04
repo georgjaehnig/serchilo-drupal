@@ -432,7 +432,21 @@ function serchilo_process_query_telegram($env) {
 
   require_once('../../../../../sites/default/settings.php');
   require_once('serchilo.telegram.inc');
+  $telegram = serchilo_telegram_create_api($env);
+  serchilo_telegram_populate_environment($env, $telegram);
+  //error_log($env['query']);
+  $output = serchilo_get_output($env);
 
+  if ($output['status']['found']) {
+    $text = $output['url']['final'];
+  } else {
+    $text = 'Error: No shortcut found.';
+  }
+  $response = $telegram->sendMessage([
+    'chat_id' => $env['telegram']['chat']['id'],
+    'text' => $text,
+  ]);
+  // TODO: Log the call.
 }
 
 // Process helpers
