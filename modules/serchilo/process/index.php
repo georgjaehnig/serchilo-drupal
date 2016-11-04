@@ -432,9 +432,10 @@ function serchilo_process_query_telegram($env) {
 
   require_once('../../../../../sites/default/settings.php');
   require_once('serchilo.telegram.inc');
+
   $telegram = serchilo_telegram_create_api($env);
   serchilo_telegram_populate_environment($env, $telegram);
-  //error_log($env['query']);
+
   $output = serchilo_get_output($env);
 
   if ($output['status']['found']) {
