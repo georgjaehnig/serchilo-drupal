@@ -439,6 +439,7 @@ function serchilo_process_query_telegram($env) {
 
   if ($output['status']['found']) {
     $text = $output['url']['final'];
+    serchilo_log_shortcut_call($output['#shortcut'], $env, $output['status']['default_keyword_used']);
   } else {
     $text = 'Error: No shortcut found.';
   }
@@ -446,7 +447,6 @@ function serchilo_process_query_telegram($env) {
     'chat_id' => $env['telegram']['chat']['id'],
     'text' => $text,
   ]);
-  // TODO: Log the call.
 }
 
 // Process helpers
