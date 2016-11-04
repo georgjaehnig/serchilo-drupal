@@ -128,11 +128,8 @@ function serchilo_populate_environment(&$env) {
     $env = serchilo_handle_query_from_request('term') + $env;
     break;
   case SERCHILO_TELEGRAM_PATH_AFFIX:
-    $env['keyword']        = 'g';
-    $env['arguments']      = 'berlin';
-    $env['argument_count']      = 'berlin';
-    $env['query']      = 'g berlin';
     $env = serchilo_get_extra_namespace_from_keyword($env['keyword']) + $env;
+    // TODO: Get settings from user settings.
     $env['namespace_names'] = array('o', 'de', 'deu');
     $env['language_namespace_name'] = 'de';
     $env['country_namespace_name'] = 'deu';

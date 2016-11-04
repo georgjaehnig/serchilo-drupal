@@ -12,10 +12,19 @@ use Telegram\Bot\Api;
   $update = $telegram->getWebhookUpdates();
   $message = $update->getMessage();
 
+  $env['query'] = $message->getText();
+  $env = serchilo_parse_query($env['query']) + $env;
+
   $output = serchilo_get_output($env);
 
+  if ($output['status']['found']) {
+    $text = $output['url']['final'];
+  } else {
+    $text = 'Error: No shortcut found.';
+  }
   $response = $telegram->sendMessage([
     'chat_id' => $message->getChat()->getId(),
-    //'text' => $message->getText()
-    'text' => $output['url']['final']
+    'text' => $text
   ]);
+
+// TODO: Log the call.
