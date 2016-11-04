@@ -440,7 +440,7 @@ function serchilo_process_query_telegram($env) {
   $output = serchilo_get_output($env);
 
   if ($output['status']['found']) {
-    $text = $output['url']['final'];
+    $url = $output['url']['final'];
     serchilo_log_shortcut_call($output['#shortcut'], $env, $output['status']['default_keyword_used']);
     if (!empty($env['telegram']['inline_query']['id'])) {
       $results = array();
@@ -449,9 +449,9 @@ function serchilo_process_query_telegram($env) {
         'id' => '0',
         'title' => $output['#shortcut']['title'],
         'input_message_content' => array(
-          'message_text' => $text,
+          'message_text' => $url,
         ),
-        'url' => $text,
+        'url' => $url,
       );
       $params = array(
         'inline_query_id' => $env['telegram']['inline_query']['id'],
@@ -465,7 +465,7 @@ function serchilo_process_query_telegram($env) {
   if (!empty($env['telegram']['chat']['id'])) {
     $response = $telegram->sendMessage([
       'chat_id' => $env['telegram']['chat']['id'],
-      'text' => $text,
+      'text' => $url,
       //'text' => var_export($env, TRUE),
     ]);
   }
