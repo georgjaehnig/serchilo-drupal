@@ -449,7 +449,8 @@ function serchilo_process_query_telegram($env) {
         'id' => '0',
         'title' => $output['#shortcut']['title'],
         'input_message_content' => array(
-          'message_text' => $url,
+          'message_text' => $env['query'] . ' → ' . $url,
+          'parse_mode' => 'Markdown',
         ),
         'url' => $url,
       );
