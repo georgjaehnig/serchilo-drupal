@@ -439,42 +439,7 @@ function serchilo_process_query_telegram($env) {
 
   $output = serchilo_get_output($env);
 
-  if ($output['status']['found']) {
-    $url = $output['url']['final'];
-    serchilo_log_shortcut_call($output['#shortcut'], $env, $output['status']['default_keyword_used']);
-  } else {
-    $text = 'Error: No shortcut found.';
-  }
-
-  switch ($env['telegram']['type']) {
-  case 'message':
-    $response = $telegram->sendMessage([
-      'chat_id' => $env['telegram']['chat']['id'],
-      'text' => $url ?: $text,
-      //'text' => var_export($env, TRUE),
-    ]);
-    break;
-  case 'inline_query':
-    if (empty($url)) {
-      break;
-    }
-    $results = array();
-    $results[] = array(
-      'type' => 'article',
-      'id' => '0',
-      'title' => $output['#shortcut']['title'],
-      'input_message_content' => array(
-        'message_text' => $env['query'] . ' → ' . $url,
-      ),
-      'url' => $url,
-    );
-    $params = array(
-      'inline_query_id' => $env['telegram']['inline_query']['id'],
-      'results' => $results,
-    );
-    $telegram->answerInlineQuery($params);
-    break;
-  }
+  serchilo_telegram_respond($env, $telegram, $output);
 }
 
 // Process helpers
