@@ -442,14 +442,34 @@ function serchilo_process_query_telegram($env) {
   if ($output['status']['found']) {
     $text = $output['url']['final'];
     serchilo_log_shortcut_call($output['#shortcut'], $env, $output['status']['default_keyword_used']);
+    if (!empty($env['telegram']['inline_query']['id'])) {
+      $results = array();
+      $results[] = array(
+        'type' => 'article',
+        'id' => '0',
+        'title' => $output['#shortcut']['title'],
+        'input_message_content' => array(
+          'message_text' => $text,
+        ),
+        'url' => $text,
+      );
+      $params = array(
+        'inline_query_id' => $env['telegram']['inline_query']['id'],
+        'results' => $results,
+      );
+      $rs = $telegram->answerInlineQuery($params);
+    }
   } else {
     $text = 'Error: No shortcut found.';
   }
-  $response = $telegram->sendMessage([
-    'chat_id' => $env['telegram']['chat']['id'],
-    'text' => $text,
-    //'text' => var_export($env, TRUE),
-  ]);
+  if (!empty($env['telegram']['chat']['id'])) {
+    $response = $telegram->sendMessage([
+      'chat_id' => $env['telegram']['chat']['id'],
+      'text' => $text,
+      //'text' => var_export($env, TRUE),
+    ]);
+  }
+
 }
 
 // Process helpers
