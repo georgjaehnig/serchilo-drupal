@@ -7,7 +7,7 @@ require '../../../vendor/autoload.php';
 use Telegram\Bot\Api;
 
 /**
- * Process a shortcut Telegram query.
+ * Create a Telegram API object.
  *
  * @param array $env
  *   The environment, holding all relevant data of the request.
@@ -18,6 +18,12 @@ function serchilo_telegram_create_api($env) {
   return $telegram;
 }
 
+/**
+ * Populate the environment based on Telegram input.
+ *
+ * @param array $env
+ *   The environment, holding all relevant data of the request.
+ */
 function serchilo_telegram_populate_environment(&$env, $telegram) {
 
   $update = $telegram->getWebhookUpdates();
