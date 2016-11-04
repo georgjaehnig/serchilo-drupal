@@ -30,11 +30,13 @@ function serchilo_telegram_populate_environment(&$env, $telegram) {
     $env['telegram'] = array();
     $env['telegram']['chat'] = array();
     $env['telegram']['chat']['id'] = $message->getChat()->getId();
+    $env['telegram']['type'] = 'message';
   }
 
   if ($inline_query = $update->getInlineQuery()) {
     $env['query'] = $inline_query->getQuery();
     $env['telegram']['inline_query']['id'] = $inline_query->getId();
+    $env['telegram']['type'] = 'inline_query';
   }
 
     $env = serchilo_parse_query($env['query']) + $env;

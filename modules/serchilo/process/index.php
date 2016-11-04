@@ -442,35 +442,39 @@ function serchilo_process_query_telegram($env) {
   if ($output['status']['found']) {
     $url = $output['url']['final'];
     serchilo_log_shortcut_call($output['#shortcut'], $env, $output['status']['default_keyword_used']);
-    if (!empty($env['telegram']['inline_query']['id'])) {
-      $results = array();
-      $results[] = array(
-        'type' => 'article',
-        'id' => '0',
-        'title' => $output['#shortcut']['title'],
-        'input_message_content' => array(
-          'message_text' => $env['query'] . ' → ' . $url,
-          'parse_mode' => 'Markdown',
-        ),
-        'url' => $url,
-      );
-      $params = array(
-        'inline_query_id' => $env['telegram']['inline_query']['id'],
-        'results' => $results,
-      );
-      $rs = $telegram->answerInlineQuery($params);
-    }
   } else {
     $text = 'Error: No shortcut found.';
   }
-  if (!empty($env['telegram']['chat']['id'])) {
+
+  switch ($env['telegram']['type']) {
+  case 'message':
     $response = $telegram->sendMessage([
       'chat_id' => $env['telegram']['chat']['id'],
-      'text' => $url,
+      'text' => $url ?: $text,
       //'text' => var_export($env, TRUE),
     ]);
+    break;
+  case 'inline_query':
+    if (empty($url)) {
+      break;
+    }
+    $results = array();
+    $results[] = array(
+      'type' => 'article',
+      'id' => '0',
+      'title' => $output['#shortcut']['title'],
+      'input_message_content' => array(
+        'message_text' => $env['query'] . ' → ' . $url,
+      ),
+      'url' => $url,
+    );
+    $params = array(
+      'inline_query_id' => $env['telegram']['inline_query']['id'],
+      'results' => $results,
+    );
+    $telegram->answerInlineQuery($params);
+    break;
   }
-
 }
 
 // Process helpers
