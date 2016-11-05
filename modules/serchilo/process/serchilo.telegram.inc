@@ -81,7 +81,7 @@ function serchilo_telegram_respond(&$env, $telegram, $output) {
   case 'message':
     $response = $telegram->sendMessage([
       'chat_id' => $env['telegram']['chat']['id'],
-      'text' => $url ?: $text,
+      'text' => (!empty($url) ? $url : $text),
       //'text' => var_export($env, TRUE),
     ]);
     break;
