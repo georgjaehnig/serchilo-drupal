@@ -27,6 +27,7 @@ function serchilo_telegram_populate_environment(&$env, $telegram) {
 
   $update = $telegram->getWebhookUpdates();
 
+  // If query comes per message:
   if ($message = $update->getMessage()) {
     $env['query'] = $message->getText();
     $env['telegram'] = array();
@@ -35,6 +36,7 @@ function serchilo_telegram_populate_environment(&$env, $telegram) {
     $env['telegram']['type'] = 'message';
   }
 
+  // If query comes per inline:
   if ($inline_query = $update->getInlineQuery()) {
     $env['query'] = $inline_query->getQuery();
     $env['telegram']['inline_query']['id'] = $inline_query->getId();
