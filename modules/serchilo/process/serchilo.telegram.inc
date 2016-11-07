@@ -21,10 +21,10 @@ function serchilo_telegram_create_api($env) {
  */
 function serchilo_telegram_create_commands($telegram) {
 
-  $command = new Serchilo\Telegram\Commands\StartCommand();
-  $telegram->addCommand($command);
-  $command = new Serchilo\Telegram\Commands\HelpCommand();
-  $telegram->addCommand($command);
+  $telegram->addCommands(array(
+    Serchilo\Telegram\Commands\StartCommand::class,
+    Serchilo\Telegram\Commands\HelpCommand::class,
+  ));
 }
 
 
