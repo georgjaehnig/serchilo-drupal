@@ -1,5 +1,10 @@
 {
     "require": {
         "irazasyed/telegram-bot-sdk": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Serchilo\\Telegram\\": "modules/serchilo/process/telegram/"
+        }
     }
 }

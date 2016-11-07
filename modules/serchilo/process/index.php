@@ -435,7 +435,11 @@ function serchilo_process_query_telegram($env) {
   require_once('serchilo.telegram.inc');
 
   $telegram = serchilo_telegram_create_api($env);
+
   serchilo_telegram_populate_environment($env, $telegram);
+
+  $command = serchilo_telegram_create_command_start();
+  $telegram->addCommand($command);
 
   $output = serchilo_get_output($env);
 

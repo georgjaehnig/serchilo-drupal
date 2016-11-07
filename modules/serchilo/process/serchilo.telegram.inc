@@ -1,7 +1,9 @@
 <?PHP
 
 require '../../../vendor/autoload.php';
+
 use Telegram\Bot\Api;
+use Serchilo\Telegram\Bot\Commands;
 
 /**
  * Create a Telegram API object.
@@ -14,6 +16,15 @@ function serchilo_telegram_create_api($env) {
   $telegram = new Api(SERCHILO_TELEGRAM_BOT_TOKEN);
   return $telegram;
 }
+
+/**
+ */
+function serchilo_telegram_create_command_start() {
+
+  $command = new Serchilo\Telegram\Commands\StartCommand();
+  return $command;
+}
+
 
 /**
  * Populate the environment based on Telegram input.
