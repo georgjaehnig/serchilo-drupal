@@ -19,10 +19,12 @@ function serchilo_telegram_create_api($env) {
 
 /**
  */
-function serchilo_telegram_create_command_start() {
+function serchilo_telegram_create_commands($telegram) {
 
   $command = new Serchilo\Telegram\Commands\StartCommand();
-  return $command;
+  $telegram->addCommand($command);
+  $command = new Serchilo\Telegram\Commands\HelpCommand();
+  $telegram->addCommand($command);
 }
 
 
