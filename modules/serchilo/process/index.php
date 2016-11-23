@@ -350,15 +350,22 @@ function serchilo_process_opensearch_suggestions($env) {
       $argument_names_braces[] = $argument_name;
     }
 
-    $completions[] = 
+    $completion =
       # add namespace to keyword if not reachable
       ( (bool) $shortcut['reachable'] ? '' : $shortcut['namespace_name'] . '.' ) .
       $shortcut['keyword'] . 
       ' ' .
       join(', ', $argument_names_braces) . 
-      ' ' .
-      '(' . $shortcut['title'] . ')' .
+      ' → ' .
+      $shortcut['title'] . 
+      '.' .
       '';
+
+    // Trim multiple whitespaces to one.
+    $completion = preg_replace('~ +~', ' ', $completion);
+
+    $completions[] = $completion;
+
     $descriptions[] = $shortcut['title']; 
   }
 
