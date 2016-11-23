@@ -23,6 +23,7 @@ function serchilo_telegram_create_commands($telegram) {
 
   $telegram->addCommands(array(
     Serchilo\Telegram\Commands\StartCommand::class,
+    //Serchilo\Telegram\Commands\SetUserCommand::class,
     Serchilo\Telegram\Commands\HelpCommand::class,
   ));
 }
@@ -43,6 +44,7 @@ function serchilo_telegram_populate_environment(&$env, $telegram) {
   // If query comes per message:
   if ($message = $update->getMessage()) {
     $env['query'] = $message->getText();
+    //error_log(json_encode($message->getEntities()->getType()));
     $env['telegram'] = array();
     $env['telegram']['chat'] = array();
     $env['telegram']['chat']['id'] = $message->getChat()->getId();
