@@ -356,9 +356,9 @@ function serchilo_process_opensearch_suggestions($env) {
       $shortcut['keyword'] . 
       ' ' .
       join(', ', $argument_names_braces) . 
-      ' → ' .
+      SERCHILO_OPENSEARCH_SUGGESTIONS_TITLE_PREFIX .
       $shortcut['title'] . 
-      '.' .
+      SERCHILO_OPENSEARCH_SUGGESTIONS_TITLE_SUFFIX .
       '';
 
     // Trim multiple whitespaces to one.
