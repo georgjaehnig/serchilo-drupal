@@ -441,8 +441,12 @@ function serchilo_process_query_telegram($env) {
 
   serchilo_telegram_populate_environment($env, $telegram);
 
-  $output = serchilo_get_output($env);
+  // If this is a command: get out.
+  if ($env['telegram']['type'] == 'bot_command') {
+    return;
+  }
 
+  $output = serchilo_get_output($env);
   serchilo_telegram_respond($env, $telegram, $output);
 }
 

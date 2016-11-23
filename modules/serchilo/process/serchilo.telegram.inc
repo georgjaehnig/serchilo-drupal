@@ -23,11 +23,29 @@ function serchilo_telegram_create_commands($telegram) {
 
   $telegram->addCommands(array(
     Serchilo\Telegram\Commands\StartCommand::class,
-    //Serchilo\Telegram\Commands\SetUserCommand::class,
     Serchilo\Telegram\Commands\HelpCommand::class,
   ));
 }
 
+/**
+ * Check if message is a command.
+ *
+ * @param object $message
+ *   The Telegram message object.
+ */
+function serchilo_telegram_message_is_command($message) {
+
+  if (empty( $message->getEntities())) {
+    return FALSE; 
+  }
+  $entities = $message->getEntities()->getRawResponse();
+  foreach ($entities as $entity) {
+    if ('bot_command' == $entity['type']) {
+      return TRUE; 
+    }
+  }
+  return FALSE;
+}
 
 /**
  * Populate the environment based on Telegram input.
@@ -44,11 +62,14 @@ function serchilo_telegram_populate_environment(&$env, $telegram) {
   // If query comes per message:
   if ($message = $update->getMessage()) {
     $env['query'] = $message->getText();
-    //error_log(json_encode($message->getEntities()->getType()));
     $env['telegram'] = array();
     $env['telegram']['chat'] = array();
     $env['telegram']['chat']['id'] = $message->getChat()->getId();
-    $env['telegram']['type'] = 'message';
+    if (serchilo_telegram_message_is_command($message)) {
+      $env['telegram']['type'] = 'bot_command';
+    } else {
+      $env['telegram']['type'] = 'message';
+    }
   }
 
   // If query comes per inline:
