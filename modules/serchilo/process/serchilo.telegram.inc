@@ -4,6 +4,30 @@ require '../../../vendor/autoload.php';
 
 use Telegram\Bot\Api;
 use Serchilo\Telegram\Bot\Commands;
+use Longman\TelegramBot\Telegram;
+use Longman\TelegramBot\Request;
+
+/**
+ * Create a Telegram API object.
+ *
+ * @param array $env
+ *   The environment, holding all relevant data of the request.
+ */
+function serchilo_telegram_test_new($env) {
+
+  $telegram = new Telegram(SERCHILO_TELEGRAM_BOT_TOKEN, 'FindFindBot');
+  $telegram->addCommandsPath(__DIR__ . '/telegram/Commands/');
+  $telegram->setCommandConfig('Genericmessage', ['env' => $env]);
+
+  $r = $telegram->handle();
+  //error_log(json_encode('i'));
+  error_log(json_encode($r));
+
+
+  //$response = Request::getUpdates();
+  //return $telegram;
+}
+
 
 /**
  * Create a Telegram API object.
