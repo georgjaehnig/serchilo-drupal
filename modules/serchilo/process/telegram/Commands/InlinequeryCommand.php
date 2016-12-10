@@ -25,6 +25,8 @@ class InlinequeryCommand extends SystemCommand
      */
     public function execute()
     {
+        $env = $this->getConfig('env');
+
         $update = $this->getUpdate();
         $inline_query = $update->getInlineQuery();
         $query = $inline_query->getQuery();
@@ -35,7 +37,6 @@ class InlinequeryCommand extends SystemCommand
         }
 
         $results = [];
-
         $articles = [
           [
             'id' => (string) 1, // shortcut id 
