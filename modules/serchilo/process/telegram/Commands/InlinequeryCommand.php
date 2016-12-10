@@ -36,11 +36,32 @@ class InlinequeryCommand extends SystemCommand
             return Request::answerInlineQuery($data);
         }
 
+        $env['query'] = $query;
+        $env = serchilo_parse_query($env['query']) + $env;
+
+        // TODO: Copied this from 
+        // serchilo_populate_environment(&$env)
+        // case SERCHILO_NAMESPACES_PATH_AFFIX:
+        // Needs to be refactored.
+
+        // Add extra_namespace to namespace_names.
+        if (!empty($env['extra_namespace_name'])) {
+          $env['namespace_names'][] = $env['extra_namespace_name'];
+        }
+        // Get namespace_ids from namespace_names.
+        $env['namespace_ids'] = array_map('serchilo_get_namespace_id', $env['namespace_names']);
+
+        $output = serchilo_get_output($env);
+
+        if (!$output['status']['found']) {
+            return Request::answerInlineQuery($data);
+        }
+
         $results = [];
         $articles = [
           [
             'id' => (string) 1, // shortcut id 
-            'title' => 'https://core.telegram.org/bots/api#answerinlinequery',  // shortcut title
+            'title' => $output['#shortcut']['title'], //'https://core.telegram.org/bots/api#answerinlinequery',  // shortcut title
             'description' => 'you enter: ' . $query,  // usage
             'input_message_content' => new InputTextMessageContent(['message_text' => ' i' . $query])
           ],

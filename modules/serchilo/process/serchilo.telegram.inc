@@ -18,7 +18,7 @@ function serchilo_telegram_test_new($env) {
   $telegram = new Telegram(SERCHILO_TELEGRAM_BOT_TOKEN, 'FindFindBot');
   $telegram->addCommandsPath(__DIR__ . '/telegram/Commands/');
   $telegram->setCommandConfig('Genericmessage', ['env' => $env]);
-  $telegram->setCommandConfig('InlinequeryCommand', ['env' => $env]);
+  $telegram->setCommandConfig('inlinequery', ['env' => $env]);
 
   $r = $telegram->handle();
   //error_log(json_encode('i'));
