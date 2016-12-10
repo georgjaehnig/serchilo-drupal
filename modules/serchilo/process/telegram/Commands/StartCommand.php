@@ -1,26 +1,29 @@
 <?php
 
-namespace Serchilo\Telegram\Commands;
+namespace Longman\TelegramBot\Commands\SystemCommands;
 
-use Telegram\Bot\Actions;
-use Telegram\Bot\Commands\Command;
+use Longman\TelegramBot\Commands\SystemCommand;
+use Longman\TelegramBot\Request;
 
-class StartCommand extends Command
+/**
+ * Start command
+ */
+class StartCommand extends SystemCommand
 {
-    /**
-     * @var string Command Name
+    /**#@+
+     * {@inheritdoc}
      */
-    protected $name = "start";
+    protected $name = 'start';
+    protected $description = '(Re)Start the FindFindBot with defaults.';
+    protected $usage = '/start';
+    protected $version = '1.0.1';
+    protected $need_mysql = false;
+    /**#@-*/
 
     /**
-     * @var string Command Description
+     * {@inheritdoc}
      */
-    protected $description = "(Re)Start FindFindBot with defaults.";
-
-    /**
-     * @inheritdoc
-     */
-    public function handle($arguments)
+    public function execute()
     {
         global $mysqli;
 
@@ -69,10 +72,16 @@ class StartCommand extends Command
           "Welcome to the @FindFindBot. You can use now shortcuts from [FindFind.it](https://www.findfind.it) right here in Telegram. [Learn more about FindFind.it](https://www.findfind.it/help/start). " . PHP_EOL . PHP_EOL . 
           "I have just set up the default namespaces for you: $namespaces_path. You can change them with /n or /u. [Learn more about namespaces](https://www.findfind.it/help/namespaces)."; 
 
-        $this->replyWithMessage([
-          'text' => $text,
+        $message = $this->getMessage();
+        $chat_id = $message->getChat()->getId();
+
+        $data = [
+          'chat_id' => $chat_id,
+          'text'    => $text,
           'parse_mode' => 'Markdown',
           'disable_web_page_preview' => TRUE,
-        ]);
+        ];
+
+        return Request::sendMessage($data);
     }
 }
