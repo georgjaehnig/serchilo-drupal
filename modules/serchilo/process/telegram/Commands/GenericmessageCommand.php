@@ -69,7 +69,6 @@ class GenericmessageCommand extends SystemCommand
         //error_log(json_encode($env));
 
         $output = serchilo_get_output($env);
-        //serchilo_telegram_respond($env, $telegram, $output);
 
         if ($output['status']['found']) {
           $url = $output['url']['final'];
