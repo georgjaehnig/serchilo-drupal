@@ -28,8 +28,12 @@ class InlinequeryCommand extends SystemCommand
         $update = $this->getUpdate();
         $inline_query = $update->getInlineQuery();
         $query = $inline_query->getQuery();
-
         $data = ['inline_query_id' => $inline_query->getId()];
+
+        if (empty($query)) {
+            return Request::answerInlineQuery($data);
+        }
+
         $results = [];
 
         if ($query !== '') {
