@@ -15,12 +15,6 @@ use Longman\TelegramBot\Request;
  */
 function serchilo_telegram_test_new($env) {
 
-  $env['namespace_names'] = array('o', 'de', 'deu');
-  $env['language_namespace_name'] = 'de';
-  $env['country_namespace_name'] = 'deu';
-  $env['namespace_ids'] = array(465, 151, 154);
-  $env['timezone'] = serchilo_get_timezone($env);
-
   $telegram = new Telegram(SERCHILO_TELEGRAM_BOT_TOKEN, 'FindFindBot');
   $telegram->addCommandsPath(__DIR__ . '/telegram/Commands/');
   $telegram->setCommandConfig('Genericmessage', ['env' => $env]);
@@ -33,6 +27,23 @@ function serchilo_telegram_test_new($env) {
 
   //$response = Request::getUpdates();
   //return $telegram;
+}
+
+function serchilo_telegram_get_settings(&$env, $telegram_user_id) {
+
+  //serchilo_get_values_from_table('serchilo_telegram_users')
+  //serchilo_get_values_from_table($table, $where_column_name, $where_value, $value_column_name) {
+   
+  $env['namespace_names'] = array('o', 'de', 'deu');
+  $env['call_type'] = 'n';
+  serchilo_populate_environment($env);
+
+  /*
+  $env['language_namespace_name'] = 'de';
+  $env['country_namespace_name'] = 'deu';
+  $env['namespace_ids'] = array(465, 151, 154);
+  $env['timezone'] = serchilo_get_timezone($env);
+   */
 }
 
 function serchilo_telegram_remove_settings($telegram_user_id) {
