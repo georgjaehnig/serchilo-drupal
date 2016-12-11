@@ -73,7 +73,7 @@ function serchilo_dispatch() {
   case SERCHILO_TELEGRAM_PATH_AFFIX:
     require_once('../../../../../sites/default/settings.php');
     require_once('serchilo.telegram.inc');
-    serchilo_telegram_test_new($env);
+    serchilo_telegram_process($env);
     break;
   }
 }

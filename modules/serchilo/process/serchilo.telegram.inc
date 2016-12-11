@@ -13,7 +13,7 @@ use Longman\TelegramBot\Request;
  * @param array $env
  *   The environment, holding all relevant data of the request.
  */
-function serchilo_telegram_test_new($env) {
+function serchilo_telegram_process($env) {
 
   $telegram = new Telegram(SERCHILO_TELEGRAM_BOT_TOKEN, 'FindFindBot');
   $telegram->addCommandsPath(__DIR__ . '/telegram/Commands/');
