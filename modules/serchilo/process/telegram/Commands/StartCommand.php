@@ -30,7 +30,7 @@ class StartCommand extends SystemCommand
         $telegram_user_id = $this->getUpdate()->getMessage()->getFrom()->getId();
         serchilo_telegram_remove_settings($telegram_user_id);
         $namespaces_path = SERCHILO_DEFAULT_LANGUAGE . '.' . SERCHILO_DEFAULT_COUNTRY;
-        serchilo_telegram_set_namespaces($telegram_user_id, $namespaces_path);
+        serchilo_telegram_set_settings($telegram_user_id, $namespaces_path);
 
         $text = 
           "Welcome to the @FindFindBot. You can use now shortcuts from [FindFind.it](https://www.findfind.it) right here in Telegram. [Learn more about FindFind.it](https://www.findfind.it/help/start). " . PHP_EOL . PHP_EOL . 

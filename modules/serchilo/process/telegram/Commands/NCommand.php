@@ -29,7 +29,7 @@ class NCommand extends UserCommand
           $text = 'Using now the namespaces: ' . $namespaces_path;
           $telegram_user_id = $this->getUpdate()->getMessage()->getFrom()->getId();
           serchilo_telegram_remove_settings($telegram_user_id);
-          serchilo_telegram_set_namespaces($telegram_user_id, $namespaces_path);
+          serchilo_telegram_set_settings($telegram_user_id, $namespaces_path);
         } else {
           $text = $this->description . PHP_EOL . 'Usage: ' . $this->usage; 
         }

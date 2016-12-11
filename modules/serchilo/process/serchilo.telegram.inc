@@ -44,7 +44,7 @@ function serchilo_telegram_remove_settings($telegram_user_id) {
   $result = $mysqli->query($sql);
 }
 
-function serchilo_telegram_set_namespaces($telegram_user_id, $namespaces_path) {
+function serchilo_telegram_set_settings($telegram_user_id, $namespaces_path = NULL, $uid = NULL) {
 
   global $mysqli;
 
@@ -69,7 +69,7 @@ function serchilo_telegram_set_namespaces($telegram_user_id, $namespaces_path) {
     $sql,
     array(
       'telegram_user_id'  => $telegram_user_id,
-      'uid'               => NULL,
+      'uid'               => $uid,
       'namespaces_path'   => $namespaces_path,
     )
   );
