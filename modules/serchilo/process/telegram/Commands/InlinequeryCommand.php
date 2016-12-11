@@ -64,6 +64,7 @@ class InlinequeryCommand extends SystemCommand
             'id' => (string) 1, // shortcut id 
             'title' => $output['#shortcut']['title'], //'https://core.telegram.org/bots/api#answerinlinequery',  // shortcut title
             'description' => trim($output['#shortcut']['keyword'] . ' ' .  $output['#shortcut']['argument_names']),
+            // TODO: Show namespace.
             'input_message_content' => new InputTextMessageContent([
               'message_text' => $env['query'] . ' → ' . $output['url']['final'],
             ])
