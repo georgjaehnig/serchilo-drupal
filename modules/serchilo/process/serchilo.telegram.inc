@@ -36,14 +36,6 @@ function serchilo_telegram_get_settings(&$env, $telegram_user_id) {
     array_unshift($env['namespace_names'], SERCHILO_PLANET_NAMESPACE);
   }
   serchilo_populate_environment($env);
-  error_log(json_encode($env));
-
-  /*
-  $env['language_namespace_name'] = 'de';
-  $env['country_namespace_name'] = 'deu';
-  $env['namespace_ids'] = array(465, 151, 154);
-  $env['timezone'] = serchilo_get_timezone($env);
-   */
 }
 
 function serchilo_telegram_remove_settings($telegram_user_id) {
