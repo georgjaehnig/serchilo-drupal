@@ -31,12 +31,18 @@ function serchilo_telegram_test_new($env) {
 
 function serchilo_telegram_get_settings(&$env, $telegram_user_id) {
 
-  //serchilo_get_values_from_table('serchilo_telegram_users')
-  //serchilo_get_values_from_table($table, $where_column_name, $where_value, $value_column_name) {
-   
-  $env['namespace_names'] = array('o', 'de', 'deu');
-  $env['call_type'] = 'n';
+
+  if ($env['user_id'] = serchilo_get_values_from_table('serchilo_telegram_users', 'telegram_user_id', $telegram_user_id, 'uid')[0]) {
+    $env['call_type'] = 'u';
+    $env['user_name'] = serchilo_get_values_from_table('users', 'uid', $env['user_id'], 'name')[0];
+  } else if ($namespaces_path = serchilo_get_values_from_table('serchilo_telegram_users', 'telegram_user_id', $telegram_user_id, 'namespaces_path')[0]) {
+    $env['call_type'] = 'n';
+    // TODO: Refactor as serchilo_namespace_names_tonamespaces_path().
+    $env['namespace_names'] = explode('.', $namespaces_path);
+    array_unshift($env['namespace_names'], SERCHILO_PLANET_NAMESPACE);
+  }
   serchilo_populate_environment($env);
+  error_log(json_encode($env));
 
   /*
   $env['language_namespace_name'] = 'de';

@@ -42,18 +42,6 @@ class InlinequeryCommand extends SystemCommand
         $env['query'] = $query;
         $env = serchilo_parse_query($env['query']) + $env;
 
-        // TODO: Copied this from 
-        // serchilo_populate_environment(&$env)
-        // case SERCHILO_NAMESPACES_PATH_AFFIX:
-        // Needs to be refactored.
-
-        // Add extra_namespace to namespace_names.
-        if (!empty($env['extra_namespace_name'])) {
-          $env['namespace_names'][] = $env['extra_namespace_name'];
-        }
-        // Get namespace_ids from namespace_names.
-        $env['namespace_ids'] = array_map('serchilo_get_namespace_id', $env['namespace_names']);
-
         // TODO: Replace this with serchilo_search_shortcuts().
         $output = serchilo_get_output($env);
 
