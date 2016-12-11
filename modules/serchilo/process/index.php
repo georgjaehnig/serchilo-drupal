@@ -71,7 +71,9 @@ function serchilo_dispatch() {
     serchilo_process_query_url($env);
     break;
   case SERCHILO_TELEGRAM_PATH_AFFIX:
-    serchilo_process_query_telegram($env);
+    require_once('../../../../../sites/default/settings.php');
+    require_once('serchilo.telegram.inc');
+    serchilo_telegram_test_new($env);
     break;
   }
 }
@@ -421,19 +423,6 @@ function serchilo_process_query_url($env) {
   }
 }
 
-/**
- * Process a shortcut Telegram query.
- *
- * @param array $env
- *   The environment, holding all relevant data of the request.
- */
-function serchilo_process_query_telegram($env) {
-
-  require_once('../../../../../sites/default/settings.php');
-  require_once('serchilo.telegram.inc');
-
-  serchilo_telegram_test_new($env);
-}
 
 // Process helpers
 
