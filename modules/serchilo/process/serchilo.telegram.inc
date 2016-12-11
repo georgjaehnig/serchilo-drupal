@@ -20,13 +20,7 @@ function serchilo_telegram_process($env) {
   $telegram->setCommandConfig('Genericmessage', ['env' => $env]);
   $telegram->setCommandConfig('inlinequery', ['env' => $env]);
 
-  $r = $telegram->handle();
-  //error_log(json_encode('i'));
-  error_log(json_encode($r));
-
-
-  //$response = Request::getUpdates();
-  //return $telegram;
+  $telegram->handle();
 }
 
 function serchilo_telegram_get_settings(&$env, $telegram_user_id) {
