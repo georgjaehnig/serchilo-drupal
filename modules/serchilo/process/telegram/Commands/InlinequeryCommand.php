@@ -29,6 +29,9 @@ class InlinequeryCommand extends SystemCommand
 
         $update = $this->getUpdate();
         $inline_query = $update->getInlineQuery();
+        $telegram_user_id = $inline_query->getFrom()->getId();
+        serchilo_telegram_get_settings($env, $telegram_user_id);
+
         $query = $inline_query->getQuery();
         $data = ['inline_query_id' => $inline_query->getId()];
 
