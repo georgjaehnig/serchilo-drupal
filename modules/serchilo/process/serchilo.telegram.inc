@@ -15,6 +15,12 @@ use Longman\TelegramBot\Request;
  */
 function serchilo_telegram_test_new($env) {
 
+  $env['namespace_names'] = array('o', 'de', 'deu');
+  $env['language_namespace_name'] = 'de';
+  $env['country_namespace_name'] = 'deu';
+  $env['namespace_ids'] = array(465, 151, 154);
+  $env['timezone'] = serchilo_get_timezone($env);
+
   $telegram = new Telegram(SERCHILO_TELEGRAM_BOT_TOKEN, 'FindFindBot');
   $telegram->addCommandsPath(__DIR__ . '/telegram/Commands/');
   $telegram->setCommandConfig('Genericmessage', ['env' => $env]);

@@ -71,11 +71,6 @@ function serchilo_dispatch() {
     serchilo_process_query_url($env);
     break;
   case SERCHILO_TELEGRAM_PATH_AFFIX:
-    $env['namespace_names'] = array('o', 'de', 'deu');
-    $env['language_namespace_name'] = 'de';
-    $env['country_namespace_name'] = 'deu';
-    $env['namespace_ids'] = array(465, 151, 154);
-    $env['timezone'] = serchilo_get_timezone($env);
     serchilo_process_query_telegram($env);
     break;
   }
