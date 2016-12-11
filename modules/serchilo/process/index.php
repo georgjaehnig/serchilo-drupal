@@ -49,25 +49,33 @@ function serchilo_dispatch() {
   $env['call_type'] = serchilo_array_value($_GET, 'call_type');
   $env['source']    = serchilo_array_value($_GET, 'source');
 
-  serchilo_populate_environment($env);
-
   switch ($env['page_type']) {
   case SERCHILO_CONSOLE:
+    serchilo_populate_environment($env);
     serchilo_process_query_console($env);
     break;
   case SERCHILO_AUTOCOMPLETE_PATH_AFFIX:
+    serchilo_populate_environment($env);
     serchilo_process_query_ajax($env);
     break;
   case SERCHILO_OPENSEARCH_SUGGESTIONS_PATH_AFFIX:
+    serchilo_populate_environment($env);
     serchilo_process_opensearch_suggestions($env);
     break;
   case SERCHILO_API_PATH_AFFIX:
+    serchilo_populate_environment($env);
     serchilo_process_query_api($env);
     break;
   case SERCHILO_URL_PATH_AFFIX:
+    serchilo_populate_environment($env);
     serchilo_process_query_url($env);
     break;
   case SERCHILO_TELEGRAM_PATH_AFFIX:
+    $env['namespace_names'] = array('o', 'de', 'deu');
+    $env['language_namespace_name'] = 'de';
+    $env['country_namespace_name'] = 'deu';
+    $env['namespace_ids'] = array(465, 151, 154);
+    $env['timezone'] = serchilo_get_timezone($env);
     serchilo_process_query_telegram($env);
     break;
   }
@@ -127,15 +135,6 @@ function serchilo_populate_environment(&$env) {
   case SERCHILO_AUTOCOMPLETE_PATH_AFFIX:
     $env['path_elements_offset'] = 1;
     $env = serchilo_handle_query_from_request('term') + $env;
-    break;
-  case SERCHILO_TELEGRAM_PATH_AFFIX:
-    // TODO: Get settings from user settings.
-    $env['namespace_names'] = array('o', 'de', 'deu');
-    $env['language_namespace_name'] = 'de';
-    $env['country_namespace_name'] = 'deu';
-    $env['namespace_ids'] = array(465, 151, 154);
-    $env['timezone'] = serchilo_get_timezone($env);
-    return;
     break;
   }
 
