@@ -51,6 +51,7 @@ class InlinequeryCommand extends SystemCommand
         // Get namespace_ids from namespace_names.
         $env['namespace_ids'] = array_map('serchilo_get_namespace_id', $env['namespace_names']);
 
+        // TODO: Replace this with serchilo_search_shortcuts().
         $output = serchilo_get_output($env);
 
         if (!$output['status']['found']) {
@@ -62,8 +63,10 @@ class InlinequeryCommand extends SystemCommand
           [
             'id' => (string) 1, // shortcut id 
             'title' => $output['#shortcut']['title'], //'https://core.telegram.org/bots/api#answerinlinequery',  // shortcut title
-            'description' => 'you enter: ' . $query,  // usage
-            'input_message_content' => new InputTextMessageContent(['message_text' => ' i' . $query])
+            'description' => trim($output['#shortcut']['keyword'] . ' ' .  $output['#shortcut']['argument_names']),
+            'input_message_content' => new InputTextMessageContent([
+              'message_text' => $env['query'] . ' → ' . $output['url']['final'],
+            ])
           ],
         ];
 
