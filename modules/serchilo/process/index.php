@@ -138,7 +138,9 @@ function serchilo_populate_environment(&$env) {
   case SERCHILO_NAMESPACES_PATH_AFFIX:
 
     // Get namespace names.
-    $env['namespace_names'] = serchilo_get_namespace_names_from_path($env['path_elements_offset']);
+    if (empty($namespace_names)) {
+      $env['namespace_names'] = serchilo_get_namespace_names_from_path($env['path_elements_offset']);
+    }
     $env['language_namespace_name'] = $env['namespace_names'][1];
     $env['country_namespace_name']  = $env['namespace_names'][2];
 
@@ -155,8 +157,10 @@ function serchilo_populate_environment(&$env) {
 
   case SERCHILO_USER_PATH_AFFIX:
 
-    $env['user_name'] = serchilo_get_user_name_from_path($env['path_elements_offset']);
-    $env['user_id']   = serchilo_get_values_from_table('users', 'name', $env['user_name'], 'uid', TRUE)[0];
+    if (empty($user_id)) {
+      $env['user_name'] = serchilo_get_user_name_from_path($env['path_elements_offset']);
+      $env['user_id']   = serchilo_get_values_from_table('users', 'name', $env['user_name'], 'uid', TRUE)[0];
+    }
     $env['timezone']  = serchilo_get_timezone($env);
 
     $env['namespace_ids'] = serchilo_get_namespace_ids_from_user($env['user_name'], $env['user_id']);
