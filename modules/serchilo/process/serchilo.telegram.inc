@@ -29,6 +29,54 @@ function serchilo_telegram_test_new($env) {
   //return $telegram;
 }
 
+function serchilo_telegram_remove_settings($telegram_user_id) {
+
+  global $mysqli;
+
+  // Delete current user settings.
+  $sql = "
+    DELETE
+    FROM serchilo_telegram_users
+    WHERE
+    telegram_user_id  = '" . $mysqli->real_escape_string($telegram_user_id) . "' 
+  ";
+
+  $result = $mysqli->query($sql);
+}
+
+function serchilo_telegram_set_namespaces($telegram_user_id, $namespaces_path) {
+
+  global $mysqli;
+
+  // Set new user settings.
+  $sql = "
+    INSERT INTO 
+      serchilo_telegram_users
+      (
+        telegram_user_id,
+        uid,
+        namespaces_path
+      )
+      VALUES (
+        :telegram_user_id, 
+        :uid, 
+        :namespaces_path
+      );
+  ";
+
+  $sql = serchilo_replace_sql_arguments(
+    $mysqli, 
+    $sql,
+    array(
+      'telegram_user_id'  => $telegram_user_id,
+      'uid'               => NULL,
+      'namespaces_path'   => $namespaces_path,
+    )
+  );
+
+  $result = $mysqli->query($sql);
+}
+
 
 /**
  * Create a Telegram API object.
