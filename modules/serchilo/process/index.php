@@ -1276,6 +1276,23 @@ function serchilo_replace_arguments($str, $arguments, $env) {
       // different processing.
       $processed_argument = $argument;
 
+      // Map URL mappings, if the URL template has
+      // {%query|map:foo=bar}
+      // and the given argument is "foo",
+      // replace it with "bar".
+      foreach ($attributes as $key=>$to) {
+        // If attribute is an URL mapping.
+        if ('map:' == substr($key, 0, 4)) {
+          // Get "from" value.
+          list(,$from) = explode(':', $key, 2);
+          // If "from" value matches argument:
+          // replace it.
+          if ($from == $argument) {
+            $processed_argument = $to;
+          }
+        }
+      }
+
       $type = serchilo_array_value($attributes, 'type');
       switch($type) {
         case 'date':
