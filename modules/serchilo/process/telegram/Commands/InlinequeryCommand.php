@@ -29,18 +29,18 @@ class InlinequeryCommand extends SystemCommand
 
         $update = $this->getUpdate();
         $inline_query = $update->getInlineQuery();
-        $telegram_user_id = $inline_query->getFrom()->getId();
-        serchilo_telegram_get_settings($env, $telegram_user_id);
-
         $query = $inline_query->getQuery();
         $data = ['inline_query_id' => $inline_query->getId()];
+
+        $env['query'] = $query;
+        $env = serchilo_parse_query($env['query']) + $env;
+
+        $telegram_user_id = $inline_query->getFrom()->getId();
+        serchilo_telegram_get_settings($env, $telegram_user_id);
 
         if (empty($query)) {
             return Request::answerInlineQuery($data);
         }
-
-        $env['query'] = $query;
-        $env = serchilo_parse_query($env['query']) + $env;
 
         // TODO: Replace this with serchilo_search_shortcuts().
         $output = serchilo_get_output($env);

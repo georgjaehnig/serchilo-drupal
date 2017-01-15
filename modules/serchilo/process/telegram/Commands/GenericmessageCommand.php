@@ -49,11 +49,13 @@ class GenericmessageCommand extends SystemCommand
         $env = $this->getConfig('env');
 
         $message = $this->getMessage();
-        $telegram_user_id = $message->getFrom()->getId();
-        serchilo_telegram_get_settings($env, $telegram_user_id);
 
         $env['query'] = $message->getText();
         $env = serchilo_parse_query($env['query']) + $env;
+
+        $telegram_user_id = $message->getFrom()->getId();
+        serchilo_telegram_get_settings($env, $telegram_user_id);
+
         $output = serchilo_get_output($env);
 
         if ($output['status']['found']) {

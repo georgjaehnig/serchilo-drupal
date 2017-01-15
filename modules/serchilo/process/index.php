@@ -142,17 +142,8 @@ function serchilo_populate_environment(&$env) {
     if (empty($env['namespace_names'])) {
       $env['namespace_names'] = serchilo_get_namespace_names_from_path($env['path_elements_offset']);
     }
-    $env['language_namespace_name'] = $env['namespace_names'][1];
-    $env['country_namespace_name']  = $env['namespace_names'][2];
-
-    // Add extra_namespace to namespace_names.
-    if (!empty($env['extra_namespace_name'])) {
-      $env['namespace_names'][] = $env['extra_namespace_name'];
-    }
-    // Get namespace_ids from namespace_names.
-    $env['namespace_ids'] = array_map('serchilo_get_namespace_id', $env['namespace_names']);
-
     $env['timezone'] = serchilo_get_timezone($env);
+    serchilo_get_namespaces($env);
 
     break;
 
@@ -163,19 +154,43 @@ function serchilo_populate_environment(&$env) {
       $env['user_id']   = serchilo_get_values_from_table('users', 'name', $env['user_name'], 'uid', TRUE)[0];
     }
     $env['timezone']  = serchilo_get_timezone($env);
-
     $env['namespace_ids'] = serchilo_get_namespace_ids_from_user($env['user_name'], $env['user_id']);
+    serchilo_get_namespaces($env);
 
-    // Yes, one '=' is correct.
-    if ($env['extra_namespace_id'] = serchilo_get_namespace_id($env['extra_namespace_name'])) {
-      $env['namespace_ids'][] = $env['extra_namespace_id'];
-    }
+    break;
+  }
+}
 
+/**
+ * Set the namespace environment.
+ *
+ * @param array $env
+ *   The environment, holding all relevant data of the request.
+ *
+ * @return array $env
+ *   The environment, holding all relevant data of the request.
+ */
+function serchilo_get_namespaces(&$env) {
+
+  if (empty($env['namespace_ids'])) {
+    // Get namespace_ids from namespace_names.
+    $env['namespace_ids'] = array_map('serchilo_get_namespace_id', $env['namespace_names']);
+  }
+
+  // If no namespace_names set:
+  if (empty($env['namespace_names'])) {
     // Get namespace_names from namespace_ids.
     $env['language_namespace_name'] = serchilo_get_values_from_table('taxonomy_term_data', 'tid', $env['namespace_ids']['1'], 'name')[0];
     $env['country_namespace_name']  = serchilo_get_values_from_table('taxonomy_term_data', 'tid', $env['namespace_ids']['2'], 'name')[0];
+  } else {
+    $env['language_namespace_name'] = $env['namespace_names'][1];
+    $env['country_namespace_name']  = $env['namespace_names'][2];
+  }
 
-    break;
+  // If extra_namespace availiable:
+  // Add it to IDs.
+  if ($env['extra_namespace_name']) {
+    $env['namespace_ids'][] = serchilo_get_namespace_id($env['extra_namespace_name']);
   }
 }
 
@@ -456,6 +471,7 @@ function serchilo_get_output($env) {
 
         $env['query'] = $env['default_keyword'] . ' ' . $env['query'];
         $env = serchilo_parse_query($env['query']) + $env;
+        serchilo_get_namespaces($env);
 
         // Add extra namespace from default keyword if present.
         if (!empty($env['extra_namespace_name'])) {
