@@ -124,7 +124,6 @@ function serchilo_populate_environment(&$env) {
       $env['keyword']        = trim(serchilo_array_value($_GET, 'keyword'));
       $env['argument_count'] = serchilo_array_value($_GET, 'argument_count', 0);
       $env['arguments']      = array();
-      // TODO: Why is this here? Already called in serchilo_populate_environment.
       $env = serchilo_get_extra_namespace_from_keyword($env['keyword']) + $env;
     }
     $env['path_elements_offset'] = 1;
