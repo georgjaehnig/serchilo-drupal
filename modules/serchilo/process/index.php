@@ -508,10 +508,11 @@ function serchilo_get_output($env) {
 function serchilo_shortcut_to_output($shortcut, $env) {
 
   $output = array();
-  $output['url']['template'] = utf8_encode($shortcut['url']);
+  $output['url']['template'] = $shortcut['url'];
   $variables = serchilo_get_url_variables($env);
   $url_replaced_variables = serchilo_replace_variables($shortcut['url'],  $variables, $env);
-  $output['url']['replaced_variables'] = utf8_encode($url_replaced_variables);
+  $output['url']['replaced_variables'] = $url_replaced_variables;
+
 
   // Reparse arguments if count does not match.
   if (count($env['arguments']) > $shortcut['argument_count']) {
@@ -526,7 +527,7 @@ function serchilo_shortcut_to_output($shortcut, $env) {
       $env['arguments'],
       $env
     );
-    $output['url']['final'] = utf8_encode($url_final);
+    $output['url']['final'] = $url_final;
   }
   $output['status']['found']         = TRUE;
   $output['status']['approved']      = (bool) $shortcut['approved'];
