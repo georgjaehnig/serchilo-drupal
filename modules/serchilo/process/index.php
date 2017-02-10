@@ -1328,6 +1328,10 @@ function serchilo_replace_arguments($str, $arguments, $env) {
       switch($encoding) {
         case 'none':
           break;
+        case 'utf-8-double-urlencode':
+          $processed_argument = rawurlencode($processed_argument);
+          $processed_argument = rawurlencode($processed_argument);
+          break;
         default:
           # if encoding is valid
           if (in_array(strtoupper($encoding), mb_list_encodings())) {
@@ -1344,7 +1348,6 @@ function serchilo_replace_arguments($str, $arguments, $env) {
       );
     }
   }
-
   return $str;
 }
 
