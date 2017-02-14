@@ -405,7 +405,28 @@ function serchilo_features_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_browse:browse',
   );
-  // Exported menu link: main-menu_tags:tags
+  // Exported menu link: main-menu_source-code:help/code.
+  $menu_links['main-menu_source-code:help/code'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'help/code',
+    'router_path' => 'help/code',
+    'link_title' => 'Source code',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'main-menu_source-code:help/code',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_help:help',
+  );
+  // Exported menu link: main-menu_tags:tags.
   $menu_links['main-menu_tags:tags'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'tags',
@@ -568,9 +589,9 @@ function serchilo_features_menu_default_menu_links() {
   t('Register');
   t('Shortcut URLs');
   t('Shortcuts');
+  t('Source code');
   t('Tags');
   t('User account');
-
 
   return $menu_links;
 }
