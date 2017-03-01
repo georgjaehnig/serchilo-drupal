@@ -17,6 +17,9 @@ define('SERCHILO_URL_PATH_AFFIX', 'url');
 define('SERCHILO_API_PATH_AFFIX', 'api');
 define('SERCHILO_TELEGRAM_PATH_AFFIX', 'telegram');
 
+define('SERCHILO_OPENSEARCH_SUGGESTIONS_TITLE_PREFIX', ' → ');
+define('SERCHILO_OPENSEARCH_SUGGESTIONS_TITLE_SUFFIX', '.');
+
 // TODO: Delete obsolete:
 define('SERCHILO_METATAG_INSTANCE_CONSOLE', 'serchilo_console');
 define('SERCHILO_METATAG_INSTANCE_CONSOLE_NAMESPACES', 'serchilo_console:namespaces');
