@@ -25,7 +25,6 @@ function serchilo_telegram_process($env) {
 
 function serchilo_telegram_get_settings(&$env, $telegram_user_id) {
 
-
   if ($env['user_id'] = serchilo_get_values_from_table('serchilo_telegram_users', 'telegram_user_id', $telegram_user_id, 'uid')[0]) {
     $env['call_type'] = 'u';
     $env['user_name'] = serchilo_get_values_from_table('users', 'uid', $env['user_id'], 'name')[0];
