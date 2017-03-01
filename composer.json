@@ -1,6 +1,5 @@
 {
     "require": {
-        "irazasyed/telegram-bot-sdk": "dev-master",
         "longman/telegram-bot": "^0.35.0"
     },
     "autoload": {
