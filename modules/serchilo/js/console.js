@@ -27,6 +27,18 @@
         delay: 300,
 
         select: function( event, ui ) {
+          // If clicked on gear icon:
+          if ((event.toElement) && (event.toElement.className == 'gear')) {
+            // Go to shortcut page.
+            window.location.href = '/node/' + ui.item[ID];
+            return;
+          }
+          // If this is a 0-argument shortcut:
+          if (!ui.item[ARGUMENT_NAMES]) {
+            // Go to its target URL.
+            window.location.href = ui.item[URL];
+            return;
+          }
           // If it is a shortcut
           // go to its node page 
           if (ui.item[ID] > 0 ) {
@@ -93,6 +105,7 @@
               '</span>' +
               namespace_html +
             '</span>'+
+            ' <span class="gear" >⚙</span> ' +
           '</a>' +
           '';
           

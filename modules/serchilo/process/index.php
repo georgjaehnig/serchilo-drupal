@@ -331,6 +331,13 @@ function serchilo_process_query_ajax($env) {
 
   // filter keys that are allowed to be public
   foreach ($shortcuts as $shortcut) {
+
+    $url = NULL;
+    if ($shortcut['argument_count'] == 0) {
+      $variables = serchilo_get_url_variables($env);
+      $url = serchilo_replace_variables($shortcut['url'], $variables, $env);
+    }
+    
     $filtered_shortcut = array(
       $shortcut['nid'], 
       $shortcut['keyword'], 
@@ -338,6 +345,7 @@ function serchilo_process_query_ajax($env) {
       $shortcut['title'], 
       $shortcut['namespace_name'], 
       (int) $shortcut['reachable'], 
+      $url
     );
     $filtered_shortcuts[] = $filtered_shortcut;
   }
