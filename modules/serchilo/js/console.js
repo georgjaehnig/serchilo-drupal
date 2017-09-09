@@ -34,6 +34,8 @@
             window.location.href = '/node/' + ui.item[ID];
           } 
           // Else: Call the given URL
+          // (TODO: find out when this is actually happening.
+          // Maybe only a legacy line?)
           else {
             window.location.href = ui.item[URL];
           }
