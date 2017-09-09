@@ -9,7 +9,7 @@
 
 ### Install
 
-1. In your browser, open https://www.findfind.it/profiles/serchilo_profile/userscripts/fill-and-submit.user.js
+1. In your browser, open https://www.findfind.it/profiles/serchilo_profile/userscripts/fill-and-submit/fill-and-submit.user.js
 2. There should be a dialog opening that offers to install the user script. 
 3. Install and you are done.
 
@@ -34,10 +34,9 @@ Given the example above, it:
 ### Documentation:
 
 - `serchilo[fill]`: array containing selectors and values
-
-    serchilo[fill][selector1] = value1
-    serchilo[fill][selector2] = value2
-    ...
+  - `serchilo[fill][selector1]=value1`
+  - `serchilo[fill][selector2]=value2`
+  - `...`
 
 - `serchilo[submit]`: string with selector of element to click on.
 
