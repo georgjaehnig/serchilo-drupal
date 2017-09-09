@@ -30,7 +30,7 @@
           // If clicked on gear icon:
           if ((event.toElement) && (event.toElement.className == 'gear')) {
             // Go to shortcut page.
-            window.location.href = '/node/' + ui.item[ID];
+            window.location.href = '/node/' + ui.item[ID] + '/edit';
             return;
           }
           // If this is a 0-argument shortcut:
