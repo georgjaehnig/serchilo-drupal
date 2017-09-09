@@ -326,24 +326,23 @@ function serchilo_process_query_console($env) {
 function serchilo_process_query_ajax($env) {
 
   $shortcuts = serchilo_search_shortcuts($env['keyword'], $env['arguments'], $env['query'], $env['namespace_ids'], $env['extra_namespace_name'] );
-  
-  // filter keys that are allowed to be public
-  $shortcuts = array_map(
-    function($shortcut) {
-      $filtered_shortcut = array(
-        $shortcut['nid'], 
-        $shortcut['keyword'], 
-        $shortcut['argument_names'], 
-        $shortcut['title'], 
-        $shortcut['namespace_name'], 
-        (int) $shortcut['reachable'], 
-      );
-      return $filtered_shortcut;
-    },
-    $shortcuts
-  );
 
-  serchilo_output_json($shortcuts);
+  $filtered_shortcuts = array();
+
+  // filter keys that are allowed to be public
+  foreach ($shortcuts as $shortcut) {
+    $filtered_shortcut = array(
+      $shortcut['nid'], 
+      $shortcut['keyword'], 
+      $shortcut['argument_names'], 
+      $shortcut['title'], 
+      $shortcut['namespace_name'], 
+      (int) $shortcut['reachable'], 
+    );
+    $filtered_shortcuts[] = $filtered_shortcut;
+  }
+
+  serchilo_output_json($filtered_shortcuts);
 }
 
 /**
