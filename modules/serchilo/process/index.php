@@ -11,6 +11,8 @@ define('NAMESPACE_VOCABULARY_ID', serchilo_get_values_from_table('taxonomy_vocab
 
 serchilo_dispatch();
 
+serchilo_disconnect_db();
+
 # --------------------------------
 
 /**
@@ -76,6 +78,15 @@ function serchilo_dispatch() {
     serchilo_telegram_process($env);
     break;
   }
+}
+
+/**
+ * Disconnect from the database.
+ */
+function serchilo_disconnect_db() {
+
+  global $mysqli;
+  $mysqli->close();
 }
 
 
@@ -268,25 +279,25 @@ function serchilo_process_query_console($env) {
         urlencode($output['url']['final']);
 
       header('Location: ' . $sight_url);
-      exit;
+      return;
     }
 
     if (!empty($output['url']['post_parameters'])) {
       // Redirect via HTML form
       // for shortcuts with POST parameters
       serchilo_redirect_via_form($output['url']['final'], $output['url']['post_parameters']);
-      exit();
+      return;
     }
     elseif (empty($output['#shortcut']['set_referrer'])) {
       // Classic redirect.
       header('Location: ' . $output['url']['final']);
-      exit();
+      return;
     }
     else {
       // Redirect via HTML page
       // for shortcuts which need a referrer.
       serchilo_redirect_via_meta($output['url']['final']);
-      exit();
+      return;
     }
   } 
 
