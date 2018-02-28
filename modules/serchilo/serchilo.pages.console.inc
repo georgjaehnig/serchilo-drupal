@@ -521,7 +521,7 @@ function serchilo_validate_and_set_namespaces($path_elements = array()) {
 function serchilo_namespace_names_to_namespaces($namespace_names) {
   $namespaces = array();
   foreach ($namespace_names as $namespace_name) {
-    $namespace = array_shift(taxonomy_get_term_by_name($namespace_name, 'namespaces')?: array());
+    $namespace = current(taxonomy_get_term_by_name($namespace_name, 'namespaces')?: array());
     if (!is_object($namespace)) { 
       continue;
     }
@@ -594,11 +594,11 @@ function serchilo_set_default_keyword($account) {
  */
 function serchilo_set_user_namespaces($account) {
 
-  $star_namespace     = array_shift(taxonomy_get_term_by_name(SERCHILO_PLANET_NAMESPACE, 'namespaces') ?: array());
-  $language_namespace = array_shift(serchilo_field_get_items_taxonomy_term_load_multiple('user', $account, 'field_language_namespace') ?: array());
-  $country_namespace  = array_shift(serchilo_field_get_items_taxonomy_term_load_multiple('user', $account, 'field_country_namespace') ?: array());
+  $star_namespace     = current(taxonomy_get_term_by_name(SERCHILO_PLANET_NAMESPACE, 'namespaces') ?: array());
+  $language_namespace = current(serchilo_field_get_items_taxonomy_term_load_multiple('user', $account, 'field_language_namespace') ?: array());
+  $country_namespace  = current(serchilo_field_get_items_taxonomy_term_load_multiple('user', $account, 'field_country_namespace') ?: array());
   $custom_namespaces  = serchilo_field_get_items_taxonomy_term_load_multiple('user', $account, 'field_custom_namespaces');
-  $user_namespace     = array_shift(taxonomy_get_term_by_name($account->name, 'namespaces') ?: array());
+  $user_namespace     = current(taxonomy_get_term_by_name($account->name, 'namespaces') ?: array());
 
   $namespaces = array_merge(
     array(
