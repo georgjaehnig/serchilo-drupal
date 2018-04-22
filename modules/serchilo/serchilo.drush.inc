@@ -27,6 +27,16 @@ function serchilo_drush_command() {
     'required-arguments' => TRUE,
   );
 
+  $items['serchilo-export-data-trovu'] = array(
+    'description' => 'Export Serchilo data to file.',
+    'callback' => 'drush_serchilo_export_trovu',
+    'aliases' => array('sedt'), 
+    'arguments' => array(
+      'dir' => 'Full path to the destination directory. ',
+    ),
+    'required-arguments' => TRUE,
+  );
+
   $items['serchilo-calculate-shortcut-calls'] = array(
     'description' => 'Calculate shortcut calls.',
     'callback' => 'drush_serchilo_calculate_shortcut_calls',
@@ -212,6 +222,21 @@ function drush_serchilo_export($file) {
 
   module_load_include('inc', 'serchilo', 'serchilo.export');
   serchilo_export_to_json_gz_file($file);
+}
+
+/**
+ * Export Serchilo data to Trovu directory.
+ *
+ * @param string $dir
+ *   The path to the dir to export to,
+ *   based from DRUPAL_ROOT.
+ *
+ * @return void
+ */
+function drush_serchilo_export_trovu($dir) {
+
+  module_load_include('inc', 'serchilo', 'serchilo.export');
+  serchilo_export_to_json_dir($dir);
 }
 
 /**
