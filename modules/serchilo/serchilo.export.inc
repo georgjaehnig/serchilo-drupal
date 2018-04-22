@@ -32,6 +32,36 @@ function serchilo_export_to_json_gz_file($file_without_suffix) {
 }
 
 /**
+ * Exports shortcuts to Trovu dir.
+ *
+ * @param string dir
+ *   Path to the dir.
+ 
+ * @return void
+ */
+function serchilo_export_to_json_dir($dir) {
+
+  $shortcuts = serchilo_export_shortcuts();
+  foreach ($shortcuts as $shortcut) {
+
+    $keyword_dir = $dir . '/shortcuts/' . $shortcut['namespace'] . '/' . $shortcut['keyword'] . '/';
+    system('mkdir -p ' .  $keyword_dir);
+
+    $call = array(
+      'url' => $shortcut['url'],
+    );
+
+    $call_json = drupal_json_encode($call);
+
+    $argumentCount = count(serchilo_get_arguments_from_string($shortcut['url']));
+    $call_path = $keyword_dir . $argumentCount . '.call.json';
+
+    file_put_contents($call_path, $call_json);
+  }
+  //print_r($export['shortcuts']);
+}
+
+/**
  * Exports the shortcuts and the namespaces.
  *
  * @return array $export
