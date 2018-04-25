@@ -44,7 +44,8 @@ function serchilo_export_to_json_dir($dir) {
   $shortcuts = serchilo_export_shortcuts();
   foreach ($shortcuts as $shortcut) {
 
-    $keyword_dir = $dir . '/shortcuts/' . $shortcut['namespace'] . '/' . $shortcut['keyword'] . '/';
+    $keyword_dir = $dir . '/shortcuts/' . rawurlencode($shortcut['namespace']) . '/' . rawurlencode($shortcut['keyword']) . '/';
+
     system('mkdir -p ' .  $keyword_dir);
 
     $call = array(
