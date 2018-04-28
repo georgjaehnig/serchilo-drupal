@@ -160,6 +160,40 @@ function serchilo_get_argument_names($url, $post_parameters) {
   return $argument_names;
 }
 
+/**
+ * Return the post parameters of a shortcut
+ *   and replace them with the query arguments and variables.
+ *
+ * @param array $shortcut
+ *   The shortcut to call.
+ * @param array $arguments
+ *   The arguments from the query.
+ * @param array $variables
+ *   The variables.
+ *   
+ * @return array $post_parameters
+ *   The post parameters.
+ *   Empty array if none present.
+ */
+function serchilo_get_post_parameters($post_parameters_str) {
+  if (empty($post_parameters_str)) {
+    return array(); 
+  }
+  $post_parameters = array();
+  foreach (explode('&', $post_parameters_str) as $post_parameter) {
+    $post_parameter = urldecode($post_parameter);
+    $post_parameter = utf8_encode($post_parameter);
+    $keyValue = explode('=', $post_parameter, 2);
+    if (count($keyValue) == 2) {
+      $post_parameters[$keyValue[0]] = $keyValue[1];
+    }
+    else {
+      $post_parameters[$keyValue[0]] = 1;
+    }
+  }
+  return $post_parameters; 
+}
+
 
 /**
  * Load a mapping from file.
