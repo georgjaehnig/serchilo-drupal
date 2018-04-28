@@ -117,15 +117,15 @@ function serchilo_export_shortcuts() {
 
     $namespace = taxonomy_term_load($node->field_namespace[LANGUAGE_NONE][0]['tid']);
 
-    $exported_shortcut['id']             = $node->nid;
-    $exported_shortcut['title']          = $node->title;
-    $exported_shortcut['description']    = (string) drupal_array_get_nested_value($node->field_description,    array(LANGUAGE_NONE, 0, 'value'));
-    $exported_shortcut['url']            = (string) drupal_array_get_nested_value($node->field_url,            array(LANGUAGE_NONE, 0, 'value'));
-    $exported_shortcut['keyword']        = (string) drupal_array_get_nested_value($node->field_keyword,        array(LANGUAGE_NONE, 0, 'value'));
-    $exported_shortcut['argument_names'] = (string) drupal_array_get_nested_value($node->field_argument_names, array(LANGUAGE_NONE, 0, 'value'));
-    $exported_shortcut['set_referrer']   = (string) drupal_array_get_nested_value($node->field_set_referrer,   array(LANGUAGE_NONE, 0, 'value'));
-    $exported_shortcut['invisible']      = (string) drupal_array_get_nested_value($node->field_invisible,      array(LANGUAGE_NONE, 0, 'value'));
-    $exported_shortcut['post_parameters']= (string) drupal_array_get_nested_value($node->field_post_parameters,array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['id']              = $node->nid;
+    $exported_shortcut['title']           = $node->title;
+    $exported_shortcut['description']     = (string) drupal_array_get_nested_value($node->field_description,     array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['url']             = (string) drupal_array_get_nested_value($node->field_url,             array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['keyword']         = (string) drupal_array_get_nested_value($node->field_keyword,         array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['argument_names']  = (string) drupal_array_get_nested_value($node->field_argument_names,  array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['set_referrer']    = (string) drupal_array_get_nested_value($node->field_set_referrer,    array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['invisible']       = (string) drupal_array_get_nested_value($node->field_invisible,       array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['post_parameters'] = (string) drupal_array_get_nested_value($node->field_post_parameters, array(LANGUAGE_NONE, 0, 'value'));
 
     $wnode = entity_metadata_wrapper('node', $node);
 
