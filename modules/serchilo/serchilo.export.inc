@@ -52,7 +52,7 @@ function serchilo_export_to_json_dir($dir) {
       'url' => $shortcut['url'],
     );
 
-    $call_json = drupal_json_encode($call);
+    $call_json = json_encode($call, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
 
     $argumentCount = count(serchilo_get_arguments_from_string($shortcut['url']));
     $call_path = $keyword_dir . $argumentCount . '.call.json';
