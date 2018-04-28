@@ -50,7 +50,12 @@ function serchilo_export_to_json_dir($dir) {
 
     $call = array();
     $call['url'] = $shortcut['url'];
-    $call['post_parameters'] = $shortcut['post_parameters'];
+
+    $post_parameters = serchilo_get_post_parameters($shortcut['post_parameters']);
+    // Only add $post_parameters if not empty.
+    if (!empty($post_parameters)) {
+      $call['post_parameters'] = $post_parameters;
+    }
 
     $call_json = json_encode($call, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
 
