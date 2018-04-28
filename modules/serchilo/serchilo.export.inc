@@ -55,7 +55,7 @@ function serchilo_export_to_json_dir($dir) {
 
     $call_json = json_encode($call, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
 
-    $argumentCount = count(serchilo_get_arguments_from_string($shortcut['url']));
+    $argumentCount = count(serchilo_get_argument_names($shortcut['url'], ($shortcut['post_parameters'])));
     $call_path = $keyword_dir . $argumentCount . '.call.json';
 
     file_put_contents($call_path, $call_json);
