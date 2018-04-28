@@ -149,10 +149,7 @@ function serchilo_export_shortcuts() {
     $exported_shortcut['examples']       = array();
 
     foreach ($wnode->field_example as $example) {
-      $exported_shortcut['examples'][] = array(
-        $example->field_example_arguments->value(),
-        $example->field_example_description->value() 
-      );
+      $exported_shortcut['examples'][$example->field_example_arguments->value()] = $example->field_example_description->value();
     }
 
     $exported_shortcuts[] = $exported_shortcut;
