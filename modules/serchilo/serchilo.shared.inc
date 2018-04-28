@@ -133,6 +133,32 @@ function serchilo_get_placeholders_from_string($str, $prefix) {
   return $placeholders;
 }
 
+/**
+ * Get the Serchilo argument names from the placeholders in URL.
+ *
+ * @param string $url
+ *   The URL containing placeholders.
+ * @param string $post_parameters
+ *   The POST parameter string containing placeholders.
+ *
+ * @return array $argument_names
+ *   The extracted argument names.
+ */
+function serchilo_get_argument_names($url, $post_parameters) {
+
+  $argument_names = array_merge(
+    array_keys(serchilo_get_arguments_from_string($post_parameters)),
+    array_keys(serchilo_get_arguments_from_string($url))
+  );
+
+  // treat arguments with same name as only one argument
+  $argument_names = array_unique($argument_names);
+
+  // make sure indexes have no gaps
+  $argument_names = array_values($argument_names);
+
+  return $argument_names;
+}
 
 
 /**
