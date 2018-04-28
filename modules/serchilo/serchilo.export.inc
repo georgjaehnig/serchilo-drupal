@@ -57,12 +57,22 @@ function serchilo_export_to_json_dir($dir) {
       $call['post_parameters'] = $post_parameters;
     }
 
+    $more = array();
+    $more['title'] = $shortcut['title'];
+    $more['description'] = $shortcut['description'];
+    $more['tags'] = $shortcut['tags'];
+    $more['examples'] = $shortcut['examples'];
+
     $call_json = json_encode($call, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
+    $more_json = json_encode($more, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
 
     $argumentCount = count(serchilo_get_argument_names($shortcut['url'], ($shortcut['post_parameters'])));
+
     $call_path = $keyword_dir . $argumentCount . '.call.json';
+    $more_path = $keyword_dir . $argumentCount . '.more.json';
 
     file_put_contents($call_path, $call_json);
+    file_put_contents($more_path, $more_json);
   }
 }
 
