@@ -64,7 +64,6 @@ function serchilo_export_to_json_dir($dir) {
 
     file_put_contents($call_path, $call_json);
   }
-  //print_r($export['shortcuts']);
 }
 
 /**
