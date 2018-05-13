@@ -412,7 +412,6 @@ function serchilo_export_shortcuts() {
     $exported_shortcut['tags']           = array_map(function ($tag) { return $tag->name; }, $wnode->field_tags->value() ?: array() );
 
     $exported_shortcut['examples']       = array();
-
     foreach ($wnode->field_example as $example) {
       $exported_shortcut['examples'][$example->field_example_arguments->value()] = $example->field_example_description->value();
     }
