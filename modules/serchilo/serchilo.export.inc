@@ -313,13 +313,11 @@ function serchilo_export_to_json_dir($dir) {
 
     system('mkdir -p ' .  $keyword_dir);
 
-    $call = array();
-    $call['url'] = $shortcut['url'];
+    $call_text = $shortcut['url'];
 
     $post_parameters = serchilo_get_post_parameters($shortcut['post_parameters']);
-    // Only add $post_parameters if not empty.
-    if (!empty($post_parameters)) {
-      $call['post_parameters'] = $post_parameters;
+    foreach ($post_parameters as $key=>$value) {
+      $call_text = $call_text .  "\n" . $key . '=' . $value;
     }
 
     $more = array();
@@ -329,15 +327,14 @@ function serchilo_export_to_json_dir($dir) {
     $more['examples'] = $shortcut['examples'];
     $more['tests'] = $shortcut['test'];
 
-    $call_json = json_encode($call, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
     $more_json = json_encode($more, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
 
     $argumentCount = count(serchilo_get_argument_names($shortcut['url'], ($shortcut['post_parameters'])));
 
-    $call_path = $keyword_dir . $argumentCount . '.call.json';
-    $more_path = $keyword_dir . $argumentCount . '.more.json';
+    $call_path = $keyword_dir . $argumentCount . '.txt';
+    $more_path = $keyword_dir . $argumentCount . '.json';
 
-    file_put_contents($call_path, $call_json);
+    file_put_contents($call_path, $call_text);
     file_put_contents($more_path, $more_json);
   }
 }
