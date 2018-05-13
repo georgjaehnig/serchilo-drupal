@@ -327,6 +327,7 @@ function serchilo_export_to_json_dir($dir) {
     $more['description'] = $shortcut['description'];
     $more['tags'] = $shortcut['tags'];
     $more['examples'] = $shortcut['examples'];
+    $more['tests'] = $shortcut['test'];
 
     $call_json = json_encode($call, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
     $more_json = json_encode($more, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
