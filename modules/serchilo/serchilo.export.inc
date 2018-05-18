@@ -327,15 +327,15 @@ function serchilo_export_to_json_dir($dir) {
     $more['examples'] = $shortcut['examples'];
     $more['tests'] = $shortcut['test'];
 
-    $more_json = json_encode($more, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
+    $more_yaml = yaml_emit($more);
 
     $argumentCount = count(serchilo_get_argument_names($shortcut['url'], ($shortcut['post_parameters'])));
 
     $call_path = $keyword_dir . $argumentCount . '.txt';
-    $more_path = $keyword_dir . $argumentCount . '.json';
+    $more_path = $keyword_dir . $argumentCount . '.yml';
 
     file_put_contents($call_path, $call_text);
-    file_put_contents($more_path, $more_json);
+    file_put_contents($more_path, $more_yaml);
   }
 }
 
