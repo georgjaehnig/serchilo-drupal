@@ -413,11 +413,17 @@ function serchilo_export_shortcuts() {
 
     $exported_shortcut['examples']       = array();
     foreach ($wnode->field_example as $example) {
+      if (empty($example->field_example_arguments->value())) {
+        continue;
+      }
       $exported_shortcut['examples'][$example->field_example_arguments->value()] = $example->field_example_description->value();
     }
 
     $exported_shortcut['test']       = array();
     foreach ($wnode->field_test as $test) {
+      if (empty($test->field_test_arguments->value())) {
+        continue;
+      }
       $exported_shortcut['test'][$test->field_test_arguments->value()] = $test->field_test_expected_content->value();
     }
 
