@@ -327,7 +327,7 @@ function serchilo_export_to_json_dir($dir) {
     $more['examples'] = $shortcut['examples'];
     $more['tests'] = $shortcut['test'];
 
-    $more_yaml = yaml_emit($more);
+    $more_yaml = yaml_emit($more, YAML_UTF8_ENCODING);
     $more_yaml = substr($more_yaml, 4);
     $more_yaml = substr($more_yaml, 0, -4);
 
