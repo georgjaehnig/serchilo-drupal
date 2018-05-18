@@ -328,6 +328,8 @@ function serchilo_export_to_json_dir($dir) {
     $more['tests'] = $shortcut['test'];
 
     $more_yaml = yaml_emit($more);
+    $more_yaml = substr($more_yaml, 4);
+    $more_yaml = substr($more_yaml, 0, -4);
 
     $argumentCount = count(serchilo_get_argument_names($shortcut['url'], ($shortcut['post_parameters'])));
 
