@@ -303,7 +303,7 @@ function serchilo_export_to_json_dir($dir) {
       $trovu_dir = 'trovu';
     }
     elseif (strlen($shortcut['namespace']) >= 4) {
-      $trovu_dir = 'trovu-user';
+      $trovu_dir = 'trovu-user-legacy';
     }
     elseif (strlen($shortcut['namespace']) == 3) {
       $shortcut['namespace'] = '.' . $codes3to2[$shortcut['namespace']];
