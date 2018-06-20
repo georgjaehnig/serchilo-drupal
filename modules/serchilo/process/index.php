@@ -1354,6 +1354,16 @@ function serchilo_replace_arguments($str, $arguments, $env) {
           break;
       }
 
+      $transform = serchilo_array_value($attributes, 'transform');
+      switch($transform) {
+        case 'uppercase':
+          $processed_argument = mb_strtoupper($processed_argument);
+          break;
+        case 'lowercase':
+          $processed_argument = mb_strtolower($processed_argument);
+          break;
+      }
+
       $str = str_replace(
         $match,
         $processed_argument,
