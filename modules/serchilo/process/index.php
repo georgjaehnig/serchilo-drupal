@@ -198,7 +198,7 @@ function serchilo_get_namespaces(&$env) {
     $env['country_namespace_name']  = $env['namespace_names'][2];
   }
 
-  // If extra_namespace availiable:
+  // If extra_namespace available:
   // Add it to IDs.
   if ($env['extra_namespace_name']) {
     $env['namespace_ids'][] = serchilo_get_namespace_id($env['extra_namespace_name']);
