@@ -1,6 +1,6 @@
 <?PHP
 
-function serchilo_country_alpha2_to_alpha3($alpha2) {
+function serchilo_country_codes() {
 
   $codes = array (
     'aw' => 'abw',
@@ -253,5 +253,11 @@ function serchilo_country_alpha2_to_alpha3($alpha2) {
     'zm' => 'zmb',
     'zw' => 'zwe',
   );
+  return $codes;
+}
+
+function serchilo_country_alpha2_to_alpha3($alpha2) {
+
+  $codes = serchilo_country_codes();
   return serchilo_array_value($codes, $alpha2);
 }
