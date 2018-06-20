@@ -48,6 +48,11 @@ title = Shortcut URLs
       <td>always</td>
     </tr>
     <tr>
+      <td><code>{%IATA-Code|transform=uppercase}</code></td>
+      <td><p>... with a transformation definition. See <a href="#transform">Transforming</a> below.</p> </td>
+      <td>always</td>
+    </tr>
+    <tr>
       <td colspan="3">
         <h4>Placeholders for variables</h4>
       </td>
@@ -219,6 +224,39 @@ title = Shortcut URLs
       <td><code>Wien</code></td><td>forcing an Austrian city</td> 
     </tr>
 
+  </tbody>
+
+</table>
+
+<h3 id="transform">Transforming</h3>
+<p>Finally, the output string can be transformed.</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Conversion</th>
+      <th>Example input</th>
+      <th>Example output</th>
+      <th>Explanation</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>uppercase</td>
+			<td>The output will be uppercased.</td>
+      <td><code>sxf</code></td>
+      <td><code>SXF</code></td>
+			<td>Makes sure all letters are uppercase. Using PHP's <a href="http://php.net/manual/function.mb-strtoupper.php">mb_strtoupper()</a>.</td> 
+    </tr>
+    <tr>
+      <td>lowercase</td>
+			<td>The output will be lowercased.</td>
+      <td><code>Sxf</code></td>
+      <td><code>sxf</code></td>
+			<td>Makes sure all letters are lowercase. Using PHP's <a href="http://php.net/manual/function.mb-strtolower.php">mb_strtolower()</a>.</td> 
+    </tr>
   </tbody>
 
 </table>
