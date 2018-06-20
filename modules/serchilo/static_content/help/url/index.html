@@ -77,7 +77,7 @@ title = Shortcut URLs
 </table>
 
 <h3 id="input_encoding">Input encoding</h3>
-<p>The input encoding defines, in which way the user arguments shall be encoded before they replace the placeholders <code>{%foobar}</code>. Defaults to UTF-8.</p>
+<p>The input encoding, like in <code>{%foobar|encoding=iso-8859-1}</code>, defines in which way the user arguments shall be encoded before they replace the placeholders <code>{%foobar}</code>. Defaults to UTF-8.</p>
 
 <table class="table table-bordered">
   <thead>
@@ -117,7 +117,7 @@ title = Shortcut URLs
 </table>
 
 <h3 id="argument_types">Argument types</h3>
-<p>If an argument type is specified, the argument will be processed according to the type.</p>
+<p>If an argument type is specified, like in <code>{%foo|type=city}</code>  the argument will be processed according to the type.</p>
 
 <table class="table table-bordered">
   <thead>
@@ -229,7 +229,7 @@ title = Shortcut URLs
 </table>
 
 <h3 id="transform">Transforming</h3>
-<p>Finally, the output string can be transformed.</p>
+<p>Finally, with <code>{%foo|transform=uppercase}</code> the output string can be transformed.</p>
 
 <table class="table table-bordered">
   <thead>
