@@ -39,7 +39,7 @@ function serchilo_export_to_json_gz_file($file_without_suffix) {
  
  * @return void
  */
-function serchilo_export_to_json_dir($dir) {
+function serchilo_export_to_trovu($dir) {
 
   $codes = array (
     'aw' => 'abw',

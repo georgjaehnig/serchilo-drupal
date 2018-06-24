@@ -236,7 +236,7 @@ function drush_serchilo_export($file) {
 function drush_serchilo_export_trovu($dir) {
 
   module_load_include('inc', 'serchilo', 'serchilo.export');
-  serchilo_export_to_json_dir($dir);
+  serchilo_export_to_trovu($dir);
 }
 
 /**
