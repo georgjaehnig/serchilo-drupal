@@ -298,12 +298,13 @@ function serchilo_export_to_trovu($dir) {
   $shortcuts = serchilo_export_shortcuts();
   foreach ($shortcuts as $shortcut) {
 
-    $trovu_dir = 'trovu';
+    $trovu_dir = 'trovu-data';
+
     if ('old-' == substr($shortcut['namespace'], 0, 4)) {
-      $trovu_dir = 'trovu';
+      $trovu_dir = 'trovu-data';
     }
     elseif (strlen($shortcut['namespace']) >= 4) {
-      $trovu_dir = 'trovu-user-legacy';
+      $trovu_dir = 'trovu-data-user-legacy';
     }
     elseif (strlen($shortcut['namespace']) == 3) {
       $shortcut['namespace'] = '.' . $codes3to2[$shortcut['namespace']];
