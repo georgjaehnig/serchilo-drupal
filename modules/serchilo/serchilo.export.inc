@@ -39,7 +39,7 @@ function serchilo_export_to_json_gz_file($file_without_suffix) {
  
  * @return void
  */
-function serchilo_export_to_trovu($dir) {
+function serchilo_export_to_trovu($export_dir) {
 
   $codes = array (
     'aw' => 'abw',
@@ -298,22 +298,6 @@ function serchilo_export_to_trovu($dir) {
   $shortcuts = serchilo_export_shortcuts();
   foreach ($shortcuts as $shortcut) {
 
-    $trovu_dir = 'trovu-data';
-
-    if ('old-' == substr($shortcut['namespace'], 0, 4)) {
-      $trovu_dir = 'trovu-data';
-    }
-    elseif (strlen($shortcut['namespace']) >= 4) {
-      $trovu_dir = 'trovu-data-user-legacy';
-    }
-    elseif (strlen($shortcut['namespace']) == 3) {
-      $shortcut['namespace'] = '.' . $codes3to2[$shortcut['namespace']];
-    }
-    
-    $keyword_dir = $dir . '/' . $trovu_dir . '/shortcuts/' . rawurlencode($shortcut['namespace']) . '/' . rawurlencode($shortcut['keyword']) . '/';
-
-    system('mkdir -p ' .  $keyword_dir);
-
     $call_text = $shortcut['url'];
 
     $post_parameters = serchilo_get_post_parameters($shortcut['post_parameters']);
@@ -334,14 +318,53 @@ function serchilo_export_to_trovu($dir) {
 
     $argumentCount = count(serchilo_get_argument_names($shortcut['url'], ($shortcut['post_parameters'])));
 
-    $call_path = $keyword_dir . $argumentCount . '.txt';
-    $more_path = $keyword_dir . $argumentCount . '.yml';
+
+    $repo_dir = 'trovu-data';
+
+    if ('old-' == substr($shortcut['namespace'], 0, 4)) {
+      $repo_dir = 'trovu-data';
+    }
+    elseif (strlen($shortcut['namespace']) >= 4) {
+      $repo_dir = 'trovu-data-user-legacy';
+    }
+
+    $keyword = $shortcut['keyword'];
+    $namespace = $shortcut['namespace'];
+    if (strlen($shortcut['namespace']) == 3) {
+      $namespace = '.' . $codes3to2[$shortcut['namespace']];
+    }
+    
+    $shortcut_dir = 'shortcuts/{%namespace}/{%keyword}';
+    $shortcut_file_prefix = '{%argumentCount}';
+
+    $shortcut_dir = serchilo_replace_trovu_path_tokens($shortcut_dir, $namespace, $keyword, $argumentCount);
+    $shortcut_file_prefix = serchilo_replace_trovu_path_tokens($shortcut_file_prefix, $namespace, $keyword, $argumentCount);
+
+    $dir = $export_dir . '/' . $repo_dir . '/' . $shortcut_dir;
+
+    system('mkdir -p ' .  $dir);
+
+    $call_path = $dir . '/' . $shortcut_file_prefix . '.txt';
+    $more_path = $dir . '/' . $shortcut_file_prefix . '.yml';
 
     file_put_contents($call_path, $call_text);
     file_put_contents($more_path, $more_yaml);
   }
 }
 
+function serchilo_replace_trovu_path_tokens($str, $namespace, $keyword, $argumentCount) {
+
+  $str = strtr(
+    $str,
+    array(
+      '{%namespace}' => rawurlencode($namespace),
+      '{%keyword}' => rawurlencode($keyword),
+      '{%argumentCount}' => $argumentCount,
+    )
+  );
+
+  return $str;
+}
 /**
  * Exports the shortcuts and the namespaces.
  *
