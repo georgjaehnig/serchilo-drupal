@@ -334,8 +334,17 @@ function serchilo_export_to_trovu($export_dir) {
       $namespace = '.' . $codes3to2[$shortcut['namespace']];
     }
     
-    $shortcut_dir = 'shortcuts/{%namespace}/{%keyword}';
-    $shortcut_file_prefix = '{%argumentCount}';
+
+    switch ($repo_dir) {
+    case 'trovu-data':
+      $shortcut_dir = 'shortcuts/{%namespace}/{%keyword}';
+      $shortcut_file_prefix = '{%argumentCount}';
+      break;
+    case 'trovu-data-user-legacy':
+      $shortcut_dir = 'shortcuts/{%namespace}/';
+      $shortcut_file_prefix = '{%keyword}.{%argumentCount}';
+      break;
+    }
 
     $shortcut_dir = serchilo_replace_trovu_path_tokens($shortcut_dir, $namespace, $keyword, $argumentCount);
     $shortcut_file_prefix = serchilo_replace_trovu_path_tokens($shortcut_file_prefix, $namespace, $keyword, $argumentCount);
