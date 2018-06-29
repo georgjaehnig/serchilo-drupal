@@ -304,6 +304,20 @@ function serchilo_export_to_trovu($export_dir) {
       continue;
     }
 
+    // Convert output attribute from PHP's date() format to momentjs.
+    $arguments = serchilo_get_arguments_from_string($shortcut['url']);
+
+    foreach ($arguments as $name=>$placeholders) {
+      foreach ($placeholders as $match=>$attributes) {
+        if (!empty($attributes['output'])) {
+          $attributes['output'] = serchilo_convert_php_date_to_momentjs($attributes['output']);
+          array_walk($attributes, function(&$v, $k) { $v =  $k . '=' . $v; });
+          $match_replaced = '{%' . $name . '|' . join('|', $attributes) . '}';
+          $shortcut['url'] = str_replace($match, $match_replaced, $shortcut['url']);
+        }
+      }
+    }
+
     $call_text = $shortcut['url'];
 
     $post_parameters = serchilo_get_post_parameters($shortcut['post_parameters']);
