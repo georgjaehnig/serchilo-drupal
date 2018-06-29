@@ -298,6 +298,12 @@ function serchilo_export_to_trovu($export_dir) {
   $shortcuts = serchilo_export_shortcuts();
   foreach ($shortcuts as $shortcut) {
 
+    // Omit changed.
+    if (preg_match('~/command/\d+/changed~', $shortcut['url'])) {
+      echo $shortcut['url'] . "\n";
+      continue;
+    }
+
     $call_text = $shortcut['url'];
 
     $post_parameters = serchilo_get_post_parameters($shortcut['post_parameters']);
