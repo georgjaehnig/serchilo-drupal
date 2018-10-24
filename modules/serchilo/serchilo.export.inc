@@ -31,6 +31,44 @@ function serchilo_export_to_json_gz_file($file_without_suffix) {
   system('gzip -f ' . $file_without_suffix . '.json');
 }
 
+
+function serchilo_convert_php_date_to_momentjs($str) {
+
+  // Based on:
+  // https://gist.github.com/NTICompass/9375143
+  $map = array(
+    'd' => 'DD',
+    'D' => 'ddd',
+    'j' => 'D',
+    'l' => 'dddd',
+    'N' => 'E',
+    'w' => 'd',
+    'W' => 'W',
+    'F' => 'MMMM',
+    'm' => 'MM',
+    'M' => 'MMM',
+    'n' => 'M',
+    'o' => 'GGGG',
+    'Y' => 'YYYY',
+    'y' => 'YY',
+    'a' => 'a',
+    'A' => 'A',
+    'g' => 'h',
+    'G' => 'H',
+    'h' => 'hh',
+    'H' => 'HH',
+    'i' => 'mm',
+    's' => 'ss',
+    'O' => 'ZZ',
+    'P' => 'Z',
+    'U' => 'X',
+  );
+
+  $str = strtr($str, $map);
+
+  return $str;
+}
+
 /**
  * Exports shortcuts to Trovu dir.
  *
