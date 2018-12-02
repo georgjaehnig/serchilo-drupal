@@ -303,7 +303,7 @@ function serchilo_process_query_console($env) {
 
   // If no shortcut found:
 
-  serchilo_log_shortcut_call(NULL, $env, $output['status']['default_keyword_used']);
+  serchilo_log_shortcut_call(NULL, $env, $output['status']['default_keyword_used'] ?? FALSE);
 
   // Get shortcut suggestions.
   $suggested_shortcuts = serchilo_search_shortcuts($env['keyword'], $env['arguments'], $env['query'], $env['namespace_ids'], $env['extra_namespace_name']);
@@ -1486,7 +1486,7 @@ function serchilo_get_default_keyword($user_name = NULL) {
   }
   if ($user_name) {
     $user_id         = serchilo_get_values_from_table('users', 'name', $user_name, 'uid')[0];
-    $default_keyword = serchilo_get_values_from_table('field_data_field_default_keyword', 'entity_id', $user_id, 'field_default_keyword_value')[0];
+    $default_keyword = serchilo_get_values_from_table('field_data_field_default_keyword', 'entity_id', $user_id, 'field_default_keyword_value')[0] ?? '';
     return $default_keyword;
   }
   return NULL;
