@@ -51,7 +51,7 @@ class GenericmessageCommand extends SystemCommand
         $message = $this->getMessage();
 
         if (empty($message)) {
-          return; 
+          return Request::emptyResponse();
         }
         $env['query'] = $message->getText();
         $env = serchilo_parse_query($env['query']) + $env;
