@@ -697,7 +697,7 @@ function serchilo_search_shortcuts( $keyword, $arguments, $query, $namespace_ids
   // If set extra_namespace_name ...
   if (!empty($extra_namespace_name)) {
     // ... get its ID.
-    $extra_namespace_id = serchilo_get_values_from_table('taxonomy_term_data', 'name', $extra_namespace_name, 'tid')[0];
+    $extra_namespace_id = serchilo_get_values_from_table('taxonomy_term_data', 'name', $extra_namespace_name, 'tid')[0] ?? NULL;
     if (empty($extra_namespace_id)) {
       return array(); 
     }
