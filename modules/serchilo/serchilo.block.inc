@@ -9,7 +9,7 @@ function serchilo_block_namespaces() {
   $namespace_names = drupal_static('serchilo_namespace_names');
 
   // Get out if no namespaces are set.
-  if (count($namespaces) == 0) {
+  if (count($namespaces ?? []) == 0) {
     return;
   }
 
