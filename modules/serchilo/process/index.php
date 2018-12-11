@@ -1124,7 +1124,7 @@ INSERT INTO
     array(
       'shortcut_id'          => $nid,
       'namespace_id'         => $namespace_id,
-      'default_keyword_used' => $default_keyword_used,
+      'default_keyword_used' => $default_keyword_used ? 1 : 0,
       'page_type'            => $env['page_type'],
       'source'               => $source,
       'called'               => time(),
