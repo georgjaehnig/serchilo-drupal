@@ -205,7 +205,7 @@ function serchilo_page_console() {
     '#markup' => theme(
       'serchilo_console', 
       array(
-        'query' => (string) $query,
+        'query' => (string) check_plain($query),
         'get_parameters' => $get_parameters,
       )
     ),
