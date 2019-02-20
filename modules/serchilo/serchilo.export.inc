@@ -77,7 +77,7 @@ function serchilo_convert_php_date_to_momentjs($str) {
  *   Namespace name
  * @return void
  */
-function _serchilo_is_user_shortcut($namespace) {
+function serchilo_is_user_shortcut($namespace) {
 
   // Begins with 'old-': site shortcut.
   if ('old-' == substr($namespace, 0, 4)) {
@@ -153,7 +153,7 @@ function serchilo_export_to_trovu($export_dir) {
     $argumentCount = count(serchilo_get_argument_names($shortcut['url'], ($shortcut['post_parameters'])));
 
     // Set correct repo dir.
-    if (_serchilo_is_user_shortcut($shortcut['namespace'])) {
+    if (serchilo_is_user_shortcut($shortcut['namespace'])) {
       $repo_dir = 'user-exports';
     }
     else {
