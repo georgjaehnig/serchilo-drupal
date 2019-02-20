@@ -195,13 +195,15 @@ function serchilo_export_to_trovu_shortcuts($export_dir) {
     // more: All other metadata like title, keyword
     //         needed for autocomplete or listings.
     $call_text = $shortcut['url'];
+    $more = array();
+    $more['url'] = $shortcut['url'];
 
     $post_parameters = serchilo_get_post_parameters($shortcut['post_parameters']);
     foreach ($post_parameters as $key=>$value) {
       $call_text = $call_text .  "\n" . $key . '=' . $value;
+      $more['post parameters'][$key] = $value;
     }
 
-    $more = array();
     $more['title'] = $shortcut['title'];
     $more['description'] = $shortcut['description'];
     $more['tags'] = $shortcut['tags'];
