@@ -356,6 +356,11 @@ function serchilo_export_to_trovu($export_dir) {
       }
     }
 
+    // We have 2 files:
+    // call: A text file containing what is needed for a call
+    //         so the the URL, and optional POST params.
+    // more: All other metadata like title, keyword
+    //         needed for autocomplete or listings.
     $call_text = $shortcut['url'];
 
     $post_parameters = serchilo_get_post_parameters($shortcut['post_parameters']);
