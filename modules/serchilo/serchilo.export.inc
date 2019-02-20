@@ -102,6 +102,62 @@ function serchilo_is_user_shortcut($namespace) {
   return FALSE;
 }
 
+function serchilo_export_to_trovu_user_settings($export_dir) {
+
+  $users = entity_load('user');
+
+  foreach ($users as $account) {
+
+    // Omit anonymous user.
+    if (empty($account->name)) {
+      continue;
+    }
+
+    $config = [];
+
+    // User namespace is account name.
+    $config['user namespace'] = $account->name;
+
+    // List all subscribed namespaces.
+    $config['namespaces'] = ['o'];
+
+    if ($value = serchilo_array_value($account->field_default_keyword[LANGUAGE_NONE][0], 'value')) {
+      $config['default keyword'] = $value;
+    }
+    if ($tid = serchilo_array_value($account->field_language_namespace[LANGUAGE_NONE][0], 'tid')) {
+      $term = taxonomy_term_load($tid);
+      $config['language'] = $term->name;
+      $config['namespaces'][] = $term->name;
+    }
+    if ($tid = serchilo_array_value($account->field_country_namespace[LANGUAGE_NONE][0], 'tid')) {
+      $term = taxonomy_term_load($tid);
+      $config['country'] = serchilo_convert_3letter_to_2letter($term->name);
+      $config['namespaces'][] = '.' . serchilo_convert_3letter_to_2letter($term->name);
+    }
+    if (!empty($account->field_custom_namespaces[LANGUAGE_NONE])) {
+      foreach ($account->field_custom_namespaces[LANGUAGE_NONE] as $item) {
+        $term = taxonomy_term_load($item['tid']);
+        $namespace = $term->name;
+        if (strlen($term->name) == 3) {
+          $namespace = '.' . serchilo_convert_3letter_to_2letter($term->name);
+        }
+        $config['namespaces'][] = $namespace;
+      }
+    }
+    
+    // Also set the user namespace in the list.
+    $config['namespaces'][] = $account->name;
+
+    $config_yaml = yaml_emit($config, YAML_UTF8_ENCODING);
+    $config_yaml = substr($config_yaml, 4);
+    $config_yaml = substr($config_yaml, 0, -4);
+
+    $dir = $export_dir . '/users/' . $account->name;
+    system('mkdir -p ' .  $dir);
+    file_put_contents($dir . '/config.yml', $config_yaml);
+  }
+}
+
 /**
  * Exports shortcuts to Trovu dir.
  *
@@ -111,6 +167,10 @@ function serchilo_is_user_shortcut($namespace) {
  */
 function serchilo_export_to_trovu($export_dir) {
 
+  echo "Exporting user data...\n";
+  serchilo_export_to_trovu_user_settings($export_dir);
+
+  echo "Exporting shortcuts...\n";
   $shortcuts = serchilo_export_shortcuts();
   foreach ($shortcuts as $shortcut) {
 
