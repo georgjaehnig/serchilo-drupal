@@ -161,7 +161,7 @@ function serchilo_export_to_trovu($export_dir) {
 
     // Set correct repo dir.
     if (serchilo_is_user_shortcut($shortcut['namespace'])) {
-      $repo_dir = 'user-exports';
+      $repo_dir = 'users';
     }
     else {
       $repo_dir = 'trovu-data';
@@ -179,7 +179,7 @@ function serchilo_export_to_trovu($export_dir) {
       $shortcut_dir = 'shortcuts/{%namespace}/{%keyword}';
       $shortcut_file_prefix = '{%argumentCount}';
       break;
-    case 'user-exports':
+    case 'users':
       $shortcut_dir = '{%namespace}/shortcuts';
       $shortcut_file_prefix = '{%keyword}.{%argumentCount}';
       break;
