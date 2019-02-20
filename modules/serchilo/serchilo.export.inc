@@ -155,6 +155,12 @@ function serchilo_export_to_trovu_user_settings($export_dir) {
     $dir = $export_dir . '/users/' . $account->name;
     system('mkdir -p ' .  $dir);
     file_put_contents($dir . '/config.yml', $config_yaml);
+
+    // Zip user dir.
+    system("(cd $dir && zip -q -r - .) > $dir.zip");
+
+    // Delete user dir.
+    system("rm -r $dir");
   }
 }
 
