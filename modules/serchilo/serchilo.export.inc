@@ -69,12 +69,33 @@ function serchilo_convert_php_date_to_momentjs($str) {
   return $str;
 }
 
+
+/**
+ * Check if shortcut is a user shortcut.
+ *
+ * @param string namespace
+ *   Namespace name
+ * @return void
+ */
+function _serchilo_is_user_shortcut($namespace) {
+
+  // Begins with 'old-': site shortcut.
+  if ('old-' == substr($namespace, 0, 4)) {
+    return FALSE;
+  }
+  // Longer or equal than 4: user shortcut.
+  if (strlen($namespace) >= 4) {
+    return TRUE;
+  }
+  // Rest: site shortcut.
+  return FALSE;
+}
+
 /**
  * Exports shortcuts to Trovu dir.
  *
  * @param string dir
  *   Path to the dir.
- 
  * @return void
  */
 function serchilo_export_to_trovu($export_dir) {
@@ -381,14 +402,12 @@ function serchilo_export_to_trovu($export_dir) {
 
     $argumentCount = count(serchilo_get_argument_names($shortcut['url'], ($shortcut['post_parameters'])));
 
-
-    $repo_dir = 'trovu-data';
-
-    if ('old-' == substr($shortcut['namespace'], 0, 4)) {
-      $repo_dir = 'trovu-data';
-    }
-    elseif (strlen($shortcut['namespace']) >= 4) {
+    // Set correct repo dir.
+    if (_serchilo_is_user_shortcut($shortcut['namespace'])) {
       $repo_dir = 'trovu-data-user-legacy';
+    }
+    else {
+      $repo_dir = 'trovu-data';
     }
 
     $keyword = $shortcut['keyword'];
