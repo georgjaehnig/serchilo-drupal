@@ -158,19 +158,8 @@ function serchilo_export_to_trovu_user_settings($export_dir) {
   }
 }
 
-/**
- * Exports shortcuts to Trovu dir.
- *
- * @param string dir
- *   Path to the dir.
- * @return void
- */
-function serchilo_export_to_trovu($export_dir) {
+function serchilo_export_to_trovu_shortcuts($export_dir) {
 
-  echo "Exporting user data...\n";
-  serchilo_export_to_trovu_user_settings($export_dir);
-
-  echo "Exporting shortcuts...\n";
   $shortcuts = serchilo_export_shortcuts();
   foreach ($shortcuts as $shortcut) {
 
@@ -258,6 +247,22 @@ function serchilo_export_to_trovu($export_dir) {
     file_put_contents($call_path, $call_text);
     file_put_contents($more_path, $more_yaml);
   }
+}
+
+/**
+ * Exports shortcuts to Trovu dir.
+ *
+ * @param string dir
+ *   Path to the dir.
+ * @return void
+ */
+function serchilo_export_to_trovu($export_dir) {
+
+  echo "Exporting user data...\n";
+  serchilo_export_to_trovu_user_settings($export_dir);
+
+  echo "Exporting shortcuts...\n";
+  serchilo_export_to_trovu_shortcuts($export_dir);
 }
 
 function serchilo_replace_trovu_path_tokens($str, $namespace, $keyword, $argumentCount) {
