@@ -258,11 +258,11 @@ function serchilo_export_to_trovu_shortcuts($export_dir) {
  */
 function serchilo_export_to_trovu($export_dir) {
 
-  echo "Exporting user data...\n";
-  serchilo_export_to_trovu_user_settings($export_dir);
-
   echo "Exporting shortcuts...\n";
   serchilo_export_to_trovu_shortcuts($export_dir);
+
+  echo "Exporting user data...\n";
+  serchilo_export_to_trovu_user_settings($export_dir);
 }
 
 function serchilo_replace_trovu_path_tokens($str, $namespace, $keyword, $argumentCount) {
