@@ -189,30 +189,23 @@ function serchilo_export_to_trovu_shortcuts($export_dir) {
       }
     }
 
-    // We have 2 files:
-    // call: A text file containing what is needed for a call
-    //         so the the URL, and optional POST params.
-    // more: All other metadata like title, keyword
-    //         needed for autocomplete or listings.
-    $call_text = $shortcut['url'];
-    $more = array();
-    $more['url'] = $shortcut['url'];
+    $export = array();
+    $export['url'] = $shortcut['url'];
 
     $post_parameters = serchilo_get_post_parameters($shortcut['post_parameters']);
     foreach ($post_parameters as $key=>$value) {
-      $call_text = $call_text .  "\n" . $key . '=' . $value;
-      $more['post parameters'][$key] = $value;
+      $export['post parameters'][$key] = $value;
     }
 
-    $more['title'] = $shortcut['title'];
-    $more['description'] = $shortcut['description'];
-    $more['tags'] = $shortcut['tags'];
-    $more['examples'] = $shortcut['examples'];
-    $more['tests'] = $shortcut['test'];
+    $export['title'] = $shortcut['title'];
+    $export['description'] = $shortcut['description'];
+    $export['tags'] = $shortcut['tags'];
+    $export['examples'] = $shortcut['examples'];
+    $export['tests'] = $shortcut['test'];
 
-    $more_yaml = yaml_emit($more, YAML_UTF8_ENCODING);
-    $more_yaml = substr($more_yaml, 4);
-    $more_yaml = substr($more_yaml, 0, -4);
+    $export_yaml = yaml_emit($export, YAML_UTF8_ENCODING);
+    $export_yaml = substr($export_yaml, 4);
+    $export_yaml = substr($export_yaml, 0, -4);
 
     $argumentCount = count(serchilo_get_argument_names($shortcut['url'], ($shortcut['post_parameters'])));
 
@@ -249,11 +242,10 @@ function serchilo_export_to_trovu_shortcuts($export_dir) {
 
     system('mkdir -p ' .  $dir);
 
-    $call_path = $dir . '/' . $shortcut_file_prefix . '.txt';
-    $more_path = $dir . '/' . $shortcut_file_prefix . '.yml';
+    $export_path = $dir . '/' . $shortcut_file_prefix . '.yml';
 
-    file_put_contents($call_path, $call_text);
-    file_put_contents($more_path, $more_yaml);
+    file_put_contents($export_path, $export_yaml);
+    return;
   }
 }
 
