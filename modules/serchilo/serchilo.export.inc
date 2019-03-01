@@ -197,8 +197,10 @@ function serchilo_export_to_trovu_user_settings($export_dir) {
     $config_yaml = substr($config_yaml, 4);
     $config_yaml = substr($config_yaml, 0, -4);
 
-    $dir = $export_dir . '/users/' . $account->name;
-    system('mkdir -p ' .  $dir);
+    if (!file_exists($dir)) {
+      mkdir($dir, 0777, true);
+    }
+
     file_put_contents($dir . '/config.yml', $config_yaml);
 
     // Zip user dir.
