@@ -146,7 +146,11 @@ function serchilo_export_to_trovu_user_settings($export_dir) {
     }
     
     // Also set the user namespace in the list.
-    $config['namespaces'][] = $account->name;
+    $user_namespace = [
+      'github' => '.',
+      'name' => $account->name,
+    ];
+    $config['namespaces'][] = $user_namespace;
 
     $config_yaml = yaml_emit($config, YAML_UTF8_ENCODING);
     $config_yaml = substr($config_yaml, 4);
