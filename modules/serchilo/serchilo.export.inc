@@ -240,7 +240,9 @@ function serchilo_export_to_trovu_shortcuts($export_dir) {
 
     $dir = $export_dir . '/' . $repo_dir . '/' . $shortcut_dir;
 
-    system('mkdir -p ' .  $dir);
+    if (!file_exists($dir)) {
+      mkdir($dir, 0777, true);
+    }
 
     $export_path = $dir . '/' . $shortcut_file_prefix . '.yml';
 
