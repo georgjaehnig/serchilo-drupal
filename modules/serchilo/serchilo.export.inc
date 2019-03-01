@@ -115,8 +115,7 @@ function serchilo_export_to_trovu_user_settings($export_dir) {
 
     $config = [];
 
-    // User namespace is account name.
-    $config['user namespace'] = $account->name;
+    $config = [];
 
     // List all subscribed namespaces.
     $config['namespaces'] = ['o'];
