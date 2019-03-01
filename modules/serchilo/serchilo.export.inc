@@ -102,6 +102,26 @@ function serchilo_is_user_shortcut($namespace) {
   return FALSE;
 }
 
+function serchilo_custom_namespaces_to_str($items) {
+
+  $namespaces = [];
+
+  if (empty($items)) {
+    return $namespaces;
+  }
+
+  foreach ($items as $item) {
+    $term = taxonomy_term_load($item['tid']);
+    $namespace = $term->name;
+    if (strlen($term->name) == 3) {
+      $namespace = '.' . serchilo_convert_3letter_to_2letter($term->name);
+    }
+    $namespaces[] = $namespace;
+  }
+  return $namespaces;
+}
+
+
 function serchilo_export_to_trovu_user_settings($export_dir) {
 
   $users = entity_load('user');
@@ -113,7 +133,33 @@ function serchilo_export_to_trovu_user_settings($export_dir) {
       continue;
     }
 
-    $config = [];
+    $dir = $export_dir . '/users/' .  $account->name;
+
+    // Filter out users without actual settings.
+    $no_custom_namespaces = (empty($account->field_custom_namespaces[LANGUAGE_NONE]));
+    $no_default_keyword = (empty($account->field_default_keyword[LANGUAGE_NONE][0]));
+    $mail_in_default_keyword = (strpos(serchilo_array_value($account->field_default_keyword[LANGUAGE_NONE][0], 'value'), '@')  !== false);
+    $username_in_custom_namespaces = ([$account->name] == serchilo_custom_namespaces_to_str($account->field_custom_namespaces[LANGUAGE_NONE]));
+    $no_user_shortcuts = (!file_exists($dir));
+
+    //if (($no_custom_namespaces && $no_default_keyword && $no_user_shortcuts) || $mail_in_default_keyword || $username_in_custom_namespaces) {
+    if ((($no_custom_namespaces || $username_in_custom_namespaces) && $no_default_keyword && $no_user_shortcuts) || $mail_in_default_keyword) {
+      continue; 
+      /*
+      echo $account->name . ":";
+      echo $no_custom_namespaces . ":";
+      echo $no_default_keyword . ":";
+      echo $no_user_shortcuts . ":";
+      echo $mail_in_default_keyword . ":";
+      echo $username_in_custom_namespaces . ":";
+      echo "\n";
+      echo $account->name . "\n";
+      print_r($account->field_default_keyword);
+      print_r($account->field_custom_namespaces);
+       */
+    }
+    //print_r($account->field_default_keyword);
+    //print_r($account->field_custom_namespaces);
 
     $config = [];
 
@@ -134,14 +180,10 @@ function serchilo_export_to_trovu_user_settings($export_dir) {
       $config['namespaces'][] = '.' . serchilo_convert_3letter_to_2letter($term->name);
     }
     if (!empty($account->field_custom_namespaces[LANGUAGE_NONE])) {
-      foreach ($account->field_custom_namespaces[LANGUAGE_NONE] as $item) {
-        $term = taxonomy_term_load($item['tid']);
-        $namespace = $term->name;
-        if (strlen($term->name) == 3) {
-          $namespace = '.' . serchilo_convert_3letter_to_2letter($term->name);
-        }
-        $config['namespaces'][] = $namespace;
-      }
+      $config['namespaces'] = array_merge(
+        $config['namespaces'],
+        serchilo_custom_namespaces_to_str($account->field_custom_namespaces[LANGUAGE_NONE])
+      );
     }
     
     // Also set the user namespace in the list.
