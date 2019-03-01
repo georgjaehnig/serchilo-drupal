@@ -270,8 +270,8 @@ function serchilo_replace_trovu_path_tokens($str, $namespace, $keyword, $argumen
   $str = strtr(
     $str,
     array(
-      '{%namespace}' => rawurlencode($namespace),
-      '{%keyword}' => rawurlencode($keyword),
+      '{%namespace}' => $namespace,
+      '{%keyword}' => $keyword,
       '{%argumentCount}' => $argumentCount,
     )
   );
