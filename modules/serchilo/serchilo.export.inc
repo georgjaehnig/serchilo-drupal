@@ -246,6 +246,7 @@ function serchilo_export_to_trovu_shortcuts($export_dir) {
 
     $export_path = $dir . '/' . $shortcut_file_prefix . '.yml';
 
+    //echo $export_path . "\n";
     file_put_contents($export_path, $export_yaml);
   }
 }
