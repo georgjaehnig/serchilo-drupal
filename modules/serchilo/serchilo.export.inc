@@ -223,14 +223,16 @@ function serchilo_export_to_trovu_shortcuts($export_dir) {
     }
 
     // Convert output attribute from PHP's date() format to momentjs.
-    $arguments = serchilo_get_arguments_from_string($shortcut['url']);
+    $arguments = serchilo_get_arguments_from_string($shortcut['url']) ?? [];
+    $variables = serchilo_get_variables_from_string($shortcut['url']) ?? [];
 
-    foreach ($arguments as $name=>$placeholders) {
+    foreach (array_merge($arguments, $variables) as $name=>$placeholders) {
       foreach ($placeholders as $match=>$attributes) {
         if (!empty($attributes['output'])) {
           $attributes['output'] = serchilo_convert_php_date_to_momentjs($attributes['output']);
           array_walk($attributes, function(&$v, $k) { $v =  $k . '=' . $v; });
-          $match_replaced = '{%' . $name . '|' . join('|', $attributes) . '}';
+          $prefix = substr($match, 0, 2);
+          $match_replaced = $prefix . $name . '|' . join('|', $attributes) . '}';
           $shortcut['url'] = str_replace($match, $match_replaced, $shortcut['url']);
         }
       }
