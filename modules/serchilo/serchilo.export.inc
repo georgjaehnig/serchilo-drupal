@@ -216,10 +216,17 @@ function serchilo_export_to_trovu_shortcuts($export_dir) {
   $shortcuts = serchilo_export_shortcuts();
   foreach ($shortcuts as $shortcut) {
 
-    // Omit changed.
-    if (preg_match('~/command/\d+/changed~', $shortcut['url'])) {
-      echo $shortcut['url'] . "\n";
-      continue;
+    // For site namespaces:
+    if (!serchilo_is_user_shortcut($shortcut['namespace'])) {
+      // Omit those to findfind.it.
+      if (preg_match('~^/~', $shortcut['url'])) {
+        echo $shortcut['url'] . "\n";
+        continue;
+      }
+      if (preg_match('~findfind.it~', $shortcut['url'])) {
+        echo $shortcut['url'] . "\n";
+        continue;
+      }
     }
 
     // Convert output attribute from PHP's date() format to momentjs.
