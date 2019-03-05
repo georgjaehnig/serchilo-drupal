@@ -167,7 +167,7 @@ function serchilo_export_to_trovu_user_settings($export_dir) {
     $config['namespaces'] = ['o'];
 
     if ($value = serchilo_array_value($account->field_default_keyword[LANGUAGE_NONE][0], 'value')) {
-      $config['default keyword'] = $value;
+      $config['defaultKeyword'] = $value;
     }
     if ($tid = serchilo_array_value($account->field_language_namespace[LANGUAGE_NONE][0], 'tid')) {
       $term = taxonomy_term_load($tid);
