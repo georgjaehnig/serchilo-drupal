@@ -254,11 +254,11 @@ function serchilo_export_to_trovu_shortcuts($export_dir) {
       $export['post parameters'][$key] = $value;
     }
 
-    $export['title'] = $shortcut['title'];
-    $export['description'] = $shortcut['description'];
-    $export['tags'] = $shortcut['tags'];
-    $export['examples'] = $shortcut['examples'];
-    $export['tests'] = $shortcut['test'];
+    foreach(['title', 'description', 'tags', 'examples', 'tests'] as $k) {
+      if (!empty($shortcut[$k])) {
+        $export[$k] = $shortcut[$k];
+      }
+    }
 
     $argumentCount = count(serchilo_get_argument_names($shortcut['url'], ($shortcut['post_parameters'])));
 
