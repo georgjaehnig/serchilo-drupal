@@ -275,6 +275,8 @@ function serchilo_export_to_trovu_shortcuts($export_dir) {
 
   foreach($shortcutsByNamespace as $namespace=>$shortcuts) {
 
+    ksort($shortcuts);
+
     $export = $shortcuts;
 
     $export_yaml = yaml_emit($export, YAML_UTF8_ENCODING);
