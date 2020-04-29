@@ -216,6 +216,19 @@ function serchilo_export_to_trovu_shortcuts($export_dir) {
   $shortcuts = serchilo_export_shortcuts();
   foreach ($shortcuts as $shortcut) {
 
+    if (!$shortcut['approved']) {
+      echo "Not approved: \thttps://www.findfind.it/shortcuts/" . $shortcut['id'] . "\n";
+      continue;
+    }
+    if (!$shortcut['active']) {
+      echo "Not active: \thttps://www.findfind.it/shortcuts/" . $shortcut['id'] . "\n";
+      continue;
+    }
+    if ($shortcut['invisible']) {
+      echo "Invisible: \thttps://www.findfind.it/shortcuts/" . $shortcut['id'] . "\n";
+      continue;
+    }
+
     // For site namespaces:
     if (!serchilo_is_user_shortcut($shortcut['namespace'])) {
       // Omit those to findfind.it.
@@ -400,6 +413,8 @@ function serchilo_export_shortcuts() {
     $exported_shortcut['set_referrer']    = (string) drupal_array_get_nested_value($node->field_set_referrer,    array(LANGUAGE_NONE, 0, 'value'));
     $exported_shortcut['invisible']       = (string) drupal_array_get_nested_value($node->field_invisible,       array(LANGUAGE_NONE, 0, 'value'));
     $exported_shortcut['post_parameters'] = (string) drupal_array_get_nested_value($node->field_post_parameters, array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['active']          = (bool)   drupal_array_get_nested_value($node->field_active,          array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['approved']        = (bool)   drupal_array_get_nested_value($node->field_approved,        array(LANGUAGE_NONE, 0, 'value'));
 
     $wnode = entity_metadata_wrapper('node', $node);
 
