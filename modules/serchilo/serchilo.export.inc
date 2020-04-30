@@ -214,6 +214,7 @@ function serchilo_export_to_trovu_user_settings($export_dir) {
 function serchilo_export_to_trovu_shortcuts($export_dir) {
 
   $shortcuts = serchilo_export_shortcuts();
+  $shortcutsByNamespace = [];
   foreach ($shortcuts as $shortcut) {
 
     if (!$shortcut['approved']) {
@@ -266,54 +267,52 @@ function serchilo_export_to_trovu_shortcuts($export_dir) {
       $export['post parameters'][$key] = $value;
     }
 
-    $export['title'] = $shortcut['title'];
-    $export['description'] = $shortcut['description'];
-    $export['tags'] = $shortcut['tags'];
-    $export['examples'] = $shortcut['examples'];
-    $export['tests'] = $shortcut['test'];
+    foreach(['title', 'description', 'tags', 'examples', 'tests'] as $k) {
+      if (!empty($shortcut[$k])) {
+        $export[$k] = $shortcut[$k];
+      }
+    }
+
+    $argumentCount = count(serchilo_get_argument_names($shortcut['url'], ($shortcut['post_parameters'])));
+
+    $key = $shortcut['keyword'] . ' ' . $argumentCount;
+
+    $namespace = $shortcut['namespace'];
+    if (strlen($shortcut['namespace']) == 3) {
+      $namespace = '.' . serchilo_convert_3letter_to_2letter($shortcut['namespace']);
+    }
+    $shortcutsByNamespace[$namespace][$key] = $export;
+  }
+  //print_r($shortcutsByNamespace);
+  //return;
+
+  foreach($shortcutsByNamespace as $namespace=>$shortcuts) {
+
+    ksort($shortcuts);
+
+    $export = $shortcuts;
 
     $export_yaml = yaml_emit($export, YAML_UTF8_ENCODING);
     $export_yaml = substr($export_yaml, 4);
     $export_yaml = substr($export_yaml, 0, -4);
 
-    $argumentCount = count(serchilo_get_argument_names($shortcut['url'], ($shortcut['post_parameters'])));
-
-    // Set correct repo dir.
-    if (serchilo_is_user_shortcut($shortcut['namespace'])) {
-      $repo_dir = 'users';
+    // Set correct dir.
+    if (serchilo_is_user_shortcut($namespace)) {
+      $shortcut_dir = 'users/' . $namespace;
+      $shortcut_file = 'shortcuts.yml';
     }
     else {
-      $repo_dir = 'trovu-data';
+      $shortcut_dir = 'trovu-data/shortcuts';
+      $shortcut_file = $namespace . '.yml';
     }
 
-    $keyword = $shortcut['keyword'];
-    $namespace = $shortcut['namespace'];
-    if (strlen($shortcut['namespace']) == 3) {
-      $namespace = '.' . serchilo_convert_3letter_to_2letter($shortcut['namespace']);
-    }
-    
-
-    switch ($repo_dir) {
-    case 'trovu-data':
-      $shortcut_dir = 'shortcuts/{%namespace}/{%keyword}';
-      $shortcut_file_prefix = '{%argumentCount}';
-      break;
-    case 'users':
-      $shortcut_dir = '{%namespace}/shortcuts';
-      $shortcut_file_prefix = '{%keyword}.{%argumentCount}';
-      break;
-    }
-
-    $shortcut_dir = serchilo_replace_trovu_path_tokens($shortcut_dir, $namespace, $keyword, $argumentCount);
-    $shortcut_file_prefix = serchilo_replace_trovu_path_tokens($shortcut_file_prefix, $namespace, $keyword, $argumentCount);
-
-    $dir = $export_dir . '/' . $repo_dir . '/' . $shortcut_dir;
+    $dir = $export_dir . '/' . $shortcut_dir;
 
     if (!file_exists($dir)) {
       mkdir($dir, 0777, true);
     }
 
-    $export_path = $dir . '/' . $shortcut_file_prefix . '.yml';
+    $export_path = $dir . '/' . $shortcut_file;
 
     //echo $export_path . "\n";
     file_put_contents($export_path, $export_yaml);
