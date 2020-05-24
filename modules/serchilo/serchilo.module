@@ -1305,7 +1305,10 @@ function serchilo_get_default_country_namespace() {
 
   $ip_address = ip_address();
 
-  $default_country_namespace_name = @geoip_country_code3_by_name($ip_address);
+  if (function_exists('geoip_country_code3_by_name')) {
+    $default_country_namespace_name = geoip_country_code3_by_name($ip_address);
+  }
+
   $default_country_namespace_name = strtolower($default_country_namespace_name);
 
   // If no country namespace found: use default.
