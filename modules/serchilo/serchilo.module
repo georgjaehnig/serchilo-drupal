@@ -515,6 +515,172 @@ function serchilo_form_diff_node_revisions_alter(&$form, &$form_state, $form_id)
   }
 }
 
+/**
+ * Implements hook_form_alter().
+ */
+function serchilo_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
+
+  module_load_include('inc', 'serchilo', 'serchilo.export');
+  $config_yaml = serchilo_get_user_config();
+  $shortcuts_yaml = serchilo_get_user_shortcuts();
+
+  $form['trovu_export'] = array(
+    '#type' => 'markup',
+    '#markup' => '
+<h3>Export to trovu.net</h3>
+
+<p>FindFind.it will <strong>end its service in October 2023</strong>, with the <a target="_blank" href="https://www.drupal.org/psa-2022-02-23">end of support for Drupal 7</a>.</p>
+
+<p>But its <strong>successor <a target="_blank" href="https://trovu.net/">trovu.net</a></strong> is already running. It also allows <a target="_blank" href="https://github.com/trovu/trovu.github.io/wiki/Advanced-settings-&-personal-shortcuts">personal settings & shortcuts</a>.</p>
+
+<p>Follow  <a target="_blank" href="https://github.com/trovu/trovu.github.io/wiki/Migrate-from-FindFind.it">these steps to migrate your settings and shortcuts</a>.</p>
+
+<p>Below is the contents of your <code>config.yml</code> and <code>shortcuts.yml</code>.</p>
+',
+    '#weight' => 50,
+  );
+  $form['trovu_export_config'] = array(
+    '#title' => t('config.yml'),
+    '#type' => 'textarea',
+    '#weight' => 51,
+    '#default_value' => $config_yaml,
+  );
+  $form['trovu_export_shortcuts'] = array(
+    '#title' => t('shortcuts.yml'),
+    '#type' => 'textarea',
+    '#weight' => 52,
+    '#default_value' => $shortcuts_yaml,
+  );
+}
+
+
+function serchilo_get_user_config() {
+
+  global $user;
+  $account = array_shift(entity_load('user', array($user->uid)));
+
+  // Filter out users without actual settings.
+  $no_custom_namespaces = (empty($account->field_custom_namespaces[LANGUAGE_NONE]));
+  $no_default_keyword = (empty($account->field_default_keyword[LANGUAGE_NONE][0]));
+  $mail_in_default_keyword = (strpos(serchilo_array_value($account->field_default_keyword[LANGUAGE_NONE][0], 'value'), '@')  !== false);
+  $username_in_custom_namespaces = ([$account->name] == serchilo_custom_namespaces_to_str($account->field_custom_namespaces[LANGUAGE_NONE]));
+
+  $config = [];
+
+  // List all subscribed namespaces.
+  $config['namespaces'] = ['o'];
+
+  if ($value = serchilo_array_value($account->field_default_keyword[LANGUAGE_NONE][0], 'value')) {
+    $config['defaultKeyword'] = $value;
+  }
+  if ($tid = serchilo_array_value($account->field_language_namespace[LANGUAGE_NONE][0], 'tid')) {
+    $term = taxonomy_term_load($tid);
+    $config['language'] = $term->name;
+    $config['namespaces'][] = $term->name;
+  }
+  if ($tid = serchilo_array_value($account->field_country_namespace[LANGUAGE_NONE][0], 'tid')) {
+    $term = taxonomy_term_load($tid);
+    $config['country'] = serchilo_convert_3letter_to_2letter($term->name);
+    $config['namespaces'][] = '.' . serchilo_convert_3letter_to_2letter($term->name);
+  }
+  if (!empty($account->field_custom_namespaces[LANGUAGE_NONE])) {
+    $config['namespaces'] = array_merge(
+      $config['namespaces'],
+      serchilo_custom_namespaces_to_str($account->field_custom_namespaces[LANGUAGE_NONE])
+    );
+  }
+  
+  // Also set the user namespace in the list.
+  $user_namespace = [
+    'github' => '.',
+    // 'name' => $account->name,
+  ];
+  $config['namespaces'][] = $user_namespace;
+
+  $config_yaml = yaml_emit($config, YAML_UTF8_ENCODING);
+  $config_yaml = substr($config_yaml, 4);
+  $config_yaml = substr($config_yaml, 0, -4);
+
+  return $config_yaml;
+}
+
+
+function serchilo_get_user_shortcuts() {
+
+  global $user;
+
+  $term = array_shift(taxonomy_get_term_by_name($user->name));
+  $efq = new EntityFieldQuery;
+
+  $result = $efq
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'shortcut')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->fieldCondition('field_active',         'value',  TRUE )
+    ->fieldCondition('field_namespace',      'tid',    $term->tid)
+    ->execute();
+
+  $nids = array_keys(array_shift($result));
+
+  $exported_shortcuts = array();
+
+  foreach ($nids as $nid) {
+
+    $node = node_load($nid);
+
+    $namespace = taxonomy_term_load($node->field_namespace[LANGUAGE_NONE][0]['tid']);
+
+    $exported_shortcut['id']              = $node->nid;
+    $exported_shortcut['title']           = $node->title;
+    $exported_shortcut['description']     = (string) drupal_array_get_nested_value($node->field_description,     array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['url']             = (string) drupal_array_get_nested_value($node->field_url,             array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['keyword']         = (string) drupal_array_get_nested_value($node->field_keyword,         array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['argument_names']  = (string) drupal_array_get_nested_value($node->field_argument_names,  array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['set_referrer']    = (string) drupal_array_get_nested_value($node->field_set_referrer,    array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['invisible']       = (string) drupal_array_get_nested_value($node->field_invisible,       array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['post_parameters'] = (string) drupal_array_get_nested_value($node->field_post_parameters, array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['active']          = (bool)   drupal_array_get_nested_value($node->field_active,          array(LANGUAGE_NONE, 0, 'value'));
+    $exported_shortcut['approved']        = (bool)   drupal_array_get_nested_value($node->field_approved,        array(LANGUAGE_NONE, 0, 'value'));
+
+    $wnode = entity_metadata_wrapper('node', $node);
+
+    $exported_shortcut['namespace']      = $wnode->field_namespace->value()->name;
+    $exported_shortcut['tags']           = array_map(function ($tag) { return $tag->name; }, $wnode->field_tags->value() ?: array() );
+
+    $exported_shortcut['examples']       = array();
+    foreach ($wnode->field_example as $example) {
+      if (empty($example->field_example_arguments->value())) {
+        continue;
+      }
+      $exported_shortcut['examples'][$example->field_example_arguments->value()] = $example->field_example_description->value();
+    }
+
+    $exported_shortcut['test']       = array();
+    foreach ($wnode->field_test as $test) {
+      if (empty($test->field_test_arguments->value())) {
+        continue;
+      }
+      $exported_shortcut['test'][$test->field_test_arguments->value()] = $test->field_test_expected_content->value();
+    }
+
+    $exported_shortcuts[] = $exported_shortcut;
+  }
+
+
+  foreach ($exported_shortcuts as $exported_shortcut) {
+
+    list($key, $prepared_shortcut) = serchilo_export_to_trovu_shortcut($exported_shortcut);
+
+    $prepared_shortcuts[$key] = $prepared_shortcut;
+  }
+
+  $shortcuts_yaml = yaml_emit($prepared_shortcuts, YAML_UTF8_ENCODING);
+  $shortcuts_yaml = substr($shortcuts_yaml, 4);
+  $shortcuts_yaml = substr($shortcuts_yaml, 0, -4);
+
+  return $shortcuts_yaml;
+}
+
 
 // FIELD
 
