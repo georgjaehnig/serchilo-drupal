@@ -535,7 +535,7 @@ function serchilo_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
 
 <p>Follow  <a target="_blank" href="https://github.com/trovu/trovu.github.io/wiki/Migrate-from-FindFind.it">these steps to migrate your settings and shortcuts</a>.</p>
 
-<p>Below is the contents of your <code>config.yml</code> and <code>shortcuts.yml</code>.</p>
+<p>Below is the contents of your future <code>config.yml</code> and <code>shortcuts.yml</code>.</p>
 ',
     '#weight' => 50,
   );
