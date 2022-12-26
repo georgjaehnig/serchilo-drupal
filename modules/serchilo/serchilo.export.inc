@@ -243,44 +243,7 @@ function serchilo_export_to_trovu_shortcuts($export_dir) {
       }
     }
 
-    // Convert output attribute from PHP's date() format to momentjs.
-    $arguments = serchilo_get_arguments_from_string($shortcut['url']) ?? [];
-    $variables = serchilo_get_variables_from_string($shortcut['url']) ?? [];
-
-    foreach (array_merge($arguments, $variables) as $name=>$placeholders) {
-      foreach ($placeholders as $match=>$attributes) {
-        if (!empty($attributes['output'])) {
-          $attributes['output'] = serchilo_convert_php_date_to_momentjs($attributes['output']);
-          array_walk($attributes, function(&$v, $k) { $v =  $k . '=' . $v; });
-          $prefix = substr($match, 0, 2);
-          $match_replaced = $prefix . $name . '|' . join('|', $attributes) . '}';
-          $shortcut['url'] = str_replace($match, $match_replaced, $shortcut['url']);
-        }
-      }
-    }
-
-    $export = array();
-    $export['url'] = $shortcut['url'];
-
-    $post_parameters = serchilo_get_post_parameters($shortcut['post_parameters']);
-    foreach ($post_parameters as $key=>$value) {
-      $export['post parameters'][$key] = $value;
-    }
-
-    foreach(['title', 'description', 'tags', 'examples', 'tests'] as $k) {
-      if (!empty($shortcut[$k])) {
-        $export[$k] = $shortcut[$k];
-      }
-    }
-
-    $argumentCount = count(serchilo_get_argument_names($shortcut['url'], ($shortcut['post_parameters'])));
-
-    $key = $shortcut['keyword'] . ' ' . $argumentCount;
-
-    $namespace = $shortcut['namespace'];
-    if (strlen($shortcut['namespace']) == 3) {
-      $namespace = '.' . serchilo_convert_3letter_to_2letter($shortcut['namespace']);
-    }
+    list($key, $export) = serchilo_export_to_trovu_shortcut($shortcut);
     $shortcutsByNamespace[$namespace][$key] = $export;
   }
   //print_r($shortcutsByNamespace);
@@ -317,6 +280,51 @@ function serchilo_export_to_trovu_shortcuts($export_dir) {
     //echo $export_path . "\n";
     file_put_contents($export_path, $export_yaml);
   }
+}
+
+function serchilo_export_to_trovu_shortcut($shortcut) {
+
+  // Convert output attribute from PHP's date() format to momentjs.
+  $arguments = serchilo_get_arguments_from_string($shortcut['url']) ?? [];
+  $variables = serchilo_get_variables_from_string($shortcut['url']) ?? [];
+
+  foreach (array_merge($arguments, $variables) as $name=>$placeholders) {
+    foreach ($placeholders as $match=>$attributes) {
+      if (!empty($attributes['output'])) {
+        $attributes['output'] = serchilo_convert_php_date_to_momentjs($attributes['output']);
+        array_walk($attributes, function(&$v, $k) { $v =  $k . '=' . $v; });
+        $prefix = substr($match, 0, 2);
+        $match_replaced = $prefix . $name . '|' . join('|', $attributes) . '}';
+        $shortcut['url'] = str_replace($match, $match_replaced, $shortcut['url']);
+      }
+    }
+  }
+
+  $export = array();
+  $export['url'] = $shortcut['url'];
+
+  $post_parameters = serchilo_get_post_parameters($shortcut['post_parameters']);
+  foreach ($post_parameters as $key=>$value) {
+    $export['post parameters'][$key] = $value;
+  }
+
+  foreach(['title', 'description', 'tags', 'examples', 'tests'] as $k) {
+    if (!empty($shortcut[$k])) {
+      $export[$k] = $shortcut[$k];
+    }
+  }
+
+  $argumentCount = count(serchilo_get_argument_names($shortcut['url'], ($shortcut['post_parameters'])));
+
+  $key = $shortcut['keyword'] . ' ' . $argumentCount;
+
+  $namespace = $shortcut['namespace'];
+  if (strlen($shortcut['namespace']) == 3) {
+    $namespace = '.' . serchilo_convert_3letter_to_2letter($shortcut['namespace']);
+  }
+
+  return array($key, $export);
+
 }
 
 /**
