@@ -669,7 +669,7 @@ function serchilo_get_user_shortcuts() {
 
   foreach ($exported_shortcuts as $exported_shortcut) {
 
-    list($key, $prepared_shortcut) = serchilo_export_to_trovu_shortcut($exported_shortcut);
+    list($key, $namespace, $prepared_shortcut) = serchilo_export_to_trovu_shortcut($exported_shortcut);
 
     $prepared_shortcuts[$key] = $prepared_shortcut;
   }

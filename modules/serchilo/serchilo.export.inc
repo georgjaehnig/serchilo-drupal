@@ -243,7 +243,7 @@ function serchilo_export_to_trovu_shortcuts($export_dir) {
       }
     }
 
-    list($key, $export) = serchilo_export_to_trovu_shortcut($shortcut);
+    list($key, $namespace, $export) = serchilo_export_to_trovu_shortcut($shortcut);
     $shortcutsByNamespace[$namespace][$key] = $export;
   }
   //print_r($shortcutsByNamespace);
@@ -323,7 +323,7 @@ function serchilo_export_to_trovu_shortcut($shortcut) {
     $namespace = '.' . serchilo_convert_3letter_to_2letter($shortcut['namespace']);
   }
 
-  return array($key, $export);
+  return array($key, $namespace, $export);
 
 }
 
