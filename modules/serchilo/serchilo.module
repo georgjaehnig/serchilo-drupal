@@ -558,6 +558,7 @@ function serchilo_get_user_config() {
 
   global $user;
   $account = array_shift(entity_load('user', array($user->uid)));
+  //$account = array_shift(entity_load('user', array(ANY_USER_UID)));
 
   // Filter out users without actual settings.
   $no_custom_namespaces = (empty($account->field_custom_namespaces[LANGUAGE_NONE]));
@@ -610,6 +611,7 @@ function serchilo_get_user_shortcuts() {
   global $user;
 
   $term = array_shift(taxonomy_get_term_by_name($user->name));
+  //$term = array_shift(taxonomy_get_term_by_name('ANY_USER_NAME'));
   $efq = new EntityFieldQuery;
 
   $result = $efq
