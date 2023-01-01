@@ -423,6 +423,10 @@ function serchilo_export_shortcuts() {
     $exported_shortcut['active']          = (bool)   drupal_array_get_nested_value($node->field_active,          array(LANGUAGE_NONE, 0, 'value'));
     $exported_shortcut['approved']        = (bool)   drupal_array_get_nested_value($node->field_approved,        array(LANGUAGE_NONE, 0, 'value'));
 
+    foreach(['title', 'description', 'url', 'keyword', 'argument_names', 'post_parameters'] as $k) {
+      $exported_shortcut[$k] = trim($exported_shortcut[$k]);
+    }
+
     $wnode = entity_metadata_wrapper('node', $node);
 
     $exported_shortcut['namespace']      = $wnode->field_namespace->value()->name;
