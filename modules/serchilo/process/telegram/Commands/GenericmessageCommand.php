@@ -70,7 +70,7 @@ class GenericmessageCommand extends SystemCommand
 
         return Request::sendMessage([
           'chat_id' => $message->getChat()->getId(),
-          'text'    => (!empty($url) ? $url : $text), // json_encode($env), // $message->getText(),
+          'text'    => (!empty($url) ? "This bot may end its operation on 31 Dec 2023.\n\nMessage me on @j0rges if you are still using it and want it to be continued. \n\n" . $url : $text), // json_encode($env), // $message->getText(),
         ]);
     }
 }
