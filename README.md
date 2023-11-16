@@ -1,6 +1,6 @@
 **Serchilo / FindFind.it will be discontinued, presumably on December 31 2023.**
 
-**Please [migrate](https://github.com/trovu/trovu.github.io/wiki/Migrate-from-FindFind.it) to its successor trovu.net**
+**Please [migrate](https://github.com/trovu/trovu.github.io/wiki/Migrate-from-FindFind.it) to its successor www.trovu.net**
 
 # serchilo-drupal
 
