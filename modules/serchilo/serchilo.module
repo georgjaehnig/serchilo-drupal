@@ -1047,6 +1047,10 @@ function serchilo_node_delete($node) {
 function serchilo_node_access($node, $op, $account) {
 
   if (node_type_get_type($node)->type == 'shortcut') {
+    if ($op == 'create') {
+      serchilo_info_trovu();
+      return NODE_ACCESS_DENY;
+    }
     if ($op == 'update') {
         
       $wnode = entity_metadata_wrapper('node', $node);
