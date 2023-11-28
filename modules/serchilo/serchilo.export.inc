@@ -292,11 +292,26 @@ function serchilo_export_to_trovu_shortcut($shortcut) {
     foreach ($placeholders as $match=>$attributes) {
       if (!empty($attributes['output'])) {
         $attributes['output'] = serchilo_convert_php_date_to_momentjs($attributes['output']);
-        array_walk($attributes, function(&$v, $k) { $v =  $k . '=' . $v; });
-        $prefix = substr($match, 0, 2);
-        $match_replaced = $prefix . $name . '|' . join('|', $attributes) . '}';
-        $shortcut['url'] = str_replace($match, $match_replaced, $shortcut['url']);
       }
+      //array_walk($attributes, function(&$v, $k) { $v =  $k . '=' . $v; });
+      //$prefix = substr($match, 0, 2);
+      //$match_replaced_custom = $prefix . $name . '|' . join('|', $attributes) . '}';
+      $match_replaced_yaml = '<';
+      if ($match[1] == '$') {
+      $match_replaced_yaml .= '$';
+      }
+      $match_replaced_yaml .= $name;
+      if (!empty($attributes)) {
+        $match_replaced_yaml .= ': {';
+        foreach ($attributes as $k=>$v) {
+          $match_replaced_yaml .= "$k: $v, ";
+        }
+        $match_replaced_yaml = substr($match_replaced_yaml, 0, -2);
+        $match_replaced_yaml .= '}';
+      }
+      $match_replaced_yaml .= '>';
+      //watchdog(WATCHDOG_DEBUG, '4'.htmlspecialchars($match_replaced_yaml));
+      $shortcut['url'] = str_replace($match, $match_replaced_yaml, $shortcut['url']);
     }
   }
 
