@@ -531,7 +531,7 @@ function serchilo_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
     '#markup' => '
 <h3>Export to trovu.net</h3>
 
-<p>FindFind.it will <strong>end its service in October 2023</strong>, with the end of support for Drupal 7.</p>
+<p>FindFind.it will <strong>end its service in December 2023</strong>, with the end of support for Drupal 7.</p>
 
 <p>But its <strong>successor <a target="_blank" href="https://trovu.net/">trovu.net</a></strong> is already running. It also allows <a target="_blank" href="https://github.com/trovu/trovu.github.io/wiki/Advanced-settings-&-personal-shortcuts">personal settings & shortcuts</a>.</p>
 
