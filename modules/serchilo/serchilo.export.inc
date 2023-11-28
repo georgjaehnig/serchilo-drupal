@@ -288,6 +288,8 @@ function serchilo_export_to_trovu_shortcut($shortcut) {
   $arguments = serchilo_get_arguments_from_string($shortcut['url']) ?? [];
   $variables = serchilo_get_variables_from_string($shortcut['url']) ?? [];
 
+  $argumentCount = count(serchilo_get_argument_names($shortcut['url'], ($shortcut['post_parameters'])));
+
   foreach (array_merge($arguments, $variables) as $name=>$placeholders) {
     foreach ($placeholders as $match=>$attributes) {
       if (!empty($attributes['output'])) {
@@ -328,8 +330,6 @@ function serchilo_export_to_trovu_shortcut($shortcut) {
       $export[$k] = $shortcut[$k];
     }
   }
-
-  $argumentCount = count(serchilo_get_argument_names($shortcut['url'], ($shortcut['post_parameters'])));
 
   $key = $shortcut['keyword'] . ' ' . $argumentCount;
 
