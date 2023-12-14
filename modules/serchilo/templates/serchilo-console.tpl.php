@@ -1,3 +1,9 @@
+<div class="alert alert-block alert-dismissible alert-warning messages warning">
+  <a class="close" data-dismiss="alert" href="#">×</a>
+<h4 class="element-invisible">Warning message</h4>
+FindFind.it will <strong>close on 31 December 2023</strong>. But its successor <a href="https://www.trovu.net">Trovu</a> is already running, please <a href="https://www.trovu.net/docs/legacy/migrate/">migrate</a>.
+</div>
+
 <form role="form" action="?" method="get" id="serchilo-shortcut-query-form" accept-charset="UTF-8" class="form">  
   <div class="input-group input-group-lg">
       <input id="searchInput" type="text" class="form-control" name="query" value="<?php echo $query ?>" autocomplete="off" />
