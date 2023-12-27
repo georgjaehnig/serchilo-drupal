@@ -290,13 +290,27 @@ function serchilo_process_query_console($env) {
     }
     elseif (empty($output['#shortcut']['set_referrer'])) {
       // Classic redirect.
-      header('Location: ' . $output['url']['final']);
+      //header('Location: ' . $output['url']['final']);
+      echo '
+<html><body>
+FindFind.it will <strong>close on 31 December 2023</strong>. But its successor <a href="https://trovu.net">Trovu</a> is already running, please <strong><a href="https://trovu.net/docs/legacy/migrate/">migrate</a></strong>.
+<br><br>
+Continue to <a href="' . $output['url']['final'] . '">' . $output['url']['final'] . '</a>
+</body></html>
+';
       return;
     }
     else {
       // Redirect via HTML page
       // for shortcuts which need a referrer.
-      serchilo_redirect_via_meta($output['url']['final']);
+      echo '
+<html><body>
+FindFind.it will <strong>close on 31 December 2023</strong>. But its successor <a href="https://trovu.net">Trovu</a> is already running, please <strong><a href="https://trovu.net/docs/legacy/migrate/">migrate</a></strong>.
+<br><br>
+Continue to <a href="' . $output['url']['final'] . '">' . $output['url']['final'] . '</a>
+</body></html>
+';
+      // serchilo_redirect_via_meta($output['url']['final']);
       return;
     }
   } 
