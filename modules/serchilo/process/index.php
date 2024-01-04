@@ -293,7 +293,7 @@ function serchilo_process_query_console($env) {
       //header('Location: ' . $output['url']['final']);
       echo '
 <html><body>
-FindFind.it will <strong>close on 31 December 2023</strong>. But its successor <a href="https://trovu.net">Trovu</a> is already running, please <strong><a href="https://trovu.net/docs/legacy/migrate/">migrate</a></strong>.
+In January 2024, FindFind.it became <a href="https://trovu.net">Trovu</a>, please <strong><a href="https://trovu.net/docs/legacy/migrate/">migrate</a></strong>.
 <br><br>
 Continue to <a href="' . $output['url']['final'] . '">' . $output['url']['final'] . '</a>
 </body></html>
@@ -305,7 +305,7 @@ Continue to <a href="' . $output['url']['final'] . '">' . $output['url']['final'
       // for shortcuts which need a referrer.
       echo '
 <html><body>
-FindFind.it will <strong>close on 31 December 2023</strong>. But its successor <a href="https://trovu.net">Trovu</a> is already running, please <strong><a href="https://trovu.net/docs/legacy/migrate/">migrate</a></strong>.
+In January 2024, FindFind.it became <a href="https://trovu.net">Trovu</a>, please <strong><a href="https://trovu.net/docs/legacy/migrate/">migrate</a></strong>.
 <br><br>
 Continue to <a href="' . $output['url']['final'] . '">' . $output['url']['final'] . '</a>
 </body></html>
