@@ -295,6 +295,8 @@ function serchilo_process_query_console($env) {
 <html><body>
 In January 2024, FindFind.it became <a href="https://trovu.net">Trovu</a>, please <strong><a href="https://trovu.net/docs/legacy/migrate/">migrate</a></strong>.
 <br><br>
+This site will be closed on <strong>March 31, 2024</strong>.
+<br><br>
 Continue to <a href="' . $output['url']['final'] . '">' . $output['url']['final'] . '</a>
 </body></html>
 ';
